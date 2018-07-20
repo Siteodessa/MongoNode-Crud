@@ -4,7 +4,7 @@ var fs = require('fs');
 var expressListings = require('expresslistings');
 var get_all_folder_names = require('get_all_folder_names');
 // console.clear()
- 
+// git added 
 function logObject(object) {
   Object.keys(object).map(function(objectKey, index) {
         var value = object[objectKey];
