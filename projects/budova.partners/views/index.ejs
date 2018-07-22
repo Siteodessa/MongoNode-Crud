@@ -1,10 +1,8 @@
-
 <% function iterate_item(itemData){ %>
 	<% itemData.forEach(function(item){ %>
 			<li class="<%= item.class %>"><span><a href="<%= item.url %>"><%= item.text %></a></span></li>
 	<% }); %>
 <% } %>
-
 <% function iterate_text_item(itemData){ %>
 	<% itemData.forEach(function(item){ %>
 		<%= item.text %>
@@ -15,8 +13,6 @@
 		<<%= item.node %> class="<%= item.class %>"><<%= item.childnode %>><a href="<%= item.url %>"><%= item.text %></a></<%= item.childnode %>></<%= item.node %>>
 	<% }); %>
 <% } %>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -112,21 +108,17 @@
 						<div class="listing_title"><%= d.listing_title %></div>
 						<p class="listing_text"><%= d.listing_text %>.</p>
 						<div class="room_tags">
-							<span class="room_tag"><a href="#">Hottub</a></span>
-							<span class="room_tag"><a href="#">Swimming Pool</a></span>
-							<span class="room_tag"><a href="#">Garden</a></span>
-							<span class="room_tag"><a href="#">Patio</a></span>
-							<span class="room_tag"><a href="#">Hard Wood Floor</a></span>
+							<% html_items(d.room_tags) %>
 						</div>
 					</div>
 				</div>
 				<!-- Listing Price -->
 				<div class="col-lg-4 listing_price_col clearfix">
 					<div class="featured_card_box d-flex flex-row align-items-center trans_300 float-lg-right">
-						<img src="images/tag.svg" alt="https://www.flaticon.com/authors/lucy-g">
+						<img src="<%= d.listing_price_col[0].image %>" alt="">
 						<div class="featured_card_box_content">
-							<div class="featured_card_price_title trans_300">For Sale</div>
-							<div class="featured_card_price trans_300">$540,000</div>
+							<div class="featured_card_price_title trans_300"><%= d.listing_price_col[0].text %></div>
+							<div class="featured_card_price trans_300"><%= d.listing_price_col[0].price %></div>
 						</div>
 					</div>
 				</div>
@@ -137,25 +129,11 @@
 					<div class="listing_slider_container">
 						<div class="owl-carousel owl-theme listing_slider">
 							<!-- Listing Slider Item -->
-							<div class="owl-item listing_slider_item">
-								<img src="images/listing_slider_1.jpg" alt="https://unsplash.com/@astute">
-							</div>
-							<!-- Listing Slider Item -->
-							<div class="owl-item listing_slider_item">
-								<img src="images/listing_slider_1.jpg" alt="https://unsplash.com/@astute">
-							</div>
-							<!-- Listing Slider Item -->
-							<div class="owl-item listing_slider_item">
-								<img src="images/listing_slider_1.jpg" alt="https://unsplash.com/@astute">
-							</div>
-							<!-- Listing Slider Item -->
-							<div class="owl-item listing_slider_item">
-								<img src="images/listing_slider_1.jpg" alt="https://unsplash.com/@astute">
-							</div>
-							<!-- Listing Slider Item -->
-							<div class="owl-item listing_slider_item">
-								<img src="images/listing_slider_1.jpg" alt="https://unsplash.com/@astute">
-							</div>
+							<% d.listing_slider.forEach(function(item){ %>
+								<div class="owl-item listing_slider_item">
+									<img src="<%= item.image %>" alt="<%= item.alt %>">
+								</div>
+							<% }); %>
 						</div>
 						<div class="listing_slider_nav listing_slider_prev d-flex flex-row align-items-center justify-content-center trans_200">
 							<img src="images/nav_left.png" alt="">
@@ -171,76 +149,61 @@
 				<!-- Listing -->
 				<div class="col-lg-8 listing_col">
 					<div class="listing_details">
-						<div class="listing_subtitle">Extra Facilities</div>
-						<p class="listing_details_text">Donec ullamcorper nulla non metus auctor fringi lla. Curabitur blandit tempus porttitor.</p>
+						<div class="listing_subtitle"><%= d.listing_details[0]["heading"] %></div>
+						<p class="listing_details_text"><%= d.listing_details[0]["paragraph"] %></p>
 						<div class="rooms">
-							<div class="room">
-								<span class="room_title">Bedrooms</span>
-								<div class="room_content">
-									<div class="room_image"><img src="images/bedroom.png" alt=""></div>
-									<span class="room_number">4</span>
+							<% d.listing_details[0]["iconblock"].forEach(function(item){ %>
+								<div class="room">
+									<span class="room_title">		<%= item.text %></span>
+									<div class="room_content">
+										<div class="room_image"><img src="<%= item.icon %>" alt=""></div>
+										<span class="room_number"><%= item.numbers %></span>
+									</div>
 								</div>
-							</div>
-							<div class="room">
-								<span class="room_title">Bathrooms</span>
-								<div class="room_content">
-									<div class="room_image"><img src="images/shower.png" alt=""></div>
-									<span class="room_number">3</span>
-								</div>
-							</div>
-							<div class="room">
-								<span class="room_title">Area</span>
-								<div class="room_content">
-									<div class="room_image"><img src="images/area.png" alt=""></div>
-									<span class="room_number">7100 Sq Ft</span>
-								</div>
-							</div>
-							<div class="room">
-								<span class="room_title">Patio</span>
-								<div class="room_content">
-									<div class="room_image"><img src="images/patio.png" alt=""></div>
-									<span class="room_number">1</span>
-								</div>
-							</div>
-							<div class="room">
-								<span class="room_title">Garage</span>
-								<div class="room_content">
-									<div class="room_image"><img src="images/garage.png" alt=""></div>
-									<span class="room_number">2</span>
-								</div>
-							</div>
+							<% }); %>
 						</div>
 					</div>
 					<!-- Listing Description -->
 					<div class="listing_description">
-						<div class="listing_subtitle">Description</div>
-						<p class="listing_description_text">Donec ullamcorper nulla non metus auctor fringi lla. Curabitur blandit tempus porttitor.Sed lectus urna, ultricies sit amet risus eget, euismod imperdiet augue. Duis imperdiet, purus a pellentesque sodales, sapien mauris rhoncus eros, ac blandit elit leo ac diam. Sed lectus urna, ultricies sit amet risus eget, euismod imperdiet augue. Duis imperdiet, purus a pellentesque sodales, sapien mauris rhoncus eros, ac blandit elit leo ac diam</p>
+						<div class="listing_subtitle"><%= d.description[0].heading %></div>
+						<p class="listing_description_text"><%= d.description[0].description %></p>
 					</div>
 					<!-- Listing Additional Details -->
 					<div class="listing_additional_details">
-						<div class="listing_subtitle">Additional Details</div>
+						<div class="listing_subtitle"><%= d.additional_details[0]["heading"] %></div>
 						<ul class="additional_details_list">
-							<li class="additional_detail"><span>bedroom features:</span> Main Floor Master Bedroom, Walk-In Closet</li>
-							<li class="additional_detail"><span>dining area:</span> Breakfast Counter/Bar, Living/Dining Combo</li>
-							<li class="additional_detail"><span>doors & windows:</span> Bay Window</li>
-							<li class="additional_detail"><span>entry location:</span> Mid Level</li>
-							<li class="additional_detail"><span>floors:</span> Raised Foundation, Vinyl Tile, Wall-to-Wall Carpet, Wood</li>
+
+							<% d.additional_details[0]["list"].forEach(function(item){ %>
+													<li class="additional_detail"><span><%= item.heading %></span> <%= item.text %></li>
+							<% }); %>
+
+
 						</ul>
 					</div>
 					<!-- Listing Video -->
 					<div class="listing_video">
-						<div class="listing_subtitle">Property Video</div>
-						<div class="listing_video_link">
-							<a class="video" href="https://vimeo.com/99340873" title=""><img src="images/listing_video.jpg" alt="https://www.pexels.com/u/binyaminmellish/"></a>
-							<div class="video_play"><img src="images/play.svg" alt=""></div>
-						</div>
+						<div class="listing_subtitle"><%= d.listing_video[0].heading %></div>
+
+
+
+						<% d.listing_video[0].video.forEach(function(item){ %>
+													<div class="listing_video_link">
+														<a class="video" href="<%= item.href %>" title="">
+															<img src="<%= item.src %>" alt="<%= item.alt %>"></a>
+														<div class="video_play">
+															<img src="<%= item.play_src %>" alt="<%= item.alt %>">
+														</div>
+													</div>
+						<% }); %>
+
 					</div>
 					<!-- Listing Map -->
 					<div class="listing_map">
-						<div class="listing_subtitle">Property on map</div>
+						<div class="listing_subtitle"><%= d.map[0].heading %></div>
 						<div id="google_map">
 							<div class="map_container">
-								<div id="map"></div>
+								<div id="map"><iframe src='<%= d.map[0].iframe %>' width='600' height='450' frameborder='0' style='border:0' allowfullscreen></iframe>
+							</div>
 							</div>
 						</div>
 					</div>
@@ -254,28 +217,31 @@
 			<div class="row row-equal-height">
 				<div class="col-lg-6">
 					<div class="newsletter_title">
-						<h3>subscribe to our newsletter</h3>
-						<span class="newsletter_subtitle">Get the latest offers</span>
+						<h3><%= d.subscribe.heading %></h3>
+						<span class="newsletter_subtitle"><%= d.subscribe.subheading %></span>
 					</div>
 					<div class="newsletter_form_container">
 						<form action="#">
 							<div class="newsletter_form_content d-flex flex-row">
-								<input id="newsletter_email" class="newsletter_email" type="email" placeholder="Your email here" required="required" data-error="Valid email is required.">
-								<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_200" value="Submit">subscribe</button>
+								<input id="newsletter_email" class="newsletter_email" type="email" placeholder="<%= d.subscribe.placeholder %>" required="required" data-error="Valid email is required.">
+								<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_200" value="Submit"><%= d.subscribe.subscribe %></button>
 							</div>
 						</form>
 					</div>
+
+
+
 				</div>
 				<div class="col-lg-6">
 					<a href="#">
 						<div class="weekly_offer">
 							<div class="weekly_offer_content d-flex flex-row">
 								<div class="weekly_offer_icon d-flex flex-column align-items-center justify-content-center">
-									<img src="images/prize.svg" alt="">
+									<img src="<%= d.weekly_offer.prize %>" alt="">
 								</div>
-								<div class="weekly_offer_text text-center">weekly offer</div>
+								<div class="weekly_offer_text text-center"><%= d.weekly_offer.heading %></div>
 							</div>
-							<div class="weekly_offer_image" style="background-image:url(images/weekly.jpg)"></div>
+							<div class="weekly_offer_image" style="background-image:url(<%= d.weekly_offer.background %>)"></div>
 						</div>
 					</a>
 				</div>
@@ -292,70 +258,72 @@
 						<div class="logo_container">
 							<a href="#">
 								<div class="logo">
-									<img src="images/logo.png" alt="">
-									<span>the estate</span>
+									<img src="<%= d.logo[0]["logo"] %>" alt="">
+									<span><%= d.logo[0]["text"] %></span>
 								</div>
 							</a>
 						</div>
 					</div>
 					<div class="footer_social">
 						<ul class="footer_social_list">
-							<li class="footer_social_item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-							<li class="footer_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-							<li class="footer_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-							<li class="footer_social_item"><a href="#"><i class="fab fa-dribbble"></i></a></li>
-							<li class="footer_social_item"><a href="#"><i class="fab fa-behance"></i></a></li>
+
+							<% d.footer_social["list"].forEach(function(item){ %>
+							<li class="footer_social_item"><a href="<%= item.url %>"><i class="<%= item.fa_icon %>"></i></a></li>
+<% }); %>
 						</ul>
 					</div>
 					<div class="footer_about">
-						<p>Lorem ipsum dolor sit amet, cons ectetur  quis ferme adipiscing elit. Suspen dis se tellus eros, placerat quis ferme ntum et, viverra sit amet lacus. Nam gravida  quis ferme semper augue.</p>
+						<p><%= d.footer_about.text %>.</p>
 					</div>
 				</div>
 				<!-- Footer Useful Links -->
 				<div class="col-lg-3 footer_col">
-					<div class="footer_col_title">useful links</div>
+					<div class="footer_col_title"><%= d.useful_links.text %></div>
 					<ul class="footer_useful_links">
-						<li class="useful_links_item"><a href="#">Listings</a></li>
-						<li class="useful_links_item"><a href="#">Favorite Cities</a></li>
-						<li class="useful_links_item"><a href="#">Clients Testimonials</a></li>
-						<li class="useful_links_item"><a href="#">Featured Listings</a></li>
-						<li class="useful_links_item"><a href="#">Properties on Offer</a></li>
-						<li class="useful_links_item"><a href="#">Services</a></li>
-						<li class="useful_links_item"><a href="#">News</a></li>
-						<li class="useful_links_item"><a href="#">Our Agents</a></li>
+
+						<% d.useful_links.menu_list.forEach(function(item){ %>
+								<li class="useful_links_item"><a href="<%= item.url %>"><%= item.text %></a></li>
+<% }); %>
 					</ul>
 				</div>
 				<!-- Footer Contact Form -->
+
+
+
 				<div class="col-lg-3 footer_col">
-					<div class="footer_col_title">say hello</div>
+					<div class="footer_col_title"><%= d.footer_col_title.heading %></div>
 					<div class="footer_contact_form_container">
 						<form id="footer_contact_form" class="footer_contact_form" action="post">
-							<input id="contact_form_name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required.">
-							<input id="contact_form_email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required.">
-							<textarea id="contact_form_message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
-							<button id="contact_send_btn" type="submit" class="contact_send_btn trans_200" value="Submit">send</button>
+							<input id="contact_form_name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="<%= d.footer_col_title.placeholder_name %>.">
+							<input id="contact_form_email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="<%= d.footer_col_title.placeholder_mail %>.">
+							<textarea id="contact_form_message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="<%= d.footer_col_title.placeholder_message %>."></textarea>
+							<button id="contact_send_btn" type="submit" class="contact_send_btn trans_200" value="Submit"><%= d.footer_col_title.placeholder_submit %></button>
 						</form>
 					</div>
 				</div>
+
+
+
+
 				<!-- Footer Contact Info -->
 				<div class="col-lg-3 footer_col">
-					<div class="footer_col_title">contact info</div>
+					<div class="footer_col_title"><%= d.contact_info.heading %></div>
 					<ul class="contact_info_list">
 						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="images/placeholder.svg" alt=""></div></div>
-							<div class="contact_info_text">4127 Raoul Wallenber 45b-c Gibraltar</div>
+							<div><div class="contact_info_icon"><img src="<%= d.contact_info.addr_src %>" alt=""></div></div>
+							<div class="contact_info_text"><%= d.contact_info.address %></div>
 						</li>
 						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="images/phone-call.svg" alt=""></div></div>
-							<div class="contact_info_text">2556-808-8613</div>
+							<div><div class="contact_info_icon"><img src="<%= d.contact_info.phone_src %>" alt=""></div></div>
+							<div class="contact_info_text"><%= d.contact_info.phone %></div>
 						</li>
 						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="images/message.svg" alt=""></div></div>
-							<div class="contact_info_text"><a href="mailto:contactme@gmail.com?Subject=Hello" target="_top">contactme@gmail.com</a></div>
+							<div><div class="contact_info_icon"><img src="<%= d.contact_info.mail_src %>" alt=""></div></div>
+							<div class="contact_info_text"><a href="mailto:<%= d.contact_info.heading %>?Subject=Hello" target="_top"><%= d.contact_info.mail %></a></div>
 						</li>
 						<li class="contact_info_item d-flex flex-row">
 							<div><div class="contact_info_icon"><img src="images/planet-earth.svg" alt=""></div></div>
-							<div class="contact_info_text"><a href="https://colorlib.com">www.colorlib.com</a></div>
+							<div class="contact_info_text"><a href="https://siteodessa.com">siteodessa.com</a></div>
 						</li>
 					</ul>
 				</div>
@@ -365,7 +333,7 @@
 	<!-- Credits -->
 	<div class="credits">
 		<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Proudly presented to you <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://siteodessa.com" target="_blank">Siteodessa.com</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
 	</div>
 </div>
@@ -375,7 +343,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 <script src="plugins/easing/easing.js"></script>
 <script src="plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
+
 <script src="js/listings_single_custom.js"></script>
 </body>
 </html>
