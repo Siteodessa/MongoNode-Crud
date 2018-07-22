@@ -19,9 +19,8 @@ d.main_nav_list = [
   {"class": "main_nav_item" , "url": "/" , "text": "news"} ,
   {"class": "main_nav_item" , "url": "/" , "text": "contact"} ,
 ]
-d.phone = [{
-  "text":"+03 2321 24214"
-}]
+d.phone = {"text":"+03 2321 24214"}
+
 d.logo = [{"logo":"images/logo.png","text":"Budova.partners"}]
 
 

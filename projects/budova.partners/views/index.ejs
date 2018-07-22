@@ -8,15 +8,10 @@
 		<%= item.text %>
 	<% }); %>
 <% } %>
-<% function html_items(itemData){ %>
-	<% itemData.forEach(function(item){ %>
-		<<%= item.node %> class="<%= item.class %>"><<%= item.childnode %>><a href="<%= item.url %>"><%= item.text %></a></<%= item.childnode %>></<%= item.node %>>
-	<% }); %>
-<% } %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title><%= d.title %></title>
+<title><%= d.dbtest %> <%= d.title %></title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="The Estate Teplate">
@@ -77,7 +72,7 @@
 						</nav>
 						<!-- Phone Home -->
 						<div class="phone_home text-center">
-							<span><% iterate_text_item(d.phone) %></span>
+							<span><%= d.phone["text"] %></span>
 						</div>
 						<!-- Hamburger -->
 						<div class="hamburger_container menu_mm">
