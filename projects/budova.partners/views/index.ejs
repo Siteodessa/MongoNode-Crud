@@ -8,6 +8,11 @@
 		<%= item.text %>
 	<% }); %>
 <% } %>
+<% function html_items(itemData){ %>
+	<% itemData.forEach(function(item){ %>
+		<<%= item.node %> class="<%= item.class %>"><<%= item.childnode %>><a href="<%= item.url %>"><%= item.text %></a></<%= item.childnode %>></<%= item.node %>>
+	<% }); %>
+<% } %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
