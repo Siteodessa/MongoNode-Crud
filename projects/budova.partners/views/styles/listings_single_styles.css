@@ -124,11 +124,11 @@ p a:hover::after
 }
 ::selection
 {
-	
+
 }
 p::selection
 {
-	
+
 }
 h1{font-size: 48px;}
 h2{font-size: 36px;}
@@ -142,14 +142,14 @@ h1, h2, h3, h4, h5, h6
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
-h1::selection, 
-h2::selection, 
-h3::selection, 
-h4::selection, 
-h5::selection, 
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
 h6::selection
 {
-	
+
 }
 .form-control
 {
@@ -349,7 +349,7 @@ section
 
 .logo_container
 {
-	
+
 }
 .logo
 {
@@ -701,7 +701,7 @@ section
 .search_box_inner
 {
 	width: 100%;
-	
+
 	padding-bottom: 25px;
 }
 
@@ -1231,15 +1231,15 @@ section
 	font-weight: 400 !important;
 	color: #adb8d4 !important;
 }
-.newsletter_email::-moz-placeholder /* Firefox 19+ */ 
+.newsletter_email::-moz-placeholder /* Firefox 19+ */
 {
 	font-size: 11px !important;
 	font-style: italic !important;
 	font-weight: 400 !important;
 	color: #adb8d4 !important;
-} 
+}
 .newsletter_email:-ms-input-placeholder
-{ 
+{
 	font-size: 11px !important;
 	font-style: italic !important;
 	font-weight: 400 !important;
@@ -1460,7 +1460,7 @@ section
 }
 .footer_contact_form
 {
-	
+
 }
 .input_field
 {
@@ -1533,10 +1533,10 @@ section
 	font-style: italic !important;
 	font-weight: 400 !important;
 	color: #6678a3 !important;
-} 
+}
 .input_field:-ms-input-placeholder,
 .text_field:-ms-input-placeholder
-{ 
+{
 	font-size: 11px !important;
 	font-style: italic !important;
 	font-weight: 400 !important;

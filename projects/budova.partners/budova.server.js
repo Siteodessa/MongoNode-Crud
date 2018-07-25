@@ -1,12 +1,10 @@
 let express = require('express');
 let app = express();
-app.set('view engine', 'ejs');
-app.get('/', (req, res) => {
-  app.use(express.static('views'));
-  var d = require('./model/index');
-  d.dbtest = 'dbtest:false'
-  res.render('index', {d: d});
-});
-app.listen(80, () => console.log('Example app listening on port 80!'));
-var question = 'question'
-module.exports = question;
+var fs = require('fs');
+const dbConfig = require('./db/config/database.config.js');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+var start_mongoose = require('./db/start_mongoose')(mongoose, dbConfig);
+
+var d = require('./model/index');
+require('./db/routes/note.routes.js')(app, express, bodyParser, d);
