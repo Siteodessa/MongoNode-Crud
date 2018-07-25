@@ -1,10 +1,8 @@
 var d= {}
-
 d.title = 'Budova.partners'
 d.home_title = 'SINGLE LISTING'
 d.home_background = 'images/listings_single.jpg'
 d.breadcrumbs =
-
 [
   {"class": "cl" , "url": "/" , "text": "home"} ,
   {"class": "cl" , "url": "/" , "text": "about us"} ,
@@ -20,15 +18,9 @@ d.main_nav_list = [
   {"class": "main_nav_item" , "url": "/" , "text": "contact"} ,
 ]
 d.phone = {"text":"+03 2321 24214"}
-
 d.logo = [{"logo":"images/logo.png","text":"Budova.partners"}]
-
-
-
 d.listing_title = 'House in west California'
 d.listing_text = 'Donec ullamcorper nulla non metus auctor fringi lla.Curabitur blandit tempus porttitor'
-
-
 d.room_tags = [
   {"node": "span" , "class": "room_tag" , "childnode": "span" , "url": "/" , "text": "Hottub"} ,
   {"node": "span" , "class": "room_tag" , "childnode": "span" , "url": "/" , "text": "Swimming Pool"} ,
@@ -36,12 +28,9 @@ d.room_tags = [
   {"node": "span" , "class": "room_tag" , "childnode": "span" , "url": "/" , "text": "Patio"} ,
   {"node": "span" , "class": "room_tag" , "childnode": "span" , "url": "/" , "text": "Hard Wood Floor"} ,
 ]
-
-
 d.listing_price_col = [
   {"image": "images/tag.svg" , "text": "For Sale" , "price": "$540,000"} ,
 ]
-
 d.listing_slider = [
   {"image": "images/listing_slider_1.jpg" , "alt": "listing"} ,
   {"image": "images/listing_slider_1.jpg" , "alt": "listing"} ,
@@ -50,7 +39,6 @@ d.listing_slider = [
   {"image": "images/listing_slider_1.jpg" , "alt": "listing"} ,
   {"image": "images/listing_slider_1.jpg" , "alt": "listing"} ,
 ]
-
 d.listing_details = [
   {
   "heading": "Extra Facilities" ,
@@ -64,13 +52,10 @@ d.listing_details = [
   ]
 }
 ]
-
-
 d.description = [
   {"heading": "Additional Details" ,
    "description": ""} ,
 ]
-
 d.additional_details = [
     {
       "heading": "description" ,
@@ -82,7 +67,6 @@ d.additional_details = [
       { "heading":"floors:", "text":"Raised Foundation, Vinyl Tile, Wall-to-Wall Carpet, Wood" } ,
     ] , }
 ]
-
 d.listing_video = [
     {
       "heading": "Property Video" ,
@@ -94,29 +78,24 @@ d.listing_video = [
       "alt":"video" } ,
     ] , }
 ]
-
 d.map = [
     {
       "heading": "Property on map" ,
       "iframe": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d43976.02234357211!2d30.69958921058575!3d46.458575655969554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c633d3e7db19f7%3A0x7a2282d913470c1e!2z0J_RgNC40LzQvtGA0YHQutC40Lkg0YDQsNC50L7QvSwg0J7QtNC10YHRgdCwLCDQntC00LXRgdGB0LrQsNGPINC-0LHQu9Cw0YHRgtGMLCA2NTAwMA!5e0!3m2!1sru!2sua!4v1532263108521"
  }
 ]
-
 d.subscribe =
     {
       "heading": "subscribe to our newsletter" ,
       "subheading": "Get the latest offers" ,
       "placeholder": "Your email here" ,
       "subscribe": "subscribe" }
-
-
 d.weekly_offer =
     {
       "heading": "weekly offer" ,
       "prize": "images/prize.svg" ,
       "background": "images/weekly.jpg" ,
      }
-
 d.footer_social =
     {
      "list": [
@@ -140,16 +119,11 @@ d.footer_social =
       "url":"/",
       "fa_icon":"fab fa-behance",
  } ,
-
     ] }
-
 d.footer_about =
     {
       "text": "Lorem ipsum dolor sit amet, cons ectetur  quis ferme adipiscing elit. Suspen dis se tellus eros, placerat quis ferme ntum et, viverra sit amet lacus. Nam gravida  quis ferme semper augue"
  }
-
-
-
  d.useful_links =
      {
          "text": "useful links" ,
@@ -186,11 +160,7 @@ d.footer_about =
 "url":"/",
 "text":"Our Agents",
 } ,
-
      ] , }
-
-
-
 d.footer_col_title =
     {
       "heading": "say hello" ,
@@ -204,17 +174,9 @@ d.contact_info =
       "heading": "contact info" ,
       "addr_src": "images/placeholder.svg" ,
       "address": "4127 Raoul Wallenber 45b-c Gibraltar" ,
-
       "phone_src": "images/placeholder.svg" ,
       "phone": "2556-808-8613" ,
-
-
       "mail_src": "images/message.svg" ,
       "mail": "contactme@gmail.com" ,
-
  }
-
-
-
-
 module.exports = d;
