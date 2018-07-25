@@ -29,6 +29,7 @@
 <link href="plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/listings_single_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/listings_single_responsive.css">
+<link rel="stylesheet" type="text/css" href="styles/main.css">
 </head>
 <body>
 <div class="super_container">
@@ -348,8 +349,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
 
-<button id="refresh_observer" data-action="get" data-log="Refresh" >Refresh</button>
-<h2>	Observer </h2>
+
+<h2>	Observer <button id="refresh_observer" class="ref_obs" data-action="get" data-log="Refresh" ><img src="/images/rotate.png"></button></h2>
 <div id="observer" class="grid">
 ku
 </div>
@@ -377,7 +378,8 @@ ku
 			}
 
 			this.get = function() {
-				 var jqxhr = $.get( "/notes", function() { }) .done(function(notes) { $('#observer').empty() $('#observer').append('Number of posts: '+ notes.length + '')
+				 var jqxhr = $.get( "/notes", function() { }) .done(function(notes) { $('#observer').empty()
+				 $('#observer').append('Number of posts: '+ notes.length + '')
 				 notes.forEach(function(i){ $('#observer') .append('	<div class="grid"><div> '+ i._id + '</div> <div> '+ i.title + '</div> <div> '+ i.home_title + '</div> <div> '+ i.content  + '</div></div>  ') })})
 			 };
 
