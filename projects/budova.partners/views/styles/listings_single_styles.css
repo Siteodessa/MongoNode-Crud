@@ -1120,7 +1120,6 @@ section
 	-o-transition: all 400ms ease;
 	transition: all 400ms ease;
 	opacity: 0.8;
-	pointer-events: none;
 	z-index: 10;
 }
 .listing_video_link:hover .video_play
@@ -1600,4 +1599,9 @@ section
 {
 	color: #485165;
 	line-height: 49px;
+}
+
+
+body::selection {
+background: #ffb7b7;
 }

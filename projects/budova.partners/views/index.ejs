@@ -345,5 +345,59 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
 
 <script src="js/listings_single_custom.js"></script>
+
+
+
+<button id="refresh_observer" data-action="get" data-log="Refresh" >Refresh</button>
+<h2>	Observer </h2>
+<div id="observer" class="grid">
+ku
+</div>
+
+
+<h2>	Add </h2>
+<form id="editor" action="/notes" method="post">
+	<input name="title" type="text" placeholder="title" >
+	<input name="home_title" type="text" placeholder="home_title" >
+	<input name="content" type="text" placeholder="content">
+
+	<input type="submit" placeholder="Send">
+</form>
+
+
+
+<script>
+
+
+
+  function adminPanel(elem) {
+
+			this.init = function() {
+				 this.get()
+			}
+
+			this.get = function() {
+				 var jqxhr = $.get( "/notes", function() { }) .done(function(notes) { $('#observer').empty() $('#observer').append('Number of posts: '+ notes.length + '')
+				 notes.forEach(function(i){ $('#observer') .append('	<div class="grid"><div> '+ i._id + '</div> <div> '+ i.title + '</div> <div> '+ i.home_title + '</div> <div> '+ i.content  + '</div></div>  ') })})
+			 };
+
+  }
+
+var admin_Panel = new adminPanel('body');
+admin_Panel.init()
+
+jQuery('body').on('click', '#refresh_observer', function() {
+admin_Panel.get()
+});
+
+
+
+
+
+
+
+
+</script>
+
 </body>
 </html>

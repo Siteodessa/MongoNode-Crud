@@ -19,7 +19,7 @@ $(document).ready(function()
 {
 	"use strict";
 
-	/* 
+	/*
 
 	1. Vars and Inits
 
@@ -44,10 +44,9 @@ $(document).ready(function()
 	initMenu();
 	initListingSlider();
 	initPopup();
-	initGoogleMap();
 	initSearchFeatures();
 
-	/* 
+	/*
 
 	2. Set Header
 
@@ -83,7 +82,7 @@ $(document).ready(function()
 		}
 	}
 
-	/* 
+	/*
 
 	3. Init Menu
 
@@ -138,7 +137,7 @@ $(document).ready(function()
 		menu.css('max-height', menu.prop('scrollHeight') + "px");
 	}
 
-	/* 
+	/*
 
 	4. Init Listing Slider
 
@@ -181,7 +180,7 @@ $(document).ready(function()
 		}
 	}
 
-	/* 
+	/*
 
 	5. Init Popup
 
@@ -200,50 +199,13 @@ $(document).ready(function()
         });
 	}
 
-	/* 
+	/*
 
 	6. Init Google Map
 
 	*/
 
-	function initGoogleMap()
-	{
-		var myLatlng = new google.maps.LatLng(36.287327,-5.278641);
-    	var mapOptions = 
-    	{
-    		center: myLatlng,
-	       	zoom: 16,
-			mapTypeId: google.maps.MapTypeId.ROADMAP,
-			draggable: true,
-			scrollwheel: false,
-			zoomControl: true,
-			zoomControlOptions:
-			{
-				position: google.maps.ControlPosition.RIGHT_CENTER
-			},
-			mapTypeControl: false,
-			scaleControl: false,
-			streetViewControl: false,
-			rotateControl: false,
-			fullscreenControl: true,
-			styles:[]
-    	}
-
-    	// Initialize a map with options
-    	map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-		// Re-center map after window resize
-		google.maps.event.addDomListener(window, 'resize', function()
-		{
-			setTimeout(function()
-			{
-				google.maps.event.trigger(map, "resize");
-				map.setCenter(myLatlng);
-			}, 1400);
-		});
-	}
-
-	/* 
+	/*
 
 	7. Init Search Features
 
@@ -264,7 +226,7 @@ $(document).ready(function()
 
 				var panel = ele;
 				var panelH = ele.prop('scrollHeight') + "px";
-				
+
 				if(panel.css('max-height') == "0px")
 				{
 					panel.css('max-height', panel.prop('scrollHeight') + "px");
@@ -272,7 +234,7 @@ $(document).ready(function()
 				else
 				{
 					panel.css('max-height', "0px");
-				} 
+				}
 			});
 		}
 	}

@@ -179,4 +179,16 @@ d.contact_info =
       "mail_src": "images/message.svg" ,
       "mail": "contactme@gmail.com" ,
  }
+
+ const Note = require('../models/note.model.js');
+
+ Note.find()
+ .then(notes => {
+d.notes = notes;
+ }).catch(err => {
+     res.status(500).send({
+         message: err.message || "Some error occurred while retrieving notes."
+     });
+ });
+
 module.exports = d;

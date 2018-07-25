@@ -1,19 +1,16 @@
 const Note = require('../models/note.model.js');
-// Create and Save a new Note
-exports.create = (req, res) => {
-    // Validate request
-    if(!req.body.content) {
+exports.create = (req, res) => {// Create and Save a new Note
+    if(!req.body.content) {    // Validate request
         return res.status(400).send({
             message: "Note content can not be empty"
         });
     }
-    // Create a Note
-    const note = new Note({
-        title: req.body.title || "Untitled Note",
+    const note = new Note({    // Create a Note
+        title: req.body.title || "Budova.partners",
+        home_title: req.body.home_title || "SINGLE LISTING",
         content: req.body.content
     });
-    // Save Note in the database
-    note.save()
+    note.save()    // Save Note in the database
     .then(data => {
         res.send(data);
     }).catch(err => {
@@ -22,8 +19,7 @@ exports.create = (req, res) => {
         });
     });
 };
-// Retrieve and return all notes from the database.
-exports.findAll = (req, res) => {
+exports.findAll = (req, res) => { // Retrieve and return all notes from the database.
     Note.find()
     .then(notes => {
         res.send(notes);
@@ -33,8 +29,7 @@ exports.findAll = (req, res) => {
         });
     });
 };
-// Find a single note with a noteId
-exports.findOne = (req, res) => {
+exports.findOne = (req, res) => {// Find a single note with a noteId
     Note.findById(req.params.noteId)
     .then(note => {
         if(!note) {
@@ -54,16 +49,13 @@ exports.findOne = (req, res) => {
         });
     });
 };
-// Update a note identified by the noteId in the request
-exports.update = (req, res) => {
-    // Validate Request
-    if(!req.body.content) {
+exports.update = (req, res) => {// Update a note identified by the noteId in the request
+    if(!req.body.content) {    // Validate Request
         return res.status(400).send({
             message: "Note content can not be empty"
         });
     }
-    // Find note and update it with the request body
-    Note.findByIdAndUpdate(req.params.noteId, {
+    Note.findByIdAndUpdate(req.params.noteId, {    // Find note and update it with the request body
         title: req.body.title || "Untitled Note",
         content: req.body.content
     }, {new: true})
@@ -85,8 +77,7 @@ exports.update = (req, res) => {
         });
     });
 };
-// Delete a note with the specified noteId in the request
-exports.delete = (req, res) => {
+exports.delete = (req, res) => { // Delete a note with the specified noteId in the request
     Note.findByIdAndRemove(req.params.noteId)
     .then(note => {
         if(!note) {
