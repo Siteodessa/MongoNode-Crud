@@ -357,12 +357,9 @@ ku
 
 
 <h2>	Add </h2>
-<form id="editor" action="/notes" method="post">
-	<input name="title" type="text" placeholder="title" >
-	<input name="home_title" type="text" placeholder="home_title" >
-	<input name="content" type="text" placeholder="content">
+<form id="editor">
 
-	<input type="submit" placeholder="Send">
+	<div id="subm"  placeholder="Send">Send</div>
 </form>
 
 
@@ -375,13 +372,40 @@ ku
 
 			this.init = function() {
 				 this.get()
+				 this.createform()
+				 self = this
 			}
 
 			this.get = function() {
 				 var jqxhr = $.get( "/notes", function() { }) .done(function(notes) { $('#observer').empty()
+				 console.log('...');
 				 $('#observer').append('Number of posts: '+ notes.length + '')
 				 notes.forEach(function(i){ $('#observer') .append('	<div class="grid"><div> '+ i._id + '</div> <div> '+ i.title + '</div> <div> '+ i.home_title + '</div> <div> '+ i.content  + '</div></div>  ') })})
 			 };
+			this.post = function() {
+				$.ajax({
+				  type: "POST",
+				  url: "/notes",
+				  data: data
+				}).done(function(){
+
+
+					self.get()
+				})
+			 };
+
+			 this.createform = function() {
+				 	var form_input_names = <%-JSON.stringify(d)%>;
+					for (var variable in form_input_names) {
+						if (form_input_names.hasOwnProperty(variable)) {
+$('#editor').prepend('<input id="'+ variable +'" name="'+ variable +'" type="text" placeholder="'+ variable +'" >')
+						}
+					}
+
+
+			 }
+
+
 
   }
 
@@ -390,6 +414,16 @@ admin_Panel.init()
 
 jQuery('body').on('click', '#refresh_observer', function() {
 admin_Panel.get()
+});
+
+jQuery('#editor').on('click', '#subm', function() {
+
+data = {}
+data.title = $('#title').val()
+data.home_title = $('#title').val()
+data.content = $('#title').val()
+admin_Panel.post(data)
+
 });
 
 

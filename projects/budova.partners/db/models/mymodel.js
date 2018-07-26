@@ -124,6 +124,8 @@ d.footer_about =
     {
       "text": "Lorem ipsum dolor sit amet, cons ectetur  quis ferme adipiscing elit. Suspen dis se tellus eros, placerat quis ferme ntum et, viverra sit amet lacus. Nam gravida  quis ferme semper augue"
  }
+
+
  d.useful_links =
      {
          "text": "useful links" ,
