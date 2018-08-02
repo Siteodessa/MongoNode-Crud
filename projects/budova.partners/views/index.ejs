@@ -46,9 +46,9 @@
 						</div>
 						<div class="breadcrumbs">
 							<ul>
-  <% d.breadcrumbs.forEach(function(menu_item){ %>
-  		<span class="<%= menu_item.class %>"><a href="<%= menu_item.url %>"><%= menu_item.text %></a></span>
-  <% }); %>
+		<% d.breadcrumbs.forEach(function(item){ %>
+			 		<span class="<%= item.class %>"><a href="<%= item.url %>"><%= item.text %></a></span>
+		<% }); %>
 </ul>
 						</div>
 					</div>
@@ -78,7 +78,7 @@
 						</nav>
 						<!-- Phone Home -->
 						<div class="phone_home text-center">
-							<span><%= d.phone["text"] %></span>
+							<span><%= d.phone[0]["text"] %></span>
 						</div>
 						<!-- Hamburger -->
 						<div class="hamburger_container menu_mm">
@@ -106,8 +106,8 @@
 				<div class="col-lg-8">
 					<!-- Listing Title -->
 					<div class="listing_title_container">
-						<div class="listing_title"><%= d.listing_title %></div>
-						<p class="listing_text"><%= d.listing_text %>.</p>
+						<div class="listing_title"><%= d.listing_title[0]["text"] %></div>
+						<p class="listing_text"><%= d.listing_text[0]["text"] %>.</p>
 						<div class="room_tags">
 							<% html_items(d.room_tags) %>
 						</div>
@@ -153,7 +153,7 @@
 						<div class="listing_subtitle"><%= d.listing_details[0]["heading"] %></div>
 						<p class="listing_details_text"><%= d.listing_details[0]["paragraph"] %></p>
 						<div class="rooms">
-							<% d.listing_details[0]["iconblock"].forEach(function(item){ %>
+							<% d.listing_details_iconblock.forEach(function(item){ %>
 								<div class="room">
 									<span class="room_title">		<%= item.text %></span>
 									<div class="room_content">
@@ -166,44 +166,40 @@
 					</div>
 					<!-- Listing Description -->
 					<div class="listing_description">
-						<div class="listing_subtitle"><%= d.description[0].heading %></div>
-						<p class="listing_description_text"><%= d.description[0].description %></p>
+						<div class="listing_subtitle"><%= d.description[0]["heading"] %></div>
+						<p class="listing_description_text"><%= d.description[0]["description"] %></p>
 					</div>
 					<!-- Listing Additional Details -->
 					<div class="listing_additional_details">
+
 						<div class="listing_subtitle"><%= d.additional_details[0]["heading"] %></div>
 						<ul class="additional_details_list">
 
-							<% d.additional_details[0]["list"].forEach(function(item){ %>
+							<% d.additional_details.forEach(function(item){ %>
 													<li class="additional_detail"><span><%= item.heading %></span> <%= item.text %></li>
 							<% }); %>
-
-
 						</ul>
 					</div>
 					<!-- Listing Video -->
 					<div class="listing_video">
 						<div class="listing_subtitle"><%= d.listing_video[0].heading %></div>
-
-
-
-						<% d.listing_video[0].video.forEach(function(item){ %>
+						<% d.listing_video.forEach(function(item){ %>
 													<div class="listing_video_link">
-														<a class="video" href="<%= item.href %>" title="">
+														<a class="video" href="<%= item.href %>" title="<%= item.alt %>">
 															<img src="<%= item.src %>" alt="<%= item.alt %>"></a>
 														<div class="video_play">
 															<img src="<%= item.play_src %>" alt="<%= item.alt %>">
 														</div>
 													</div>
 						<% }); %>
-
 					</div>
+
 					<!-- Listing Map -->
 					<div class="listing_map">
-						<div class="listing_subtitle"><%= d.map[0].heading %></div>
+						<div class="listing_subtitle"><%= d.map_heading %></div>
 						<div id="google_map">
 							<div class="map_container">
-								<div id="map"><iframe src='<%= d.map[0].iframe %>' width='600' height='450' frameborder='0' style='border:0' allowfullscreen></iframe>
+								<div id="map"><iframe src='<%= d.map_iframe %>' width='600' height='450' frameborder='0' style='border:0' allowfullscreen></iframe>
 							</div>
 							</div>
 						</div>
@@ -218,31 +214,28 @@
 			<div class="row row-equal-height">
 				<div class="col-lg-6">
 					<div class="newsletter_title">
-						<h3><%= d.subscribe.heading %></h3>
-						<span class="newsletter_subtitle"><%= d.subscribe.subheading %></span>
+						<h3><%= d.subscribe[0].heading %></h3>
+						<span class="newsletter_subtitle"><%= d.subscribe[0].subheading %></span>
 					</div>
 					<div class="newsletter_form_container">
 						<form action="#">
 							<div class="newsletter_form_content d-flex flex-row">
-								<input id="newsletter_email" class="newsletter_email" type="email" placeholder="<%= d.subscribe.placeholder %>" required="required" data-error="Valid email is required.">
-								<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_200" value="Submit"><%= d.subscribe.subscribe %></button>
+								<input id="newsletter_email" class="newsletter_email" type="email" placeholder="<%= d.subscribe[0].placeholder %>" required="required" data-error="Valid email is required.">
+								<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_200" value="Submit"><%= d.subscribe[0].subscribe %></button>
 							</div>
 						</form>
 					</div>
-
-
-
 				</div>
 				<div class="col-lg-6">
 					<a href="#">
 						<div class="weekly_offer">
 							<div class="weekly_offer_content d-flex flex-row">
 								<div class="weekly_offer_icon d-flex flex-column align-items-center justify-content-center">
-									<img src="<%= d.weekly_offer.prize %>" alt="">
+									<img src="<%= d.weekly_offer[0].prize %>" alt="">
 								</div>
-								<div class="weekly_offer_text text-center"><%= d.weekly_offer.heading %></div>
+								<div class="weekly_offer_text text-center"><%= d.weekly_offer[0].heading %></div>
 							</div>
-							<div class="weekly_offer_image" style="background-image:url(<%= d.weekly_offer.background %>)"></div>
+							<div class="weekly_offer_image" style="background-image:url(<%= d.weekly_offer[0].background %>)"></div>
 						</div>
 					</a>
 				</div>
@@ -267,60 +260,51 @@
 					</div>
 					<div class="footer_social">
 						<ul class="footer_social_list">
-
-							<% d.footer_social["list"].forEach(function(item){ %>
+							<% d.footer_social.forEach(function(item){ %>
 							<li class="footer_social_item"><a href="<%= item.url %>"><i class="<%= item.fa_icon %>"></i></a></li>
 <% }); %>
 						</ul>
 					</div>
 					<div class="footer_about">
-						<p><%= d.footer_about.text %>.</p>
+						<p><%= d.footer_about[0].text %>.</p>
 					</div>
 				</div>
 				<!-- Footer Useful Links -->
 				<div class="col-lg-3 footer_col">
-					<div class="footer_col_title"><%= d.useful_links.text %></div>
+					<div class="footer_col_title"><%= d.useful_links[0]["text"] %></div>
 					<ul class="footer_useful_links">
-
-						<% d.useful_links.menu_list.forEach(function(item){ %>
+						<% d.useful_links_menu_list.forEach(function(item){ %>
 								<li class="useful_links_item"><a href="<%= item.url %>"><%= item.text %></a></li>
 <% }); %>
 					</ul>
 				</div>
 				<!-- Footer Contact Form -->
-
-
-
 				<div class="col-lg-3 footer_col">
-					<div class="footer_col_title"><%= d.footer_col_title.heading %></div>
+					<div class="footer_col_title"><%= d.footer_col_title[0]["heading"] %></div>
 					<div class="footer_contact_form_container">
 						<form id="footer_contact_form" class="footer_contact_form" action="post">
-							<input id="contact_form_name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="<%= d.footer_col_title.placeholder_name %>.">
-							<input id="contact_form_email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="<%= d.footer_col_title.placeholder_mail %>.">
-							<textarea id="contact_form_message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="<%= d.footer_col_title.placeholder_message %>."></textarea>
-							<button id="contact_send_btn" type="submit" class="contact_send_btn trans_200" value="Submit"><%= d.footer_col_title.placeholder_submit %></button>
+							<input id="contact_form_name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="<%= d.footer_col_title[0].placeholder_name %>.">
+							<input id="contact_form_email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="<%= d.footer_col_title[0].placeholder_mail %>.">
+							<textarea id="contact_form_message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="<%= d.footer_col_title[0].placeholder_message %>."></textarea>
+							<button id="contact_send_btn" type="submit" class="contact_send_btn trans_200" value="Submit"><%= d.footer_col_title[0].placeholder_submit %></button>
 						</form>
 					</div>
 				</div>
-
-
-
-
 				<!-- Footer Contact Info -->
 				<div class="col-lg-3 footer_col">
-					<div class="footer_col_title"><%= d.contact_info.heading %></div>
+					<div class="footer_col_title"><%= d.contact_info[0].heading %></div>
 					<ul class="contact_info_list">
 						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="<%= d.contact_info.addr_src %>" alt=""></div></div>
-							<div class="contact_info_text"><%= d.contact_info.address %></div>
+							<div><div class="contact_info_icon"><img src="<%= d.contact_info[0].addr_src %>" alt=""></div></div>
+							<div class="contact_info_text"><%= d.contact_info[0].address %></div>
 						</li>
 						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="<%= d.contact_info.phone_src %>" alt=""></div></div>
-							<div class="contact_info_text"><%= d.contact_info.phone %></div>
+							<div><div class="contact_info_icon"><img src="<%= d.contact_info[0].phone_src %>" alt=""></div></div>
+							<div class="contact_info_text"><%= d.contact_info[0].phone %></div>
 						</li>
 						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="<%= d.contact_info.mail_src %>" alt=""></div></div>
-							<div class="contact_info_text"><a href="mailto:<%= d.contact_info.heading %>?Subject=Hello" target="_top"><%= d.contact_info.mail %></a></div>
+							<div><div class="contact_info_icon"><img src="<%= d.contact_info[0].mail_src %>" alt=""></div></div>
+							<div class="contact_info_text"><a href="mailto:<%= d.contact_info[0].heading %>?Subject=Hello" target="_top"><%= d.contact_info[0].mail %></a></div>
 						</li>
 						<li class="contact_info_item d-flex flex-row">
 							<div><div class="contact_info_icon"><img src="images/planet-earth.svg" alt=""></div></div>
@@ -331,9 +315,9 @@
 			</div>
 		</div>
 	</footer>
-	<!-- Credits -->
+
 	<div class="credits">
-		<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+		<span>
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Proudly presented to you <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://siteodessa.com" target="_blank">Siteodessa.com</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
 	</div>
@@ -344,96 +328,88 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 <script src="plugins/easing/easing.js"></script>
 <script src="plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
-
 <script src="js/listings_single_custom.js"></script>
-
-
-
-
-<h2>	Observer <button id="refresh_observer" class="ref_obs" data-action="get" data-log="Refresh" ><img src="/images/rotate.png"></button></h2>
-<div id="observer" class="grid">
-ku
-</div>
-
-
-<h2>	Add </h2>
-<form id="editor">
-
-	<div id="subm"  placeholder="Send">Send</div>
+<%# START %>
+<div class="editor_block">
+<div class="editor_holder">
+<div class="editor_caption">
+<form id="editor" action="/notes" method="put">
+	<h2>	Update </h2>
+	<span></span>
+	<div id="subm"  class="btn btn-default" placeholder="Send">Update</div>
+	<input type="submit" placeholder="Сохранить"  value="Сохранить"/>
 </form>
-
-
-
+</div>
+</div>
 <script>
-
-
-
   function adminPanel(elem) {
-
 			this.init = function() {
 				 this.get()
 				 this.createform()
 				 self = this
 			}
-
 			this.get = function() {
-				 var jqxhr = $.get( "/notes", function() { }) .done(function(notes) { $('#observer').empty()
-				 console.log('...');
-				 $('#observer').append('Number of posts: '+ notes.length + '')
-				 notes.forEach(function(i){ $('#observer') .append('	<div class="grid"><div> '+ i._id + '</div> <div> '+ i.title + '</div> <div> '+ i.home_title + '</div> <div> '+ i.content  + '</div></div>  ') })})
+											var jqxhr = $.get( "/notes", function() { }) .done(function(notes) {
+											$('#editor').append('Number of posts: '+ notes.length + '')
+											var string = ''
+											notes.forEach(function(i){
+											for (var v in i) {
+											if (i.hasOwnProperty(v)) {
+											string += '<div> '+ v + ' = '+ i[v] + '</div>'
+											$('#' + v) .val(i[v])
+											console.log(i[v]);
+											}
+											}
+											// $('#observer') .append('	<div class="grid">' + string + ' </div> ')
+											}
+											)})
 			 };
-			this.post = function() {
-				$.ajax({
-				  type: "POST",
-				  url: "/notes",
-				  data: data
-				}).done(function(){
-
-
-					self.get()
-				})
+			this.update = function(data) {
+									$.ajax({
+									  type: "PUT",
+									  url: "/notes/"+ data["noteId"],
+									  id: "5b59c5414b38dd34d80410bd",
+									  noteId: "5b59c5414b38dd34d80410bd",
+									  _id: "5b59c5414b38dd34d80410bd",
+									  data: data
+									}).done(function(data){
+										self.get()
+										console.log(data);
+									})
 			 };
-
-			 this.createform = function() {
-				 	var form_input_names = <%-JSON.stringify(d)%>;
-					for (var variable in form_input_names) {
+			this.createform = function() {
+						var form_input_names = <%-JSON.stringify(d)%>;
+						for (var variable in form_input_names) {
 						if (form_input_names.hasOwnProperty(variable)) {
-$('#editor').prepend('<input id="'+ variable +'" name="'+ variable +'" type="text" placeholder="'+ variable +'" >')
+							// $('#editor span').before(variable + '<br>')
+							$('#editor span').append('<label>'+ variable +'<input id="'+ variable +'" value="'+ variable +'"  name="'+ variable +'" type="text" placeholder="'+ variable +'" ></label>')
 						}
-					}
-
-
-			 }
-
-
-
+						}
+			}
+			this.preparePostObject = function(data) {
+							var form_input_names = <%-JSON.stringify(d)%>;
+							for (var variable in form_input_names) {
+							if (form_input_names.hasOwnProperty(variable)) {
+								data[variable] = $('#'+ variable +'').val()
+							}
+							}
+							return data;
+				}
   }
-
 var admin_Panel = new adminPanel('body');
 admin_Panel.init()
-
 jQuery('body').on('click', '#refresh_observer', function() {
-admin_Panel.get()
+	admin_Panel.get()
 });
-
 jQuery('#editor').on('click', '#subm', function() {
-
 data = {}
-data.title = $('#title').val()
-data.home_title = $('#title').val()
-data.content = $('#title').val()
-admin_Panel.post(data)
-
+data = admin_Panel.preparePostObject(data)
+data["noteId"] = data["_id"] = data["id"] = "5b59c5414b38dd34d80410bd"
+admin_Panel.update(data)
+console.log(data);
 });
-
-
-
-
-
-
-
-
 </script>
-
+</div>
+<%# START %>
 </body>
 </html>

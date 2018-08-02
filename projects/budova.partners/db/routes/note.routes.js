@@ -10,18 +10,10 @@ module.exports = (app, express, bodyParser, d) => {
     app.set('view engine', 'ejs');
     app.get('/', (req, res) => {
       app.use(express.static('views'));
-      d.dbtest = ''
-      res.render('index', {d: d});
-    });
-
-
-    app.get('/', (req, res) => {
-      app.use(express.static('views'));
-      d.dbtest = ''
-      res.render('index', {d: d});
+      res.status(200).render('index', {d: d});
     });
 
 
 
-app.listen(80, () => console.log('Example app listening on port 80!'));
+app.listen(80, () => console.log(d.title + ' application is running port 80!'));
 }

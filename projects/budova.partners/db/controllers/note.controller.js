@@ -8,21 +8,47 @@ exports.create = (req, res) => {// Create and Save a new Note
     const note = new Note({    // Create a Note
         title: req.body.title || "Budova.partners",
         home_title: req.body.home_title || "SINGLE LISTING",
-        content: req.body.content
+        content: req.body.content || "OOPS!!",
+        home_background : req.body.home_background || "OOPS!!",
+        breadcrumbs : req.body.breadcrumbs || "OOPS!!",
+        main_nav_list : req.body.main_nav_list || "OOPS!!",
+        phone : req.body.phone || "OOPS!!",
+        logo : req.body.logo || "OOPS!!",
+        listing_title : req.body.listing_title || "OOPS!!",
+        listing_text : req.body.listing_text || "OOPS!!",
+        room_tags : req.body.room_tags || "OOPS!!",
+        listing_price_col : req.body.listing_price_col || "OOPS!!",
+        listing_slider : req.body.listing_slider || "OOPS!!",
+        listing_details : req.body.listing_details || "OOPS!!",
+        description : req.body.description || "OOPS!!",
+        additional_details : req.body.additional_details || "OOPS!!",
+        listing_video : req.body.listing_video || "OOPS!!",
+        map : req.body.map || "OOPS!!",
+        subscribe : req.body.subscribe || "OOPS!!",
+        weekly_offer : req.body.weekly_offer || "OOPS!!",
+        footer_social : req.body.footer_social || "OOPS!!",
+        footer_about : req.body.footer_about || "OOPS!!",
+        useful_links : req.body.useful_links || "OOPS!!",
+        footer_col_title : req.body.footer_col_title || "OOPS!!",
+        contact_info : req.body.contact_info || "OOPS!!",
+        notes : req.body.notes || "OOPS!!",
+        dbtest : req.body.dbtest || "OOPS!!",
+        content: req.body.content || "OOPS!!"
     });
     note.save()    // Save Note in the database
     .then(data => {
-        res.send(data);
+      res.status(200).send(data);
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Some error occurred while creating the Note."
+
         });
     });
 };
 exports.findAll = (req, res) => { // Retrieve and return all notes from the database.
     Note.find()
     .then(notes => {
-        res.send(notes);
+        res.status(200).send(notes);
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Some error occurred while retrieving notes."
@@ -50,28 +76,62 @@ exports.findOne = (req, res) => {// Find a single note with a noteId
     });
 };
 exports.update = (req, res) => {// Update a note identified by the noteId in the request
+
+
+
     if(!req.body.content) {    // Validate Request
         return res.status(400).send({
             message: "Note content can not be empty"
         });
     }
-    Note.findByIdAndUpdate(req.params.noteId, {    // Find note and update it with the request body
-        title: req.body.title || "Untitled Note",
-        content: req.body.content
+
+
+    Note.findByIdAndUpdate(req.params.noteId, {
+      title: req.body.title || "Budova.partners",
+      home_title: req.body.home_title || "SINGLE LISTING",
+      content: req.body.content || "OOPS!!",
+      home_background : req.body.home_background || "OOPS!!",
+      breadcrumbs : req.body.breadcrumbs || "OOPS!!",
+      main_nav_list : req.body.main_nav_list || "OOPS!!",
+      phone : req.body.phone || "OOPS!!",
+      logo : req.body.logo || "OOPS!!",
+      listing_title : req.body.listing_title || "OOPS!!",
+      listing_text : req.body.listing_text || "OOPS!!",
+      room_tags : req.body.room_tags || "OOPS!!",
+      listing_price_col : req.body.listing_price_col || "OOPS!!",
+      listing_slider : req.body.listing_slider || "OOPS!!",
+      listing_details : req.body.listing_details || "OOPS!!",
+      description : req.body.description || "OOPS!!",
+      additional_details : req.body.additional_details || "OOPS!!",
+      listing_video : req.body.listing_video || "OOPS!!",
+      map : req.body.map || "OOPS!!",
+      subscribe : req.body.subscribe || "OOPS!!",
+      weekly_offer : req.body.weekly_offer || "OOPS!!",
+      footer_social : req.body.footer_social || "OOPS!!",
+      footer_about : req.body.footer_about || "OOPS!!",
+      useful_links : req.body.useful_links || "OOPS!!",
+      footer_col_title : req.body.footer_col_title || "OOPS!!",
+      contact_info : req.body.contact_info || "OOPS!!",
+      notes : req.body.notes || "OOPS!!",
+      dbtest : req.body.dbtest || "OOPS!!",
+      content: req.body.content || "OOPS!!"
     }, {new: true})
     .then(note => {
         if(!note) {
             return res.status(404).send({
+
                 message: "Note not found with id " + req.params.noteId
             });
         }
-        res.send(note);
+        res.status(200).send(note);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
+
             return res.status(404).send({
                 message: "Note not found with id " + req.params.noteId
             });
         }
+
         return res.status(500).send({
             message: "Error updating note with id " + req.params.noteId
         });
@@ -85,7 +145,7 @@ exports.delete = (req, res) => { // Delete a note with the specified noteId in t
                 message: "Note not found with id " + req.params.noteId
             });
         }
-        res.send({message: "Note deleted successfully!"});
+        res.status(200).send({message: "Note deleted successfully!"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
             return res.status(404).send({

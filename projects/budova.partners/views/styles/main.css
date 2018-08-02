@@ -7,3 +7,18 @@
     background:  none;
     border:  none;
 }
+
+div#subm {
+    background: #0e1d41;
+    width:  100%;
+    color: #fd784f;
+}
+
+label {
+    display:  flex;
+    align-items:  center;
+    justify-content:  center;
+    background: #0e1d41;
+    padding:  5px 4px 5px 9px;
+    color: #fd784f;
+}
