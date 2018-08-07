@@ -78,6 +78,7 @@ label {
 
 .mcontent {
     z-index:  10;
+    display: inline-flex;
 }
 
 .meditor .form:before {
@@ -104,18 +105,55 @@ label {
     text-align:  left;
     font-size:  10px;
     justify-content:  flex-start;
-    transform: translateY(100%) scale(0);
+    transform: translateY(100%);
     opacity:  0;
     transition:  .5s .5s;
     color:#fff;
 }
 
 .active.meditor label {
-    transform: translateY(0%) scale(1);
+    transform: translateY(0%);
     opacity: 1;
 }
 
 .active.meditor img.contact_info_icon {
     transform: rotate(312deg);
-    transition: .7s .3s ease-in;
+    transition: 1s 0.1s ease-in;
+}
+
+.closing.meditor .form {
+    transition:  .1s;
+}
+
+.closing.meditor .form:before {
+    transition: 0.1s;
+    transition-delay: 0s;
+}
+
+.closing.meditor label {
+    transition: .1s 0s;
+}
+
+.closing.meditor img.contact_info_icon {
+    transition: .1s 0s ease-in;
+}
+
+.closing img.contact_info_icon {
+    transform: rotate(202deg);
+}
+
+li.cl {
+    display:  inline-flex;
+}
+
+input.mxfield {
+    width: auto;
+}
+
+.mxedition {
+    position:  absolute;
+}
+
+.mxedition div {
+    display:  flex;
 }

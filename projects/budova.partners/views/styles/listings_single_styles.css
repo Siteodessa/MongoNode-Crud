@@ -280,7 +280,7 @@ section
 {
 	margin-top: 8px;
 }
-.breadcrumbs span::before
+.breadcrumbs li::before
 {
 	display: inline-block;
 	font-size: 16px;
@@ -288,11 +288,11 @@ section
 	color: #FFFFFF;
 	content: ' / ';
 }
-.breadcrumbs span:first-child::before
+.breadcrumbs li:first-child::before
 {
 	display: none;
 }
-.breadcrumbs span a
+.breadcrumbs li a
 {
 	font-size: 16px;
 	font-weight: 600;
@@ -303,7 +303,7 @@ section
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
-.breadcrumbs span a:hover
+.breadcrumbs li a:hover
 {
 	color: #fd784f;
 }

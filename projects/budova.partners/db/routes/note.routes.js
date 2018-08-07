@@ -40,10 +40,6 @@ const notes = require('../controllers/note.controller.js');
                 }
               }
             );
-
-for (let item in d.useful_links_menu_list) {
-  type_n_log(item);
-  }
             res.status(200).render('index.ejs', {
                 d: d
             });

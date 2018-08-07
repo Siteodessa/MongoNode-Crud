@@ -1,11 +1,48 @@
-<% function single_editable_field(d, key){ %>
+<% function single_editable_field(d, key, is_Admin){ %>
 	<div class=" meditor <%= key %>">
 	<div class="mcontent">
 	<%= d[key] %>
-	</div><div class="form"><label><%= key %></label> <input type="text" name="key" pid="<%= key %>" value="<%= d[key] %>" /><div class="msubmit"><img class="contact_info_icon" src="/images/refresh.svg" /></div> </div>
+	</div><div class="form"><label><%= key %></label> <input type="text" key="<%= key %>" value="<%= d[key] %>" /><div class="msubmit"><img class="contact_info_icon" src="/images/refresh.svg" /></div> </div>
 	</div>
 <% } %>
 
+
+
+<% function li_a_text(classname, href, text){ %>
+	<li class="<%= classname %>"><a href="<%= href %>"><%= text %></a></li>
+	<% }  %>
+<% function li_a_editor(){ %>
+	 <% for (var i = 0; i < arguments.length; i++) { %>
+<input class="mxfield" type="text" key="" value="<%= arguments[i] %>" />
+<%  }%>
+
+	<% }  %>
+<% function multiple_editable_ul(d, key, is_Admin, ulclass){ %>
+		<ul class="">
+	<% for (let item in d[key]) {	%>
+	<%   item = d[key][item];	%>
+	<%  let classname = item["class"];	%>
+	<%  let href = item["url"];	%>
+	<%  let text = item["name"];	%>
+			<% 			li_a_text(classname, href, text) 	%>
+			<% 		}	%>
+			</ul>
+				<div class="mxeditor">
+					<div class="mxedition">
+						<% for (let item in d[key]) {	%>
+						<%   item = d[key][item];	%>
+						<%  let classname = item["class"];	%>
+						<%  let href = item["url"];	%>
+						<%  let text = item["name"];	%>
+						<div class="mxrow">
+						<% 			li_a_editor(text, href, classname) 	%>
+						</div>
+						<% 		}	%>
+					</div>
+				</div>
+<% }  %>
+
+<% is_Admin = true %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,15 +75,17 @@
 				<div class="col">
 					<div class="home_content">
 						<div class="home_title">
-							<h2><%= single_editable_field(d, "home_title") %></h2>
+							<h2><%= single_editable_field(d, "home_title", is_Admin) %></h2>
 						</div>
 						<div class="breadcrumbs">
-							<ul>
-		<% for (let item in d.breadcrumbs) { item = d.breadcrumbs[item];	%>
-					<span class="<%= item["class"] %>"><a href="<%= item["url"] %>"><%= item["name"] %></a></span>
-		<% 		item	%>
-		<% 		}	%>
-</ul>
+
+
+
+
+
+		<% multiple_editable_ul(d, "breadcrumbs", is_Admin)	%>
+
+
 						</div>
 					</div>
 				</div>
@@ -67,13 +106,12 @@
 							</a>
 						</div>
 						<nav class="main_nav">
-							<ul class="main_nav_list">
 
-								<% for (let item in d.main_nav_list) {item = d.main_nav_list[item];	%>
-									<li class="<%= item["class"] %>"><a href="<%= item["url"] %>"><%= item["name"] %></a></span>
-<% 		}	%>
 
-							</ul>
+	<% multiple_editable_ul(d, "main_nav_list", is_Admin)	%>
+
+
+
 						</nav>
 						<!-- Phone Home -->
 						<div class="phone_home text-center">
@@ -215,7 +253,7 @@
 
 					<!-- Listing Map -->
 					<div class="listing_map">
-						<div class="listing_subtitle"><%= d.map_heading %></div>
+						<div class="listing_subtitle"><%= single_editable_field(d, "map_heading") %></div>
 						<div id="google_map">
 							<div class="map_container">
 								<div id="map"><iframe src='<%= d.map_iframe %>' width='600' height='450' frameborder='0' style='border:0' allowfullscreen></iframe>
@@ -371,6 +409,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				 this.createform()
 				 self = this
 			}
+			function findAncestor (el, cls) {
+    while ((el = el.parentNode) && el.className.indexOf(cls) < 0);
+    return el;
+}
+
 			this.get = function() {
 											var jqxhr = $.get( "/notes", function() { }) .done(function(notes) {
 											$('#editor').append('Number of posts: '+ notes.length + '')
@@ -400,6 +443,19 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 										// console.log(data);
 									})
 			 };
+			this.custom_update = function(info) {
+
+
+var ajaxconfig = {
+	type: "PUT",
+	data: JSON.stringify(info),
+	url: "/notes/m_update/"+ info["noteId"]
+};
+
+									$.ajax(ajaxconfig).done(function(data){
+										// console.log(data);
+									})
+			 };
 			this.createform = function() {
 						var form_input_names = <%-JSON.stringify(d)%>;
 						for (var variable in form_input_names) {
@@ -425,25 +481,60 @@ jQuery('body').on('click', '#refresh_observer', function() {
 	admin_Panel.get()
 });
 jQuery('#editor').on('click', '#subm', function() {
-data = {}
-data = admin_Panel.preparePostObject(data)
-data["noteId"] = data["_id"] = data["id"] = "5b59c5414b38dd34d80410bd"
-admin_Panel.update(data)
+	data = {}
+	data = admin_Panel.preparePostObject(data)
+	data["noteId"] = data["_id"] = data["id"] = "5b59c5414b38dd34d80410bd"
+	admin_Panel.update(data)
 });
-
 jQuery('.meditor').on('click', '.mcontent', function() {
-
+	var med = jQuery(this).parent('.meditor')
+	if (med.hasClass('active') !== false){
+		med.addClass('closing')
+	setTimeout(function(){
+		med.removeClass('active')
+	},100)
+	setTimeout(function(){
+		med.removeClass('closing')
+	},300)
+	} else {
 jQuery(this).parent('.meditor').toggleClass('active')
-
-})
-jQuery('.active.meditor').on('click', '.mcontent', function() {
-var med = jQuery(this).parent('.meditor')
-	med.addClass('closing')
-setTimeout(function(){
-	med.removeClass('closing')
-},1000)
+	}
 })
 
+
+var clickUpdater = function(dis){
+		info = {}
+		let the_input = dis.parent('.msubmit').siblings('input')
+		var dkey = the_input.attr('key');
+		var dval = the_input.val();
+		info[dkey] = dval;
+		info["noteId"] = "<%= d["id"] %>";
+		admin_Panel.custom_update(info);
+		setTimeout(function(){
+			let target = dis.parents(".meditor").find('.mcontent')
+			target.first().text(dval)
+			target.click()
+		}, 10)
+}
+jQuery('.msubmit').on('click', 'img', function() {
+			var dis = jQuery(this);
+			clickUpdater(dis);
+})
+
+
+
+
+jQuery('.meditor input').each(function(){
+					var dis = jQuery(this);
+	dis.bind('keypress', function(e){
+   if ( e.keyCode == 13 ) {
+				let target = dis.parents(".meditor").find('.msubmit img')
+				clickUpdater(target)
+   }
+ });
+
+
+})
 </script>
 </div>
 <%# START %>
