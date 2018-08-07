@@ -1,42 +1,33 @@
-<% function iterate_item(itemData){ %>
-	<% itemData.forEach(function(item){ %>
-			<li class="<%= item.class %>"><span><a href="<%= item.url %>"><%= item.text %></a></span></li>
-	<% }); %>
+<% function single_editable_field(d, key){ %>
+	<div class=" meditor <%= key %>">
+	<div class="mcontent">
+	<%= d[key] %>
+	</div><div class="form"><label><%= key %></label> <input type="text" name="key" pid="<%= key %>" value="<%= d[key] %>" /><div class="msubmit"><img class="contact_info_icon" src="/images/refresh.svg" /></div> </div>
+	</div>
 <% } %>
-<% function iterate_text_item(itemData){ %>
-	<% itemData.forEach(function(item){ %>
-		<%= item.text %>
-	<% }); %>
-<% } %>
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title> <%= d.title %></title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="The Estate Teplate">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-<link href="plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="styles/listings_single_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/listings_single_responsive.css">
-<link rel="stylesheet" type="text/css" href="styles/main.css">
+		<title> <%= d.title %></title>
+
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="The Estate Teplate">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+		<link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+		<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+		<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+		<link href="plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="styles/listings_single_styles.css">
+		<link rel="stylesheet" type="text/css" href="styles/listings_single_responsive.css">
+		<link rel="stylesheet" type="text/css" href="styles/main.css">
 </head>
 <body>
-
-
-
-
-		<% for (let item in d) {	%>
-<%= item %>
-
-		<% 		}	%>
-
 <div class="super_container">
 	<!-- Home -->
 	<div class="home">
@@ -47,12 +38,13 @@
 				<div class="col">
 					<div class="home_content">
 						<div class="home_title">
-							<h2><%= d.home_title %></h2>
+							<h2><%= single_editable_field(d, "home_title") %></h2>
 						</div>
 						<div class="breadcrumbs">
 							<ul>
-		<% for (let item in d.breadcrumbs) {	%>
-	<span class="<%= item.class %>"><a href="<%= item.url %>"><%= item.text %></a></span>
+		<% for (let item in d.breadcrumbs) { item = d.breadcrumbs[item];	%>
+					<span class="<%= item["class"] %>"><a href="<%= item["url"] %>"><%= item["name"] %></a></span>
+		<% 		item	%>
 		<% 		}	%>
 </ul>
 						</div>
@@ -69,25 +61,23 @@
 						<div class="logo_container">
 							<a href="#">
 								<div class="logo">
-									<% for (let item in d.logo) {	%>
-										<img src="<%= item.logo %>" alt="">
-											<span><%= item.text %></span>
-									<% 		}	%>
+									<img src="<%= d.logo.logo %>" alt="">
+										<span><%= d.logo.text %></span>
 								</div>
 							</a>
 						</div>
 						<nav class="main_nav">
 							<ul class="main_nav_list">
 
-								<% for (let item in d.main_nav_list) {	%>
-									<li class="<%= item.class %>"><a href="<%= item.url %>"><%= item.text %></a></span>
+								<% for (let item in d.main_nav_list) {item = d.main_nav_list[item];	%>
+									<li class="<%= item["class"] %>"><a href="<%= item["url"] %>"><%= item["name"] %></a></span>
 <% 		}	%>
 
 							</ul>
 						</nav>
 						<!-- Phone Home -->
 						<div class="phone_home text-center">
-							<span><%= d.phone %></span>
+							<span><%= d.phone.text %></span>
 							<%# ~~~~~~~~~ %>
 
 						</div>
@@ -104,9 +94,14 @@
 		<!-- Menu -->
 		<div class="menu menu_mm">
 			<ul class="menu_list">
-				<% for (let item in d.main_nav_list) {	%>
-											<li class="menu_item"> <div class="container"> <div class="row"> <div class="col"> <a href="<%= item.url %>"><%= item.text %></a> </div> </div> </div> </li>
+				<% for (let item in d.main_nav_list) {	item = d.main_nav_list[item];%>
+											<li class="menu_item"> <div class="container"> <div class="row"> <div class="col"> <a href="<%= item["url"] %>"><%= item["name"] %></a> </div> </div> </div> </li>
 				<% 		}	%>
+
+
+
+
+
 			</ul>
 		</div>
 	</header>
@@ -117,11 +112,11 @@
 				<div class="col-lg-8">
 					<!-- Listing Title -->
 					<div class="listing_title_container">
-						<div class="listing_title"><%= d.listing_title %></div>
-						<p class="listing_text"><%= d.listing_text %>.</p>
+						<div class="listing_title"><%= d.listing_title.text %></div>
+						<p class="listing_text"><%= d.listing_text.text %>.</p>
 						<div class="room_tags">
-							<% for (let item in d.room_tags) {	%>
-		<<%= item.node %> class="<%= item.class %>"><<%= item.childnode %>><a href="<%= item.url %>"><%= item.text %></a></<%= item.childnode %>></<%= item.node %>>
+							<% for (let item in d.room_tags) {item = d.room_tags[item];	%>
+		<<%= item["node"] %> class="<%= item["class"] %>"><<%= item["childnode"] %>><a href="<%= item["url"] %>"><%= item["name"] %></a></<%= item["childnode"] %>></<%= item["node"] %>>
 		<% 		}	%>
 						</div>
 					</div>
@@ -129,10 +124,10 @@
 				<!-- Listing Price -->
 				<div class="col-lg-4 listing_price_col clearfix">
 					<div class="featured_card_box d-flex flex-row align-items-center trans_300 float-lg-right">
-						<img src="<%= d.listing_price_col %>" alt="">
+						<img src="<%= d.listing_price_col.image %>" alt="">
 						<div class="featured_card_box_content">
-							<div class="featured_card_price_title trans_300"><%= d.listing_price_col %></div>
-							<div class="featured_card_price trans_300"><%= d.listing_price_col %></div>
+							<div class="featured_card_price_title trans_300"><%= d.listing_price_col.text %></div>
+							<div class="featured_card_price trans_300"><%= d.listing_price_col.price %></div>
 						</div>
 					</div>
 				</div>
@@ -144,7 +139,7 @@
 						<div class="owl-carousel owl-theme listing_slider">
 							<!-- Listing Slider Item -->
 
-							<% for (let item in d.listing_slider) {	%>
+							<% for (let item in d.listing_slider) {	item = d.listing_slider[item]; %>
 								<div class="owl-item listing_slider_item">
 									<img src="<%= item.image %>" alt="<%= item.alt %>">
 								</div>
@@ -165,12 +160,12 @@
 				<!-- Listing -->
 				<div class="col-lg-8 listing_col">
 					<div class="listing_details">
-						<div class="listing_subtitle"><%= d.listing_details %></div>
-						<p class="listing_details_text"><%= d.listing_details %></p>
+						<div class="listing_subtitle"><%= d.listing_details.heading %></div>
+						<p class="listing_details_text"><%= d.listing_details.text %></p>
 						<div class="rooms">
 
 
-							<% for (let item in d.listing_details_iconblock) {	%>
+							<% for (let item in d.listing_details_iconblock) { item = d.listing_details_iconblock[item];	%>
 								<div class="room">
 									<span class="room_title">		<%= item.text %></span>
 									<div class="room_content">
@@ -187,16 +182,16 @@
 					</div>
 					<!-- Listing Description -->
 					<div class="listing_description">
-						<div class="listing_subtitle"><%= d.description %></div>
-						<p class="listing_description_text"><%= d.description %></p>
+						<div class="listing_subtitle"><%= d.description.heading %></div>
+						<p class="listing_description_text"><%= d.description.description %></p>
 					</div>
 					<!-- Listing Additional Details -->
 					<div class="listing_additional_details">
 
-						<div class="listing_subtitle"><%= d.additional_details %></div>
+						<div class="listing_subtitle"><%= d.additional_details.heading %></div>
 						<ul class="additional_details_list">
 
-							<% for (let item in d.additional_details) {	%>
+							<% for (let item in d.additional_details_block) {	 item = d.additional_details_block[item];%>
 
 														<li class="additional_detail"><span><%= item.heading %></span> <%= item.text %></li>
 									<% 		}	%>
@@ -205,18 +200,16 @@
 					</div>
 					<!-- Listing Video -->
 					<div class="listing_video">
-						<div class="listing_subtitle"><%= d.listing_video %></div>
+						<div class="listing_subtitle"><%= d.listing_video.heading %></div>
 
-						<% for (let item in d.listing_video) {	%>
 							<div class="listing_video_link">
-								<a class="video" href="<%= item.href %>" title="<%= item.alt %>">
-									<img src="<%= item.src %>" alt="<%= item.alt %>"></a>
+								<a class="video" href="<%= d.listing_video.href %>" title="<%= d.listing_video.alt %>">
+									<img src="<%= d.listing_video.src %>" alt="<%= d.listing_video.alt %>"></a>
 								<div class="video_play">
-									<img src="<%= item.play_src %>" alt="<%= item.alt %>">
+									<img src="<%= d.listing_video.play_src %>" alt="<%= d.listing_video.alt %>">
 								</div>
 							</div>
 
-		<% 		}	%>
 
 					</div>
 
@@ -240,14 +233,14 @@
 			<div class="row row-equal-height">
 				<div class="col-lg-6">
 					<div class="newsletter_title">
-						<h3><%= d.subscribe %></h3>
-						<span class="newsletter_subtitle"><%= d.subscribe %></span>
+						<h3><%= d.subscribe.heading %></h3>
+						<span class="newsletter_subtitle"><%= d.subscribe.subheading %></span>
 					</div>
 					<div class="newsletter_form_container">
 						<form action="#">
 							<div class="newsletter_form_content d-flex flex-row">
-								<input id="newsletter_email" class="newsletter_email" type="email" placeholder="<%= d.subscribe %>" required="required" data-error="Valid email is required.">
-								<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_200" value="Submit"><%= d.subscribe %></button>
+								<input id="newsletter_email" class="newsletter_email" type="email" placeholder="<%= d.subscribe.placeholder %>" required="required" data-error="<%= d.subscribe.data_error %>.">
+								<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_200" value="Submit"><%= d.subscribe.subscribe %></button>
 							</div>
 						</form>
 					</div>
@@ -257,11 +250,11 @@
 						<div class="weekly_offer">
 							<div class="weekly_offer_content d-flex flex-row">
 								<div class="weekly_offer_icon d-flex flex-column align-items-center justify-content-center">
-									<img src="<%= d.weekly_offer %>" alt="">
+									<img src="<%= d.weekly_offer.prize %>" alt="">
 								</div>
-								<div class="weekly_offer_text text-center"><%= d.weekly_offer %></div>
+								<div class="weekly_offer_text text-center"><%= d.weekly_offer.heading %></div>
 							</div>
-							<div class="weekly_offer_image" style="background-image:url(<%= d.weekly_offer %>)"></div>
+							<div class="weekly_offer_image" style="background-image:url(<%= d.weekly_offer.background %>)"></div>
 						</div>
 					</a>
 				</div>
@@ -278,8 +271,8 @@
 						<div class="logo_container">
 							<a href="#">
 								<div class="logo">
-									<img src="<%= d.logo %>" alt="">
-									<span><%= d.logo %></span>
+									<img src="<%= d.logo.logo %>" alt="">
+									<span><%= d.logo.text %></span>
 								</div>
 							</a>
 						</div>
@@ -287,7 +280,7 @@
 					<div class="footer_social">
 						<ul class="footer_social_list">
 
-							<% for (let item in d.footer_social) {	%>
+							<% for (let item in d.footer_social) { item = d.footer_social[item];	%>
 				<li class="footer_social_item"><a href="<%= item.url %>"><i class="<%= item.fa_icon %>"></i></a></li>
 
 		<% 		}	%>
@@ -296,49 +289,45 @@
 						</ul>
 					</div>
 					<div class="footer_about">
-						<p><%= d.footer_about %>.</p>
+						<p><%= d.footer_about.text %>.</p>
 					</div>
 				</div>
 				<!-- Footer Useful Links -->
 				<div class="col-lg-3 footer_col">
-					<div class="footer_col_title"><%= d.useful_links %></div>
+					<div class="footer_col_title"><%= d.useful_links.text %></div>
 					<ul class="footer_useful_links">
-
-						<% for (let item in d.useful_links_menu_list) {	%>
-
+						<% for (let item in d.useful_links_menu_list) { item = d.useful_links_menu_list[item];	%>
 						<li class="useful_links_item"><a href="<%= item.url %>"><%= item.text %></a></li>
 		<% 		}	%>
-
-
 					</ul>
 				</div>
 				<!-- Footer Contact Form -->
 				<div class="col-lg-3 footer_col">
-					<div class="footer_col_title"><%= d.footer_col_title %></div>
+					<div class="footer_col_title"><%= d.footer_col_title.heading %></div>
 					<div class="footer_contact_form_container">
 						<form id="footer_contact_form" class="footer_contact_form" action="post">
-							<input id="contact_form_name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="<%= d.footer_col_title %>.">
-							<input id="contact_form_email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="<%= d.footer_col_title %>.">
-							<textarea id="contact_form_message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="<%= d.footer_col_title %>."></textarea>
-							<button id="contact_send_btn" type="submit" class="contact_send_btn trans_200" value="Submit"><%= d.footer_col_title %></button>
+							<input id="contact_form_name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="<%= d.footer_col_title.name_error %>.">
+							<input id="contact_form_email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="<%= d.footer_col_title.mail_error %>.">
+							<textarea id="contact_form_message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="<%= d.footer_col_title.message_error %>."></textarea>
+							<button id="contact_send_btn" type="submit" class="contact_send_btn trans_200" value="Submit"><%= d.footer_col_title.submit_text %></button>
 						</form>
 					</div>
 				</div>
 				<!-- Footer Contact Info -->
 				<div class="col-lg-3 footer_col">
-					<div class="footer_col_title"><%= d.contact_info %></div>
+					<div class="footer_col_title"><%= d.contact_info.heading %></div>
 					<ul class="contact_info_list">
 						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="<%= d.contact_info %>" alt=""></div></div>
-							<div class="contact_info_text"><%= d.contact_info %></div>
+							<div><div class="contact_info_icon"><img src="<%= d.contact_info.addr_src %>" alt=""></div></div>
+							<div class="contact_info_text"><%= d.contact_info.address %></div>
 						</li>
 						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="<%= d.contact_info %>" alt=""></div></div>
-							<div class="contact_info_text"><%= d.contact_info %></div>
+							<div><div class="contact_info_icon"><img src="<%= d.contact_info.phone_src %>" alt=""></div></div>
+							<div class="contact_info_text"><%= d.contact_info.phone %></div>
 						</li>
 						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="<%= d.contact_info %>" alt=""></div></div>
-							<div class="contact_info_text"><a href="mailto:<%= d.contact_info %>?Subject=Hello" target="_top"><%= d.contact_info %></a></div>
+							<div><div class="contact_info_icon"><img src="<%= d.contact_info.mail_src %>" alt=""></div></div>
+							<div class="contact_info_text"><a href="mailto:<%= d.contact_info %>?Subject=Hello" target="_top"><%= d.contact_info.mail %></a></div>
 						</li>
 						<li class="contact_info_item d-flex flex-row">
 							<div><div class="contact_info_icon"><img src="images/planet-earth.svg" alt=""></div></div>
@@ -391,7 +380,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 											if (i.hasOwnProperty(v)) {
 											string += '<div> '+ v + ' = '+ i[v] + '</div>'
 											$('#' + v) .val(i[v])
-											console.log(i[v]);
+											// console.log(i[v]);
 											}
 											}
 											// $('#observer') .append('	<div class="grid">' + string + ' </div> ')
@@ -408,7 +397,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 									  data: data
 									}).done(function(data){
 										self.get()
-										console.log(data);
+										// console.log(data);
 									})
 			 };
 			this.createform = function() {
@@ -440,8 +429,21 @@ data = {}
 data = admin_Panel.preparePostObject(data)
 data["noteId"] = data["_id"] = data["id"] = "5b59c5414b38dd34d80410bd"
 admin_Panel.update(data)
-console.log(data);
 });
+
+jQuery('.meditor').on('click', '.mcontent', function() {
+
+jQuery(this).parent('.meditor').toggleClass('active')
+
+})
+jQuery('.active.meditor').on('click', '.mcontent', function() {
+var med = jQuery(this).parent('.meditor')
+	med.addClass('closing')
+setTimeout(function(){
+	med.removeClass('closing')
+},1000)
+})
+
 </script>
 </div>
 <%# START %>

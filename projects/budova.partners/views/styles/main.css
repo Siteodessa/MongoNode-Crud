@@ -1,5 +1,6 @@
 .ref_obs img{
-width: 20px;
+
+width: 20px;
 }
 
 
@@ -19,6 +20,102 @@ label {
     align-items:  center;
     justify-content:  center;
     background: #0e1d41;
-    padding:  5px 4px 5px 9px;
+    padding: 1px 4px 1px 9px;
     color: #fd784f;
+    margin:  0;
+}
+
+.editor_block {
+    top: 0;
+    display:  none;
+    z-index: 15;
+}
+
+.meditor .form {
+    position: absolute;
+    bottom: 0;
+    z-index:  999999;
+    right:  0;
+    transform: translateX(110%);
+    display:  flex;
+    transform: translateX(0);
+    opacity:  0;
+    z-index: -4;
+    transition:  .5s;
+}
+
+.meditor {
+    width:  100%;
+    display:  block;
+    position:  relative;
+}
+
+.meditor .form input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #ffffff30;
+    outline: none;
+}
+
+.meditor .form .msubmit {
+    background: transparent;
+    border: none;
+    display:  flex;
+    justify-content:  center;
+    align-items:  center;
+    width:  30px;
+}
+
+.msubmit .contact_info_icon {
+    margin-right: 0;
+}
+
+.active.meditor .form {
+    z-index: 9;
+    transform: translateX(110%);
+    opacity: 1;
+}
+
+.mcontent {
+    z-index:  10;
+}
+
+.meditor .form:before {
+    content:  '';
+    border-bottom: 2px solid #fd784f;
+    width:  100%;
+    position:  absolute;
+    bottom:  0;
+    transform:  scale(0);
+    transition:.5s;
+    transition-delay:0.5s
+}
+
+.active.meditor .form:before {
+    transform:  scale(1);
+}
+
+.meditor label {
+    width:  100%;
+    position:  absolute;
+    top: -100%;
+    background:  transparent;
+    font-weight:  normal;
+    text-align:  left;
+    font-size:  10px;
+    justify-content:  flex-start;
+    transform: translateY(100%) scale(0);
+    opacity:  0;
+    transition:  .5s .5s;
+    color:#fff;
+}
+
+.active.meditor label {
+    transform: translateY(0%) scale(1);
+    opacity: 1;
+}
+
+.active.meditor img.contact_info_icon {
+    transform: rotate(312deg);
+    transition: .7s .3s ease-in;
 }

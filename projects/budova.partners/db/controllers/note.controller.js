@@ -75,17 +75,42 @@ exports.findOne = (req, res) => {// Find a single note with a noteId
         });
     });
 };
-exports.update = (req, res) => {// Update a note identified by the noteId in the request
-
-
-
+exports.custom_update = (req, res) => {// Update a note identified by the noteId in the request
     if(!req.body.content) {    // Validate Request
         return res.status(400).send({
             message: "Note content can not be empty"
         });
     }
+    Note.findByIdAndUpdate(req.params.noteId, req.params.custom_data, {new: true})
+    .then(note => {
+        if(!note) {
+            return res.status(404).send({
+
+                message: "Note not found with id " + req.params.noteId
+            });
+        }
+        res.status(200).send(note);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+
+            return res.status(404).send({
+                message: "Note not found with id " + req.params.noteId
+            });
+        }
+
+        return res.status(500).send({
+            message: "Error updating note with id " + req.params.noteId
+        });
+    });
+};
 
 
+exports.update = (req, res) => {// Update a note identified by the noteId in the request
+    if(!req.body.content) {    // Validate Request
+        return res.status(400).send({
+            message: "Note content can not be empty"
+        });
+    }
     Note.findByIdAndUpdate(req.params.noteId, {
       title: req.body.title || "Budova.partners",
       home_title: req.body.home_title || "SINGLE LISTING",
