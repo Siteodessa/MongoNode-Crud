@@ -2569,6 +2569,9 @@ a.btn.btn-default.goto:hover {
 .mcontent {
     z-index:  10;
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of fe0c780... v0.0.5a
+=======
 >>>>>>> parent of fe0c780... v0.0.5a
 =======
 >>>>>>> parent of fe0c780... v0.0.5a
@@ -2654,12 +2657,16 @@ p.woocommerce-result-count {
     justify-content:  flex-start;
     transform: translateY(100%) scale(0);
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of fe0c780... v0.0.5a
+=======
 >>>>>>> parent of fe0c780... v0.0.5a
 =======
 >>>>>>> parent of fe0c780... v0.0.5a
     opacity:  0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 .archive h1 {
@@ -2781,6 +2788,16 @@ a.wolf_add_to_wishlist.button {
 .category-tab .productinfo a {
     display:  block;
     height: 115px;
+=======
+.active.meditor label {
+    transform: translateY(0%) scale(1);
+    opacity: 1;
+}
+
+.active.meditor img.contact_info_icon {
+    transform: rotate(312deg);
+    transition: .7s .3s ease-in;
+>>>>>>> parent of fe0c780... v0.0.5a
 =======
 .active.meditor label {
     transform: translateY(0%) scale(1);
