@@ -2562,8 +2562,13 @@ img.details-image {
     margin: 0  -3px 0 5px;
 }
 
+<<<<<<< HEAD
 a.btn.btn-default.goto:hover {
     background: linear-gradient(to left, white 0%, #ffffff 30%, #ffa538de 100%);
+=======
+.mcontent {
+    z-index:  10;
+>>>>>>> parent of fe0c780... v0.0.5a
 }
 
 a.btn.btn-default.goto:before {
@@ -2576,6 +2581,7 @@ span#menu_heading {
     opacity:  0;
 }
 
+<<<<<<< HEAD
 img.catimg {
     width:  20px;
     margin: 7px 4px;
@@ -2633,9 +2639,22 @@ p.woocommerce-result-count {
     margin: 0 4px;
     background: #e1e1e1;
     padding: 4px 10px;
+=======
+.meditor label {
+    width:  100%;
+    position:  absolute;
+    top: -100%;
+    background:  transparent;
+    font-weight:  normal;
+    text-align:  left;
+    font-size:  10px;
+    justify-content:  flex-start;
+    transform: translateY(100%) scale(0);
+>>>>>>> parent of fe0c780... v0.0.5a
     opacity:  0;
 }
 
+<<<<<<< HEAD
 .archive h1 {
     background: #fac720;
     padding: 20px 6%;
@@ -2755,4 +2774,14 @@ a.wolf_add_to_wishlist.button {
 .category-tab .productinfo a {
     display:  block;
     height: 115px;
+=======
+.active.meditor label {
+    transform: translateY(0%) scale(1);
+    opacity: 1;
+}
+
+.active.meditor img.contact_info_icon {
+    transform: rotate(312deg);
+    transition: .7s .3s ease-in;
+>>>>>>> parent of fe0c780... v0.0.5a
 }

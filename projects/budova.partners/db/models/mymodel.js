@@ -18,7 +18,7 @@ notes.forEach(elem => {
   d[prop] = try_jsonparse(notes[0], prop)
   }
 });
-// type_n_log(d);
+type_n_log(d);
 module.exports = d;
 }).catch(err => {
 res.status(500).send({
