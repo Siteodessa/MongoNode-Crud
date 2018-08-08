@@ -1,45 +1,5 @@
 @charset "utf-8";
-/* CSS Document */
-
-/******************************
-
-[Table of Contents]
-
-1. Fonts
-2. Body and some general stuff
-3. Home
-4. Header
-	4.1 Logo
-	4.2 Main Navigation
-	4.3 Phone Home
-	4.4 Hamburger
-5. Menu
-6. Section Title
-7. Button
-8. Intro
-9. Milestones
-10. Agents
-11. Newsletter
-12. Footer
-	12.1 Footer - About
-	12.2 Footer - Useful Links
-	12.3 Footer - Contact Form
-	12.4 Footer - Contact Info
-13. Credits
-
-
-******************************/
-
-/***********
-1. Fonts
-***********/
-
 @import url('https://fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:300,400,600,700');
-
-/*********************************
-2. Body and some general stuff
-*********************************/
-
 *
 {
 	margin: 0;
@@ -115,11 +75,9 @@ p a:hover::after
 }
 ::selection
 {
-	
 }
 p::selection
 {
-	
 }
 h1{font-size: 48px;}
 h2{font-size: 36px;}
@@ -133,14 +91,13 @@ h1, h2, h3, h4, h5, h6
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
-h1::selection, 
-h2::selection, 
-h3::selection, 
-h4::selection, 
-h5::selection, 
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
 h6::selection
 {
-	
 }
 .form-control
 {
@@ -230,11 +187,6 @@ section
 {
 	padding: 0px !important;
 }
-
-/*********************************
-3. Home
-*********************************/
-
 .home
 {
 	height: 433px;
@@ -302,11 +254,6 @@ section
 {
 	color: #fd784f;
 }
-
-/*********************************
-4. Header
-*********************************/
-
 .header
 {
 	display: block;
@@ -333,14 +280,8 @@ section
 {
 	height: 120px;
 }
-
-/*********************************
-4.1 Logo
-*********************************/
-
 .logo_container
 {
-	
 }
 .logo
 {
@@ -356,11 +297,6 @@ section
 	text-transform: uppercase;
 	margin-top: 1px;
 }
-
-/*********************************
-4.2 Main Navigation
-*********************************/
-
 .main_nav
 {
 	margin-left: auto;
@@ -393,11 +329,6 @@ section
 {
 	color: #fd784f;
 }
-
-/*********************************
-4.3 Phone Home
-*********************************/
-
 .phone_home
 {
 	width: auto;
@@ -413,11 +344,6 @@ section
 	line-height: 44px;
 	color: #FFFFFF;
 }
-
-/*********************************
-4.4 Hamburger
-*********************************/
-
 .hamburger_container
 {
 	display: none;
@@ -438,11 +364,6 @@ section
 {
 	color: #fd784f;
 }
-
-/*********************************
-5. Menu
-*********************************/
-
 .menu
 {
 	display: block;
@@ -486,11 +407,6 @@ section
 	padding-bottom: 5px;
 	line-height: 60px;
 }
-
-/*********************************
-6. Section Title
-*********************************/
-
 .section_title
 {
 	padding-top: 37px;
@@ -526,11 +442,6 @@ section
 	color: #b0b1b3;
 	margin-top: -4px;
 }
-
-/*********************************
-7. Button
-*********************************/
-
 .button
 {
 	display: inline-block;
@@ -546,11 +457,6 @@ section
 	padding-left: 34px;
 	padding-right: 33px;
 }
-
-/*********************************
-8. Intro
-*********************************/
-
 .intro
 {
 	padding-top: 92px;
@@ -593,11 +499,6 @@ section
 {
 	max-width: 100%;
 }
-
-/*********************************
-9. Milestones
-*********************************/
-
 .milestones
 {
 	padding-top: 179px;
@@ -645,11 +546,6 @@ section
 	color: #FFFFFF;
 	margin-top: 15px;
 }
-
-/*********************************
-10. Agents
-*********************************/
-
 .agents
 {
 	padding-top: 100px;
@@ -746,11 +642,6 @@ section
 {
 	color: #FFFFFF;
 }
-
-/*********************************
-11. Newsletter
-*********************************/
-
 .newsletter
 {
 	padding-top: 76px;
@@ -819,15 +710,15 @@ section
 	font-weight: 400 !important;
 	color: #adb8d4 !important;
 }
-.newsletter_email::-moz-placeholder /* Firefox 19+ */ 
+.newsletter_email::-moz-placeholder /* Firefox 19+ */
 {
 	font-size: 11px !important;
 	font-style: italic !important;
 	font-weight: 400 !important;
 	color: #adb8d4 !important;
-} 
+}
 .newsletter_email:-ms-input-placeholder
-{ 
+{
 	font-size: 11px !important;
 	font-style: italic !important;
 	font-weight: 400 !important;
@@ -901,11 +792,6 @@ section
 	padding-left: 30px;
 	padding-right: 30px;
 }
-
-/*********************************
-12. Footer
-*********************************/
-
 .footer
 {
 	padding-top: 150px;
@@ -919,11 +805,6 @@ section
 	text-transform: uppercase;
 	color: #FFFFFF;
 }
-
-/*********************************
-12.1 Footer - About
-*********************************/
-
 .footer .logo_container
 {
 	display: inline-block;
@@ -1012,11 +893,6 @@ section
 	line-height: 2.29;
 	margin-bottom: 0px;
 }
-
-/*********************************
-12.2 Footer - Useful Links
-*********************************/
-
 .footer_useful_links
 {
 	margin-top: 27px;
@@ -1037,18 +913,12 @@ section
 {
 	color: #fd784f;
 }
-
-/*********************************
-12.3 Footer - Contact Form
-*********************************/
-
 .footer_contact_form_container
 {
 	margin-top: 41px;
 }
 .footer_contact_form
 {
-	
 }
 .input_field
 {
@@ -1121,10 +991,10 @@ section
 	font-style: italic !important;
 	font-weight: 400 !important;
 	color: #6678a3 !important;
-} 
+}
 .input_field:-ms-input-placeholder,
 .text_field:-ms-input-placeholder
-{ 
+{
 	font-size: 11px !important;
 	font-style: italic !important;
 	font-weight: 400 !important;
@@ -1138,11 +1008,6 @@ section
 	font-weight: 400 !important;
 	color: #6678a3 !important;
 }
-
-/*********************************
-12.4 Footer - Contact Info
-*********************************/
-
 .contact_info_list
 {
 	margin-top: 44px;
@@ -1174,11 +1039,6 @@ section
 {
 	color: #fd784f;
 }
-
-/*********************************
-13. Credits
-*********************************/
-
 .credits
 {
 	background: #040b1d;
