@@ -18,7 +18,7 @@
 
 	<% }  %>
 <% function multiple_editable_ul(d, key, is_Admin, ulclass){ %>
-		<ul class="">
+		<ul class="<%= ulclass %>">
 	<% for (let item in d[key]) {	%>
 	<%   item = d[key][item];	%>
 	<%  let classname = item["class"];	%>
@@ -38,6 +38,22 @@
 						<% 			li_a_editor(text, href, classname) 	%>
 						</div>
 						<% 		}	%>
+						<div class="mxcontrols">
+						<div class="mxcontrols_box">
+							<div class="mxaddrow">
+								<img class="contact_info_icon" src="/images/002-add.svg" />
+							</div>
+							<div class="mxremoverow">
+								<img class="contact_info_icon" src="/images/003-remove.svg" />
+							</div>
+							<div class="mxreturnrow hidden">
+								<img class="contact_info_icon" src="/images/004-return.svg" />
+							</div>
+						<div class="mxsave">
+							<img class="contact_info_icon" src="/images/refresh.svg" />
+						</div>
+						</div>
+						</div>
 					</div>
 				</div>
 <% }  %>
