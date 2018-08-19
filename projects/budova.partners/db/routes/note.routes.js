@@ -54,14 +54,15 @@ const notes = require('../controllers/note.controller.js');
   app.set('view engine', 'ejs');
 
 
-express_page('5b59c5414b38dd34d80410bd', '/', 'home.ejs', app, dbmodel, express,  IsParseableJson)
-express_page('5b59c5414b38dd34d80410bd', '/stroyaschiesya-doma', 'listings.ejs', app, dbmodel, express,  IsParseableJson)
-express_page('5b59c5414b38dd34d80410bd', '/sdannye-doma', 'listings.ejs', app, dbmodel, express,  IsParseableJson)
-express_page('5b59c5414b38dd34d80410bd', '/tseni', 'news.ejs', app, dbmodel, express,  IsParseableJson)
-express_page('5b59c5414b38dd34d80410bd', '/onas', 'about.ejs', app, dbmodel, express,  IsParseableJson)
-express_page('5b59c5414b38dd34d80410bd', '/contacts', 'contacts.ejs', app, dbmodel, express,  IsParseableJson)
+express_page('5b59c5414b38dd34d80410bd', '/', 'pages/home.ejs', app, dbmodel, express,  IsParseableJson)
+express_page('5b59c5414b38dd34d80410bd', '/stroyaschiesya-doma', 'pages/listings.ejs', app, dbmodel, express,  IsParseableJson)
+express_page('5b59c5414b38dd34d80410bd', '/sdannye-doma', 'pages/listings.ejs', app, dbmodel, express,  IsParseableJson)
+express_page('5b59c5414b38dd34d80410bd', '/tseni', 'pages/news.ejs', app, dbmodel, express,  IsParseableJson)
+express_page('5b59c5414b38dd34d80410bd', '/onas', 'pages/about.ejs', app, dbmodel, express,  IsParseableJson)
+express_page('5b59c5414b38dd34d80410bd', '/contacts', 'pages/contacts.ejs', app, dbmodel, express,  IsParseableJson)
 //Warning !  pages, including db loops must be reworked and must be able to create a new page
-express_page('5b59c5414b38dd34d80410bd', '/altair', 'single.ejs', app, dbmodel, express,  IsParseableJson)
+express_page('5b59c5414b38dd34d80410bd', '/altair', 'pages/single.ejs', app, dbmodel, express,  IsParseableJson)
+express_page('5b59c5414b38dd34d80410bd', '/elements', 'pages/elements.ejs', app, dbmodel, express,  IsParseableJson)
 
 
 
