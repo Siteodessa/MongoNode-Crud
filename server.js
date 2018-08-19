@@ -64,7 +64,7 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
   res.render('index', {foo: 'FOO'});
 });
-
+  new appget( '/sonar', 'views/sonar/sonar/', '/index.html' );
 
 // define a simple route
 // app.get('/', (req, res) => {

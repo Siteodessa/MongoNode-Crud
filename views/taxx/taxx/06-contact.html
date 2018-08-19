@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Taxx</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	
+	
+	<!-- Font -->
+	
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700%7CAllura" rel="stylesheet">
+	
+	<!-- Stylesheets -->
+	
+	<link href="common-css/bootstrap.css" rel="stylesheet">
+	
+	<link href="common-css/ionicons.css" rel="stylesheet">
+	
+	<link href="06-contact/css/styles.css" rel="stylesheet">
+	
+	<link href="06-contact/css/responsive.css" rel="stylesheet">
+	
+</head>
+<body>
+	
+ 	<header>
+		<div class="container">
+		
+			<a class="logo" href="#"><img src="images/logo-with-bg.jpg" alt="Logo"></a>
+			
+			<div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="icon ion-navicon"></i></div>
+			
+			<ul class="main-menu visible-on-click" id="main-menu">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="02-about-us.html">About Us</a></li>
+				<li><a href="03-services.html">Services</a></li>
+				<li><a href="04-portfolio.html">Portfolio</a></li>
+				<li><a href="05-news.html">Blog</a></li>
+				<li><a href="06-contact.html">Contact</a></li>
+			</ul><!-- main-menu -->
+			
+		</div><!-- container -->
+	</header>
+
+	
+	<div class="main-slider" style="background-image: url(images/slider-1-1920x1080.jpg);">
+		<div class="display-table center-text">
+			<div class="display-table-cell">
+				<div class="slider-content">
+				
+					<h5 class="pre-heading">Get in touch</h5>
+					<h1><b>Contact</b></h1>
+					
+				</div><!-- slider-content-->
+			</div><!--display-table-cell-->
+		</div><!-- display-table-->
+	</div><!-- main-slider -->
+	
+	
+	<section class="contact-section section">
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-md-12 col-lg-8">
+					<div class="contact-form">
+						<form method="post">
+							<div class="row">
+							
+								<div class="col-sm-6">
+									<input class="margin-b-30" type="text" placeholder="Your name"/>
+								</div><!-- col-sm-6 -->
+								
+								<div class="col-sm-6">
+									<input class="margin-b-30" type="text" placeholder="Your email"/>
+								</div><!-- col-sm-6 -->
+								
+								<div class="col-sm-12">
+									<input class="margin-b-30" type="text" placeholder="Subject"/>
+								</div><!-- col-sm-12 -->
+								
+								<div class="col-sm-12">
+									<textarea class="margin-b-30" rows="6" placeholder="Message"></textarea>
+								</div><!-- col-sm-12 -->
+								
+								<div class="col-sm-12">
+									<button class="btn btn-border margin-b-30" type="submit" name="submit"><b>SEND IT</b>
+										<i class="ion-chevron-right"></i><i class="ion-chevron-right"></i></button>
+								</div><!-- col-sm-12 -->
+								
+							</div><!-- row -->
+						</form>
+					</div><!-- contact-form -->
+				</div><!-- col-sm-8 -->
+				
+				<div class="col-md-12 col-lg-4">
+					<div class="address-area">
+						<div class="address margin-b-50">
+							<h5 class="title margin-b-20"><b>Barcelona Office</b></h5>
+							<p>C /Libertad, 34, <br/>05200 Arevalo</p>
+							<p class="margin-tb-10">0034 373840 2445 322</p>
+							<p>hello@company.com</p>
+						</div><!-- address -->
+						
+						<div class="address margin-b-30">
+							<h5 class="title margin-b-20"><b>New York Office</b></h5>
+							<p>475 Chinatown Drive, <br/>Willasport,TN 38487</p>
+							<p class="margin-tb-10">0034 373840 2445 322</p>
+							<p>hello@company.com</p>
+						</div><!-- address -->
+						
+					</div><!-- address-area -->
+				</div><!-- col-sm-4 -->
+				
+			</div><!-- row -->
+		</div><!-- container -->
+	</section><!-- contact-section -->
+	
+	
+	<section class="map-section">
+		<div class="container">
+			<div id="map" style="height:500px;width: 100%"></div>
+			<script>
+				  function initMap() {
+					var uluru = {lat: 56.946285, lng: 24.105078};
+					var map = new google.maps.Map(document.getElementById('map'), {
+						zoom: 4,
+						center: uluru
+					});
+					
+				  }
+			</script>
+			<script async defer
+				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8Nkl4q13z00Fid3Vh8eOp4mqVlgfcXLA&callback=initMap">
+			</script>
+			
+		</div><!-- container -->
+	</section><!-- map-section -->
+	
+	<footer>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6 col-lg-3 col-xl-4">
+					<div class="margin-b-30">
+						<a class="logo margin-b-10" href="#"><img src="images/logo-white.png" alt="Logo"></a>
+						
+						<p class="margin-tb-20">Litora torquent per conubia nostra, per inceptos himena eos. 
+							Fusce quis tempus elit. Class aptent taciti orquent per conubia nostra inceptos<p>
+						<p class="font-black-lite copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ion-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
+						
+					</div><!-- margin-b-30 -->
+				</div><!-- col-sm-6 -->
+				
+				<div class="hidden-lg-down col-xl-2"></div>
+				
+				<div class="col-md-6 col-lg-3 col-xl-2">
+					<div class="footer-section margin-b-30">
+						<h5 class="title margin-b-20"><b>Barcelona Office</b></h5>
+						<p>C /Libertad, 34, 05200 Arevalo</p>
+						<p class="margin-tb-10">0034 373840 2445 322</p>
+						<p>hello@company.com</p>
+					</div><!-- footer-section -->
+				</div><!-- col-sm-2 -->
+				
+				<div class="col-md-6 col-lg-3 col-xl-2">
+					<div class="footer-section margin-b-30">
+						<h5 class="title margin-b-20"><b>New York Office</b></h5>
+						<p>475 Chinatown Drive, Willasport,TN 38487</p>
+						<p class="margin-tb-10">0034 373840 2445 322</p>
+						<p>hello@company.com</p>
+					</div><!-- footer-section -->
+				</div><!-- col-sm-2 -->
+				
+				<div class="col-md-6 col-lg-3 col-xl-2">
+					<div class="footer-section margin-b-30">
+						<h5 class="title margin-b-20"><b>Melbourne Office</b></h5>
+						<p>21 Ronald Chescent, WEST GLADSTONE QLD 468</p>
+						<p class="margin-tb-10">(07) 4936 2100</p>
+						<p>hello@company.com</p>
+					</div><!-- footer-section -->
+				</div><!-- col-sm-2 -->
+				
+			</div><!-- row -->
+		</div><!-- container -->
+	</footer>
+	
+	<!-- SCIPTS -->
+	
+	<script src="common-js/jquery-3.1.1.min.js"></script>
+	
+	<script src="common-js/tether.min.js"></script>
+	
+	<script src="common-js/bootstrap.js"></script>
+	
+	<script src="common-js/scripts.js"></script>
+	
+	
+</body>
+</html>

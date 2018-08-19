@@ -157,3 +157,18 @@ input.mxfield {
 .mxedition div {
     display:  flex;
 }
+
+
+li.cl a {
+    color:  #fff;
+    text-transform: uppercase;
+    font-weight:  bold;
+}
+
+li.cl a:before {
+    content: "/";
+}
+
+ul li.cl:first-child a:before {
+    content: '';
+}

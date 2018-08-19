@@ -387,7 +387,7 @@ section
 {
 	display: block;
 	font-family: 'Montserrat', sans-serif;
-	font-size: 24px;
+	font-size: 19px;
 	font-weight: 700;
 	color: #FFFFFF;
 	text-transform: uppercase;
@@ -400,13 +400,13 @@ section
 
 .main_nav
 {
-	margin-left: auto;
-	margin-right: 112px;
+	margin-left: 0;
+	margin: 0 45px;
 }
 .main_nav_item
 {
 	display: inline-block;
-	margin-right: 40px;
+	margin-right: 20px;
 }
 .main_nav_item:last-child
 {
@@ -425,6 +425,8 @@ section
 	-ms-transition: all 200ms ease;
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
+	text-align:  center;
+	display:  flex;
 }
 .main_nav_item a:hover
 {
@@ -440,8 +442,8 @@ section
 	width: auto;
 	height: 44px;
 	background: #fd784f;
-	padding-left: 46px;
-	padding-right: 39px;
+	padding-left: 16px;
+	padding-right: 9px;
 }
 .phone_home span
 {

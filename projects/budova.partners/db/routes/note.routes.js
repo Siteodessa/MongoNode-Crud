@@ -16,6 +16,30 @@ function IsParseableJson(str) {
     }
     return true;
 }
+
+
+function express_page(db_id, pageurl, ejs_file, app, dbmodel, express,  IsParseableJson){
+  app.get(pageurl, function(req, res) {
+      d = {};
+      dbmodel.find({}, function(err, data) {
+          app.use(express.static('views'));
+          data.forEach(elem => {
+            if (elem.id == db_id)
+            for (let prop in elem) {
+                if (IsParseableJson(elem[prop])) {   d[prop] = JSON.parse(elem[prop]) }
+                else { d[prop] = elem[prop] }
+              }
+            }
+          );
+
+          res.status(200).render(ejs_file, {
+              d: d
+          });
+      });
+  });
+}
+
+
 module.exports = (app, express, bodyParser) => {
 var dbmodel = require('../../db/models/note.model.js');
 const notes = require('../controllers/note.controller.js');
@@ -28,26 +52,18 @@ const notes = require('../controllers/note.controller.js');
   app.put('/notes/m_update/:noteId', notes.custom_update);
   app.delete('/notes/:noteId', notes.delete);
   app.set('view engine', 'ejs');
-    app.get('/', function(req, res) {
-        d = {};
-        dbmodel.find({}, function(err, data) {
-              app.use(express.static('views'));
-            data.forEach(elem => {
-              if (elem.id == '5b59c5414b38dd34d80410bd')
-              for (let prop in elem) {
-                  if (IsParseableJson(elem[prop])) {   d[prop] = JSON.parse(elem[prop]) }
-                  else { d[prop] = elem[prop] }
-                }
-              }
-            );
 
-for (let item in d.useful_links_menu_list) {
-  type_n_log(item);
-  }
-            res.status(200).render('index.ejs', {
-                d: d
-            });
-        });
-    });
+
+express_page('5b59c5414b38dd34d80410bd', '/', 'home.ejs', app, dbmodel, express,  IsParseableJson)
+express_page('5b59c5414b38dd34d80410bd', '/stroyaschiesya-doma', 'listings.ejs', app, dbmodel, express,  IsParseableJson)
+express_page('5b59c5414b38dd34d80410bd', '/sdannye-doma', 'listings.ejs', app, dbmodel, express,  IsParseableJson)
+express_page('5b59c5414b38dd34d80410bd', '/tseni', 'news.ejs', app, dbmodel, express,  IsParseableJson)
+express_page('5b59c5414b38dd34d80410bd', '/onas', 'about.ejs', app, dbmodel, express,  IsParseableJson)
+express_page('5b59c5414b38dd34d80410bd', '/contacts', 'contacts.ejs', app, dbmodel, express,  IsParseableJson)
+//Warning !  pages, including db loops must be reworked and must be able to create a new page
+express_page('5b59c5414b38dd34d80410bd', '/altair', 'single.ejs', app, dbmodel, express,  IsParseableJson)
+
+
+
 app.listen(80, () => console.log(' application is running port 80!'));
 }
