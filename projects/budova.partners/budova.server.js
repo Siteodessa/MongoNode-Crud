@@ -1,10 +1,19 @@
 let express = require('express');
 let app = express();
 var fs = require('fs');
+var HttpError = require('./error').HttpError;
+
+
 const dbConfig = require('./db/config/database.config.js');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 var start_mongoose = require('./db/start_mongoose')(mongoose, dbConfig);
 require('./db/routes/note.routes.js')(app, express, bodyParser);
-require('./db/routes/user.routes.js')(app, express, bodyParser);
+
+require('./routes')(app);
+
+
+
+
+
 app.listen(80, () => console.log(' application is running port 80!'));
