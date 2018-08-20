@@ -1,46 +1,8 @@
-function type_n_log(a) {
-  let b = typeof(a);
-  console.log(b);
-  console.log("~~~~~~~~");
-  console.log(a);
-  console.log("~~~~~~~~");
-  for (let prop in a) {
-    console.log(prop);
-  }
-}
-function IsParseableJson(str) {
-    try {
-        JSON.parse(str);
-    } catch (e) {
-        return false;
-    }
-    return true;
-}
 
 
-function express_page(db_id, pageurl, ejs_file, app, dbmodel, express,  IsParseableJson){
-  app.get(pageurl, function(req, res) {
-      d = {};
-      dbmodel.find({}, function(err, data) {
-          app.use(express.static('views'));
-          data.forEach(elem => {
-            if (elem.id == db_id)
-            for (let prop in elem) {
-                if (IsParseableJson(elem[prop])) {   d[prop] = JSON.parse(elem[prop]) }
-                else { d[prop] = elem[prop] }
-              }
-            }
-          );
+var my_tests = require('../../db/my_tests');
 
-          res.status(200).render(ejs_file, {
-              d: d
-          });
-      });
-  });
-}
-
-
-module.exports = (app, express, bodyParser) => {
+module.exports = (app, express, bodyParser, my_tests) => {
 var dbmodel = require('../../db/models/note.model.js');
 const notes = require('../controllers/note.controller.js');
   app.use(bodyParser.urlencoded({ extended: true }))
@@ -63,8 +25,4 @@ express_page('5b59c5414b38dd34d80410bd', '/contacts', 'pages/contacts.ejs', app,
 //Warning !  pages, including db loops must be reworked and must be able to create a new page
 express_page('5b59c5414b38dd34d80410bd', '/altair', 'pages/single.ejs', app, dbmodel, express,  IsParseableJson)
 express_page('5b59c5414b38dd34d80410bd', '/elements', 'pages/elements.ejs', app, dbmodel, express,  IsParseableJson)
-
-
-
-app.listen(80, () => console.log(' application is running port 80!'));
 }
