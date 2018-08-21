@@ -16,7 +16,6 @@ function IsParseableJson(str) {
     }
     return true;
 }
-
 function json_Result(string){
   let obj = { result: string};
   let myJSON = JSON.stringify(obj);
@@ -52,90 +51,8 @@ module.exports = (app, express, bodyParser) => {
   var dbmodel = require('../db/models/note.model.js');
   var User = require('../db/models/user.model.js');
   const notes = require('../controllers/note.controller.js');
-  var session  = require('express-session');
-    app.use(session({secret:"f254fr45t43ty5409143t91y4ty920ty123", resave:false, saveUninitialized:true}))
-//LOGIN-REGISTER
-
-  app.get('/dashboard', function(req, res){
-    if (!req.session.user) {
-      return res.status(401).send();
-    }
-    return res.status(200).send("Welcome to super-secret API")
-  })
-
-  app.get('/enter', function(req, res){
-    // if (!req.session.user) {
-    //   return res.status(401).send();
-    // }
-    return res.status(200).render('login.ejs', {
-
-    });
-  })
-
-
-
-
-app.post('/login', function(req, res) {
-  var username = req.body.username;
-  var password = req.body.password;
-  User.findOne({
-    username:username,
-    password:password,
-  }, function(err,user){
-        if (err) {
-          let answer = 'Произошла ошибка';
-          let json_result = json_Result(answer)
-          return res.status(500).send(json_result)
-        }
-        if (!user) {
-          let answer = 'Не существует пользователя с именем ' + username + '!';
-          let json_result = json_Result(answer)
-          return res.status(404).send(json_result);
-        }
-        req.session.user =  user;
-        let answer = 'Добро пожаловать ' + username + '!';
-        let json_result = json_Result(answer)
-        return res.status(200).send(json_result);
-      })
-})
-
-
-
-
-
-
-
-
-  app.post('/register', function(req, res) {
-      var username = req.body.username;
-      var password = req.body.password;
-      var newuser = new User();
-      newuser.username = username;
-      newuser.password = password;
-      User.findOne({
-        username:username,
-        password:password,
-      }, function(err,user){
-      if (!user) {
-        newuser.save(function(err, savedUser){ if (err) {  console.log(err);  } })
-            return res.status(200).send(json_Result('Поздравляем с успешной регистрацией, ' + username + '!'))
-      }
-      res.status(200).send(json_Result('Имя ' + username + ' уже занято!'));
-    })
-
-  });
-
-
-
-//LOGIN-REGISTER
-
-
-
-app.post('/logout', function(req, res) {
-  req.session.destroy()
-  res.status(200).send()
-})
-
+  const default_users = require('../db/config/default_users.js');
+  const admin_router = require('./admin.routes.js')(app, User);
 
 
 
