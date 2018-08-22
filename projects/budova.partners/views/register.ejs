@@ -22,7 +22,9 @@ body#LoginForm{     height: 100vh; background-image:url("https://hdwallsource.co
   border-radius: 2px;
   margin: 10px auto 30px;
   max-width: 38%;
-  padding: 50px 70px 70px 71px;
+  padding: 50px 70px 40px 70px;
+  height: 400px;
+
 }
 .login-form .form-group {
   margin-bottom:10px;
@@ -56,6 +58,12 @@ body#LoginForm{     height: 100vh; background-image:url("https://hdwallsource.co
 }
 .back { text-align: left; margin-top:10px;}
 .back a {color: #444444; font-size: 13px;text-decoration: none;}
+
+a.login.btn {
+    color: #ad8d92;
+    margin: 20px 0 0px;
+
+}
 </style>
 <!------ Include the above in your HEAD tag ---------->
   </head>
@@ -71,16 +79,18 @@ body#LoginForm{     height: 100vh; background-image:url("https://hdwallsource.co
 
     <form id="ajax_form1" method="post">
         <div class="form-group">
-            <input type="username" class="form-control" value="manhattan" id="username1" placeholder="Ваш логин">
+            <input type="username" class="form-control" value="" id="username1" placeholder="Ваш логин">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" value="passwpasswordord123"  id="password1" placeholder="Пароль">
+            <input type="password" class="form-control" value=""  id="password1" placeholder="Пароль">
         </div>
         <div class="forgot">
         <%# <a href="reset.html">Forgot password?</a> %>
 </div>
         <button type="button" id="btn1" type="submit" value="Отправить" class="btn btn-primary">Зарегистрироваться</button>
     </form>
+
+      <a href="/login" class="login btn">Войти</a>
     </div>
 <p class="botto-text"> Designed by Siteodessa</p>
 </div></div></div>

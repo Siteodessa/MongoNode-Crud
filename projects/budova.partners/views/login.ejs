@@ -56,7 +56,9 @@ padding: 11px;
   border-radius: 2px;
   margin: 10px auto 30px;
   max-width: 38%;
-  padding: 50px 70px 70px 71px;
+  padding: 50px 70px 10px 70px;
+  height: 400px;
+
 }
 .login-form .form-group {
   margin-bottom:10px;
@@ -90,6 +92,14 @@ padding: 11px;
 }
 .back { text-align: left; margin-top:10px;}
 .back a {color: #444444; font-size: 13px;text-decoration: none;}
+
+
+a.register.btn {
+    position:  relative;
+    top: -20px;
+    color: #ad8d92;
+
+}
 </style>
 <!------ Include the above in your HEAD tag ---------->
   </head>
@@ -104,10 +114,10 @@ padding: 11px;
    </div>
     <form id="ajax_form" method="post">
         <div class="form-group">
-            <input type="username" class="form-control" id="username" value="manhattan" placeholder="Ваш логин">
+            <input type="username" class="form-control" id="username" value="" placeholder="Ваш логин">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" id="password" value="passwpasswordord123" placeholder="Пароль">
+            <input type="password" class="form-control" id="password" value="" placeholder="Пароль">
         </div>
         <div class="forgot">
         <%# <a href="reset.html">Forgot password?</a> %>

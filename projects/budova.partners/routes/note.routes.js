@@ -52,7 +52,7 @@ module.exports = (app, express, bodyParser) => {
   var User = require('../db/models/user.model.js');
   const notes = require('../controllers/note.controller.js');
   const default_users = require('../db/config/default_users.js');
-  const admin_router = require('./admin.routes.js')(app, User);
+  const admin_router = require('./admin.routes.js')(app, User, json_Result, express);
 
 
 

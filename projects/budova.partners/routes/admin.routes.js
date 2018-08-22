@@ -1,4 +1,4 @@
-module.exports = (app, User)=>{
+module.exports = (app, User, json_Result, express)=>{
   var session  = require('express-session');
   app.use(session({secret:"f254fr45t43ty5409143t91y4ty920ty123", resave:false, saveUninitialized:true}))
 //LOGIN-REGISTER
