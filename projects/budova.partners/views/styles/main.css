@@ -1,20 +1,15 @@
 .ref_obs img{
-
 width: 20px;
 }
-
-
 .ref_obs {
     background:  none;
     border:  none;
 }
-
 div#subm {
     background: #0e1d41;
     width:  100%;
     color: #fd784f;
 }
-
 label {
     display:  flex;
     align-items:  center;
@@ -24,13 +19,11 @@ label {
     color: #fd784f;
     margin:  0;
 }
-
 .editor_block {
     top: 0;
     display:  none;
     z-index: 15;
 }
-
 .meditor .form {
     position: absolute;
     bottom: 0;
@@ -43,20 +36,17 @@ label {
     z-index: -4;
     transition:  .5s;
 }
-
 .meditor {
     width:  100%;
     display:  block;
     position:  relative;
 }
-
 .meditor .form input {
     background: transparent;
     border: none;
     border-bottom: 1px solid #ffffff30;
     outline: none;
 }
-
 .meditor .form .msubmit {
     background: transparent;
     border: none;
@@ -65,22 +55,18 @@ label {
     align-items:  center;
     width:  30px;
 }
-
 .msubmit .contact_info_icon {
     margin-right: 0;
 }
-
 .active.meditor .form {
     z-index: 9;
     transform: translateX(110%);
     opacity: 1;
 }
-
 .mcontent {
     z-index:  10;
     display: inline-flex;
 }
-
 .meditor .form:before {
     content:  '';
     border-bottom: 2px solid #fd784f;
@@ -91,11 +77,9 @@ label {
     transition:.5s;
     transition-delay:0.5s
 }
-
 .active.meditor .form:before {
     transform:  scale(1);
 }
-
 .meditor label {
     width:  100%;
     position:  absolute;
@@ -110,65 +94,50 @@ label {
     transition:  .5s .5s;
     color:#fff;
 }
-
 .active.meditor label {
     transform: translateY(0%);
     opacity: 1;
 }
-
 .active.meditor img.contact_info_icon {
     transform: rotate(312deg);
     transition: 1s 0.1s ease-in;
 }
-
 .closing.meditor .form {
     transition:  .1s;
 }
-
 .closing.meditor .form:before {
     transition: 0.1s;
     transition-delay: 0s;
 }
-
 .closing.meditor label {
     transition: .1s 0s;
 }
-
 .closing.meditor img.contact_info_icon {
     transition: .1s 0s ease-in;
 }
-
 .closing img.contact_info_icon {
     transform: rotate(202deg);
 }
-
 li.cl {
     display:  inline-flex;
 }
-
 input.mxfield {
     width: auto;
 }
-
 .mxedition {
     position:  absolute;
 }
-
 .mxedition div {
     display:  flex;
 }
-
-
 li.cl a {
     color:  #fff;
     text-transform: uppercase;
     font-weight:  bold;
 }
-
 li.cl a:before {
     content: "/";
 }
-
 ul li.cl:first-child a:before {
     content: '';
 }
