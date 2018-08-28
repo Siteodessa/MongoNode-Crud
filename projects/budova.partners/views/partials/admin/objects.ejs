@@ -1,0 +1,146 @@
+<!-- Content Header (Page header) -->
+
+<style>
+div#example1_filter {
+    float:  right;
+}span.add_new_obj {
+    margin: 0 6px;
+}td.sorting_1 {
+    text-align: center;
+}
+img.obj {
+  min-width: 60px;
+      padding: 0;
+      width: auto;
+      height: auto;
+      min-height: 60px;
+      max-height: 60px;
+      margin: 0 -3px;
+      max-width: 60px;
+}.roundy {
+    border-radius:  100%;
+    overflow:  hidden;
+    border: 2px solid #eee;
+}</style>
+<section class="content-header">
+  <h1>
+    Объекты
+    <small>просмотр</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Главная</a></li>
+    <li><a href="#">Объекты</a></li>
+    <li class="active">Просмотр</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+
+      <!-- /.box -->
+
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Все объекты</h3>
+<span class="add_new_obj">
+            <% include ./add_new_obj  %>
+          </span>
+
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>Фото</th>
+              <th>Заголовок</th>
+              <th>Этажей</th>
+              <th>Секций</th>
+              <th>Квартир\Этаж</th>
+              <th>Конструкция</th>
+              <th>Отделка</th>
+              <th>Стены</th>
+              <th>Окна</th>
+              <th>Потолки(м)</th>
+              <th>Отопление</th>
+              <th>Лифт</th>
+              <th>Паркинг</th>
+              <th>Район</th>
+              <th>Адрес</th>
+              <th>Застройщик</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+
+
+ <% content.forEach(function(obj){ %>
+
+  <tr id="<%= obj._id %>">
+
+
+
+ <td> <img class="obj" src="<%= obj.home_background %>" alt="User profile picture"></td>
+ <td> <%= obj.title %></td>
+ <td> <%= obj.floors_quant %></td>
+ <td> <%= obj.sections_quant %></td>
+ <td> <%= obj.appart_on_floor_quant %></td>
+ <td> <%= obj.construction_type %></td>
+ <td> <%= obj.frontend_material %></td>
+ <td> <%= obj.walls %></td>
+ <td> <%= obj.windows %></td>
+ <td> <%= obj.floor_height %></td>
+ <td> <%= obj.warming %></td>
+ <td> <%= obj.elevator %></td>
+ <td> <%= obj.parking %></td>
+ <td> <%= obj.block %></td>
+ <td> <%= obj.address %></td>
+ <td> <%= obj.bldr %></td>
+
+
+               </tr>
+ <% }); %>
+
+
+            </tbody>
+            <tfoot>
+            <tr>
+              <th>Фото</th>
+              <th>Заголовок</th>
+              <th>Этажей</th>
+              <th>Секций</th>
+              <th>Квартир\Этаж</th>
+              <th>Конструкция</th>
+              <th>Отделка</th>
+              <th>Стены</th>
+              <th>Окна</th>
+              <th>Потолки(м)</th>
+              <th>Отопление</th>
+              <th>Лифт</th>
+              <th>Паркинг</th>
+              <th>Район</th>
+              <th>Адрес</th>
+              <th>Застройщик</th>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</section>
+<!-- /.content -->
+<script>
+
+
+jQuery('img.obj').each(function(){
+  jQuery(this).wrap('<div class="roundy"> </div>')
+})
+</script>
