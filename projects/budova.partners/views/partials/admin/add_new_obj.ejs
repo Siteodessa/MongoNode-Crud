@@ -38,7 +38,7 @@ label.radion.checked {
 
 
               <% function permitted_for_frontend_field(prop){ %>
-          <%       restricted_fields = ["_id", "id", "updatedAt", "updatedAt", "createdAt", "updatedAt", "__v", "useful_links_menu_list", "listing_details_iconblock", "dbtest", "notes", "contact_info", "footer_col_title", "useful_links", "footer_about", "footer_social", "weekly_offer", "subscribe", "listing_video", "additional_details_block", "listing_details", "listing_slider", "listing_price_col", "room_tags", "listing_text", "logo", "phone", "main_nav_list", "breadcrumbs", "title", "listing_title", "additional_details", "map_heading", "content"] %>
+          <%       restricted_fields = ["_id", "id", "updatedAt", "updatedAt", "createdAt", "updatedAt", "__v", "useful_links_menu_list", "listing_details_iconblock", "dbtest", "notes", "contact_info", "footer_col_title", "useful_links", "footer_about", "footer_social", "weekly_offer", "subscribe", "listing_video", "additional_details_block", "listing_details", "listing_slider", "listing_price_col", "room_tags", "listing_text", "logo", "phone", "main_nav_list", "breadcrumbs", "home_title", "listing_title", "additional_details", "map_heading", "content"] %>
           <%       let result = restricted_fields.filter(word => word !== prop); %>
           <%        if(result.length != restricted_fields.length){ return false } return true  %>
             <%    } %>
@@ -111,14 +111,17 @@ function sendAjaxForm(result_form, ajax_form, url) {
 
     let z = $('.'+ ajax_form + ' input[name!=editor1]').serialize()
     z = decodeURI(z)
-    z.content =  decodeURI($('.'+ ajax_form + ' textarea').val())
-
-console.log(z.content);
+    let iframe = document.querySelector('iframe.cke_wysiwyg_frame.cke_reset');
+    let iframeDocument = iframe.contentWindow.document.activeElement.innerHTML;
+    z +=
+    b = '&content=' + iframeDocument + ''
+    g = z + b
+    console.log(z);
     $.ajax({
         url:     url,
         type:     "POST",
         dataType: "html",
-        content: decodeURI($('.'+ ajax_form + ' textarea').val()),
+        content: iframeDocument,
         data: z,
         success: function(response, xhr) {
           result = $.parseJSON(response);

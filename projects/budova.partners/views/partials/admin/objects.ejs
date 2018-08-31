@@ -70,6 +70,8 @@ img.obj {
               <th>Район</th>
               <th>Адрес</th>
               <th>Застройщик</th>
+              <th>Описание</th>
+              <th><i class="fa fa-cogs"></i></th>
 
             </tr>
             </thead>
@@ -77,7 +79,7 @@ img.obj {
 
 
 
- <% content.forEach(function(obj){ %>
+ <% content.forEach(function(obj){    %>
 
   <tr id="<%= obj._id %>">
 
@@ -99,6 +101,8 @@ img.obj {
  <td> <%= obj.block %></td>
  <td> <%= obj.address %></td>
  <td> <%= obj.bldr %></td>
+ <td> <span class="content_column"><%= obj.content %></span></td>
+ <td> <i class="fa fa-trash" id="<%= obj._id %>"></i><i class="fa fa-edit" id="<%= obj._id %>"></i></td>
 
 
                </tr>
@@ -124,6 +128,7 @@ img.obj {
               <th>Район</th>
               <th>Адрес</th>
               <th>Застройщик</th>
+              <th>Описание</th>
             </tr>
             </tfoot>
           </table>
@@ -143,4 +148,26 @@ img.obj {
 jQuery('img.obj').each(function(){
   jQuery(this).wrap('<div class="roundy"> </div>')
 })
+
+
+jQuery('i.fa-trash').click(function(){
+  let id = jQuery(this).attr('id')
+  let parent = jQuery(this).parent('td').parent('tr')
+url = '/notes/' + id + ''
+
+  $.ajax({
+      url:     url,
+      id:     id,
+      type:     "DELETE",
+      success: function(response, xhr) {
+        parent.detach()
+    },
+    error: function(response) {
+      console.log('error' + response);
+    }
+});
+
+
+})
+
 </script>

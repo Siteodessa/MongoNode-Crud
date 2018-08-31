@@ -1,11 +1,18 @@
 const Note = require('../db/models/note.model.js');
-exports.create = (req, res) => {// Create and Save a new Note
+
+
+exports.upload = (req, res) => {
+
+}
+exports.create = (req, res) => {
+    // Create and Save a new Note
     // if(!req.body.content) {    // Validate request
     //     return res.status(400).send({
     //         message: "Note content can not be empty"
     //     });
     // }
-    const note = new Note({    // Create a Note
+    // Create a Note
+    const note = new Note({
         title: req.body.title || "",
         home_title: req.body.home_title || "",
         content: req.body.content || "",
@@ -49,11 +56,9 @@ exports.create = (req, res) => {// Create and Save a new Note
         block : req.body.block || 'Приморский',
         content : req.body.content || ' '
     });
-
+    console.log(req.body.content);
     note.save()    // Save Note in the database
     .then(data => {
-          console.log('da');
-          console.log(data);
       res.status(200).send(data);
     }).catch(err => {
         res.status(500).send({

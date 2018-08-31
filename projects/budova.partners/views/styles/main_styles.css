@@ -275,7 +275,7 @@ section
 {
 	width: 100%;
 	height: 100%;
-	padding-top: calc(50vh - 25px);
+	padding-top: calc(39vh - 25px);
 	padding-left: 30px;
 	padding-right: 30px;
 }
@@ -293,6 +293,7 @@ section
 	font-weight: 700;
 	text-transform: uppercase;
 	color: #FFFFFF;
+	text-shadow:  0px 0px 41px #444;
 }
 .home_slider_nav
 {
