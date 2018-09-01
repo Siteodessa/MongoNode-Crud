@@ -8,11 +8,13 @@ exports.upload = (req, res) => {
 exports.findOnePage = (req, res) => {// Find a single note with a noteId
      Note.find()
     .then(notes => {
+      elemo = null;
       notes.forEach(elem => {
       if (elem.page_link == req.params.page_link) {
-        res.render('pages/single.ejs', { d: elem });
+      elemo =  elem
       }
        });
+       return elemo
     }).catch(err => {
         res.send({
             message: err.message || "Some error occurred while retrieving notes."
@@ -38,7 +40,7 @@ exports.create = (req, res) => {
         breadcrumbs : req.body.breadcrumbs || "OOPS!!",
         main_nav_list : req.body.main_nav_list || "OOPS!!",
         phone : req.body.phone || "OOPS!!",
-        logo : req.body.logo || "OOPS!!",
+        logo : req.body.logo || "/images/logo.png",
         listing_title : req.body.listing_title || "OOPS!!",
         listing_text : req.body.listing_text || "OOPS!!",
         room_tags : req.body.room_tags || "OOPS!!",

@@ -11,6 +11,7 @@
 
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(bodyParser.json())
+  app.use(express.static('views'));
   app.set('view engine', 'ejs');
   console.log('preparing note model...');
         var dbmodel = require('../db/models/note.model.js');
@@ -30,7 +31,24 @@
         app.put('/notes/m_update/:noteId', notes.custom_update);
         app.delete('/notes/:noteId', notes.delete);
         app.get('/fileupload', notes.upload);
-         app.get('/doma/:page_link', notes.findOnePage);
+         app.get('/doma/:page_link',  function(req, res) {
+
+
+           dbmodel.find()
+          .then(notes => {
+            elemo = null;
+            notes.forEach(elem => {
+            if (elem.page_link == req.params.page_link) {
+      res.render('pages/listings_single.ejs', {d: elem})
+            }
+             });
+             return elemo
+          }).catch(err => {
+              res.send({
+                  message: err.message || "Some error occurred while retrieving notes."
+              });
+          });
+         });
         console.log('preparing frontend pages...');
         homepage('5b59c5414b38dd34d80410bd', '/', 'pages/home.ejs', app, dbmodel, express,  IsParseableJson)
         express_page('5b59c5414b38dd34d80410bd', '/stroyaschiesya-doma', 'pages/listings.ejs', app, dbmodel, express,  IsParseableJson)

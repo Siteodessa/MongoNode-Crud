@@ -9,7 +9,7 @@ const NoteSchema = mongoose.Schema
     breadcrumbs : Array,
     main_nav_list : String,
     phone : String,
-    logo : String,
+    logo : { type: String, default: 'images/logo.png'},
     address: { type: String, default: 'Одесса'},
     map_iframe : String,
     listing_title : String,
