@@ -49,46 +49,60 @@
             <img class="card-img-top" src="<%= obj.home_background %>" alt="https://unsplash.com/@breather">
             <div class="card-body">
               <div class="card-title"><a href="listings_single.html"><%= obj.title %></a></div>
-
+              <div class="card-text"><%= obj.content %></div>
+              <div class="card-text"><%= obj.description %></div>
+              <div class="card-text"><%= obj.description %></div>
               <div class="rooms">
                 <div class="room">
-                  <span class="room_title">Этажей</span>
+                  <span class="room_title">Bedrooms</span>
                   <div class="room_content">
                     <div class="room_image"><img src="images/bedroom.png" alt=""></div>
-                    <span class="room_number"><%- obj.floors_quant %></span>
+                    <span class="room_number">4</span>
                   </div>
                 </div>
                 <div class="room">
-                  <span class="room_title">Секций</span>
+                  <span class="room_title">Bathrooms</span>
                   <div class="room_content">
                     <div class="room_image"><img src="images/shower.png" alt=""></div>
-                    <span class="room_number"><%- obj.sections_quant %></span>
+                    <span class="room_number">3</span>
                   </div>
                 </div>
                 <div class="room">
-                  <span class="room_title">Квартир\этаж</span>
+                  <span class="room_title">Area</span>
                   <div class="room_content">
                     <div class="room_image"><img src="images/area.png" alt=""></div>
-                    <span class="room_number"><%- obj.appart_on_floor_quant %></span>
+                    <span class="room_number">7100 Sq Ft</span>
+                  </div>
+                </div>
+                <div class="room">
+                  <span class="room_title">Patio</span>
+                  <div class="room_content">
+                    <div class="room_image"><img src="images/patio.png" alt=""></div>
+                    <span class="room_number">1</span>
+                  </div>
+                </div>
+                <div class="room">
+                  <span class="room_title">Garage</span>
+                  <div class="room_content">
+                    <div class="room_image"><img src="images/garage.png" alt=""></div>
+                    <span class="room_number">2</span>
                   </div>
                 </div>
               </div>
-                    <div class="card-text"><%- obj.content %></div>
               <div class="room_tags">
-              <span class="room_tag"><a href="#">Потолки <%- obj.floor_height %></a></span>
-              <span class="room_tag"><a href="#"><%- obj.block %> район</a></span>
-                <span class="room_tag"><a href="#"><%- obj.elevator %> лифт</a></span>
-                <span class="room_tag"><a href="#">Окна <%- obj.windows %></a></span>
-                <span class="room_tag"><a href="#"><%- obj.parking %> Паркинг </a></span>
-                <span class="room_tag"><a href="#"><%- obj.warming %></a></span>
+                <span class="room_tag"><a href="#">Hottub</a></span>
+                <span class="room_tag"><a href="#">Swimming Pool</a></span>
+                <span class="room_tag"><a href="#">Garden</a></span>
+                <span class="room_tag"><a href="#">Patio</a></span>
+                <span class="room_tag"><a href="#">Hard Wood Floor</a></span>
               </div>
             </div>
           </div>
           <div class="featured_card_box d-flex flex-row align-items-center trans_300">
             <img src="images/tag.svg" alt="https://www.flaticon.com/authors/lucy-g">
             <div class="featured_card_box_content">
-              <div class="featured_card_price_title">Квартиры от</div>
-              <div class="featured_card_price">$XXX,XXX</div>
+              <div class="featured_card_price_title">For Sale</div>
+              <div class="featured_card_price">$540,000</div>
             </div>
           </div>
         </div>

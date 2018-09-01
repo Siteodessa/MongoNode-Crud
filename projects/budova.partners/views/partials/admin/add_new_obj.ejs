@@ -18,9 +18,7 @@ label.radion.checked {
   color: #fff;
 }
 
-div#result_form p {
-    padding:  10px  10px 5px;
-}
+
 </style>
               <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-warning">
                 Добавить новый
@@ -93,8 +91,7 @@ div#result_form p {
               <div id="result_form">   <p></p></div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Закрыть</button>
-                <button type="button" id="save" class="btn btn-outline">Сохранить</button>
-                <button type="button" id="save_and_close" class="btn btn-outline">Сохранить и закрыть</button>
+                <button type="button" id="save" class="btn btn-outline">Сохранить изменения</button>
               </div>
 
             </form>
@@ -103,109 +100,36 @@ div#result_form p {
         </div>
 
 <script>$( document ).ready(function() {
-  $(".db_group").each(function() {
-    let obj = jQuery(this).find('.radion').first()
-    obj.addClass('checked')
-    obj.find('input').attr('checked', true)
-  })
-
-function close_modal() {
-  setTimeout(function(){
-      $('button.btn.btn-outline.pull-left').click()
-    }, 500)
-}
-    $("#save_and_close").click(
-
-    function(){
-      let files = $('#image_uploads').val()
-console.log(files);
-      // sendAjaxForm('result_form', 'form-horizontal', '/notes',  close_modal );
-      return false;
-    }
-  );
-
     $("#save").click(
     function(){
-      let files = $('#image_uploads').val()
-console.log(files);
-      // sendAjaxForm('result_form', 'form-horizontal', '/notes');
+      sendAjaxForm('result_form', 'form-horizontal', '/notes');
       return false;
     }
   );
 });
-
-
-
-  var input = document.getElementById('image_upload_input');
-
-  $('#image_upload_input').on('change', function () {
-
-    console.log();
-    var formData = new FormData();
-    formData.append("files", input.files);
-
-    $.ajax({
-        url: '/media_uploader',
-        method: 'post',
-        data: formData,
-        processData: false,
-        contentType: false,
-    success: function(response) {
-      alert('Files uploaded successfully. ');
-      console.log(response);
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-       console.log(textStatus, errorThrown);
-    }
-
-    });
-
-
-  })
-
-
-
-
-function sendAjaxForm(result_form, ajax_form, url , cb) {
-
-
-
-
+function sendAjaxForm(result_form, ajax_form, url) {
 
     let z = $('.'+ ajax_form + ' input[name!=editor1]').serialize()
     z = decodeURI(z)
     let iframe = document.querySelector('iframe.cke_wysiwyg_frame.cke_reset');
     let iframeDocument = iframe.contentWindow.document.activeElement.innerHTML;
     z +=
-    b = '&content=' + iframeDocument;
-
+    b = '&content=' + iframeDocument + ''
+    g = z + b
+    console.log(z);
     $.ajax({
         url:     url,
         type:     "POST",
-        dataType: "multipart/form-data",
+        dataType: "html",
         content: iframeDocument,
         data: z,
         success: function(response, xhr) {
           result = $.parseJSON(response);
-              $('#result_form p').html('Запись "'+result.title+'" успешно добавлена!<div class="page_added">Вы можете на нее <a href="/doma/'+result.page_link+'">Перейти</a></div>'); if (cb) {
-              cb()
-              }
-
+              $('#result_form p').text(''+result.result+'');
       },
       error: function(response) {
-console.log(response);
-        if (response.responseText && response.responseText !== undefined) {
-
-          let str = response.responseText.split("title:");
-          let str1 = str[1].split('"');
-          let str2 = str1[0];
-
-          $('#result_form p').text(str2);
-        } else {
-            $('#result_form p').text('Неизвестная ошибка 0041');
-        }
-
-
+        console.log(response);
+        $('#result_form p').text('В следующий раз повезет.');
       }
   });
 }</script>

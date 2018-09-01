@@ -2,15 +2,8 @@ const mongoose = require('mongoose');
 
 const NoteSchema = mongoose.Schema
 ({
-    title: {
-              type: String,
-              minlength: [6, 'Слишком короткий заголовок'],
-              maxlength: [60, 'Слишком длинный заголовок']},
+    title: String,
     home_title: String,
-    page_link: {
-              type: String,
-              minlength: [3, 'Слишком короткая ссылка'],
-              maxlength: [60, 'Слишком длинная ссылка']},
     home_background : String,
     breadcrumbs : Array,
     main_nav_list : String,
@@ -53,10 +46,7 @@ const NoteSchema = mongoose.Schema
     parking: { type: String, enum:["Подземный", "Наземный", "Наземный + Подземный"] , default: 'Наземный' },
     bldr: { type: String, default: 'Будова' , enum:["Будова"] },
     block: { type: String, default: 'Приморский', enum:["Приморский", "Киевский", "Суворовский", "Малиновский"] },
-    content: {
-              type: String,
-              minlength: [4, 'Короткое тело описания'],
-              maxlength: [5000, 'Слишком много длинное описание, ']},
+    content: String,
 }, {
     timestamps: true
 });
