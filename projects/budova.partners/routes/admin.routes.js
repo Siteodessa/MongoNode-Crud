@@ -1,9 +1,13 @@
-module.exports = (app, User, json_Result, express)=>{
+module.exports = (cf)=>{
+  console.log('preparing admin pages...');
   var session  = require('express-session');
   var fs  = require('fs');
   var multer  = require('multer');
 
-
+  let app = cf.app;
+  let express = cf.express;
+  let User = cf.user;
+  let json_Result = cf.json_Result;
 
   app.use(session({secret:"f254fr45t43ty5409143t91y4ty920ty123", resave:false, saveUninitialized:true}))
   app.use(express.static('views'));
@@ -19,7 +23,7 @@ module.exports = (app, User, json_Result, express)=>{
   })
 
 
-  app.post('/media_uploader', uploading, function(req, res){
+  app.post('/media_uploader', function(req, res){
 
 
 
