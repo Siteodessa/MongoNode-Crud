@@ -1,5 +1,6 @@
 module.exports = (app, User, json_Result, express)=>{
   var session  = require('express-session');
+  var fs  = require('fs');
   app.use(session({secret:"f254fr45t43ty5409143t91y4ty920ty123", resave:false, saveUninitialized:true}))
   app.use(express.static('views'));
   function is_LoggedIn(req) {
@@ -12,6 +13,32 @@ module.exports = (app, User, json_Result, express)=>{
         return res.status(200).render('register.ejs', {
         });
   })
+  app.post('/media_uploader', function(req, res){
+
+const formidable = require('formidable');
+var form = new formidable.IncomingForm();
+   form.parse(req, function (err, fields, files) {
+     if (err) throw err;
+
+console.log(files);
+  if (false) {
+    console.log(files);
+    var oldpath = files.filetoupload.path;
+    var newpath = 'F:/node/project/server/projects/budova.partners/views/uploads' + files.filetoupload.name;
+    fs.rename(oldpath, newpath, function (err) {
+      if (err) throw err;
+      console.log(newpath);
+      res.write('File uploaded and moved!');
+      res.end();
+    });
+  }
+
+
+  })
+})
+
+
+
   app.post('/register', function(req, res) {
         var username = req.body.username;
         var password = req.body.password;

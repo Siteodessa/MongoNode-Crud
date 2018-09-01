@@ -31,6 +31,9 @@
         app.put('/notes/m_update/:noteId', notes.custom_update);
         app.delete('/notes/:noteId', notes.delete);
         app.get('/fileupload', notes.upload);
+
+
+
          app.get('/doma/:page_link',  function(req, res) {
 
 
@@ -39,6 +42,7 @@
             elemo = null;
             notes.forEach(elem => {
             if (elem.page_link == req.params.page_link) {
+              elem.sitename = 'Budovka';
       res.render('pages/listings_single.ejs', {d: elem})
             }
              });
