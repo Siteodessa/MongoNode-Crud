@@ -17,6 +17,9 @@ label.radion.checked {
   box-shadow: 0px 0px 0px 3px #a5a5a5;
   color: #fff;
 }
+div#result_form p {
+    padding:  10px  10px 5px;
+}
 
 
 </style>
@@ -91,7 +94,8 @@ label.radion.checked {
               <div id="result_form">   <p></p></div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Закрыть</button>
-                <button type="button" id="save" class="btn btn-outline">Сохранить изменения</button>
+                <button type="button" id="save" class="btn btn-outline">Сохранить</button>
+                       <button type="button" id="save_and_close" class="btn btn-outline">Сохранить и закрыть</button>
               </div>
 
             </form>
@@ -100,36 +104,98 @@ label.radion.checked {
         </div>
 
 <script>$( document ).ready(function() {
+  $(".db_group").each(function() {
+  let obj = jQuery(this).find('.radion').first()
+  obj.addClass('checked')
+  obj.find('input').attr('checked', true)
+})
+function close_modal() {
+setTimeout(function(){
+    $('button.btn.btn-outline.pull-left').click()
+  }, 500)
+}
+  $("#save_and_close").click(
+   function(){
+    let files = $('#image_uploads').val()
+
+// console.log(files);
+    sendAjaxForm('result_form', 'form-horizontal', '/notes',  close_modal );
+    return false;
+  }
+);
+
     $("#save").click(
     function(){
-      sendAjaxForm('result_form', 'form-horizontal', '/notes');
+      let files = $('#image_uploads').val()
+// console.log(files);
+     sendAjaxForm('result_form', 'form-horizontal', '/notes');
       return false;
     }
   );
 });
-function sendAjaxForm(result_form, ajax_form, url) {
+
+
+
+var input = document.getElementById('image_upload_input');
+ $('#image_upload_input').on('change', function () {
+  var formData = new FormData();
+  formData.append("files", input.files);
+   $.ajax({
+      url: '/media_uploader',
+      method: 'post',
+      data: formData,
+      processData: false,
+      contentType: false,
+  success: function(response) {
+    alert('Files uploaded successfully. ');
+    // console.log(response);
+  },
+  error: function(jqXHR, textStatus, errorThrown) {
+     // console.log(textStatus, errorThrown);
+  }
+   });
+ })
+
+
+function sendAjaxForm(result_form, ajax_form, url, cb) {
 
     let z = $('.'+ ajax_form + ' input[name!=editor1]').serialize()
     z = decodeURI(z)
     let iframe = document.querySelector('iframe.cke_wysiwyg_frame.cke_reset');
     let iframeDocument = iframe.contentWindow.document.activeElement.innerHTML;
     z +=
-    b = '&content=' + iframeDocument + ''
-    g = z + b
-    console.log(z);
+    b = '&content=' + iframeDocument;
     $.ajax({
         url:     url,
         type:     "POST",
-        dataType: "html",
+        dataType: "multipart/form-data",
         content: iframeDocument,
         data: z,
         success: function(response, xhr) {
           result = $.parseJSON(response);
-              $('#result_form p').text(''+result.result+'');
+          $('#result_form p').html('Запись "'+result.title+'" успешно добавлена!<div class="page_added">Вы можете на нее <a href="/doma/'+result.page_link+'">Перейти</a></div>'); if (cb) {
+   cb()
+   }
       },
       error: function(response) {
-        console.log(response);
-        $('#result_form p').text('В следующий раз повезет.');
+       if (response.responseText && response.responseText !== undefined) {
+  if (response.status == 200) {
+    respo = JSON.parse(response.responseText);
+            console.log('New post created');
+            $('#result_form p').html('Запись "'+respo.title+'" успешно добавлена!<div class="page_added">Вы можете на нее <a href="/doma/'+respo.page_link+'">Перейти</a></div>'); if (cb) {
+     cb()
+     }
+
+    return
+  }
+                   let str = response.responseText.split("title:");
+                  let str1 = str[1].split('"');
+                  let str2 = str1[0];
+                   $('#result_form p').text(str2);
+                } else {
+                    $('#result_form p').text('Неизвестная ошибка 0041');
+                }
+
       }
   });
 }</script>

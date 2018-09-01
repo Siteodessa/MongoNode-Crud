@@ -1,0 +1,79 @@
+console.log('preparing body-parser...');
+const bodyParser = require('../../../node_modules/body-parser');
+
+
+console.log('preparing custom_functions...');
+
+function type_n_log(a) {
+let b = typeof(a);
+console.log(b);
+console.log("~~~~~~~~");
+console.log(a);
+console.log("~~~~~~~~");
+for (let prop in a) {
+console.log(prop);
+}
+}
+function IsParseableJson(str) {
+try {
+JSON.parse(str);
+} catch (e) {
+return false;
+}
+return true;
+}
+function json_Result(string){
+let obj = { result: string};
+let myJSON = JSON.stringify(obj);
+return myJSON;
+}
+function express_page(db_id, pageurl, ejs_file, app, dbmodel, express,  IsParseableJson){
+app.get(pageurl, function(req, res) {
+d = {};
+dbmodel.find({}, function(err, data) {
+app.use(express.static('views'));
+data.forEach(elem => {
+if (elem.id == db_id)
+for (let prop in elem) {
+if (IsParseableJson(elem[prop])) {   d[prop] = JSON.parse(elem[prop]) }
+else { d[prop] = elem[prop] }
+}
+}
+);
+res.status(200).render(ejs_file, {
+d: d
+});
+});
+});
+}
+
+  function homepage(db_id, pageurl, ejs_file, app, dbmodel, express,  IsParseableJson){
+  app.get(pageurl, function(req, res) {
+  d = {};
+  dbmodel.find({}, function(err, data) {
+  app.use(express.static('views'));
+  data.forEach(elem => {
+  if (elem.id == db_id)
+  for (let prop in elem) {
+  if (IsParseableJson(elem[prop])) {   d[prop] = JSON.parse(elem[prop]) }
+  else { d[prop] = elem[prop] }
+  }
+  }
+  );
+
+  res.status(200).render(ejs_file, {
+  d: d,
+  content: data
+  });
+  });
+  });
+  }
+var custom_functions = {}
+custom_functions.type_n_log = type_n_log;
+custom_functions.IsParseableJson = IsParseableJson;
+custom_functions.json_Result = json_Result;
+custom_functions.express_page = express_page;
+custom_functions.homepage = homepage;
+custom_functions.bodyParser = bodyParser;
+
+module.exports = custom_functions;

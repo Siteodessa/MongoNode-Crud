@@ -4,6 +4,23 @@ const Note = require('../db/models/note.model.js');
 exports.upload = (req, res) => {
 
 }
+
+exports.findOnePage = (req, res) => {// Find a single note with a noteId
+     Note.find()
+    .then(notes => {
+      notes.forEach(elem => {
+      if (elem.page_link == req.params.page_link) {
+        res.render('pages/single.ejs', { d: elem });
+      }
+       });
+    }).catch(err => {
+        res.send({
+            message: err.message || "Some error occurred while retrieving notes."
+        });
+    });
+ };
+
+
 exports.create = (req, res) => {
     // Create and Save a new Note
     // if(!req.body.content) {    // Validate request
@@ -15,6 +32,7 @@ exports.create = (req, res) => {
     const note = new Note({
         title: req.body.title || "",
         home_title: req.body.home_title || "",
+        page_link: req.body.page_link || "",
         content: req.body.content || "",
         home_background : req.body.home_background || "/images/city.jpg",
         breadcrumbs : req.body.breadcrumbs || "OOPS!!",
@@ -56,10 +74,9 @@ exports.create = (req, res) => {
         block : req.body.block || 'Приморский',
         content : req.body.content || ' '
     });
-    console.log(req.body.content);
     note.save()    // Save Note in the database
     .then(data => {
-      res.status(200).send(data);
+      res.send(JSON.stringify(data));
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Some error occurred while creating the Note."
