@@ -15,6 +15,13 @@ return false;
       })
     }
   }
+
+  function is_LoggedIn(req) {
+     if (req.session.user) { return true};return false;
+  }
+  function redirect_to_login(res) {
+return res.status(301).redirect('/login');
+  }
   app.get('/register', function(req, res){
         return res.status(200).render('register.ejs', {
         });
@@ -42,6 +49,7 @@ return false;
       });
   })
   app.get('/profile', function(req, res){
+        if (!is_LoggedIn(req)) { return redirect_to_login(res) }
         return res.status(200).render('dashboardUser.ejs', {
         user: req.session.user,
         dash_sub: 'profile',
@@ -49,9 +57,10 @@ return false;
   })
 
   app.get('/objects', function(req, res){
+    if (!is_LoggedIn(req)) { return redirect_to_login(res) }
 const Note = require('../db/models/note.model.js');
-Note.find()
-.then(notes => {
+Note.find().then(notes => {
+
   return res.status(200).render('dashboardUser.ejs', {
   user: req.session.user,
   schema: Note.schema,
@@ -110,6 +119,26 @@ app.get('/dashboard', function(req, res){
       // return res.status(200).render('dashboardUser.ejs', { user : user, profile_page: false });
       // if (user.user_role == 'User' || user.user_role == 'Пользователь')
       return res.status(200).render('dashboardUser.ejs', { user : user,   dash_sub: 'content'});
+})
+
+
+app.get('/media_uploader', function(req, res){
+
+
+
+
+
+
+      if (!req.session.user) {
+      return res.status(301).redirect('/login');
+    } else {
+      user = req.session.user;
+    }
+      app.use(express.static('views'));
+      if (user.isSU)
+      return res.status(200).render('dashboard.ejs', { user : user, profile_page: false});
+
+      return res.status(200).render('dashboardUser.ejs', { user : user,   dash_sub: 'media_uploader'});
 })
 //LOGIN-REGISTER
 };

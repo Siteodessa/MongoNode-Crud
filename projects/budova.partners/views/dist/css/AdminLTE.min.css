@@ -11,3 +11,8 @@ span.content_column {
     word-wrap:  break-word;
     max-width:  120px;
 }
+
+table#example1 td {
+    max-width:  100px;
+    word-wrap:  break-word;
+}

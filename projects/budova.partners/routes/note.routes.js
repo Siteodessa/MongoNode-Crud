@@ -69,11 +69,11 @@
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(bodyParser.json())
   app.set('view engine', 'ejs');
+const db_model = require('../db/models/');
+var dbmodel = db_model.dbmodel;
+var User = db_model.User;
 
-  console.log('preparing note model...');
-        var dbmodel = require('../db/models/note.model.js');
-  console.log('preparing user model...');
-        var User = require('../db/models/user.model.js');
+
   console.log('preparing controller...');
         const notes = require('../controllers/note.controller.js');
   console.log('preparing default_users...');
@@ -89,6 +89,8 @@
         app.put('/notes/:noteId', notes.update);
         app.put('/notes/m_update/:noteId', notes.custom_update);
         app.delete('/notes/:noteId', notes.delete);
+
+                app.get('/doma/:noteId', notes.findOnePage);
 
 
         app.get('/fileupload', notes.upload);

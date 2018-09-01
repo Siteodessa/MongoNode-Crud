@@ -1,7 +1,27 @@
 const Note = require('../db/models/note.model.js');
 
 
-exports.upload = (req, res) => {
+exports.media_uploader = (req, res) => {
+
+}
+
+
+function save_image(req) {
+  if (req.body.image) {
+    var formidable = require('formidable');
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+      var oldpath = files.filetoupload.path;
+      var newpath = 'F:/node/project/server/projects/budova.partners/views/images/uploads' + files.filetoupload.name;
+      console.log(oldpath);
+      console.log(newpath);
+      fs.rename(oldpath, newpath, function (err) {
+             if (err) {throw err; console.log('error');}
+             res.write('File uploaded and moved!');
+           });
+    });
+  }
+
 
 }
 exports.create = (req, res) => {
@@ -12,6 +32,9 @@ exports.create = (req, res) => {
     //     });
     // }
     // Create a Note
+
+
+
     const note = new Note({
         title: req.body.title || "",
         home_title: req.body.home_title || "",
@@ -54,9 +77,9 @@ exports.create = (req, res) => {
         parking : req.body.parking || 'Подземный',
         bldr : req.body.bldr || 'Будова',
         block : req.body.block || 'Приморский',
+        page_link : req.body.page_link || '',
         content : req.body.content || ' '
     });
-    console.log(req.body.content);
     note.save()    // Save Note in the database
     .then(data => {
       res.status(200).send(data);
@@ -99,6 +122,33 @@ exports.findOne = (req, res) => {// Find a single note with a noteId
         });
     });
 };
+
+exports.findOnePage = (req, res) => {// Find a single note with a noteId
+
+
+
+    Note.find()
+    .then(notes => {
+      notes.forEach(elem => {
+      if (elem.page_link == req.params.noteId) {
+        res.status(200).render('pages/single.ejs', {
+        d: elem
+        });
+      }
+
+      });
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving notes."
+        });
+    });
+
+
+
+
+};
+
+
 exports.custom_update = (req, res) => {
 
 var the_data = '';
@@ -200,9 +250,7 @@ exports.delete = (req, res) => { // Delete a note with the specified noteId in t
         res.status(200).send({message: "Note deleted successfully!"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
-            return res.status(404).send({
-                message: "Note not found with id " + req.params.noteId
-            });
+            return res.status(200)
         }
         return res.status(500).send({
             message: "Could not delete note with id " + req.params.noteId

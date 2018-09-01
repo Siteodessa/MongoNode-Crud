@@ -25,29 +25,70 @@
         <script src="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 
 <% if(dash_sub == 'objects') {  %>
-  <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
   <script>
     $(function () {
-      $('#example1').DataTable({  "language": {
-         "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Russian.json"
-     }})
-      $('#example2').DataTable({
-        'paging'      : true,
-        'lengthChange': false,
-        'searching'   : false,
-        'ordering'    : true,
-        'info'        : true,
-        'autoWidth'   : false
-      })
+
     })
+
+
+
+    jQuery('img.obj').each(function(){
+      jQuery(this).wrap('<div class="roundy"> </div>')
+    })
+
+
+$('#example1').DataTable({  "language": {
+       "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Russian.json"
+   }})
+    var dataTable1 =     $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+
+
+    jQuery('i.fa-trash').click(function(){
+      let id = jQuery(this).attr('id')
+      let parent = jQuery(this).parent('td').parent('tr')
+    url = '/notes/:' + id + ''
+
+      $.ajax({
+          url:     url,
+          id:     id,
+          noteId:     id,
+          type:     "DELETE",
+          method:     "DELETE",
+          success: function(response, xhr) {
+
+
+            dataTable1
+
+    .row( parent )
+    .remove()
+    .draw();
+
+        },
+        error: function(response) {
+          console.log('error' + response);
+        }
+    });
+
+
+    })
+
+
 
     function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
-            $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+            $('#imagePreview').css('background-image', 'url('+e.target.result +')').attr('base64', e.target.result);
             $('#imagePreview').hide();
             $('#imagePreview').fadeIn(650);
         }

@@ -1,0 +1,18 @@
+<form id="image_upload">
+
+
+
+  <input type="file" id="image_upload_input" name="image_upload_input" accept=".jpg, .jpeg, .png" multiple>
+</form>
+
+
+<script>
+
+var input = document.getElementById('image_upload_input');
+
+$('#image_upload_input').on('change', function () {
+
+  console.log(input.files);
+  // console.log($('#image_upload_input').val());
+})
+</script>
