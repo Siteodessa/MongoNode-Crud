@@ -8,6 +8,10 @@
     transition: .5s;
     margin: 4px 6px;
 
+}iframe#media_upload {
+    width:  100%;
+    border: none;
+    height: 110px;
 }
 .db_group {
     margin:  5px 0 10px;
@@ -29,7 +33,7 @@ div#result_form p {
         <div class="modal modal-warning fade" id="modal-warning" style="display: none;">
           <div class="modal-dialog">
             <div class="modal-content">
-                        <form class="form-horizontal" id="add_new_form">
+                        <form class="form-horizontal" id="add_new_form" action="/media_uploader" method="POST" enctype="multipart/form-data">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span></button>
@@ -73,7 +77,8 @@ div#result_form p {
                     </div>
                 <% } else { %>
                     <% if(prop == "home_background") {%>
-                          <label><%= humanized_name(prop) %></label>
+
+                          <iframe scroll="no" id="media_upload" src="media_upload"></iframe>
                           <% include ../image_uploader  %>
                       <% } else { %>
                                         <% if(prop == "description" || prop == "content") {%>
@@ -88,7 +93,6 @@ div#result_form p {
       </div>
       <% }%>
 <% } %>
-
 
               </div>
               <div id="result_form">   <p></p></div>
@@ -135,29 +139,20 @@ setTimeout(function(){
 });
 
 
+function setimage(input) {
+
+// jQuery('form#add_new_form').submit()
+}
+
 
 
  $('#imageUpload').on('change', function () {
 
+setimage('imageUpload')
+
+   })
 
 
-   var input = document.getElementById('imageUpload');
-  var formData = input.files[0];
-  console.log(formData);
-   $.ajax({
-      url: '/media_uploader',
-      method: 'post',
-      data: formData,
-      processData: false,
-      contentType: false,
-  success: function(response) {
-     console.log(response);
-  },
-  error: function(jqXHR, textStatus, errorThrown) {
-     // console.log(textStatus, errorThrown);
-  }
-   });
- })
 
 
 function sendAjaxForm(result_form, ajax_form, url, cb) {

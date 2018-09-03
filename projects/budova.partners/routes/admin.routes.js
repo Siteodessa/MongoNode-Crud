@@ -61,34 +61,26 @@ app.use(express.static('./public'));
         fileFilter: function(req, file, cb){
         checkFileType(file, cb);
         }
-      }).single('i');
+      }).single('imageUpload');
 
         app.get('/media_upload', (req, res) => res.render('image_uploader_prototype.ejs'));
 
         app.post('/media_uploader', function(req, res){
 
-          console.log(req.data);
-          console.log('~~~');
-          console.log(req.params);
-          console.log('~~~');
-          console.log(req.files);
-          console.log('~~~~~~~~~~');
+
           upload(req, res, (err) => {
             if(err){
-              console.log('ERROR');
               res.render('image_uploader_prototype.ejs', {
                 msg: err
               });
             } else {
               if(req.file == undefined){
-                console.log('undefined');
                 res.render('image_uploader_prototype.ejs', {
                   msg: 'Error: No File Selected!'
                 });
               } else {
-                console.log('OK');
                 res.render('image_uploader_prototype.ejs', {
-                  msg: 'File Uploaded!',
+                  msg: ' ',
                   file: `uploads/${req.file.filename}`
                 });
               }
