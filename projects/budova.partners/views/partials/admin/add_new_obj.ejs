@@ -6,9 +6,13 @@
     cursor: pointer;
     box-shadow: 0px 0px 0px transparent;
     transition: .5s;
-    margin: 4px 6px;
-
-}iframe#media_upload {
+    margin: 4px 6px;    border: 1px solid #fff;
+}
+.page_added {
+    display:  inline;
+    margin:  0 5px;
+}
+iframe#media_upload {
     width:  100%;
     border: none;
     height: 90px;
@@ -16,16 +20,27 @@
 .db_group {
     margin:  5px 0 10px;
 }
-label.radion.checked {
-  background: #0d3805;
-  box-shadow: 0px 0px 0px 3px #a5a5a5;
-  color: #fff;
-}
+
 div#result_form p {
     padding:  10px  10px 5px;
+    transform: translate(-100%);
+    transition: .5s;
+    opacity: 0;
 }
 
+div#result_form p.shown {
+    transform: translate(0%);
+    opacity: 1;
 
+}
+div#result_form  {
+    overflow: hidden;margin: 0
+}
+
+label.radion.checked {
+    background: linear-gradient(to bottom, #48c6ef 0%, #6f86d6 100%);  color: #fff;
+
+}
 </style>
               <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-warning">
                 Добавить новый
@@ -99,7 +114,7 @@ div#result_form p {
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Закрыть</button>
                 <button type="button" id="save" class="btn btn-outline">Сохранить</button>
-                       <button type="button" id="save_and_close" class="btn btn-outline">Сохранить и закрыть</button>
+               <button type="button" id="save_and_close" class="btn btn-outline">Сохранить и закрыть</button>
               </div>
 
             </form>
@@ -107,87 +122,4 @@ div#result_form p {
           </div>
         </div>
 
-<script>$( document ).ready(function() {
-  $(".db_group").each(function() {
-  let obj = jQuery(this).find('.radion').first()
-  obj.addClass('checked')
-  obj.find('input').attr('checked', true)
-})
-function close_modal() {
-setTimeout(function(){
-    $('button.btn.btn-outline.pull-left').click()
-  }, 500)
-}
-  $("#save_and_close").click(
-   function(){
-    let files = $('#image_uploads').val()
-
-// console.log(files);
-    sendAjaxForm('result_form', 'form-horizontal', '/notes',  close_modal );
-    return false;
-  }
-);
-
-    $("#save").click(
-    function(){
-      let files = $('#image_uploads').val()
-// console.log(files);
-     sendAjaxForm('result_form', 'form-horizontal', '/notes');
-      return false;
-    }
-  );
-});
-
-
-
-
-function sendAjaxForm(result_form, ajax_form, url, cb) {
-
-
-
-  var iframe0 = $('iframe#media_upload');
-  var iframe_select = iframe0.contents().find('div#imagedata').text().replace(/\r?\n/g, "").replace(' ', "").replace(',', "").replace(' ', "").replace(' ', "").replace(' ', "").replace(' ', "");
-
-
-    let z = $('.'+ ajax_form + ' input[name!=editor1]').serialize()
-    z = decodeURI(z)
-    let iframe = document.querySelector('iframe.cke_wysiwyg_frame.cke_reset');
-    let iframeDocument = iframe.contentWindow.document.activeElement.innerHTML;
-    z +=
-    b = '&content=' + iframeDocument + '&home_background=' + iframe_select;
-    console.log(iframe_select);
-    console.log(z);
-    $.ajax({
-        url:     url,
-        type:     "POST",
-        dataType: "multipart/form-data",
-        content: iframeDocument,
-        data: z,
-        success: function(response, xhr) {
-          result = $.parseJSON(response);
-          $('#result_form p').html('Запись "'+result.title+'" успешно добавлена!<div class="page_added">Вы можете на нее <a href="/doma/'+result.page_link+'">Перейти</a></div>'); if (cb) {
-   cb()
-   }
-      },
-      error: function(response) {
-       if (response.responseText && response.responseText !== undefined) {
-  if (response.status == 200) {
-    respo = JSON.parse(response.responseText);
-            console.log('New post created');
-            $('#result_form p').html('Запись "'+respo.title+'" успешно добавлена!<div class="page_added">Вы можете на нее <a href="/doma/'+respo.page_link+'">Перейти</a></div>'); if (cb) {
-     cb()
-     }
-
-    return
-  }
-                   let str = response.responseText.split("title:");
-                  let str1 = str[1].split('"');
-                  let str2 = str1[0];
-                   $('#result_form p').text(str2);
-                } else {
-                    $('#result_form p').text('Неизвестная ошибка 0041');
-                }
-
-      }
-  });
-}</script>
+<script></script>

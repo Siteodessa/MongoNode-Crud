@@ -531,8 +531,12 @@
 .responsive-img{
   height: 90px !important;
   width: auto;
+}.btn {
+    background-color: #f39c12;
 }
 </style>
+<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+
 <% disp = 'style=display:none' %>
   <title>Node File Uploads</title>
 </head>
@@ -543,8 +547,8 @@
 
     <form id="media_uploader" action="/media_uploader" method="POST" enctype="multipart/form-data" <%= typeof file != 'undefined' ? disp : '' %>>
       <div class="file-field input-field">
-        <div class="btn grey">
-          <span>Фото</span>
+        <div class="btn">
+          <span><i class="fa fa-camera"></i></span>
           <input name="imageUpload" id="imageUpload" type="file">
         </div>
         <div class="file-path-wrapper">
@@ -574,6 +578,16 @@ $('body').attr('file_link', valo)
     $('form').submit()
   }, 700)
 })
+
+function handlerFunction() {
+
+}
+let dropArea = document.getElementById('imageUpload')
+
+  dropArea.addEventListener('dragenter', handlerFunction, false)
+
+
+
   </script>
 </body>
 </html>

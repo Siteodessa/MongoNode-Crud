@@ -31,8 +31,13 @@ exports.create = (req, res) => {
     //     });
     // }
     // Create a Note
+let backg = req.body.home_background.slice(1);
+if (req.body.home_background.length < 6 ) {
+  backg = null
+} else {
+backg = '/uploads/' + backg;
+}
 
-    let backg = '/uploads/' + req.body.home_background.slice(1);
     const note = new Note({
         title: req.body.title || "",
         home_title: req.body.home_title || "",

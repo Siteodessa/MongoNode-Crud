@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const NoteSchema = mongoose.Schema
 ({
-    title: String,
+    title:  { type: String, minlength: [4, 'Слишком короткий заголовок'], maxlength: [50, 'Слишком длинный заголовок']},
     home_title: String,
     page_link: String,
     home_background : String,

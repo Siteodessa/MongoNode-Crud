@@ -8,6 +8,30 @@ div#example1_filter {
 }td.sorting_1 {
     text-align: center;
 }
+
+
+
+td.controls span {
+    width: 20px;
+    background: #fff;
+    display:  block;
+    height: 20px;
+    margin: 4px 0;
+    padding: 1px 4px 1px;
+    color: #444;
+    cursor:  pointer;
+    transition:  .4s;
+    border-radius:  2px;
+}
+
+td.controls {
+    padding:  0;
+}
+
+td.controls span:hover {
+    background: #337ab7;
+    color:  #fff;
+}
 img.obj {
   min-width: 60px;
       padding: 0;
@@ -102,7 +126,7 @@ img.obj {
  <td> <%= obj.address %></td>
  <td> <%= obj.bldr %></td>
  <td> <span class="content_column"><%= obj.content %></span></td>
- <td> <i class="fa fa-trash" id="<%= obj._id %>"></i><i class="fa fa-edit" id="<%= obj._id %>"></i></td>
+ <td class="controls"> <span class="trash"><i class="fa fa-trash" id="<%= obj._id %>"></i></span><span class="edit"><i class="fa fa-edit" id="<%= obj._id %>"></i></span></td>
 
 
                </tr>
@@ -129,6 +153,7 @@ img.obj {
               <th>Адрес</th>
               <th>Застройщик</th>
               <th>Описание</th>
+              <th><i class="fa fa-cogs"></i></th>
             </tr>
             </tfoot>
           </table>
@@ -145,29 +170,5 @@ img.obj {
 <script>
 
 
-jQuery('img.obj').each(function(){
-  jQuery(this).wrap('<div class="roundy"> </div>')
-})
-
-
-jQuery('i.fa-trash').click(function(){
-  let id = jQuery(this).attr('id')
-  let parent = jQuery(this).parent('td').parent('tr')
-url = '/notes/' + id + ''
-
-  $.ajax({
-      url:     url,
-      id:     id,
-      type:     "DELETE",
-      success: function(response, xhr) {
-        parent.detach()
-    },
-    error: function(response) {
-      console.log('error' + response);
-    }
-});
-
-
-})
 
 </script>
