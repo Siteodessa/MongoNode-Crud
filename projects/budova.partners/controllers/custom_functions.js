@@ -68,6 +68,15 @@ d: d
   });
   });
   }
+
+
+  
+  let default_data = { sitename: 'Budova partners'};
+
+
+
+
+
 var custom_functions = {}
 custom_functions.type_n_log = type_n_log;
 custom_functions.IsParseableJson = IsParseableJson;
@@ -75,5 +84,6 @@ custom_functions.json_Result = json_Result;
 custom_functions.express_page = express_page;
 custom_functions.homepage = homepage;
 custom_functions.bodyParser = bodyParser;
+custom_functions.default_data = default_data;
 
 module.exports = custom_functions;

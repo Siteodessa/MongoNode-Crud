@@ -138,9 +138,12 @@ setTimeout(function(){
 
 
  $('#imageUpload').on('change', function () {
+
+
+
    var input = document.getElementById('imageUpload');
-  var formData = new FormData();
-  formData.append("files", input.files);
+  var formData = input.files[0];
+  console.log(formData);
    $.ajax({
       url: '/media_uploader',
       method: 'post',
@@ -148,8 +151,7 @@ setTimeout(function(){
       processData: false,
       contentType: false,
   success: function(response) {
-    alert('Files uploaded successfully. ');
-    // console.log(response);
+     console.log(response);
   },
   error: function(jqXHR, textStatus, errorThrown) {
      // console.log(textStatus, errorThrown);

@@ -1,7 +1,5 @@
 console.log('Starting...');
 var fs = require('fs');
-
-
 let express = require('../../node_modules/express');
 let app = express();
 const dbConfig = require('./db/config/database.config.js');

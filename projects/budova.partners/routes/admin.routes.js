@@ -1,9 +1,28 @@
 module.exports = (cf)=>{
   console.log('preparing admin pages...');
+  function is_LoggedIn(req) {
+       if (req.session.user) { return true};return false;
+    }
+  function redirect_to_login(res) {
+      return res.status(301).redirect('/login');
+    }
+  function checkFileType(file, cb){
+      // Allowed ext
+      const filetypes = /jpeg|jpg|png|gif/;
+      // Check ext
+      const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+      // Check mime
+      const mimetype = filetypes.test(file.mimetype);
+
+      if(mimetype && extname){
+        return cb(null,true);
+      } else {
+        cb('Error: Images Only!');
+      }
+    }
+
   var session  = require('express-session');
   var fs  = require('fs');
-  var multer  = require('multer');
-
   let app = cf.app;
   let express = cf.express;
   let User = cf.user;
@@ -11,26 +30,90 @@ module.exports = (cf)=>{
 
   app.use(session({secret:"f254fr45t43ty5409143t91y4ty920ty123", resave:false, saveUninitialized:true}))
   app.use(express.static('views'));
-  function is_LoggedIn(req) {
-       if (req.session.user) { return true};return false;
-    }
-    function redirect_to_login(res) {
-  return res.status(301).redirect('/login');
-    }
-  app.get('/register', function(req, res){
-        return res.status(200).render('register.ejs', {
+
+
+app.use(express.static('./public'));
+
+
+
+
+
+
+
+
+
+
+
+
+        var multer  = require('multer');
+        const path = require('path');
+
+        const storage = multer.diskStorage({
+        destination: './public/uploads/',
+          filename: function(req, file, cb){
+          cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+          }
         });
+
+        const upload = multer({
+        storage: storage,
+        limits:{fileSize: 1000000},
+        fileFilter: function(req, file, cb){
+        checkFileType(file, cb);
+        }
+      }).single('i');
+
+        app.get('/media_upload', (req, res) => res.render('image_uploader_prototype.ejs'));
+
+        app.post('/media_uploader', function(req, res){
+
+          console.log(req.data);
+          console.log('~~~');
+          console.log(req.params);
+          console.log('~~~');
+          console.log(req.files);
+          console.log('~~~~~~~~~~');
+          upload(req, res, (err) => {
+            if(err){
+              console.log('ERROR');
+              res.render('image_uploader_prototype.ejs', {
+                msg: err
+              });
+            } else {
+              if(req.file == undefined){
+                console.log('undefined');
+                res.render('image_uploader_prototype.ejs', {
+                  msg: 'Error: No File Selected!'
+                });
+              } else {
+                console.log('OK');
+                res.render('image_uploader_prototype.ejs', {
+                  msg: 'File Uploaded!',
+                  file: `uploads/${req.file.filename}`
+                });
+              }
+            }
+          });
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  app.get('/register', function(req, res){
+    return res.status(200).render('register.ejs', {
+    });
   })
-
-
-  app.post('/media_uploader', function(req, res){
-
-
-
-})
-
-
-
   app.post('/register', function(req, res) {
         var username = req.body.username;
         var password = req.body.password;
@@ -48,11 +131,13 @@ module.exports = (cf)=>{
         res.status(200).send(json_Result('Имя ' + username + ' уже занято!'));
         })
   });
+
   app.get('/login', function(req, res){
         return res.status(200).render('login.ejs', {
         user: req.session.user
       });
   })
+
   app.get('/profile', function(req, res){
         if (!is_LoggedIn(req)) { return redirect_to_login(res) }
         return res.status(200).render('dashboardUser.ejs', {
@@ -60,24 +145,27 @@ module.exports = (cf)=>{
         dash_sub: 'profile',
       });
   })
+
   app.get('/objects', function(req, res){
-    if (!is_LoggedIn(req)) { return redirect_to_login(res) }
-const Note = require('../db/models/note.model.js');
-Note.find()
-.then(notes => {
-  return res.status(200).render('dashboardUser.ejs', {
-  user: req.session.user,
-  schema: Note.schema,
-  dash_sub: 'objects',
-          content: notes
-});
-}).catch(err => {
-    res.status(500).send({
-        message: err.message || "Some error occurred while retrieving notes."
-    });
-  })
-});
-app.post('/login', function(req, res) {
+      if (!is_LoggedIn(req)) { return redirect_to_login(res) }
+      const Note = require('../db/models/note.model.js');
+      Note.find()
+      .then(notes => {
+        return res.status(200)
+        .render('dashboardUser.ejs', {
+        user: req.session.user,
+        schema: Note.schema,
+        dash_sub: 'objects',
+                content: notes
+              });
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving notes."
+            });
+          })
+  });
+
+  app.post('/login', function(req, res) {
       var username = req.body.username;
       var password = req.body.password;
       User.findOne({
@@ -95,22 +183,26 @@ app.post('/login', function(req, res) {
             req.session.user =  user;
             let json_result = json_Result('Добро пожаловать ' + username + '!')
             return res.status(200).send(json_result);
-            })})
-app.post('/logout', function(req, res) {
-      req.session.destroy()
-      res.status(200).send()
-})
-app.get('/logout', function(req, res) {
+  })})
+
+  app.post('/logout', function(req, res) {
+        req.session.destroy()
+        res.status(200).send()
+  })
+
+  app.get('/logout', function(req, res) {
+          user = req.session.user;
+        req.session.destroy()
+    return res.status(200).render('logout.ejs', { user : user, });
+  })
+
+  app.get('/dashboard', function(req, res){
+        if (!req.session.user) { return redirect_to_login(res) }
         user = req.session.user;
-      req.session.destroy()
-  return res.status(200).render('logout.ejs', { user : user, });
-})
-app.get('/dashboard', function(req, res){
-      if (!req.session.user) { return redirect_to_login(res) }
-      user = req.session.user;
-      if (user.isSU)
-      return res.status(200).render('dashboard.ejs', { user : user, profile_page: false});
-            if (user)
-      return res.status(200).render('dashboardUser.ejs', { user : user,   dash_sub: 'content'});
-})
+        if (user.isSU)
+        return res.status(200).render('dashboard.ejs', { user : user, profile_page: false});
+              if (user)
+        return res.status(200).render('dashboardUser.ejs', { user : user,   dash_sub: 'content'});
+  })
+
 };
