@@ -11,7 +11,7 @@
 }iframe#media_upload {
     width:  100%;
     border: none;
-    height: 110px;
+    height: 90px;
 }
 .db_group {
     margin:  5px 0 10px;
@@ -139,30 +139,24 @@ setTimeout(function(){
 });
 
 
-function setimage(input) {
-
-// jQuery('form#add_new_form').submit()
-}
-
-
-
- $('#imageUpload').on('change', function () {
-
-setimage('imageUpload')
-
-   })
-
-
 
 
 function sendAjaxForm(result_form, ajax_form, url, cb) {
+
+
+
+  var iframe0 = $('iframe#media_upload');
+  var iframe_select = iframe0.contents().find('div#imagedata').text().replace(/\r?\n/g, "").replace(' ', "").replace(',', "").replace(' ', "").replace(' ', "").replace(' ', "").replace(' ', "");
+
 
     let z = $('.'+ ajax_form + ' input[name!=editor1]').serialize()
     z = decodeURI(z)
     let iframe = document.querySelector('iframe.cke_wysiwyg_frame.cke_reset');
     let iframeDocument = iframe.contentWindow.document.activeElement.innerHTML;
     z +=
-    b = '&content=' + iframeDocument;
+    b = '&content=' + iframeDocument + '&home_background=' + iframe_select;
+    console.log(iframe_select);
+    console.log(z);
     $.ajax({
         url:     url,
         type:     "POST",

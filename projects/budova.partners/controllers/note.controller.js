@@ -31,12 +31,14 @@ exports.create = (req, res) => {
     //     });
     // }
     // Create a Note
+
+    let backg = '/uploads/' + req.body.home_background.slice(1);
     const note = new Note({
         title: req.body.title || "",
         home_title: req.body.home_title || "",
         page_link: req.body.page_link || "",
         content: req.body.content || "",
-        home_background : req.body.home_background || "/images/city.jpg",
+        home_background :  backg || "/images/city.jpg",
         breadcrumbs : req.body.breadcrumbs || "OOPS!!",
         main_nav_list : req.body.main_nav_list || "OOPS!!",
         phone : req.body.phone || "OOPS!!",

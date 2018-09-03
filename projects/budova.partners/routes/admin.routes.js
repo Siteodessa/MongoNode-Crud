@@ -79,8 +79,9 @@ app.use(express.static('./public'));
                   msg: 'Error: No File Selected!'
                 });
               } else {
+    
                 res.render('image_uploader_prototype.ejs', {
-                  msg: ' ',
+                  msg: `${req.file.filename}`,
                   file: `uploads/${req.file.filename}`
                 });
               }

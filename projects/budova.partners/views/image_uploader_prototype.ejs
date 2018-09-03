@@ -529,7 +529,7 @@
           animation: 2s preload-cycle-6 linear infinite both;
 }
 .responsive-img{
-  height: 110px !important;
+  height: 90px !important;
   width: auto;
 }
 </style>
@@ -537,20 +537,22 @@
   <title>Node File Uploads</title>
 </head>
 <body style="overflow:hidden">
-
+<div id="imagedata">
     <%= typeof msg != 'undefined' ? msg : '' %>
+  </div>
+
     <form id="media_uploader" action="/media_uploader" method="POST" enctype="multipart/form-data" <%= typeof file != 'undefined' ? disp : '' %>>
       <div class="file-field input-field">
         <div class="btn grey">
           <span>Фото</span>
-          <input name="imageUpload" type="file">
+          <input name="imageUpload" id="imageUpload" type="file">
         </div>
         <div class="file-path-wrapper">
           <input class="file-path validate" type="text">
         </div>
       </div>
     </form>
-    <br>
+
     <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img">
 
 
@@ -562,9 +564,13 @@
 
   <script>
 $('.file-path-wrapper').on('change', 'input', function(){
+let valo = jQuery(this).val()
+$('body').attr('file_link', valo)
+
   $('form').css({"display": "none"})
   $('form').before('<div class="preloader loading"> <span class="slice"></span> <span class="slice"></span> <span class="slice"></span> <span class="slice"></span> <span class="slice"></span> <span class="slice"></span> </div>')
   setTimeout(function(){
+    window.file_link = valo
     $('form').submit()
   }, 700)
 })
