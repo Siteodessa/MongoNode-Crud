@@ -72,9 +72,9 @@
 
   }
 
-  function show_new_page_success() {
+  function show_new_page_success(obj, result) {
 
-      $('#result_form p').html('Запись "'+result.title+'" успешно добавлена!<div class="page_added">Вы можете на нее <a href="/doma/'+result.page_link+'">Перейти</a></div>');
+      $(obj).html('Запись "'+result.title+'" успешно добавлена!<div class="page_added">Вы можете на нее <a href="/doma/'+result.page_link+'">Перейти</a></div>').addClass('shown');
 
 
 
@@ -94,8 +94,6 @@
       let iframeDocument = iframe.contentWindow.document.activeElement.innerHTML;
       z +=
       b = '&content=' + iframeDocument + '&home_background=' + iframe_select;
-      console.log(iframe_select);
-      console.log(z);
       $.ajax({
           url:     url,
           type:     "POST",
@@ -104,18 +102,15 @@
           data: z,
           success: function(response, xhr) {
             result = $.parseJSON(response);
-            show_new_page_success()
+            show_new_page_success('#result_form p', result)
              close_after ? close_after() : $('#result_form p') ;
         },
         error: function(response) {
          if (response.responseText && response.responseText !== undefined) {
     if (response.status == 200) {
       respo = JSON.parse(response.responseText);
-              console.log('New post created');
-              $('#result_form p').html('Запись "'+respo.title+'" успешно добавлена!<div class="page_added">Вы можете на нее <a href="/doma/'+respo.page_link+'">Перейти</a></div>').addClass('shown'); if (cb) {
-       cb()
-       }
-
+      show_new_page_success('#result_form p', respo)
+           close_after ? close_after() : $('#result_form p') ;
       return
     }
                      let str = response.responseText.split("title:");
@@ -145,7 +140,7 @@
         'autoWidth'   : false
       })
       jQuery('img.obj').each(function(){
-        jQuery(this).wrap('<div class="roundy"> </div>')
+        jQuery(this).parent('a').wrap('<div class="roundy"> </div>')
       })
 
 

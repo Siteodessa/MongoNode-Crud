@@ -1,6 +1,43 @@
 const Note = require('../db/models/note.model.js');
 
 
+function transliterate(word){
+  var a = {"Ё":"YO","Й":"I","Ц":"TS","У":"U","К":"K","Е":"E","Н":"N","Г":"G","Ш":"SH","Щ":"SCH","З":"Z","Х":"H","Ъ":"'","ё":"yo","й":"i","ц":"ts","у":"u","к":"k","е":"e","н":"n","г":"g","ш":"sh","щ":"sch","з":"z","х":"h","ъ":"'","Ф":"F","Ы":"I","В":"V","А":"a","П":"P","Р":"R","О":"O","Л":"L","Д":"D","Ж":"ZH","Э":"E","ф":"f","ы":"i","в":"v","а":"a","п":"p","р":"r","о":"o","л":"l","д":"d","ж":"zh","э":"e","Я":"Ya","Ч":"CH","С":"S","М":"M","И":"I","Т":"T","Ь":"'","Б":"B","Ю":"YU","я":"ya","ч":"ch","с":"s","м":"m","и":"i","т":"t","ь":"'","б":"b","ю":"yu"};
+
+  return word.split('').map(function (char) {
+    return a[char] || char;
+  }).join("");
+}
+
+function remove_symbols(word){
+   newstr = word.replace('*', '');
+   newstr = newstr.replace(' ', '');
+  return newstr
+}
+
+
+
+function handle_background(req) {
+ let backg = req.body.home_background.slice(1);
+ if (req.body.home_background.length < 6 ) {
+   backg = null
+ } else {
+ backg = '/uploads/' + backg;
+ }
+ return backg
+}
+function handle_page_link(req) {
+ let page_link = req.body.title;
+ page_link = remove_symbols(page_link);
+ page_link = transliterate(page_link);
+ page_link = encodeURI(page_link)
+ return page_link;
+}
+
+
+
+
+
 exports.upload = (req, res) => {
 
 }
@@ -10,6 +47,8 @@ exports.findOnePage = (req, res) => {// Find a single note with a noteId
     .then(notes => {
       elemo = null;
       notes.forEach(elem => {
+        console.log(req.params.page_link);
+        console.log(elem.page_link);
       if (elem.page_link == req.params.page_link) {
       elemo =  elem
       }
@@ -23,27 +62,24 @@ exports.findOnePage = (req, res) => {// Find a single note with a noteId
  };
 
 
+
+
+
 exports.create = (req, res) => {
-    // Create and Save a new Note
-    // if(!req.body.content) {    // Validate request
-    //     return res.status(400).send({
-    //         message: "Note content can not be empty"
-    //     });
-    // }
-    // Create a Note
-let backg = req.body.home_background.slice(1);
-if (req.body.home_background.length < 6 ) {
-  backg = null
-} else {
-backg = '/uploads/' + backg;
-}
+
+let home_background = handle_background(req);
+let page_link = handle_page_link(req);
+
+
+
+
 
     const note = new Note({
         title: req.body.title || "",
         home_title: req.body.home_title || "",
-        page_link: req.body.page_link || "",
+        page_link: page_link || "",
         content: req.body.content || "",
-        home_background :  backg || "/images/city.jpg",
+        home_background :  home_background || "/images/city.jpg",
         breadcrumbs : req.body.breadcrumbs || "OOPS!!",
         main_nav_list : req.body.main_nav_list || "OOPS!!",
         phone : req.body.phone || "OOPS!!",

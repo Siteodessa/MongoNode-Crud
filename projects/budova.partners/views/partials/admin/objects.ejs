@@ -7,6 +7,9 @@ div#example1_filter {
     margin: 0 6px;
 }td.sorting_1 {
     text-align: center;
+}td {
+    max-width: 120px;    word-wrap: break-word;
+
 }
 
 
@@ -109,7 +112,7 @@ img.obj {
 
 
 
- <td> <img class="obj" src="<%= obj.home_background %>" alt="page_main_image"></td>
+ <td> <a href="<%= obj.page_link %>"><img class="obj" src="<%= obj.home_background %>" alt="page_main_image"></a></td>
  <td> <%= obj.title %></td>
  <td> <%= obj.floors_quant %></td>
  <td> <%= obj.sections_quant %></td>
