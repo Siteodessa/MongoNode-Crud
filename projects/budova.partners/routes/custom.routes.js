@@ -8,7 +8,7 @@ module.exports = (cf) =>{
           dbmodel.find().then(notes => {
             notes.forEach(elem => {
               if (elem.page_link == req.params.page_link) {
-              elem.sitename = 'Budovka';
+              elem.sitename = 'Budova.Partners';
               res.render('pages/listings_single.ejs', {d: elem})
               }
             });

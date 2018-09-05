@@ -68,9 +68,15 @@ d: d
   });
   });
   }
+  function is_LoggedIn(req) {
+       if (req.session.user) { return true};return false;
+    }
+  function redirect_to_login(res) {
+      return res.status(301).redirect('/login');
+    }
 
 
-  
+
   let default_data = { sitename: 'Budova partners'};
 
 
@@ -85,5 +91,7 @@ custom_functions.express_page = express_page;
 custom_functions.homepage = homepage;
 custom_functions.bodyParser = bodyParser;
 custom_functions.default_data = default_data;
+custom_functions.is_LoggedIn = is_LoggedIn;
+custom_functions.redirect_to_login = redirect_to_login;
 
 module.exports = custom_functions;

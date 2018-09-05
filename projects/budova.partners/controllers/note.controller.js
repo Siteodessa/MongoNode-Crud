@@ -2,7 +2,7 @@ const Note = require('../db/models/note.model.js');
 
 
 function transliterate(word){
-  var a = {"Ё":"YO","Й":"I","Ц":"TS","У":"U","К":"K","Е":"E","Н":"N","Г":"G","Ш":"SH","Щ":"SCH","З":"Z","Х":"H","Ъ":"'","ё":"yo","й":"i","ц":"ts","у":"u","к":"k","е":"e","н":"n","г":"g","ш":"sh","щ":"sch","з":"z","х":"h","ъ":"'","Ф":"F","Ы":"I","В":"V","А":"a","П":"P","Р":"R","О":"O","Л":"L","Д":"D","Ж":"ZH","Э":"E","ф":"f","ы":"i","в":"v","а":"a","п":"p","р":"r","о":"o","л":"l","д":"d","ж":"zh","э":"e","Я":"Ya","Ч":"CH","С":"S","М":"M","И":"I","Т":"T","Ь":"'","Б":"B","Ю":"YU","я":"ya","ч":"ch","с":"s","м":"m","и":"i","т":"t","ь":"'","б":"b","ю":"yu"};
+  var a = {"Ё":"yo","Й":"i","Ц":"ts","У":"u","К":"k","Е":"e","Н":"n","Г":"g","Ш":"sh","Щ":"sch","З":"z","Х":"h","Ъ":"'","ё":"yo","й":"i","ц":"ts","у":"u","к":"k","е":"e","н":"n","г":"g","ш":"sh","щ":"sch","з":"z","х":"h","ъ":"'","Ф":"f","Ы":"i","В":"v","А":"a","П":"p","Р":"r","О":"o","Л":"l","Д":"D","Ж":"zh","Э":"E","ф":"f","ы":"i","в":"v","а":"a","п":"p","р":"r","о":"o","л":"l","д":"d","ж":"zh","э":"e","Я":"Ya","Ч":"CH","С":"S","М":"M","И":"I","Т":"T","Ь":"'","Б":"B","Ю":"yu","я":"ya","ч":"ch","с":"s","м":"m","и":"i","т":"t","ь":"'","б":"b","ю":"yu"};
 
   return word.split('').map(function (char) {
     return a[char] || char;
@@ -12,6 +12,17 @@ function transliterate(word){
 function remove_symbols(word){
    newstr = word.replace('*', '');
    newstr = newstr.replace(' ', '');
+   newstr = newstr.replace('/', '');
+   newstr = newstr.replace('\\', '');
+   newstr = newstr.replace('%', '');
+   newstr = newstr.replace('', '');
+   newstr = newstr.replace('@', '');
+   newstr = newstr.replace('#', '');
+   newstr = newstr.replace('$', '');
+   newstr = newstr.replace('^', '');
+   newstr = newstr.replace('*', '');
+   newstr = newstr.replace('(', '');
+   newstr = newstr.replace(')', '');
   return newstr
 }
 
@@ -19,9 +30,11 @@ function remove_symbols(word){
 
 function handle_background(req) {
  let backg = req.body.home_background.slice(1);
- if (req.body.home_background.length < 6 ) {
+ if (req.body.home_background.length < 2 ) {
+   console.log('dis way');
    backg = null
  } else {
+   console.log('dat way');
  backg = '/uploads/' + backg;
  }
  return backg
@@ -47,8 +60,6 @@ exports.findOnePage = (req, res) => {// Find a single note with a noteId
     .then(notes => {
       elemo = null;
       notes.forEach(elem => {
-        console.log(req.params.page_link);
-        console.log(elem.page_link);
       if (elem.page_link == req.params.page_link) {
       elemo =  elem
       }
