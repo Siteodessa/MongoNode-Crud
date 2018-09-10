@@ -1,380 +1,254 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>The Estate - About</title>
-	 <% include ../partials/head %>
-<link rel="stylesheet" type="text/css" href="styles/about_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/about_responsive.css">
-</head>
+<% include ../partials/roof %>
 
-<body>
+    <section class="banner-area relative" id="home">
+      <div class="overlay overlay-bg"></div>
+      <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+          <div class="about-content col-lg-12">
+            <h1 class="text-white">
+              About Us
+            </h1>
+            <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="about.html"> About Us</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End banner Area -->
 
-<div class="super_container">
+    <!-- Start home-about Area -->
+    <section class="home-about-area section-gap relative">
+      <div class="container">
+        <div class="row align-items-center justify-content-start">
+          <div class="col-lg-6 no-padding home-about-right">
+            <h1>
+              We can fix all types <br>
+              of computer & mobiles
+            </h1>
+            <p>
+              inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
+            </p>
+            <div class="row no-gutters">
+              <div class="single-services col">
+                <span class="lnr lnr-diamond"></span>
+                <a href="#">
+                  <h4>Expert Services</h4>
+                </a>
+                <p>
+                  Usage of the Internet is becoming more common due to rapid advancement of technology.
+                </p>
+              </div>
+              <div class="single-services col">
+                <span class="lnr lnr-phone"></span>
+                <a href="#">
+                  <h4>Great Support</h4>
+                </a>
+                <p>
+                  Usage of the Internet is becoming more common due to rapid advancement of technology.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End home-about Area -->
 
-	<!-- Home -->
-	<div class="home">
-		<!-- Image by: https://unsplash.com/@jbriscoe -->
-		<div class="home_background" style="background-image:url(images/home_background.jpg)"></div>
+    <!-- Start discount-section Area -->
+    <section class="discount-section-area relative section-gap">
+      <div class="overlay overlay-bg"></div>
+      <div class="container">
+        <div class="row align-items-center justify-content-between no-gutters">
+          <div class="col-lg-6 discount-left">
+            <h1 class="text-white">Enjoy 25% Seasonal Discount!</h1>
+            <p class="text-white">
+              inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial.
+            </p>
+            <a href="#" class="header-btn">Order Service Now</a>
+          </div>
+          <div class="col-lg-5 discount-right">
+            <h4 class="text-white">Get a free Estimate</h4>
+                      <form class="booking-form" id="myForm" action="#">
+                          <div class="row">
+                              <div class="col-lg-12 d-flex flex-column">
+                                  <input name="name" placeholder="Your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Name'" class="form-control mt-20" required="" type="text">
+                              </div>
+                              <div class="col-lg-6 d-flex flex-column">
+                                  <input name="phone" placeholder="Phone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone'" class="form-control mt-20" required="" type="text">
+                              </div>
+                              <div class="col-lg-6 d-flex flex-column">
+                                  <input name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" class="form-control mt-20" required="" type="email">
+                              </div>
+                              <div class="col-lg-12 flex-column">
+                                  <textarea rows="5" class="form-control mt-20" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+                              </div>
 
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="home_content">
-						<div class="home_title">
-							<h2>about us</h2>
-						</div>
-						<div class="breadcrumbs">
-							<span><a href="index.html">Home</a></span>
-							<span><a href="#"> About Us</a></span>
-							<span><a href="#"> Our Agents</a></span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                              <div class="col-lg-12 d-flex justify-content-end send-btn">
+                                  <button class="genric-btn primary mt-20 text-uppercase ">Get Estimate</button>
+                              </div>
+                          </div>
+                      </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End discount-section Area -->
 
-	<!-- Header -->
+    <!-- Start faq Area -->
+    <section class="faq-area section-gap" id="skills">
+      <div class="container">
+        <div class="row skill-area justify-content-center">
+          <div class="col-lg-3 single-skill mx-auto d-block">
+              <div class="skills skill-1" data-percent="80"></div>
+              <h6 class="text-uppercase">web design</h6>
+          </div>
+          <div class="col-lg-3 single-skill mx-auto d-block">
+              <div class="skills skill-2" data-percent="75"></div>
+              <h6 class="text-uppercase">ui / ux design</h6>
+          </div>
+          <div class="col-lg-3 single-skill mx-auto d-block">
+              <div class="skills skill-3" data-percent="60"></div>
+              <h6 class="text-uppercase">mobile app</h6>
+          </div>
+          <div class="col-lg-3 single-skill mx-auto d-block">
+              <div class="skills skill-4" data-percent="90"></div>
+              <h6 class="text-uppercase">web development</h6>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End faq Area -->
 
-	<header class="header trans_300">
-			<% include ../partials/header %>
-	</header>
+    <!-- Start testomial Area -->
+    <section class="testomial-area section-gap" id="testimonail">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="menu-content pb-60 col-lg-7">
+            <div class="title text-center">
+              <h1 class="mb-10 text-white">Feedback from our real clients</h1>
+              <p class="text-white">It won’t be a bigger problem to find one video game lover in your neighbor. Since the introduction of Virtual Game.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="active-testimonial-carusel">
+            <div class="single-testimonial item">
+              <img class="mx-auto" src="img/t1.png" alt="">
+              <p class="desc">
+                Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware and more. laptop accessory
+              </p>
+              <h5>Mark Alviro Wiens</h5>
+              <p>
+                CEO at Google
+              </p>
+            </div>
+            <div class="single-testimonial item">
+              <img class="mx-auto" src="img/t2.png" alt="">
+              <p class="desc">
+                Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware and more. laptop accessory
+              </p>
+              <h5>Mark Alviro Wiens</h5>
+              <p>
+                CEO at Google
+              </p>
+            </div>
+            <div class="single-testimonial item">
+              <img class="mx-auto" src="img/t3.png" alt="">
+              <p class="desc">
+                Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware and more. laptop accessory
+              </p>
+              <h5>Mark Alviro Wiens</h5>
+              <p>
+                CEO at Google
+              </p>
+            </div>
+            <div class="single-testimonial item">
+              <img class="mx-auto" src="img/t1.png" alt="">
+              <p class="desc">
+                Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware and more. laptop accessory
+              </p>
+              <h5>Mark Alviro Wiens</h5>
+              <p>
+                CEO at Google
+              </p>
+            </div>
+            <div class="single-testimonial item">
+              <img class="mx-auto" src="img/t2.png" alt="">
+              <p class="desc">
+                Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware and more. laptop accessory
+              </p>
+              <h5>Mark Alviro Wiens</h5>
+              <p>
+                CEO at Google
+              </p>
+            </div>
+            <div class="single-testimonial item">
+              <img class="mx-auto" src="img/t3.png" alt="">
+              <p class="desc">
+                Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware and more. laptop accessory
+              </p>
+              <h5>Mark Alviro Wiens</h5>
+              <p>
+                CEO at Google
+              </p>
+            </div>
+            <div class="single-testimonial item">
+              <img class="mx-auto" src="img/t1.png" alt="">
+              <p class="desc">
+                Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware and more. laptop accessory
+              </p>
+              <h5>Mark Alviro Wiens</h5>
+              <p>
+                CEO at Google
+              </p>
+            </div>
+            <div class="single-testimonial item">
+              <img class="mx-auto" src="img/t2.png" alt="">
+              <p class="desc">
+                Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware and more. laptop accessory
+              </p>
+              <h5>Mark Alviro Wiens</h5>
+              <p>
+                CEO at Google
+              </p>
+            </div>
+            <div class="single-testimonial item">
+              <img class="mx-auto" src="img/t3.png" alt="">
+              <p class="desc">
+                Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware and more. laptop accessory
+              </p>
+              <h5>Mark Alviro Wiens</h5>
+              <p>
+                CEO at Google
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End testomial Area -->
 
-	<!-- Intro -->
-
-	<div class="intro">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-7 order-lg-1 order-2">
-					<h2 class="intro_title">The Estate Promise</h2>
-					<div class="intro_subtitle">Sed vestibulum lectus ut leo molestie, id suscipit magna</div>
-					<p class="intro_text">Donec ullamcorper nulla non metus auctor fringi lla. Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tellus eros, placerat quis fermentum et, viverra sit amet lacus. Nam gravida semper augue id sagittis. Cras nec arcu quis velit tempor porttitor sit amet vel risus. Sed vestibulum lectus ut leo molestie, id suscipit magna mattis. Vivamus nisl ligula, varius congue dui sit amet, vestibulum sollicitudin mauris. Vestibulum quis ligula in nunc varius maximus ac et nunc. Nulla sed magna turpis.</p>
-					<div class="button intro_button trans_200"><a class="trans_200" href="#">read more</a></div>
-				</div>
-				<div class="col-lg-5 order-lg-2 order-1">
-					<div class="intro_image">
-						<img src="images/intro.png" alt="">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Milestones -->
-
-	<div class="milestones">
-		<div class="milestones_background parallax-window" data-parallax="scroll" data-image-src="images/milestones.jpg"></div>
-		<div class="container">
-			<div class="row">
-
-				<!-- Milestone -->
-				<div class="col-lg-2 milestone_col">
-					<div class="milestone text-center d-flex flex-column align-items-center justify-content-start">
-						<div class="milestone_icon d-flex flex-column justify-content-end"><img src="images/milestone_1.svg" alt=""></div>
-						<div class="milestone_counter" data-end-value="310">0</div>
-						<div class="milestone_text">houses sold</div>
-					</div>
-				</div>
-
-				<!-- Milestone -->
-				<div class="col-lg-2 milestone_col">
-					<div class="milestone text-center d-flex flex-column align-items-center justify-content-start">
-						<div class="milestone_icon d-flex flex-column justify-content-end"><img src="images/milestone_2.svg" alt=""></div>
-						<div class="milestone_counter" data-end-value="129">0</div>
-						<div class="milestone_text">clients</div>
-					</div>
-				</div>
-
-				<!-- Milestone -->
-				<div class="col-lg-2 milestone_col">
-					<div class="milestone text-center d-flex flex-column align-items-center justify-content-start">
-						<div class="milestone_icon d-flex flex-column justify-content-end"><img src="images/milestone_3.svg" alt=""></div>
-						<div class="milestone_counter" data-end-value="14">0</div>
-						<div class="milestone_text">agents</div>
-					</div>
-				</div>
-
-				<!-- Milestone -->
-				<div class="col-lg-2 milestone_col">
-					<div class="milestone text-center d-flex flex-column align-items-center justify-content-start">
-						<div class="milestone_icon d-flex flex-column justify-content-end"><img src="images/milestone_4.svg" alt=""></div>
-						<div class="milestone_counter" data-end-value="521">0</div>
-						<div class="milestone_text">rents</div>
-					</div>
-				</div>
-
-				<!-- Milestone -->
-				<div class="col-lg-2 milestone_col">
-					<div class="milestone text-center d-flex flex-column align-items-center justify-content-start">
-						<div class="milestone_icon d-flex flex-column justify-content-end"><img src="images/milestone_5.svg" alt=""></div>
-						<div class="milestone_counter" data-end-value="1107">0</div>
-						<div class="milestone_text">contracts</div>
-					</div>
-				</div>
-
-				<!-- Milestone -->
-				<div class="col-lg-2 milestone_col">
-					<div class="milestone text-center d-flex flex-column align-items-center justify-content-start">
-						<div class="milestone_icon d-flex flex-column justify-content-end"><img src="images/milestone_6.svg" alt=""></div>
-						<div class="milestone_counter" data-end-value="39">0</div>
-						<div class="milestone_text">investments</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-	<!-- Agents -->
-
-	<div class="agents">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="section_title text-center">
-						<h3>out agents</h3>
-						<span class="section_subtitle">The best out there</span>
-					</div>
-				</div>
-			</div>
-
-			<div class="row agents_row">
-
-				<!-- Agent -->
-				<div class="col-lg-3 agent_col text-center">
-					<div class="agent_image mx-auto">
-						<img src="images/agent_1.jpg" alt="image by Andrew Robles">
-					</div>
-					<div class="agent_content">
-						<div class="agent_name">michael williams</div>
-						<div class="agent_role">Real Estate Agent</div>
-						<div class="agent_social">
-							<ul class="agent_social_list">
-								<li class="agent_social_item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-								<li class="agent_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-								<li class="agent_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<!-- Agent -->
-				<div class="col-lg-3 agent_col text-center">
-					<div class="agent_image mx-auto">
-						<img src="images/agent_2.jpg" alt="https://unsplash.com/@gabrielsilverio">
-					</div>
-					<div class="agent_content">
-						<div class="agent_name">michael williams</div>
-						<div class="agent_role">Real Estate Agent</div>
-						<div class="agent_social">
-							<ul class="agent_social_list">
-								<li class="agent_social_item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-								<li class="agent_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-								<li class="agent_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<!-- Agent -->
-				<div class="col-lg-3 agent_col text-center">
-					<div class="agent_image mx-auto">
-						<img src="images/agent_3.jpg" alt="https://unsplash.com/@mehdizadeh">
-					</div>
-					<div class="agent_content">
-						<div class="agent_name">michael williams</div>
-						<div class="agent_role">Real Estate Agent</div>
-						<div class="agent_social">
-							<ul class="agent_social_list">
-								<li class="agent_social_item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-								<li class="agent_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-								<li class="agent_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<!-- Agent -->
-				<div class="col-lg-3 agent_col text-center">
-					<div class="agent_image mx-auto">
-						<img src="images/agent_4.jpg" alt="https://unsplash.com/@michaeldam">
-					</div>
-					<div class="agent_content">
-						<div class="agent_name">michael williams</div>
-						<div class="agent_role">Real Estate Agent</div>
-						<div class="agent_social">
-							<ul class="agent_social_list">
-								<li class="agent_social_item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-								<li class="agent_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-								<li class="agent_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-			</div>
-
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<div class="agents_more">
-						<div class="button agents_more_button trans_200"><a class="trans_200" href="#">read more</a></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Newsletter -->
-
-	<div class="newsletter">
-		<div class="container">
-			<div class="row row-equal-height">
-
-				<div class="col-lg-6">
-					<div class="newsletter_title">
-						<h3>subscribe to our newsletter</h3>
-						<span class="newsletter_subtitle">Get the latest offers</span>
-					</div>
-					<div class="newsletter_form_container">
-						<form action="#">
-							<div class="newsletter_form_content d-flex flex-row">
-								<input id="newsletter_email" class="newsletter_email" type="email" placeholder="Your email here" required="required" data-error="Valid email is required.">
-								<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_200" value="Submit">subscribe</button>
-							</div>
-						</form>
-					</div>
-				</div>
-
-				<div class="col-lg-6">
-					<a href="#">
-						<div class="weekly_offer">
-							<div class="weekly_offer_content d-flex flex-row">
-								<div class="weekly_offer_icon d-flex flex-column align-items-center justify-content-center">
-									<img src="images/prize.svg" alt="">
-								</div>
-								<div class="weekly_offer_text text-center">weekly offer</div>
-							</div>
-							<div class="weekly_offer_image" style="background-image:url(images/weekly.jpg)"></div>
-						</div>
-					</a>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-	<!-- Footer -->
-
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-
-				<!-- Footer About -->
-
-				<div class="col-lg-3 footer_col">
-					<div class="footer_col_title">
-						<div class="logo_container">
-							<a href="#">
-								<div class="logo">
-									<img src="images/logo.png" alt="">
-									<span>the estate</span>
-								</div>
-							</a>
-						</div>
-					</div>
-					<div class="footer_social">
-						<ul class="footer_social_list">
-							<li class="footer_social_item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-							<li class="footer_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-							<li class="footer_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-							<li class="footer_social_item"><a href="#"><i class="fab fa-dribbble"></i></a></li>
-							<li class="footer_social_item"><a href="#"><i class="fab fa-behance"></i></a></li>
-						</ul>
-					</div>
-					<div class="footer_about">
-						<p>Lorem ipsum dolor sit amet, cons ectetur  quis ferme adipiscing elit. Suspen dis se tellus eros, placerat quis ferme ntum et, viverra sit amet lacus. Nam gravida  quis ferme semper augue.</p>
-					</div>
-				</div>
-
-				<!-- Footer Useful Links -->
-
-				<div class="col-lg-3 footer_col">
-					<div class="footer_col_title">useful links</div>
-					<ul class="footer_useful_links">
-						<li class="useful_links_item"><a href="#">Listings</a></li>
-						<li class="useful_links_item"><a href="#">Favorite Cities</a></li>
-						<li class="useful_links_item"><a href="#">Clients Testimonials</a></li>
-						<li class="useful_links_item"><a href="#">Featured Listings</a></li>
-						<li class="useful_links_item"><a href="#">Properties on Offer</a></li>
-						<li class="useful_links_item"><a href="#">Services</a></li>
-						<li class="useful_links_item"><a href="#">News</a></li>
-						<li class="useful_links_item"><a href="#">Our Agents</a></li>
-					</ul>
-				</div>
-
-				<!-- Footer Contact Form -->
-				<div class="col-lg-3 footer_col">
-					<div class="footer_col_title">say hello</div>
-					<div class="footer_contact_form_container">
-						<form id="footer_contact_form" class="footer_contact_form" action="post">
-							<input id="contact_form_name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required.">
-							<input id="contact_form_email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required.">
-							<textarea id="contact_form_message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
-							<button id="contact_send_btn" type="submit" class="contact_send_btn trans_200" value="Submit">send</button>
-						</form>
-					</div>
-				</div>
-
-				<!-- Footer Contact Info -->
-
-				<div class="col-lg-3 footer_col">
-					<div class="footer_col_title">contact info</div>
-					<ul class="contact_info_list">
-						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="images/placeholder.svg" alt=""></div></div>
-							<div class="contact_info_text">4127 Raoul Wallenber 45b-c Gibraltar</div>
-						</li>
-						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="images/phone-call.svg" alt=""></div></div>
-							<div class="contact_info_text">2556-808-8613</div>
-						</li>
-						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="images/message.svg" alt=""></div></div>
-							<div class="contact_info_text"><a href="mailto:contactme@gmail.com?Subject=Hello" target="_top">contactme@gmail.com</a></div>
-						</li>
-						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="images/planet-earth.svg" alt=""></div></div>
-							<div class="contact_info_text"><a href="https://colorlib.com">www.colorlib.com</a></div>
-						</li>
-					</ul>
-				</div>
-
-			</div>
-		</div>
-	</footer>
-
-	<!-- Credits -->
-
-	<div class="credits">
-		<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
-	</div>
-
-</div>
-
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="styles/bootstrap4/popper.js"></script>
-<script src="styles/bootstrap4/bootstrap.min.js"></script>
-<script src="plugins/greensock/TweenMax.min.js"></script>
-<script src="plugins/greensock/TimelineMax.min.js"></script>
-<script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
-<script src="plugins/greensock/animation.gsap.min.js"></script>
-<script src="plugins/greensock/ScrollToPlugin.min.js"></script>
-<script src="plugins/scrollTo/jquery.scrollTo.min.js"></script>
-<script src="plugins/easing/easing.js"></script>
-<script src="plugins/parallax-js-master/parallax.min.js"></script>
-<script src="js/about_custom.js"></script>
-</body>
-
-</html>
+    <!-- Start brands Area -->
+    <section class="brands-area section-gap">
+      <div class="container no-padding">
+        <div class="brand-wrap">
+          <div class="row align-items-center active-brand-carusel justify-content-start no-gutters">
+            <div class="col single-brand">
+              <a href="#"><img class="mx-auto" src="img/l1.png" alt=""></a>
+            </div>
+            <div class="col single-brand">
+              <a href="#"><img class="mx-auto" src="img/l2.png" alt=""></a>
+            </div>
+            <div class="col single-brand">
+              <a href="#"><img class="mx-auto" src="img/l3.png" alt=""></a>
+            </div>
+            <div class="col single-brand">
+              <a href="#"><img class="mx-auto" src="img/l4.png" alt=""></a>
+            </div>
+            <div class="col single-brand">
+              <a href="#"><img class="mx-auto" src="img/l5.png" alt=""></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<% include ../partials/basement %>

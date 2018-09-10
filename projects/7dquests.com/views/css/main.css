@@ -4420,3 +4420,7 @@ section#testimonail {
 .blog-area .col-lg-3.col-md-6.single-blog {
     background: #ffffff78;
 }
+
+.row.map div.col-md-12 {
+    margin: 0px 0 50px;
+}

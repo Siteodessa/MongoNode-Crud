@@ -3,15 +3,19 @@ module.exports = (cf) =>{
     let dbmodel = cf.dbmodel;
     let app = cf.app;
     let express = cf.express;
+    let sitedata = cf.sitedata;
 
      app.get('/doma/:page_link',  function(req, res) {
           dbmodel.find().then(notes => {
+            elemo = null
             notes.forEach(elem => {
               if (elem.page_link == req.params.page_link) {
-              elem.sitename = 'Budova.Partners';
-              res.render('pages/listings_single.ejs', {d: elem})
+                    elemo = elem
+
               }
-            });
+          });
+            elemo.sitedata = sitedata
+            res.render('pages/listings_single.ejs', {d: elemo})
           }).catch(err => {
           res.send({
           message: err.message || "Some error occurred while retrieving notes."

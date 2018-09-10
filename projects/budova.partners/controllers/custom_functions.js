@@ -60,7 +60,7 @@ d: d
   }
   }
   );
-
+d.sitename = 'Budova.Partners'
   res.status(200).render(ejs_file, {
   d: d,
   content: data

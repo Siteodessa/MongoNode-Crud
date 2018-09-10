@@ -4,6 +4,7 @@
     let database_model = dbm = require('../db/models/');
     let dbmodel = dbm.notemodel;
     let User = dbm.usermodel;
+    let sitedata = dbm.sitedatamodel;
     let cf  = custom_functions;
 
     app.use(cf.bodyParser.urlencoded({ extended: true }))
@@ -16,6 +17,7 @@
     cf.express = express;
     cf.user = User;
     cf.dbmodel = dbmodel;
+    cf.sitedata = sitedata;
     cf.notes = require('../controllers/').notes;
 
 

@@ -13,3 +13,8 @@ html,body{height:100%}.layout-boxed html,.layout-boxed body{height:100%}body{fon
     color:  #fff;
     padding:  4px;
 }
+
+
+td.contents {
+    max-width: 150px;
+}

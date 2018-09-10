@@ -105,7 +105,7 @@ img.obj {
  <td> <%= obj.block %></td>
  <td> <%= obj.address %></td>
  <td> <%= obj.bldr %></td>
- <td> <span class="content_column"><%= obj.content %></span></td>
+ <td class="contents"> <span class="content_column"><%- obj.content %></span></td>
  <td class="controls"> <a class="elems trash"><span><i class="fa fa-trash" id="<%= obj._id %>"></i></span></a><a href="/doma/<%= obj.page_link %>" class="elems edit"><span><i class="fa fa-edit"></i></span></a></td>
                </tr>
  <% }); %>

@@ -6,6 +6,8 @@ const NoteSchema = mongoose.Schema
     home_title: String,
     page_link: String,
     home_background : String,
+        subheading : String,
+        prices_start_at : Number,
     breadcrumbs : Array,
     main_nav_list : String,
     phone : String,

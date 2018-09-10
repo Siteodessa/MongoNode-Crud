@@ -9,9 +9,16 @@ function transliterate(word){
   }).join("");
 }
 
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
+
+
 function remove_symbols(word){
    newstr = word.replace('*', '');
-   newstr = newstr.replace(' ', '');
+   newstr = newstr.replaceAll(' ', '');
    newstr = newstr.replace('/', '');
    newstr = newstr.replace('\\', '');
    newstr = newstr.replace('%', '');
@@ -23,8 +30,15 @@ function remove_symbols(word){
    newstr = newstr.replace('*', '');
    newstr = newstr.replace('(', '');
    newstr = newstr.replace(')', '');
+   newstr = newstr.replace('%20', '');
   return newstr
 }
+
+
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
 
 
 
@@ -41,9 +55,19 @@ function handle_background(req) {
 }
 function handle_page_link(req) {
  let page_link = req.body.title;
+
+ console.log('get_title');
+console.log(page_link);
  page_link = remove_symbols(page_link);
+
+
+ console.log('remove_symbols');
+ console.log(page_link);
+
  page_link = transliterate(page_link);
- page_link = encodeURI(page_link)
+
+ console.log('transliterate');
+ console.log(page_link);
  return page_link;
 }
 
