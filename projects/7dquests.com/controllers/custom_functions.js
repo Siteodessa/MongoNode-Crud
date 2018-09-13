@@ -1,8 +1,8 @@
-console.log('body-parser...');
+console.log('preparing body-parser...');
 const bodyParser = require('../../../node_modules/body-parser');
 
 
-console.log('custom_functions...');
+console.log('preparing custom_functions...');
 
 function type_n_log(a) {
 let b = typeof(a);

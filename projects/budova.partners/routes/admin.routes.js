@@ -1,5 +1,5 @@
 module.exports = (cf)=>{
-console.log('preparing ...');
+console.log('admin routes...');
 var session  = require('express-session');
 var fs  = require('fs');
 let app = cf.app;

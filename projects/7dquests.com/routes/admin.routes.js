@@ -1,4 +1,9 @@
-module.exports = (app, User, json_Result, express)=>{
+module.exports = (app, User, json_Result, express, custom_functions)=>{
+
+      let cf  = custom_functions;
+      let is_LoggedIn = cf.is_LoggedIn;
+      let redirect_to_login = cf.redirect_to_login;
+
   var session  = require('express-session');
   app.use(session({secret:"f254fr45t43ty5409143t91y4ty920ty123", resave:false, saveUninitialized:true}))
   function isLoggedIn(req, User) {
@@ -16,7 +21,10 @@ return false;
     }
   }
   app.get('/register', function(req, res){
+    data = {}
+    data.siteurl = 'localhost:27'
         return res.status(200).render('register.ejs', {
+          data
         });
   })
   app.post('/register', function(req, res) {
@@ -42,35 +50,32 @@ return false;
       });
   })
   app.get('/profile', function(req, res){
+      if (!is_LoggedIn(req)) { return redirect_to_login(res) }
         return res.status(200).render('dashboardUser.ejs', {
         user: req.session.user,
         dash_sub: 'profile',
       });
   })
-
-  app.get('/objects', function(req, res){
-const Note = require('../db/models/note.model.js');
-Note.find()
-.then(notes => {
-  return res.status(200).render('dashboardUser.ejs', {
-  user: req.session.user,
-  schema: Note.schema,
-  dash_sub: 'objects',
-          content: notes
-});
-}).catch(err => {
-    res.status(500).send({
-        message: err.message || "Some error occurred while retrieving notes."
-    });
-  })
-});
-
-
+//   app.get('/objects', function(req, res){
+// const Note = require('../db/models/note.model.js');
+// Note.find()
+// .then(notes => {
+//   return res.status(200).render('dashboardUser.ejs', {
+//   user: req.session.user,
+//   schema: Note.schema,
+//   dash_sub: 'objects',
+//           content: notes
+// });
+// }).catch(err => {
+//     res.status(500).send({
+//         message: err.message || "Some error occurred while retrieving notes."
+//     });
+//   })
+// });
+//
 app.post('/login', function(req, res) {
       var username = req.body.username;
       var password = req.body.password;
-
-
       User.findOne({
         username:username,
         password:password,
@@ -112,4 +117,80 @@ app.get('/dashboard', function(req, res){
       return res.status(200).render('dashboardUser.ejs', { user : user,   dash_sub: 'content'});
 })
 //LOGIN-REGISTER
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get('/edit_quests', function(req, res){
+    if (!is_LoggedIn(req)) { return redirect_to_login(res) }
+const Quest = require('../db/models/quest.model.js');
+Quest.find()
+.then(quests => {
+return res.status(200).render('dashboardUser.ejs', {
+user: req.session.user,
+schema: Quest.schema,
+dash_sub: 'quests',
+model_label: 'Квесты',
+        content: quests
+});
+}).catch(err => {
+  res.status(500).send({
+      message: err.message || "Some error occurred while retrieving notes."
+  });
+})
+});
+
+app.get('/edit_reviews', function(req, res){
+    if (!is_LoggedIn(req)) { return redirect_to_login(res) }
+const Review = require('../db/models/reviews.model.js');
+Review.find()
+.then(reviews => {
+return res.status(200).render('dashboardUser.ejs', {
+user: req.session.user,
+schema: Review.schema,
+dash_sub: 'objects',
+        content: reviews
+});
+}).catch(err => {
+  res.status(500).send({
+      message: err.message || "Some error occurred while retrieving notes."
+  });
+})
+});
+
+app.get('/edit_pages', function(req, res){
+    if (!is_LoggedIn(req)) { return redirect_to_login(res) }
+const Page = require('../db/models/page.model.js');
+Page.find()
+.then(pages => {
+return res.status(200).render('dashboardUser.ejs', {
+user: req.session.user,
+schema: Page.schema,
+dash_sub: 'objects',
+        content: pages
+});
+}).catch(err => {
+  res.status(500).send({
+      message: err.message || "Some error occurred while retrieving notes."
+  });
+})
+});
+
+
+
+
+
+
+
 };

@@ -1,5 +1,5 @@
   module.exports = (app, express, custom_functions) => {
-    console.log('preparing routes...');
+    console.log('routes...');
 
     let database_model = dbm = require('../db/models/');
     let dbmodel = dbm.notemodel;
@@ -12,7 +12,6 @@
     app.use(express.static('views'));
     app.set('view engine', 'ejs');
 
-
     cf.app = app;
     cf.express = express;
     cf.user = User;
@@ -20,10 +19,9 @@
     cf.sitedata = sitedata;
     cf.notes = require('../controllers/').notes;
 
-
     const note_router = require('./note.router.js')(cf);
     const admin_router = require('./admin.routes.js')(cf);
     const custom_router = require('./custom.routes.js')(cf);
 
-  app.listen(80, () => console.log('app:ok'));
+    app.listen(127, () => console.log('app:ok'));
   }

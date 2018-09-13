@@ -105,7 +105,7 @@ a.login.btn {
 <script>$( document ).ready(function() {
     $("#btn1").click(
 		function(){
-			sendAjaxForm1('result_form', 'ajax_form1', 'http://localhost/register');
+			sendAjaxForm1('result_form', 'ajax_form1', window.location.href);
 			return false;
 		}
 	);

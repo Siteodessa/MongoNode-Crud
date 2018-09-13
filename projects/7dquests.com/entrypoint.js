@@ -1,16 +1,9 @@
 console.log('Starting...');
-console.log('getting fs_module...');
 var fs = require('fs');
-console.log('getting express...');
 let express = require('../../node_modules/express');
 let app = express();
-console.log('getting database.config...');
 const dbConfig = require('./db/config/database.config.js');
-console.log('getting body-parser...');
-const bodyParser = require('../../node_modules/body-parser');
-console.log('getting mongoose...');
 const mongoose = require('../../node_modules/mongoose');
-console.log('starting mongoose...');
 var start_mongoose = require('./db/start_mongoose')(mongoose, dbConfig);
-console.log('preparing routes...');
-require('./routes/note.routes.js')(app, express, bodyParser);
+var custom_functions = require('./controllers/custom_functions');
+require('./routes/note.routes.js')(app, express, custom_functions);

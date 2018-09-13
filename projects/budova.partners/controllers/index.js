@@ -1,4 +1,4 @@
-console.log('preparing controller...');
+console.log('controller...');
 
 const notes = require('./note.controller.js');
 const User = require('./user.controller.js');

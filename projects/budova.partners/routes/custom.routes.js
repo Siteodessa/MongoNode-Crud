@@ -1,5 +1,5 @@
 module.exports = (cf) =>{
-    console.log('preparing custom routes...');
+    console.log('custom routes...');
     let dbmodel = cf.dbmodel;
     let app = cf.app;
     let express = cf.express;

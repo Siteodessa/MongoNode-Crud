@@ -4424,3 +4424,7 @@ section#testimonail {
 .row.map div.col-md-12 {
     margin: 0px 0 50px;
 }
+
+.row.akcii .col-lg-6 {
+    margin:  10px 0;
+}

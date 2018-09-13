@@ -40,7 +40,9 @@ d: d
 });
 });
 }
-module.exports = (app, express, bodyParser) => {
+module.exports = (app, express, custom_functions) => {
+
+  const bodyParser = require('../../../node_modules/body-parser');
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.set('view engine', 'ejs');
@@ -50,7 +52,7 @@ app.set('view engine', 'ejs');
     const notes = require('../controllers/note.controller.js');
     const default_users = require('../db/config/default_users.js');
 
-    const admin_router = require('./admin.routes.js')(app, User, json_Result, express);
+    const admin_router = require('./admin.routes.js')(app, User, json_Result, express, custom_functions);
 
     app.post('/notes', notes.create);
     app.get('/notes', notes.findAll);

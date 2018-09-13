@@ -1,5 +1,5 @@
 module.exports = (cf) => {
-  console.log('preparing default notes...');
+  console.log('default notes...');
   let app = cf.app;
   let notes = cf.notes;
   app.post('/notes', notes.create);
