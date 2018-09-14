@@ -7,6 +7,9 @@ div#example1_filter {
     text-align: center;
 }td {
     max-width: 120px;    word-wrap: break-word;
+}i.fa.fa-eye {
+    text-align:  center;
+    display:  block;
 }
 td.controls span {
     width: 20px;
@@ -89,7 +92,7 @@ img.obj {
             <tbody>
  <% content.forEach(function(obj){    %>
   <tr id="<%= obj._id %>">
- <td> <a href="/doma/<%= obj.page_link %>"><img class="obj" src="<%= obj.home_background %>" alt="page_main_image"></a></td>
+ <td> <a href="/doma/<%= obj.page_link %>"><img class="obj" src="<%= obj.home_background %>" alt="page_main_image"></a><i class="fa fa-eye"><%= obj.counter %></i></td>
  <td> <%= obj.title %></td>
  <td> <%= obj.floors_quant %></td>
  <td> <%= obj.sections_quant %></td>
@@ -106,7 +109,19 @@ img.obj {
  <td> <%= obj.address %></td>
  <td> <%= obj.bldr %></td>
  <td class="contents"> <span class="content_column"><%- obj.content %></span></td>
- <td class="controls"> <a class="elems trash"><span><i class="fa fa-trash" id="<%= obj._id %>"></i></span></a><a href="/doma/<%= obj.page_link %>" class="elems edit"><span><i class="fa fa-edit"></i></span></a></td>
+ <td class="controls">
+    <a class="elems trash">
+      <span> <i class="fa fa-trash" id="<%= obj._id %>"></i> </span>
+      </a>
+      <a class="elems edit">
+      <span><i class="fa fa-edit"  id="<%= obj._id %>"></i></span>
+    </a>
+      <a href="/doma/<%= obj.page_link %>" class="elems location">
+      <span><i class="fa fa-location-arrow"  id="<%= obj._id %>"></i></span>
+    </a>
+
+
+ </td>
                </tr>
  <% }); %>
             </tbody>
@@ -139,4 +154,36 @@ img.obj {
   </div>
 </section>
 <script>
+
+
+$('.elems.edit').click(function(){
+
+let id = $(this).find('i').attr('id')
+
+console.clear()
+$.get({
+  url: "/notes/"+ id +"",
+  beforeSend: function( xhr ) {
+    xhr.overrideMimeType( "text/plain; charset=utf-8" );
+  }
+})
+  .done(function( data ) {
+      data = JSON.parse(data)
+      $('.db_group').each(function(){
+        let dis = $(this)
+        let field = dis.attr('name')
+        let input = dis.find('input')
+        input.val(data[field])
+
+        // console.log(field);
+        // console.log('=');
+        // console.log(data[field]);
+      })
+              $('button.btn.btn-warning').click()
+
+  });
+
+
+
+})
 </script>

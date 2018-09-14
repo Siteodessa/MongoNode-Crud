@@ -50,6 +50,7 @@ const NoteSchema = mongoose.Schema
     bldr: { type: String, default: 'Будова' , enum:["Будова"] },
     block: { type: String, default: 'Приморский', enum:["Приморский", "Киевский", "Суворовский", "Малиновский"] },
     content: String,
+    counter:  { type: Number, default: 0 },
 }, {
     timestamps: true
 });

@@ -2,9 +2,10 @@
     console.log('routes...');
 
     let database_model = dbm = require('../db/models/');
-    let dbmodel = dbm.notemodel;
+    let note_model = dbm.notemodel;
     let User = dbm.usermodel;
-    let sitedata = dbm.sitedatamodel;
+    let sitedata_model = dbm.sitedatamodel;
+    let sitedata = dbm.default_sitedata;
     let cf  = custom_functions;
 
     app.use(cf.bodyParser.urlencoded({ extended: true }))
@@ -15,8 +16,11 @@
     cf.app = app;
     cf.express = express;
     cf.user = User;
-    cf.dbmodel = dbmodel;
+    cf.note_model = note_model;
+    cf.sitedata_model = sitedata_model;
     cf.sitedata = sitedata;
+
+
     cf.notes = require('../controllers/').notes;
 
     const note_router = require('./note.router.js')(cf);

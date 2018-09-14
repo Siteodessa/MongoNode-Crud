@@ -1,8 +1,8 @@
 var Sitedata = require('../models/sitedata.model.js');
 var default_sitedata =  {
-  lama: new Sitedata({
+  project: new Sitedata({
     sitename: 'Budova.partners',
-    logo: 'image',
+    logo: '/images/logo.png',
     phone: '093000',
     mail: 'mail.mail',
     address: 'adress',
@@ -11,16 +11,16 @@ var default_sitedata =  {
     twitter_link: 'twitterlink',
   })
 }
-Sitedata.find({sitename: default_sitedata.lama.sitename})
+Sitedata.find({sitename: default_sitedata.project.sitename})
         .then(sites => {
             if (sites.length == 0) {
-              default_sitedata.lama.save(function(err, savedUser){
+              default_sitedata.project.save(function(err, savedUser){
                 if (err) {  console.log(err); }
               console.log('Default Site Info has been registered');
               })
             }
             else {
-              console.log(default_sitedata.lama.sitename + ':ok');
+              console.log(default_sitedata.project.sitename + ':ok');
             }
         })
         .catch(err => {

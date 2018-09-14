@@ -10,4 +10,4 @@ const default_users = require('../config/default_users.js');
 const default_sitedata = require('../config/default_sitedata.js');
 
 
-module.exports = {notemodel, usermodel, sitedatamodel};
+module.exports = {notemodel, usermodel, sitedatamodel, default_users, default_sitedata};

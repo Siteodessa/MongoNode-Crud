@@ -47,7 +47,7 @@ d: d
 });
 }
 
-  function homepage(db_id, pageurl, ejs_file, app, dbmodel, express,  IsParseableJson){
+  function homepage(db_id, pageurl, ejs_file, app, dbmodel, express,  IsParseableJson, sitedata){
   app.get(pageurl, function(req, res) {
   d = {};
   dbmodel.find({}, function(err, data) {
@@ -63,7 +63,8 @@ d: d
 d.sitename = 'Budova.Partners'
   res.status(200).render(ejs_file, {
   d: d,
-  content: data
+  content: data,
+  sitedata: sitedata,
   });
   });
   });
