@@ -156,34 +156,5 @@ img.obj {
 <script>
 
 
-$('.elems.edit').click(function(){
 
-let id = $(this).find('i').attr('id')
-
-console.clear()
-$.get({
-  url: "/notes/"+ id +"",
-  beforeSend: function( xhr ) {
-    xhr.overrideMimeType( "text/plain; charset=utf-8" );
-  }
-})
-  .done(function( data ) {
-      data = JSON.parse(data)
-      $('.db_group').each(function(){
-        let dis = $(this)
-        let field = dis.attr('name')
-        let input = dis.find('input')
-        input.val(data[field])
-
-        // console.log(field);
-        // console.log('=');
-        // console.log(data[field]);
-      })
-              $('button.btn.btn-warning').click()
-
-  });
-
-
-
-})
 </script>
