@@ -28,60 +28,10 @@
   <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
-  <script>
-    $(function () {
-      $('#example1').DataTable({  "language": {
-         "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Russian.json"
-     }})
-      $('#example2').DataTable({
-        'paging'      : true,
-        'lengthChange': false,
-        'searching'   : false,
-        'ordering'    : true,
-        'info'        : true,
-        'autoWidth'   : false
-      })
-    })
 
-    function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            $('#imagePreview').css('background-image', 'url('+e.target.result +')');
-            $('#imagePreview').hide();
-            $('#imagePreview').fadeIn(650);
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-jQuery("#imageUpload").change(function() {
-    readURL(this);
-});
-jQuery('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-  checkboxClass: 'icheckbox_minimal-blue',
-  radioClass   : 'iradio_minimal-blue'
-})
-//Red color scheme for iCheck
-jQuery('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-  checkboxClass: 'icheckbox_minimal-red',
-  radioClass   : 'iradio_minimal-red'
-})
-//Flat red color scheme for iCheck
-jQuery('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-  checkboxClass: 'icheckbox_flat-green',
-  radioClass   : 'iradio_flat-green'
-})
 
-jQuery('.radion').on('click', function(){
-jQuery(this).closest('div').find('.radion').removeClass('checked')
-jQuery(this).addClass('checked')
-})
-$(function () {
-  // Replace the <textarea id="editor1"> with a CKEditor
-  // instance, using default configuration.
-  CKEDITOR.replace('editor1')
-  //bootstrap WYSIHTML5 - text editor
-  $('.textarea').wysihtml5()
-})
-  </script>
+  <script src="/dist/js/zz.js"></script>
+
+
+
  <% } %>

@@ -43,15 +43,15 @@ String.prototype.replaceAll = function(search, replacement) {
 
 
 function handle_background(req) {
- let backg = req.body.home_background.slice(1);
- if (req.body.home_background.length < 2 ) {
-   console.log('dis way');
-   backg = null
- } else {
-   console.log('dat way');
- backg = '/uploads/' + backg;
- }
- return backg
+ // let backg = req.body.home_background.slice(1);
+ // if (req.body.home_background.length < 2 ) {
+ //   console.log('dis way');
+ //   backg = null
+ // } else {
+ //   console.log('dat way');
+ // backg = '/uploads/' + backg;
+ // }
+ return req.body.home_background
 }
 function handle_page_link(req) {
  let page_link = req.body.title;
@@ -114,7 +114,7 @@ let page_link = handle_page_link(req);
         home_title: req.body.home_title || "",
         page_link: page_link || "",
         content: req.body.content || "",
-        home_background :  home_background || "/images/city.jpg",
+        home_background :  home_background || "city.jpg",
         breadcrumbs : req.body.breadcrumbs || "OOPS!!",
         main_nav_list : req.body.main_nav_list || "OOPS!!",
         phone : req.body.phone || "OOPS!!",
@@ -198,33 +198,49 @@ exports.findOne = (req, res) => {// Find a single note with a noteId
 };
 exports.custom_update = (req, res) => {
 
-var the_data = '';
-for (let prop in req.body) {
+var the_data = req.body;
 
-  if (!JSON.parse(req.body[prop])){console.error('ERO');}
-  the_data = JSON.parse(prop)
-}
-delete the_data["noteId"];
+// for (let prop in req.body) {
+//   console.log('gotcha');
+//
+//   if (!JSON.parse(req.body[prop])){console.error('ERO');}
+//   console.log(prop);
+//   the_data[prop] = JSON.parse(prop)
+// }
+// delete the_data["noteId"];
+
+console.log(the_data);
     Note.findByIdAndUpdate(req.params.noteId, the_data, {new: true})
     .then(note => {
         if(!note) {
+
             return res.status(404).send({
                 message: "Note not found with id " + req.params.noteId
             });
         }
-        res.status(200).send(the_data);
-        for (var member in myObject) delete myObject[member];
+
+        res.send(the_data);
+
     }).catch(err => {
+      console.log(err);
         if(err.kind === 'ObjectId') {
 
+
             return res.status(404).send({
                 message: "Note not found with id " + req.params.noteId
             });
         }
+        if(err.kind === 'number') {
 
-        return res.status(500).send({
-            message: "Error updating note with id " + req.params.noteId
-        });
+let cf = require('./custom_functions');
+            return res.status(500).send('В поле "Цены стартуют от" должно быть указано число!');
+        }
+else {
+  return res.status(500).send({
+      message: "Error updating note with id " + req.params.noteId
+  });
+}
+
     });
 };
 

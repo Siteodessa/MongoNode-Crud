@@ -27,7 +27,7 @@ let obj = { result: string};
 let myJSON = JSON.stringify(obj);
 return myJSON;
 }
-function express_page(db_id, pageurl, ejs_file, app, dbmodel, express,  IsParseableJson){
+function express_page(db_id, pageurl, ejs_file, app, dbmodel, express,  IsParseableJson, sitedata){
 app.get(pageurl, function(req, res) {
 d = {};
 dbmodel.find({}, function(err, data) {
@@ -41,7 +41,8 @@ else { d[prop] = elem[prop] }
 }
 );
 res.status(200).render(ejs_file, {
-d: d
+d: d,
+sitedata: sitedata
 });
 });
 });

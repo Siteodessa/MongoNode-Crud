@@ -3487,9 +3487,9 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .blog-home-banner {
-    background: url(../img/blog/blog-home-banner.jpg) bottom;
+    background: url(../img/123.jpg) bottom;
     background-size: cover;
-    padding: 130px 0px
+    padding: 130px 0px;
 }
 
 .blog-home-banner .primary-btn {

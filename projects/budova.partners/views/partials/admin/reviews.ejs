@@ -46,12 +46,12 @@ img.obj {
 }</style>
 <section class="content-header">
   <h1>
-    Объекты
+    Отзывы
     <small>просмотр</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Главная</a></li>
-    <li><a href="#">Объекты</a></li>
+    <li><a href="#">Отзывы</a></li>
     <li class="active">Просмотр</li>
   </ol>
 </section>
@@ -60,7 +60,7 @@ img.obj {
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Все объекты</h3>
+          <h3 class="box-title">Все Отзывы</h3>
 <span class="add_new_obj">
             <% include ./add_new_obj  %>
           </span>
@@ -70,45 +70,19 @@ img.obj {
             <thead>
             <tr>
               <th>Фото</th>
-              <th>Заголовок</th>
-              <th>Этажей</th>
-              <th>Секций</th>
-              <th>Квартир\Этаж</th>
-              <th>Конструкция</th>
-              <th>Отделка</th>
-              <th>Стены</th>
-              <th>Окна</th>
-              <th>Потолки(м)</th>
-              <th>Отопление</th>
-              <th>Лифт</th>
-              <th>Паркинг</th>
-              <th>Район</th>
-              <th>Адрес</th>
-              <th>Застройщик</th>
-              <th>Описание</th>
+              <th>Автор</th>
+              <th>Отзыв</th>
+              <th>Оценка</th>
               <th><i class="fa fa-cogs"></i></th>
             </tr>
             </thead>
             <tbody>
  <% content.forEach(function(obj){    %>
   <tr id="<%= obj._id %>">
- <td> <a href="/doma/<%= obj.page_link %>"><img class="obj" src="/uploads/<%= obj.home_background %>" alt="page_main_image"></a><i class="fa fa-eye"><%= obj.counter %></i></td>
- <td> <%= obj.title %></td>
- <td> <%= obj.floors_quant %></td>
- <td> <%= obj.sections_quant %></td>
- <td> <%= obj.appart_on_floor_quant %></td>
- <td> <%= obj.construction_type %></td>
- <td> <%= obj.frontend_material %></td>
- <td> <%= obj.walls %></td>
- <td> <%= obj.windows %></td>
- <td> <%= obj.floor_height %></td>
- <td> <%= obj.warming %></td>
- <td> <%= obj.elevator %></td>
- <td> <%= obj.parking %></td>
- <td> <%= obj.block %></td>
- <td> <%= obj.address %></td>
- <td> <%= obj.bldr %></td>
- <td class="contents"> <span class="content_column"><%- obj.content %></span></td>
+ <td> <a href="#"><img class="obj" src="<%= obj.image %>" alt="page_main_image"></a></td>
+ <td> <%= obj.author %></td>
+ <td> <%= obj.review_body %></td>
+ <td> <%= obj.rating %></td>
  <td class="controls">
     <a class="elems trash">
       <span> <i class="fa fa-trash" id="<%= obj._id %>"></i> </span>
@@ -128,22 +102,9 @@ img.obj {
             <tfoot>
             <tr>
               <th>Фото</th>
-              <th>Заголовок</th>
-              <th>Этажей</th>
-              <th>Секций</th>
-              <th>Квартир\Этаж</th>
-              <th>Конструкция</th>
-              <th>Отделка</th>
-              <th>Стены</th>
-              <th>Окна</th>
-              <th>Потолки(м)</th>
-              <th>Отопление</th>
-              <th>Лифт</th>
-              <th>Паркинг</th>
-              <th>Район</th>
-              <th>Адрес</th>
-              <th>Застройщик</th>
-              <th>Описание</th>
+              <th>Автор</th>
+              <th>Отзыв</th>
+              <th>Оценка</th>
               <th><i class="fa fa-cogs"></i></th>
             </tr>
             </tfoot>

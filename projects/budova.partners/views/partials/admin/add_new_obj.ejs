@@ -95,12 +95,12 @@ label.radion.checked {
                     <%  });%>
                     </div>
                 <% } else { %>
-                    <% if(prop == "home_background") {%>
+                    <% if(prop == "home_background" || prop == "image") {%>
 
                           <iframe scroll="no" id="media_upload" src="media_upload"></iframe>
                           <% include ../image_uploader  %>
                       <% } else { %>
-                                        <% if(prop == "description" || prop == "content") {%>
+                                        <% if(prop == "description" || prop == "content" || prop == "review_body") {%>
                                           <label><%= humanized_name(prop) %></label>
                                           <% include ../text_editor  %>
                                               <% } else { %>
@@ -116,9 +116,11 @@ label.radion.checked {
               </div>
               <div id="result_form">   <p></p></div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Закрыть</button>
-                <button type="button" class="save btn btn-outline">Сохранить</button>
-               <button type="button" class="save and_close btn btn-outline">Сохранить и закрыть</button>
+                  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Закрыть</button>
+                  <button type="button" class="save btn btn-outline">Сохранить</button>
+                  <button type="button" class="save and_close btn btn-outline">Сохранить и закрыть</button>
+                  <button type="button" class="update btn btn-outline">Обновить</button>
+                  <button type="button" class="update and_close btn btn-outline">Обновить и закрыть</button>
               </div>
 
             </form>

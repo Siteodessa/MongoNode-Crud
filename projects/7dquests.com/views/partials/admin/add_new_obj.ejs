@@ -58,26 +58,29 @@ label.radion.checked {
                 <%  return false %>
             <%    } %>
 <% for (let prop in schema.tree) { %>
+
+      <% label = schema.tree[prop]["ru_label"] ;%>
+      <% field_type = schema.tree[prop]["input_type"] ;%>
       <% if(permitted_for_frontend_field(prop)) {%>
       <div class="db_group" name="<%= prop %>" >
       <%  enums = enumo(schema, prop); %>
               <%   if(enums) { %>
-                    <label><%= humanized_name(prop) %></label>
+                    <label><%= label %></label>
                     <div>
                     <% enums.forEach(elem => { %>
                     <label class="radion">      <input class="" name="<%= prop %>" type="radio"  value="<%= elem %>"> <%= elem %></label>
                     <%  });%>
                     </div>
                 <% } else { %>
-                    <% if(prop == "home_background") {%>
-                          <label><%= humanized_name(prop) %></label>
+                    <% if(field_type == "single_image") {%>
+
                           <% include ../image_uploader  %>
                       <% } else { %>
                                         <% if(prop == "description" || prop == "content") {%>
-                                          <label><%= humanized_name(prop) %></label>
+                                          <label><%= label %></label>
                                           <% include ../text_editor  %>
                                               <% } else { %>
-                                                <label><%= humanized_name(prop) %></label>
+                                                <label><%= label %></label>
                                                 <input class="form-control input-lg" name="<%= prop %>" type="text">
                                         <% }%>
                     <% }%>
@@ -91,42 +94,10 @@ label.radion.checked {
               <div id="result_form">   <p></p></div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Закрыть</button>
-                <button type="button" id="save" class="btn btn-outline">Сохранить изменения</button>
+                <button type="button"  class="save btn btn-outline">Сохранить изменения</button>
               </div>
 
             </form>
             </div>
           </div>
         </div>
-
-<script>$( document ).ready(function() {
-    $("#save").click(
-    function(){
-      sendAjaxForm('result_form', 'form-horizontal', '/notes');
-      return false;
-    }
-  );
-});
-function sendAjaxForm(result_form, ajax_form, url) {
-
-    let z = $('.'+ ajax_form + ' input[name!=editor1]').serialize()
-    z = decodeURI(z)
-    z.content =  decodeURI($('.'+ ajax_form + ' textarea').val())
-
-console.log(z.content);
-    $.ajax({
-        url:     url,
-        type:     "POST",
-        dataType: "html",
-        content: decodeURI($('.'+ ajax_form + ' textarea').val()),
-        data: z,
-        success: function(response, xhr) {
-          result = $.parseJSON(response);
-              $('#result_form p').text(''+result.result+'');
-      },
-      error: function(response) {
-        console.log(response);
-        $('#result_form p').text('В следующий раз повезет.');
-      }
-  });
-}</script>

@@ -6,7 +6,7 @@ module.exports = (cf) => {
   app.get('/notes', notes.findAll);
   app.get('/notes/:noteId', notes.findOne);
   app.put('/notes/:noteId', notes.update);
-  app.put('/notes/m_update/:noteId', notes.custom_update);
+  app.put('/cupdate/:noteId', notes.custom_update);
   app.delete('/notes/:noteId', notes.delete);
   app.get('/fileupload', notes.upload);
 
