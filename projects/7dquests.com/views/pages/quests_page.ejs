@@ -4,19 +4,11 @@
     <section class="post-content-area">
       <div class="container">
         <div class="row">
-					<%  include ../partials/feed  %>
+					<div class="col-lg-8 posts-list">
+					<%  /* include ../partials/feed  */ %>
+				</div>
           <div class="col-lg-4 sidebar-widgets">
-            <div class="widget-wrap">
-							<% /* include ../partials/search_form */ %>
-							<% /* include ../partials/author_card */ %>
-							<%  include ../partials/newest_posts  %>
-							<div class="single-sidebar-widget ads-widget">
-								<a href="#"><img class="img-fluid" src="img/shining_quest.png" alt=""></a>
-							</div>
-							<%  /* include ../partials/categories */ %>
-							<%  include ../partials/newsletter  %>
-							<%  include ../partials/tags_cloud  %>
-            </div>
+						<%  /* include ./sidebar_widgets */  %>
           </div>
         </div>
       </div>

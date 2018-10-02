@@ -1,25 +1,23 @@
 
-										<script src="js/vendor/jquery-2.2.4.min.js"></script>
-										<script src="js/vendor/bootstrap.min.js"></script>
-							  			<script src="js/easing.min.js"></script>
-										<script src="js/hoverIntent.js"></script>
-										<script src="js/superfish.min.js"></script>
-										<script src="js/mn-accordion.js"></script>
-										<script src="js/jquery.ajaxchimp.min.js"></script>
-										<script src="js/jquery.magnific-popup.min.js"></script>
-										<script src="js/owl.carousel.min.js"></script>
-										<script src="js/jquery.nice-select.min.js"></script>
-							    		<script src="js/jquery.circlechart.js"></script>
-										<script src="js/mail-script.js"></script>
-										<script src="js/main.js"></script>
-										<script>
+<script src="/js/vendor/jquery-2.2.4.min.js"></script>
+<script src="/js/vendor/bootstrap.min.js"></script>
+<script src="/js/easing.min.js"></script>
+<script src="/js/hoverIntent.js"></script>
+<script src="/js/superfish.min.js"></script>
+<script src="/js/mn-accordion.js"></script>
+<script src="/js/jquery.ajaxchimp.min.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/jquery.nice-select.min.js"></script>
+<script src="/js/jquery.circlechart.js"></script>
+<script src="/js/mail-script.js"></script>
+<script src="/js/main.js"></script>
+<script>
 
-										var baseUrl = "http://www.soundjay.com/button/";
-										var audio = ["beep-01a.mp3", "beep-02.mp3", "beep-03.mp3", "beep-04.mp3", "beep-05.mp3", "beep-06.mp3", "beep-07.mp3", "beep-08b.mp3", "beep-09.mp3"];
+var baseUrl = "http://www.soundjay.com/button/";
+var audio = ["beep-01a.mp3", "beep-02.mp3", "beep-03.mp3", "beep-04.mp3", "beep-05.mp3", "beep-06.mp3", "beep-07.mp3", "beep-08b.mp3", "beep-09.mp3"];
 
-										$('.sound').click(function() {
-											var i = $(this).attr('id').substring(1);           //get the index of button
-											new Audio(baseUrl + audio[i - 1]).play();          //play corresponding audio
-										});</script>
-
-										    
+$('.sound').click(function() {
+var i = $(this).attr('id').substring(1);           //get the index of button
+new Audio(baseUrl + audio[i - 1]).play();          //play corresponding audio
+});</script>

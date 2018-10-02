@@ -3,57 +3,40 @@
 			<h2 class="text-center">Популярные</h2>
       <div class="container">
         <div class="row">
-          <div class="col-lg-4">
-            <div class="single-cat-widget">
-              <div class="content relative">
-                <div class="overlay overlay-bg"></div>
-                  <a href="#" target="_blank">
-                    <div class="thumb">
-                     <img class="content-image img-fluid d-block mx-auto" src="img/johnny.jpg" alt="">
+
+
+          <% quests.forEach(function(quest){ %>
+
+
+
+              <div class="col-lg-4">
+                <div class="single-cat-widget">
+                  <div class="content relative">
+                                <a href="/quests/<%= quest["page_link"] %>" target="_blank">
+                                  <div class="thumb">
+                                   <img class="content-image img-fluid d-block mx-auto" src="<%= quest["image"] %>" alt="">
+                                  </div>
+
+                                </a>
                     </div>
-                    <div class="content-details">
-                      <h4 class="content-title mx-auto text-uppercase">Сияние</h4>
-                      <span></span>
-                      <p>Проверьте свои нервы</p>
+                    <div class="loop_text">
+                      <a href="/quests/<%= quest["page_link"] %>" target="_blank">
+                                <h4 class="content-title mx-auto text-uppercase"> <%= quest["quest_name"]	%></h4>    </a>
+                                <p>Проверьте свои нервы</p>
                     </div>
-                  </a>
+
+
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="single-cat-widget">
-              <div class="content relative">
-                <div class="overlay overlay-bg"></div>
-                  <a href="#" target="_blank">
-                    <div class="thumb">
-                     <img class="content-image img-fluid d-block mx-auto" src="img/quest_anabel.jpg" alt="">
-                    </div>
-                    <div class="content-details">
-                      <h4 class="content-title mx-auto text-uppercase">Проклятие Анабель</h4>
-                      <span></span>
-                      <p>Только для избранных</p>
-                    </div>
-                  </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="single-cat-widget">
-              <div class="content relative">
-                <div class="overlay overlay-bg"></div>
-                  <a href="#" target="_blank">
-                    <div class="thumb">
-                     <img class="content-image img-fluid d-block mx-auto" src="img/question.jpg" alt="">
-                    </div>
-                    <div class="content-details">
-                      <h4 class="content-title mx-auto text-uppercase">Техасская резня</h4>
-                      <span></span>
-                      <p>бензопилой!</p>
-                    </div>
-                  </a>
-              </div>
-            </div>
-          </div>
+
+
+
+
+          <% }); %>
+
+
+
+
         </div>
       </div>
     </section>

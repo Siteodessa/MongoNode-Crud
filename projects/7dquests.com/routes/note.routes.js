@@ -53,7 +53,7 @@ else { d[prop] = elem[prop] }
 }
 }
 );
-
+app.use(express.static('views'));
 quests_m.find()  .then(quests => {
 
 
@@ -89,6 +89,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.set('view engine', 'ejs');
 
+
     var dbmodel = require('../db/models/note.model.js');
     var User = require('../db/models/user.model.js');
     const notes = require('../controllers/note.controller.js');
@@ -105,13 +106,44 @@ app.set('view engine', 'ejs');
     app.put('/notes/m_update/:noteId', notes.custom_update);
     app.delete('/notes/:noteId', notes.delete);
     app.post('/quests', quests.create);
-    app.get('/quests', quests.findAll);
-    app.get('/quests/:noteId', quests.findOne);
+    // app.get('/quests', quests.findAll);
+
+
+
+    var quests_m = require('../db/models/quest.model');
+
+
+    app.get('/quests/:page_link',  function(req, res) {
+      app.use(express.static('views'));
+      quests_m.find().then(quests => {
+          d = null
+          quests.forEach(elem => {
+          if (elem.page_link == req.params.page_link) {
+          d = elem;
+          }
+          });
+          quests_m.find({page_link: d.page_link}).then(quests => {
+          let quest = quests[0]
+          quest.counter++
+          quests_m.findByIdAndUpdate(quest.id, {counter:quest.counter}, {new: true})
+          .then(quest => { console.log(d.title + ' was visited ' + quest.counter + ' times'); })
+          .catch(err => { console.log(err); })
+          })
+          .catch(err => { console.log(err); })
+          res.render('./quests_single.ejs', {d: d})
+      }).catch(err => {
+      res.render('./quests_single.ejs', {d: d, err:err})
+      });
+    })
+
+
+
+
+
     app.put('/quests/:noteId', quests.update);
     app.put('/quests/m_update/:noteId', quests.custom_update);
     app.delete('/quests/:noteId', quests.delete);
 
-    var quests_m = require('../db/models/quest.model');
 
 
   quests_page('5b59c5414b38dd34d80410bd', '/quests', 'pages/quests_page.ejs', app, dbmodel, express,  IsParseableJson, quests_m)
@@ -122,5 +154,5 @@ app.set('view engine', 'ejs');
     express_page('5b59c5414b38dd34d80410bd', '/contacts', 'pages/contacts.ejs', app, dbmodel, express,  IsParseableJson)
 
 
-app.listen(27, () => console.log('app:ok'));
+app.listen(28, () => console.log('app:ok'));
 }

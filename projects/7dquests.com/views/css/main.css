@@ -559,7 +559,8 @@ td,th {
 }
 
 .text-center {
-    text-align: center
+    text-align: center;
+    padding: 12px 0 24px;
 }
 
 .text-left {
@@ -3536,7 +3537,10 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .top-category-widget-area .single-cat-widget {
     position: relative;
-    text-align: center
+    text-align: center;
+    box-shadow: 0px 0px 10px;
+    text-align: left;
+    text-indent: 12px;
 }
 
 .top-category-widget-area .single-cat-widget .overlay-bg {
@@ -4427,4 +4431,12 @@ section#testimonail {
 
 .row.akcii .col-lg-6 {
     margin:  10px 0;
+}
+
+.loop_text {
+    padding: 12px 0;
+}
+
+.single-post-area .navigation-area img {
+    max-width: 130px;
 }
