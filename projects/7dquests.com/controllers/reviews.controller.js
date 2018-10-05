@@ -1,22 +1,12 @@
-const Review = require('../db/models/review.model.js');
+const Review = require('../db/models/reviews.model.js');
 exports.create = (req, res) => {
     const review = new Review({    // Create a Review
-
-
-        title: req.body.title || "",
-        main_image: req.body.title || "",
-        home_title: req.body.home_title || "",
-        company_name: req.body.company_name || "",
-        min_players: req.body.min_players || "",
-        max_players: req.body.max_players || "",
-        price: req.body.price || "",
-        complexity: req.body.complexity || "",
-        fear_level: req.body.fear_level || "",
-        age: req.body.age || "",
-        description: req.body.description || "",
-
-
-
+      author: req.body.author || "",
+      review_body: req.body.review_body || "",
+      rating: req.body.rating || "",
+      quest: req.body.quest || "",
+      image: req.body.image || "",
+      mail: req.body.mail || "",
     });
 
     review.save()    // Save Review in the database

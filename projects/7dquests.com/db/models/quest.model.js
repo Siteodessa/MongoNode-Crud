@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const QuestSchema = mongoose.Schema
 ({
   title: { type: String, default: '', ru_label:'Заголовок',  input_type: 'text' },
-  page_link: String,
+  page_link: { type: String, default: '' ,unique: true},
   company_name: { type: String, default: '', ru_label:'Название компании',  input_type: 'text' },
   quest_name: { type: String, default: '', ru_label:'Название квеста',  input_type: 'text' },
   quest_legend: { type: String, default: 'Проверьте свои силы', ru_label:'Подзаголовок',  input_type: 'text' },

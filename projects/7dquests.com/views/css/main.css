@@ -50,11 +50,16 @@ ol,ul {
     padding: 0;
     list-style: none
 }
-
+.post-content-area .single-post .comment-form form .primary-btn {
+    background: #1d0040;
+    color: #fff;
+}
 select {
     display: block
 }
-
+div .cal_row.s7.weeks:last-child {
+    justify-content: flex-start;
+}
 figure {
     margin: 0
 }
@@ -2352,7 +2357,8 @@ body.mobile-nav-active #mobile-nav-toggle {
     left: 0;
     right: 0;
     top: 0;
-    bottom: 0
+    bottom: 0;
+    background: linear-gradient(to bottom, #18696a 0%, #110025c7 100%);
 }
 
 .banner-area {
@@ -3364,8 +3370,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .about-content {
     margin-top: 110px;
-    padding: 50px 0px;
-    text-align: center
+    padding: 17vh 0px;
+    text-align: center;
 }
 
 @media (max-width: 767px) {
@@ -3666,13 +3672,13 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .post-content-area .single-post .primary-btn {
-    background: #fff !important;
-    color: #222 !important;
+    background: #fff;
+    color: #222;
     -webkit-transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
-    border-radius: 0px !important
+    border-radius: 0px !important;
 }
 
 .post-content-area .single-post .primary-btn:hover {
@@ -3831,22 +3837,24 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .widget-wrap .popular-post-widget .popular-title {
-    background: #1d0040;
+    background: linear-gradient(to bottom, #18696a 0%, #110025 100%);
     color: #fff;
     text-align: center;
-    padding: 12px 0px
+    padding: 12px 0px;
 }
 
 .widget-wrap .popular-post-widget .popular-post-list {
     margin-top: 30px
 }
 
-.widget-wrap .popular-post-widget .popular-post-list .thumb img {
-    width: 100%
+.widget-wrap .popular-post-widget .popular-post-list .thumb img, .widget-wrap .popular-post-widget .popular-post-list .thumb {
+    width: 100px !important;
 }
 
 .widget-wrap .popular-post-widget .single-post-list {
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    display: grid !important;
+    grid-template-columns: 100px 1fr;
 }
 
 .widget-wrap .popular-post-widget .single-post-list .details {
@@ -3909,7 +3917,8 @@ body.mobile-nav-active #mobile-nav-toggle {
     background: #1d0040;
     color: #fff;
     text-align: center;
-    padding: 12px 0px
+    padding: 12px 0px;
+    background: linear-gradient(to bottom, #18696a 0%, #110025 100%);
 }
 
 .widget-wrap .newsletter-widget .col-autos {
@@ -3981,11 +3990,11 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .widget-wrap .tag-cloud-widget .tagcloud-title {
-    background: #1d0040;
+    background: linear-gradient(to top, #18696a 0%, #110025 100%);
     color: #fff;
     text-align: center;
     padding: 12px 0px;
-    margin-bottom: 30px
+    margin-bottom: 30px;
 }
 
 .widget-wrap .tag-cloud-widget ul li {
@@ -4142,7 +4151,6 @@ body.mobile-nav-active #mobile-nav-toggle {
     background: #fafaff;
     border: 1px solid #eee;
     padding: 50px 20px;
-    margin-top: 50px
 }
 
 @media (max-width: 414px) {
@@ -4436,7 +4444,260 @@ section#testimonail {
 .loop_text {
     padding: 12px 0;
 }
-
+.cal_row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
 .single-post-area .navigation-area img {
     max-width: 130px;
+}
+
+.quest_gallery img {
+    margin: 0 0 12px;
+}
+
+.shaded {
+    box-shadow: 0px 1px 9px #1d0040;
+}
+
+.widget-wrap .popular-post-widget .single-post-list .thumb {
+    width: 100px;
+}
+
+.calendar table, .calendar tr, .calendar td {
+    width: 100%;
+}
+
+.cal_cell, .cell {
+    width: 10.3%;
+    border: 1px solid;
+    box-shadow: 0px 0px 4px #000;
+    margin: 6px 7px;
+    padding: 0;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    box-shadow: 0px 0px 0px;
+    border: none;
+    transition: all .8s;
+    opacity: 0;
+    transform: translate(0, 10px);
+    will-change: transform;
+}
+
+span.today {
+    background: linear-gradient(to bottom, #18696a8a 0%, #110025a3 100%);
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    display: block;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 4px #d20101c2;
+}
+
+div.calendars {
+    margin: 0 0 40px;
+    background: linear-gradient(to top, #18696a 0%, #110025 100%);
+    padding: 120px 20px;
+}
+
+section#home {
+    height: 55vh;
+}
+
+.single-post.row.special {
+    margin-top: 0;
+    margin-bottom: 0;
+    border-radius: 4px;
+    background: #fafaff;
+    border: 1px solid #eee;
+}
+
+.text-center {
+    max-width: 60%;
+    margin: 12px auto;
+}
+
+.row.quest_gallery {
+    margin: 3vh 5% 0;
+}
+
+.cal_row.week_days {
+    background: #ffffff17;
+    border-radius: 4px;
+    margin: 0px 0 4px;
+}
+
+.cal-row {
+    padding: 10px 20px 20px;
+    transition: 0.8s 0.2s ease-in-out;
+    position: relative;
+    transform: none;
+    will-change: transform;
+}
+
+.cal_cell:hover {
+    background: rgba(255, 255, 255, 0.48);
+    cursor: pointer;
+}
+
+span.today:hover {
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0px 0px 0px #d20101c2;
+}
+
+div.calendars.visible .cell, div.calendars.visible .cal_cell {
+    opacity: 1;
+    transform: none;
+}
+
+.notransition {
+    transition: none !important;
+}
+
+.weeks {
+    opacity: 0;
+    transition: .4s;
+}
+
+.visible .weeks {
+    opacity: 1;
+}
+
+div.months {
+    background: rgba(255, 255, 255, 0.0196078431372549);
+    overflow: hidden;
+    position: relative;
+}
+
+.switch_to_hours .cal-row {opacity: 0;transform: translate(0,-100%);}
+
+div.hours .ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+div.hours {
+    position: absolute;
+    width: 100%;
+    top: auto;
+    bottom: 0;
+    transition: 1s ease-in-out;
+    transform: translate(0,200%);
+    height: 100%;
+}
+
+.switch_to_hours div.hours {
+    transform: none;
+}
+
+.time_picker {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    padding: 7px 11px;
+    width: 15%;
+    margin: 10px 12px;
+    transition: .4s;
+    cursor: pointer;
+}
+
+div#back {
+    display: flex;
+    justify-content: center;
+    margin: 6% 0;
+}
+
+div#back i {
+    transform: rotate(90deg);
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.cell {
+    transition: .8s;
+}
+
+.time_picker:hover {
+    background: rgba(255, 255, 255, 0.48);
+}
+
+div.hours.switch_to_form {
+    transform: translate(0,-300%);
+}
+
+div.form, div.form form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.form {
+}
+
+div.form {
+    position: absolute;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+    transform: translate(0,200%);
+    height: 100%;
+    transition: 1s ease-in-out;
+}
+
+div.form.visible {
+    transform: none;
+}
+
+.input_group {
+    margin: 0 20px;
+}
+
+.input_group input, .input_group select {
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 12px 20px;
+}
+
+.input_group input {
+    padding: 10px 20px;
+}
+
+.input_group input::placeholder { color: #fff;  }
+
+select option {
+    margin: 40px;
+    padding:10px;
+    line-height:2;
+    background: rgb(26, 70, 79);
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+}
+
+.submit {
+    padding: 10px 20px;
+    color: #fff;
+    margin: 0 20px;
+    background: rgba(255, 255, 255, 0.28);
+    cursor: pointer;
+    transition: all .6s ease-in-out;
+}
+
+.submit:hover {
+    background: rgba(255, 255, 255, 0.48);
 }

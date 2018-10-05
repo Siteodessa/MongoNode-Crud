@@ -90,16 +90,20 @@ app.use(bodyParser.json())
 app.set('view engine', 'ejs');
 
 
-    var dbmodel = require('../db/models/note.model.js');
-    var User = require('../db/models/user.model.js');
-    const notes = require('../controllers/note.controller.js');
+    var dbmodel = require('../db/models/note.model');
+    var User = require('../db/models/user.model');
+    const notes = require('../controllers/note.controller');
+    const reviews = require('../controllers/reviews.controller');
     const quests = require('../controllers/quest.controller');
-    const default_users = require('../db/config/default_users.js');
+    const subscribe_c = require('../controllers/subscribe.controller');
+    const default_users = require('../db/config/default_users');
 
     const admin_router = require('./admin.routes.js')(app, User, json_Result, express, custom_functions);
     const image_routes = require('./image_routes')(app, express, is_LoggedIn, redirect_to_login);
 
     app.post('/notes', notes.create);
+    app.post('/subscribe', subscribe_c.create);
+    app.post('/reviews', reviews.create);
     app.get('/notes', notes.findAll);
     app.get('/notes/:noteId', notes.findOne);
     app.put('/notes/:noteId', notes.update);
@@ -112,28 +116,9 @@ app.set('view engine', 'ejs');
 
     var quests_m = require('../db/models/quest.model');
 
-
     app.get('/quests/:page_link',  function(req, res) {
-      app.use(express.static('views'));
-      quests_m.find().then(quests => {
-          d = null
-          quests.forEach(elem => {
-          if (elem.page_link == req.params.page_link) {
-          d = elem;
-          }
-          });
-          quests_m.find({page_link: d.page_link}).then(quests => {
-          let quest = quests[0]
-          quest.counter++
-          quests_m.findByIdAndUpdate(quest.id, {counter:quest.counter}, {new: true})
-          .then(quest => { console.log(d.title + ' was visited ' + quest.counter + ' times'); })
-          .catch(err => { console.log(err); })
-          })
-          .catch(err => { console.log(err); })
-          res.render('./quests_single.ejs', {d: d})
-      }).catch(err => {
-      res.render('./quests_single.ejs', {d: d, err:err})
-      });
+              app.use(express.static('views'));
+      quests.single_page(req, res, app, express,  quests_m)
     })
 
 
