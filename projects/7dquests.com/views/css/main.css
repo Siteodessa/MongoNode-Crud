@@ -4508,7 +4508,7 @@ div.calendars {
     padding: 120px 20px;
 }
 
-section#home {
+.single section.home {
     height: 55vh;
 }
 
@@ -4661,7 +4661,7 @@ div.form.visible {
 .input_group {
     margin: 0 20px;
 }
-
+.response {position: absolute;top: 10%;}
 .input_group input, .input_group select {
     background: transparent;
     border: none;
@@ -4701,3 +4701,5 @@ select option {
 .submit:hover {
     background: rgba(255, 255, 255, 0.48);
 }
+
+.thumb {max-width: 100px;margin: 20px 0;}

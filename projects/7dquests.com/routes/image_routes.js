@@ -15,10 +15,16 @@
     }
 
 
-    module.exports = (app, express, is_LoggedIn, redirect_to_login) => {
-app.use(express.static('./public'));
+    module.exports = (core) => {
 
 
+          let app = core.app;
+          let express = core.express;
+          let is_LoggedIn = core.is_LoggedIn;
+          let redirect_to_login = core.redirect_to_login;
+
+
+          app.use(express.static('./public'));
           var multer  = require('multer');
           const path = require('path');
 

@@ -11,8 +11,6 @@ exports.create = (req, res) => {
 
     review.save()    // Save Review in the database
     .then(data => {
-          console.log('da');
-          console.log(data);
       res.status(200).send(data);
     }).catch(err => {
         res.status(500).send({

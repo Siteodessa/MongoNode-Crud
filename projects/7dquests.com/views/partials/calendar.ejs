@@ -14,12 +14,12 @@
 <% function week_names_row() {
   return '<div class="cal_row week_days"> <div class="cell">Пн </div><div class="cell">Вт</div> <div class="cell">Ср</div> <div class="cell">Чт</div> <div class="cell">Пт</div> <div class="cell">Сб</div> <div class="cell">Вс</div> </div>';
 } %>
-<% function fill_rows(nDays, thisDay, column) {
+<% function fill_rows(nDays, thisDay, column, add_month) {
   result = ''
   result +=  "<div class='cal_row weeks'>"
   for (i = 1; i <= nDays; i++) {
     let z = (i * 0.01) + 1
-    result +=  "<div class='cal_cell' style='transition-delay:" + (z) + "s'>"
+    result +=  "<div class='cal_cell' yv='" + (get_year_val()) + "' dv='" + (i) + "' mv='" + (get_month_val(add_month)) + "' style='transition-delay:" + (z) + "s'>"
     if (i == thisDay)
       result +=  "<span class = 'today'>"
     result +=  i
@@ -49,6 +49,21 @@ return result
       return monthA[d.getMonth() + add_month]
     }
     return monthA[d.getMonth()]
+}
+%>
+<% function get_month_val(add_month) {
+  let d = new Date();
+  monthA = 'Январь,Февраль,Март,Апрель,Май,Июнь,Июль,Август,Сентябрь,Октябрь,Ноябрь,Декабрь'.split(',');
+    if (check_cal_args(add_month)) {
+      return d.getMonth() + add_month
+    }
+    return d.getMonth()
+}
+%>
+
+<% function get_year_val() {
+  let d = new Date();
+    return d.getFullYear()
 }
 %>
 <% function calendar(add_month) {
@@ -81,7 +96,7 @@ let the_column = make_columns(startDay).column
   let result =  `<div align = 'center' class="calendar">
 <div border = '1'>
 ${week_names_row()}
-${fill_rows(nDays, thisDay, the_column)}
+${fill_rows(nDays, thisDay, the_column, add_month)}
 </div>
 </div>
   `
@@ -95,7 +110,7 @@ ${fill_rows(nDays, thisDay, the_column)}
   <div class="container">
   <h2 class="text-white text-center">Онлайн бронирование</h2>
   <p class="text-white text-center">
-    После получения бронирования, над администратор свяжется с вами
+    После получения бронирования, наш администратор свяжется с вами
   </p>
       <div class="months" id="months">
         <div class="row cal-row" id="scroll_present">
@@ -121,20 +136,23 @@ ${fill_rows(nDays, thisDay, the_column)}
             <h4></h4>
           </div>
           <div class="ul">
-  <div class="time_picker"><div> 10:30 - 12:00 </div><span>600 грн</span></div>
-  <div class="time_picker"><div>12:00 - 13:30</div><span>600 грн</span></div>
-  <div class="time_picker"><div>13:30 - 15:00</div><span>600 грн</span></div>
-  <div class="time_picker"><div>15:00 - 16:30</div><span>600 грн</span></div>
-  <div class="time_picker"><div>16:30 - 18:00</div><span>600 грн</span></div>
-  <div class="time_picker"><div>18:00 - 19:30</div><span>800 грн</span></div>
-  <div class="time_picker"><div>19:30 - 21:00</div><span>800 грн</span></div>
-  <div class="time_picker"><div>21:00 - 22:30</div><span>800 грн</span></div>
-  <div class="time_picker"><div>22:30 - 23:59</div><span>800 грн</span></div>
-  <div class="time_picker"><div>23:59 -  <span> ∞ </span> </div><span>900 грн</span></div>
+  <div class="time_picker"><div time="10:30" price="600">10:30 - 12:00 </div><span>600 грн</span></div>
+  <div class="time_picker"><div time="12:00" price="600">12:00 - 13:30</div><span>600 грн</span></div>
+  <div class="time_picker"><div time="13:30" price="600">13:30 - 15:00</div><span>600 грн</span></div>
+  <div class="time_picker"><div time="15:00" price="600">15:00 - 16:30</div><span>600 грн</span></div>
+  <div class="time_picker"><div time="16:30" price="600">16:30 - 18:00</div><span>600 грн</span></div>
+  <div class="time_picker"><div time="18:00" price="800">18:00 - 19:30</div><span>800 грн</span></div>
+  <div class="time_picker"><div time="19:30" price="800">19:30 - 21:00</div><span>800 грн</span></div>
+  <div class="time_picker"><div time="21:00" price="800">21:00 - 22:30</div><span>800 грн</span></div>
+  <div class="time_picker"><div time="22:30" price="800">22:30 - 23:59</div><span>800 грн</span></div>
+  <div class="time_picker"><div time="23:59" price="900">23:59 -  <span> ∞ </span> </div><span>900 грн</span></div>
   </div>
         </div>
 
         <div class="form" id="form">
+          <div class="response">
+
+          </div>
           <form class="brone_form">
             <div class="input_group glass">
 
@@ -155,7 +173,7 @@ ${fill_rows(nDays, thisDay, the_column)}
               <option value="6">6</option>
             </select>
           </div>
-          <button type="button" name="button" class="submit glass">Забронировать</button>
+          <button type="button" id="brone_submit" name="button" class="submit glass">Забронировать</button>
 
           </form>
       </div>
@@ -204,7 +222,10 @@ scrollio.listen('calendars')
 
 
 var Choice_maker = function (el) {
+
   this.switch_to_hours = function (jel) {
+    $('.cal_cell').removeClass('day_chosen')
+    jel.addClass('day_chosen')
     $('#calendars').removeClass('visible')
       $('#months').addClass('switch_to_hours')
   }
@@ -218,13 +239,35 @@ var Choice_maker = function (el) {
   }
   this.action = function (jel) {
 }
+  this.serialize_form = function (jel) {
+    let r = {}
+    let yv = $(".day_chosen").attr('yv')
+    let mv = $(".day_chosen").attr('mv')
+    let dv = $(".day_chosen").attr('dv')
+    let time = $(".time_picker div").attr('time')
+    let price = $(".time_picker div").attr('price')
+    r.name = $("#name").val()
+    r.phone = $("#phone").val()
+    r.quantity =  jQuery('#quantity option:selected').text();
+    r.day_chosen = yv + '-' + mv + '-' + dv + ' ' + time
+    r.time = time
+    r.price = price
+    r.quest_name = '<%= d.page_link %>'
+    r.company_name = '<%= d.company_name %>'
+    return r;
+}
+
+
+
 let action = this.action
 let switch_to_hours = this.switch_to_hours
 let switch_to_months = this.switch_to_months
 let switch_to_form = this.switch_to_form
+let serialize_form = this.serialize_form
 let cal_cell = $('.' + el);
 let back = $('#back');
 let timepicker = $('.time_picker');
+let brone_submit = $('#brone_submit');
 
    this.listen = function () {
      cal_cell.on('click', function() {
@@ -236,6 +279,29 @@ let timepicker = $('.time_picker');
      timepicker.on('click', function() {
        switch_to_form($(this))
      });
+     brone_submit.on('click', function() {
+       let data = serialize_form($(this))
+          $.ajax({
+              url: "/brones",
+              data: data,
+              error: function (xhr, status, errorThrown) {
+$('.response').text('Пожалуйста, заполните все поля')
+ },
+              method: "POST",
+              beforeSend: function( xhr ) { xhr.overrideMimeType( "text/plain; charset=utf-8" ); }
+          })
+          .done(function( data ) {
+
+              $('.response').html('<h1 class="text-white">Благодарим за Ваш выбор!</h1>')
+            console.log( "Sample of data:", data.slice( 0, 100 ) );
+          });
+
+
+
+     });
+
+
+
  }
 
 }

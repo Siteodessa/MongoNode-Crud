@@ -55,7 +55,7 @@ function update_counter(model, elem) {
 }
 
 function render_page(res, elem, elements) {
-  console.log(elements);
+
   console.log(elem.page_link);
 
    res.render('./quests_single.ejs', {d: elem,reviews: elements})

@@ -1,9 +1,14 @@
-module.exports = (app, User, json_Result, express, custom_functions)=>{
+module.exports = (User, core)=>{
+      let cf  = core;
+      let app  = core.app;
+      let express  = core.express;
 
-      let cf  = custom_functions;
+      app.use(cf.bodyParser.urlencoded({ extended: true }))
+      app.use(cf.bodyParser.json())
+      app.set('view engine', 'ejs');
       let is_LoggedIn = cf.is_LoggedIn;
       let redirect_to_login = cf.redirect_to_login;
-
+      let json_Result = cf.json_Result;
   var session  = require('express-session');
   app.use(session({secret:"f254fr45t43ty5409143t91y4ty920ty123", resave:false, saveUninitialized:true}))
   function isLoggedIn(req, User) {
@@ -117,21 +122,6 @@ app.get('/dashboard', function(req, res){
       return res.status(200).render('dashboardUser.ejs', { user : user,   dash_sub: 'content'});
 })
 //LOGIN-REGISTER
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.get('/edit_quests', function(req, res){
     if (!is_LoggedIn(req)) { return redirect_to_login(res) }
 const Quest = require('../db/models/quest.model.js');
@@ -150,7 +140,6 @@ model_label: 'Квесты',
   });
 })
 });
-
 app.get('/edit_reviews', function(req, res){
     if (!is_LoggedIn(req)) { return redirect_to_login(res) }
 const Review = require('../db/models/reviews.model.js');
@@ -168,7 +157,6 @@ dash_sub: 'objects',
   });
 })
 });
-
 app.get('/edit_pages', function(req, res){
     if (!is_LoggedIn(req)) { return redirect_to_login(res) }
 const Page = require('../db/models/page.model.js');
@@ -186,9 +174,6 @@ dash_sub: 'objects',
   });
 })
 });
-
-
-
 
 
 
