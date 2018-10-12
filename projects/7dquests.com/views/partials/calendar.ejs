@@ -14,12 +14,55 @@
 <% function week_names_row() {
   return '<div class="cal_row week_days"> <div class="cell">Пн </div><div class="cell">Вт</div> <div class="cell">Ср</div> <div class="cell">Чт</div> <div class="cell">Пт</div> <div class="cell">Сб</div> <div class="cell">Вс</div> </div>';
 } %>
+
+
+<% function formatDate(timestamp) {
+  date = new Date(timestamp);
+var dd = date.getDate();
+if (dd < 10) dd = '0' + dd;
+
+var mm = date.getMonth() + 1;
+if (mm < 10) mm = '0' + mm;
+
+var yy = date.getFullYear() % 100;
+if (yy < 10) yy = '0' + yy;
+
+var hh = date.getHours();
+var min = date.getMinutes();
+
+return dd + '.' + mm + '.' + yy + ' в ' + hh + ':' + min;
+}  %>
+
+
+
 <% function fill_rows(nDays, thisDay, column, add_month) {
+
+
+let has_brones;
+let brone_time;
   result = ''
   result +=  "<div class='cal_row weeks'>"
   for (i = 1; i <= nDays; i++) {
     let z = (i * 0.01) + 1
-    result +=  "<div class='cal_cell' yv='" + (get_year_val()) + "' dv='" + (i) + "' mv='" + (get_month_val(add_month)) + "' style='transition-delay:" + (z) + "s'>"
+
+
+
+
+    hasbrones = ''
+    brone_time = []
+
+    brones.forEach(function(brone){
+
+      if (get_year_val() == brone.brone_time.split('-')[0] &&
+      i == brone.brone_time.split('-')[2].split(' ')[0] &&
+       get_month_val(add_month) == brone.brone_time.split('-')[1] ) {
+          hasbrones = 'hasbrones'
+          brone_time.push(brone.brone_time.split('-')[2].split(' ')[1])
+      }
+    });
+    brone_time = brone_time.join(',')
+result +=  "<div class='cal_cell " + hasbrones + "' brones='" + brone_time + "' yv='" + (get_year_val()) + "' dv='" + (i) + "' mv='" + (get_month_val(add_month)) + "' style='transition-delay:" + (z) + "s'>"
+
     if (i == thisDay)
       result +=  "<span class = 'today'>"
     result +=  i
@@ -66,6 +109,9 @@ return result
     return d.getFullYear()
 }
 %>
+
+
+
 <% function calendar(add_month) {
   var today = new Date();
   var nextDay = new Date(today);
@@ -112,6 +158,9 @@ ${fill_rows(nDays, thisDay, the_column, add_month)}
   <p class="text-white text-center">
     После получения бронирования, наш администратор свяжется с вами
   </p>
+
+
+
       <div class="months" id="months">
         <div class="row cal-row" id="scroll_present">
         <div class="col-md-4">
@@ -223,33 +272,66 @@ scrollio.listen('calendars')
 
 var Choice_maker = function (el) {
 
+  this.remove_All_add_One_Class = function (this_jel, querysel, clsname) {
+    $(querysel).removeClass(clsname)
+    this_jel.addClass(clsname)
+  }
+
+
+  this.get_brone_times = function (jel) {
+    return jel.attr('brones').split(',')
+  }
+  this.time_lock = function (broned_hours, timepickers) {
+    jQuery(timepickers).removeClass('locked')
+    jQuery(timepickers).each( function() {
+        let d = $(this)
+        let timepick = d.find('div').attr('time')
+                  broned_hours.forEach(chosen_hour => {
+                    if (timepick == chosen_hour) {
+                      d.addClass('locked')
+                    }
+});});
+  // Array.from(document.getElementsByClassName(timepickers)).forEach(timepick => {
+  //   console.log('2');
+  //           broned_hours.forEach(chosen_hour => {
+  //             if (timepick.find('div').attr('time') == chosen_hour) {
+  //               timepick.addClass('locked')
+  //             }
+  //         });
+  //   });
+  }
+
+
+
   this.switch_to_hours = function (jel) {
-    $('.cal_cell').removeClass('day_chosen')
-    jel.addClass('day_chosen')
-    $('#calendars').removeClass('visible')
+      remove_All_add_One_Class(jel, '.cal_cell', 'brone_time')
+      $('#calendars').removeClass('visible')
       $('#months').addClass('switch_to_hours')
+      let broned_hours = get_brone_times(jel);
+      time_lock(broned_hours, '.hours .ul .time_picker');
   }
   this.switch_to_months = function (jel) {
-        $('#months').removeClass('switch_to_hours')
+      $('#months').removeClass('switch_to_hours')
       $('#calendars').addClass('visible')
   }
   this.switch_to_form = function (jel) {
-        $('#hours').addClass('switch_to_form')
-        $('#form').addClass('visible')
+      remove_All_add_One_Class(jel, '.time_picker', 'brone_time')
+      $('#hours').addClass('switch_to_form')
+      $('#form').addClass('visible')
   }
   this.action = function (jel) {
 }
   this.serialize_form = function (jel) {
     let r = {}
-    let yv = $(".day_chosen").attr('yv')
-    let mv = $(".day_chosen").attr('mv')
-    let dv = $(".day_chosen").attr('dv')
-    let time = $(".time_picker div").attr('time')
-    let price = $(".time_picker div").attr('price')
+    let yv = $(".brone_time").attr('yv')
+    let mv = $(".brone_time").attr('mv')
+    let dv = $(".brone_time").attr('dv')
+    let time = $(".time_picker.brone_time div").attr('time')
+    let price = $(".time_picker.brone_time div").attr('price')
     r.name = $("#name").val()
     r.phone = $("#phone").val()
     r.quantity =  jQuery('#quantity option:selected').text();
-    r.day_chosen = yv + '-' + mv + '-' + dv + ' ' + time
+    r.brone_time = yv + '-' + mv + '-' + dv + ' ' + time
     r.time = time
     r.price = price
     r.quest_name = '<%= d.page_link %>'
@@ -263,7 +345,10 @@ let action = this.action
 let switch_to_hours = this.switch_to_hours
 let switch_to_months = this.switch_to_months
 let switch_to_form = this.switch_to_form
+let get_brone_times = this.get_brone_times
 let serialize_form = this.serialize_form
+let time_lock = this.time_lock
+let remove_All_add_One_Class = this.remove_All_add_One_Class
 let cal_cell = $('.' + el);
 let back = $('#back');
 let timepicker = $('.time_picker');
@@ -285,23 +370,16 @@ let brone_submit = $('#brone_submit');
               url: "/brones",
               data: data,
               error: function (xhr, status, errorThrown) {
-$('.response').text('Пожалуйста, заполните все поля')
- },
+              $('.response').text('Пожалуйста, заполните все поля')
+               },
               method: "POST",
               beforeSend: function( xhr ) { xhr.overrideMimeType( "text/plain; charset=utf-8" ); }
           })
           .done(function( data ) {
-
               $('.response').html('<h1 class="text-white">Благодарим за Ваш выбор!</h1>')
             console.log( "Sample of data:", data.slice( 0, 100 ) );
           });
-
-
-
      });
-
-
-
  }
 
 }
@@ -309,9 +387,6 @@ $('.response').text('Пожалуйста, заполните все поля')
 var choice_maker = new Choice_maker('cal_cell')
 choice_maker.listen()
 
-
 </script>
-
-
 <div class="container">
 <div class="single-post row">

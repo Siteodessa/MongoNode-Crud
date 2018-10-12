@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const broneSchema = mongoose.Schema
 ({
     timestamp: { type: Number, default: '11231' , unique:true},
-    day_chosen: { type: String, default: 'aaa' },
+    brone_time: { type: String, default: 'aaa' },
     name: { type: String, default: 'aaa' },
     phone: { type: String, default: 'aaa' },
     price: { type: String, default: 'aaa' },

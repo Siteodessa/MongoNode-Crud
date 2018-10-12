@@ -7,12 +7,9 @@ module.exports = (core, dbmodel, quests_m, quests) => {
 
 
       app.get('/quests', function(req, res) {
-        console.log('link got');
         app.use(express.static('views'));
-      d = {};
+        d = {};
         dbmodel.find({}, function(err, data) {
-          console.log('dbmodel.find');
-
         data.forEach(elem => {
         if (elem.id == '5b59c5414b38dd34d80410bd')
         for (let prop in elem) {
@@ -20,7 +17,6 @@ module.exports = (core, dbmodel, quests_m, quests) => {
         else { d[prop] = elem[prop] }
         }
         });
-        console.log('data.forEach end');
           quests_m.find()  .then(quests => {
             res.status(200).render('pages/quests_page.ejs', {
             d: d,

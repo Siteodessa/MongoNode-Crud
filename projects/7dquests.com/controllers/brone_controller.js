@@ -27,7 +27,7 @@ function check_empty(brone) {
 function check_brone(brone) {
 
         check_empty(brone[timestamp])
-        check_empty(brone[day_chosen])
+        check_empty(brone[brone_time])
         check_empty(brone[name])
         check_empty(brone[phone])
         check_empty(brone[price])
@@ -39,11 +39,12 @@ function check_brone(brone) {
 
 const Model = require('../db/models/brone.model.js');
 exports.create = (req, res) => {
-    timestamp = Date.parse(req.body.day_chosen)
+    timestamp = new Date(req.body.brone_time).getTime()
+    console.log(timestamp);
       // EXTRACT SCHEMA ,MAKE LOOP THROUGH IT AND SAVE THE CORRESPONDING FIELD YOPTA
     const brone = new Model({
         timestamp: timestamp || "",
-        day_chosen: req.body.day_chosen || "",
+        brone_time: req.body.brone_time || "",
         name: req.body.name || "",
         phone: req.body.name || "",
         price: req.body.price || "",
