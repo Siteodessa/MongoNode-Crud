@@ -1,13 +1,28 @@
+
+
+
+
+
+              <% function ifDefined(elem, markup, elser) {
+                if   (typeof(elem) !== 'undefined' && elem !== ''  )  {
+                  return markup
+                } else {
+                  return elser
+                }
+              }
+              %>
+
+
+<% let obj = d %>
 <div class="col-lg-8">
   <div class="listing_title_container">
     <div class="listing_title"><%= d.title %></div>
-    <p class="listing_text">Donec ullamcorper nulla non metus auctor fringi lla.Curabitur blandit tempus porttitor.</p>
+    <p class="listing_text"><%- ifDefined(d.subheading, d.subheading, 'Современный жилой комплекс со всеми удобствами') %></p>
     <div class="room_tags">
-      <span class="room_tag"><a href="#">Hottub</a></span>
-      <span class="room_tag"><a href="#">Swimming Pool</a></span>
-      <span class="room_tag"><a href="#">Garden</a></span>
-      <span class="room_tag"><a href="#">Patio</a></span>
-      <span class="room_tag"><a href="#">Hard Wood Floor</a></span>
+      <span class="room_tag"><a href="#"><%= obj.construction_type %></a></span>
+      <span class="room_tag"><a href="#">Окна:<%= obj.windows %></a></span>
+      <span class="room_tag"><a href="#"><%= obj.warming %></a></span>
+      <span class="room_tag"><a href="#"><%= obj.block %> район</a></span>
     </div>
   </div>
 </div>

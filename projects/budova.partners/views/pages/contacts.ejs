@@ -1,53 +1,55 @@
+
+
+
+
+              <% function ifDefined(elem, markup, elser) {
+                if   (typeof(elem) !== 'undefined' )  {
+                  return markup
+                } else {
+                  return elser
+                }
+              }
+              %>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The Estate - Contact</title>
+<title><%= sitedata.contacts_page_title %></title>
 	 <% include ../partials/head %>
 <link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
 </head>
-
 <body>
-
 <div class="super_container">
-
-	<!-- Home -->
 	<div class="home">
-		<!-- Image by: https://unsplash.com/@breather -->
-		<div class="home_background" style="background-image:url(images/contact.jpg)"></div>
+		<div class="home_background" style="background-image:url(<%- ifDefined(sitedata.contacts_page_background, sitedata.contacts_page_background, '/images/contact.jpg') %>)"></div>
 
 		<div class="container">
 			<div class="row">
 				<div class="col">
 					<div class="home_content">
 						<div class="home_title">
-							<h2>single listings</h2>
+							<h2><%= sitedata.contacts_page_title %></h2>
 						</div>
 						<div class="breadcrumbs">
-							<span><a href="index.html">Home</a></span>
-							<span><a href="#"> Contact</a></span>
+							<span><a href="/">Главная</a></span>
+							<span><a href="#"> <%= sitedata.contacts_page_title %></a></span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<!-- Header -->
-
 	<header class="header trans_300">
 	<% include ../partials/header %>
 	</header>
-
-	<!-- Contact -->
-
 	<div class="contact">
 		<div class="container">
 			<div class="row">
-
 				<div class="col-lg-6 contact_col">
 					<div class="estate_contact_form">
-						<div class="contact_title">say hello</div>
+						<div class="contact_title"><%= sitedata.contacts_page_form_title %></div>
 						<div class="estate_contact_form_container">
 							<form id="estate_contact_form" class="estate_contact_form" action="post">
 								<input id="estate_contact_form_name" class="estate_input_field estate_contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required.">
@@ -61,32 +63,49 @@
 				</div>
 
 				<div class="col-lg-3 contact_col">
-					<div class="contact_title">contact info</div>
+					<div class="contact_title"><%= sitedata.contacts_page_contact_title %></div>
 					<ul class="contact_info_list estate_contact">
-						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="images/placeholder.svg" alt=""></div></div>
-							<div class="contact_info_text">4127 Raoul Wallenber 45b-c Gibraltar</div>
-						</li>
-						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="images/phone-call.svg" alt=""></div></div>
-							<div class="contact_info_text">2556-808-8613</div>
-						</li>
-						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="images/message.svg" alt=""></div></div>
-							<div class="contact_info_text"><a href="mailto:contactme@gmail.com?Subject=Hello" target="_top">contactme@gmail.com</a></div>
-						</li>
-						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="images/planet-earth.svg" alt=""></div></div>
-							<div class="contact_info_text"><a href="https://colorlib.com">www.colorlib.com</a></div>
-						</li>
+						<%- ifDefined(sitedata.address, `
+								<li class="contact_info_item d-flex flex-row">
+								<div>
+									<div class="contact_info_icon">
+										<img src="images/placeholder.svg" alt="">
+									</div>
+								</div>
+									<div class="contact_info_text">${sitedata.address}</div>
+								</li>
+						 `) %>
+
+
+						<%- ifDefined(sitedata.phone, `
+								<li class="contact_info_item d-flex flex-row">
+								 <div>
+									 <div class="contact_info_icon">
+										<img src="images/phone-call.svg" alt="">
+									 </div>
+								 </div>
+								 <div class="contact_info_text">${sitedata.phone}</div>
+								</li>
+						 `) %>
+
+						<%- ifDefined(sitedata.mail, `
+							<li class="contact_info_item d-flex flex-row">
+								<div><div class="contact_info_icon"><img src="images/message.svg" alt=""></div></div>
+								<div class="contact_info_text"><a href="mailto:${sitedata.mail}?Subject=Hello" target="_top">${sitedata.mail}</a></div>
+							</li>
+							`) %>
+							<li class="contact_info_item d-flex flex-row">
+								<div><div class="contact_info_icon"><img src="images/planet-earth.svg" alt=""></div></div>
+								<div class="contact_info_text"><a href="/"><%- ifDefined(sitedata.sitename, sitedata.sitename) %></a></div>
+							</li>
 					</ul>
 					<div class="estate_social">
 						<ul class="estate_social_list">
-							<li class="estate_social_item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-							<li class="estate_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-							<li class="estate_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-							<li class="estate_social_item"><a href="#"><i class="fab fa-dribbble"></i></a></li>
-							<li class="estate_social_item"><a href="#"><i class="fab fa-behance"></i></a></li>
+
+							            <%- 		ifDefined(sitedata.fb_link, '<li class="footer_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>') %>
+							            <%- 		ifDefined(sitedata.insta_link, '<li class="footer_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li></a></li>') %>
+							            <%- 		ifDefined(sitedata.twitter_link, '<li class="footer_social_item"><a href="#"><i class="fab fa-instagram"></i></a></li></a></li>') %>
+
 						</ul>
 					</div>
 				</div>
@@ -99,52 +118,13 @@
 				</div>
 			</div>
 		</div>
-		<div class="estate_map">
-			<div id="google_map" class="google_map">
-				<div class="map_container">
-					<div id="map"></div>
-				</div>
-			</div>
-		</div>
+
 	</div>
-	<div class="newsletter">
-		<div class="container">
-			<div class="row row-equal-height">
-				<div class="col-lg-6">
-					<div class="newsletter_title">
-						<h3>subscribe to our newsletter</h3>
-						<span class="newsletter_subtitle">Get the latest offers</span>
-					</div>
-					<div class="newsletter_form_container">
-						<form action="#">
-							<div class="newsletter_form_content d-flex flex-row">
-								<input id="newsletter_email" class="newsletter_email" type="email" placeholder="Your email here" required="required" data-error="Valid email is required.">
-								<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_200" value="Submit">subscribe</button>
-							</div>
-						</form>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<a href="#">
-						<div class="weekly_offer">
-							<div class="weekly_offer_content d-flex flex-row">
-								<div class="weekly_offer_icon d-flex flex-column align-items-center justify-content-center">
-									<img src="images/prize.svg" alt="">
-								</div>
-								<div class="weekly_offer_text text-center">weekly offer</div>
-							</div>
-							<div class="weekly_offer_image" style="background-image:url(images/weekly.jpg)"></div>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
+<% include ../partials/newsletter %>
 	<% include ../partials/footer %>
 </div>
 	 <% include ../partials/foot %>
 	 <script src="js/contact_custom.js"></script>
 	 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
 </body>
-
 </html>

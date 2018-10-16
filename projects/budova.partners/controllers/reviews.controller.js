@@ -1,4 +1,4 @@
-const Review = require('../db/models/reviews.model.js');
+const Review = require('../db/models/review.model.js');
 exports.create = (req, res) => {
     const review = new Review({    // Create a Review
 

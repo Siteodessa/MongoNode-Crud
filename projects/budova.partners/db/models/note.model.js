@@ -6,12 +6,13 @@ const NoteSchema = mongoose.Schema
     home_title: String,
     page_link: String,
     home_background : String,
-        subheading : String,
-        prices_start_at : { type:  Number,label:  'Цены от (Число)'},
+    subheading : String,
+    prices_start_at : { type:  Number,label:  'Цены от (Число)'},
     breadcrumbs : Array,
     main_nav_list : String,
     phone : String,
     logo : { type: String, default: 'images/logo.png'},
+    video : { type: String, default: '/video/budova.mp4', ru_label: 'Видео'},
     address: { type: String, default: 'Одесса'},
     map_iframe : String,
     listing_title : String,
@@ -21,7 +22,7 @@ const NoteSchema = mongoose.Schema
     listing_slider : String,
     listing_details : String,
     description : String,
-    additional_details : String,
+    additional_details : { type: String, default: 'Дополнительная информация'},
     additional_details_block : String,
     listing_video : String,
     map_heading : String,
@@ -51,6 +52,7 @@ const NoteSchema = mongoose.Schema
     block: { type: String, default: 'Приморский', enum:["Приморский", "Киевский", "Суворовский", "Малиновский"] },
     content: String,
     counter:  { type: Number, default: 0 },
+    house_deploy_time:  { type: String, default: 'Строящийся', enum:["Строящийся", "Сдан"] ,url_params:['stroyaschiesya-doma', 'sdannye-doma'], ru_label: 'Строится или сдан', },
 }, {
     timestamps: true
 });

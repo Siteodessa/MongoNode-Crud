@@ -1601,3 +1601,8 @@ section
 body::selection {
 background: #ffb7b7;
 }
+
+
+.room_image img {
+    width: 100%;
+}

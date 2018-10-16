@@ -917,20 +917,6 @@ section
 {
 	width: 100%;
 }
-.featured_panel
-{
-	position: absolute;
-	left: 0;
-	top: 21px;
-	font-size: 14px;
-	font-weight: 600;
-	text-transform: uppercase;
-	color: #FFFFFF;
-	background: #fd784f;
-	line-height: 41px;
-	padding-left: 29px;
-	padding-right: 26px;
-}
 .card
 {
 	display: block;
@@ -958,19 +944,8 @@ section
 {
 	margin-top: 24px;
 }
-.card-title a
-{
-	font-size: 21px;
-	font-weight: 600;
-	color: #0e1d41;
-}
-.card-text
-{
-	font-size: 14px;
-	font-weight: 400;
-	color: #838383;
-	margin-top: 14px;
-}
+
+
 .rooms
 {
 	margin-top: 30px;
@@ -1026,14 +1001,6 @@ section
 	padding-right: 13px;
 	padding-top: 1px;
 	padding-bottom: 2px;
-}
-.featured_card_box
-{
-	width: 100%;
-	height: 86px;
-	background: #1e2c4e;
-	margin-top: 7px;
-	padding-left: 30px;
 }
 .featured_card_container:hover .featured_card_box
 {
@@ -1122,8 +1089,8 @@ section
 }
 .testimonial_image
 {
-	width: 81px;
-	height: 81px;
+	width: 61px;
+	height: 61px;
 	border-radius: 50%;
 	overflow: hidden;
 }
@@ -1349,7 +1316,7 @@ section
 	-o-transform: translateX(-50%);
 	transform: translateX(-50%);
 	bottom: 21px;
-	width: 113px;
+	width: 100%;
 	height: 34px;
 	background: #fd784f;
 	text-align: center;
@@ -1907,32 +1874,19 @@ section
 	color: #485165;
 	line-height: 49px;
 }
-
-.card.featured_card.trans_300 a {
-    overflow:  hidden;
-    max-width: 100%;
-    display:  block;
-    max-height:  200px;
+.city_image {
+    overflow: hidden;
 }
 
-.featured_row .col-lg-4 {
-    margin-bottom:  30px;
+.owl-carousel .owl-item a.page_link img {
+    height: auto;
 }
 
-.card-text {
-    height: 172px;
-    overflow:  hidden;
+.city_name span {
+    font-size: 9px;
+    line-height: 0;
 }
 
-.card-text * {
-    line-height: 2.1;
+.owl-carousel .testimonial_user img {
+    height: 61px;
 }
-
-a.page_link img {
-    width: 15px;
-    height: 15px;
-    float:  right;
-    margin:  3px 5px;
-}
-
-a.page_link {width: 53%;display:  block;text-indent: 26%;color:  #fff;}

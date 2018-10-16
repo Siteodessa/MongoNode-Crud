@@ -48,28 +48,7 @@ sitedata: sitedata
 });
 }
 
-  function homepage(db_id, pageurl, ejs_file, app, dbmodel, express,  IsParseableJson, sitedata){
-  app.get(pageurl, function(req, res) {
-  d = {};
-  dbmodel.find({}, function(err, data) {
-  app.use(express.static('views'));
-  data.forEach(elem => {
-  if (elem.id == db_id)
-  for (let prop in elem) {
-  if (IsParseableJson(elem[prop])) {   d[prop] = JSON.parse(elem[prop]) }
-  else { d[prop] = elem[prop] }
-  }
-  }
-  );
-d.sitename = 'Budova.Partners'
-  res.status(200).render(ejs_file, {
-  d: d,
-  content: data,
-  sitedata: sitedata,
-  });
-  });
-  });
-  }
+
   function is_LoggedIn(req) {
        if (req.session.user) { return true};return false;
     }
@@ -90,7 +69,7 @@ custom_functions.type_n_log = type_n_log;
 custom_functions.IsParseableJson = IsParseableJson;
 custom_functions.json_Result = json_Result;
 custom_functions.express_page = express_page;
-custom_functions.homepage = homepage;
+// custom_functions.homepage = homepage;
 custom_functions.bodyParser = bodyParser;
 custom_functions.default_data = default_data;
 custom_functions.is_LoggedIn = is_LoggedIn;

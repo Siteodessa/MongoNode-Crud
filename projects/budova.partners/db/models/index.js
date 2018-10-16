@@ -1,14 +1,22 @@
 console.log('models...');
 
-const notemodel = require('./note.model.js');
-const usermodel = require('./user.model.js');
-const sitedatamodel = require('./sitedata.model.js');
+const Note_m = require('./note.model');
+const User_m = require('./user.model');
+const Sitedata_m = require('./sitedata.model');
+const Task_m = require('./task.model');
 
 
 console.log('default_users...');
-const default_users = require('../config/default_users.js');
-const default_sitedata = require('../config/default_sitedata.js');
-const default_reviews = require('../config/default_reviews.js');
+const default_users = require('../config/default_users');
+const default_sitedata = require('../config/default_sitedata');
+const default_reviews = require('../config/default_reviews');
 
 
-module.exports = {notemodel, usermodel, sitedatamodel, default_users, default_sitedata};
+module.exports = {
+  Note_m,
+  User_m,
+  Sitedata_m,
+  default_users,
+  default_sitedata,
+  Task_m
+};

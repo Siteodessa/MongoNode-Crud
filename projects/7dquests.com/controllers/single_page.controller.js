@@ -5,8 +5,8 @@ function update_counter(model, elem) {
   .then(elem => { console.log(elem.title + ' was visited ' + elem.counter + ' times'); }) .catch(err => { console.log(err); })
 }
 
-function render_page(res, elem, elements, brones) {
-   res.render('./quests_single.ejs', {d: elem,reviews: elements, brones: brones})
+function render_page(res, elem, reviews, brones) {
+   res.render('./quests_single.ejs', {d: elem,reviews: reviews, brones: brones})
 }
 
 function equals(a, b) {
@@ -29,14 +29,18 @@ const Quest_m = require('../db/models/quest.model.js');
 const Reviews_m = require('../db/models/reviews.model');
 const Brone_m = require('../db/models/brone.model');
 
+
+
 exports.single_page = (req, res, quests_m) => {
+
+
             Quest_m.find().then(quests => {
               Brone_m.find().then(brones => {
-                Reviews_m.find().then(elements => {
+                Reviews_m.find().then(reviews => {
                   quests.forEach(elem => {
                     if (equals(elem.page_link, req.params.page_link)) {
                       update_counter(Quest_m, elem);
-                      render_page(res, elem, elements, brones)
+                      render_page(res, elem, reviews, brones)
                     }
                   });
                 })

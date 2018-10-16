@@ -46,6 +46,8 @@ app.get('/objects', function(req, res){
         });
       })
 });
+
+
 app.get('/dashboard', function(req, res){
     if (!req.session.user) { return redirect_to_login(res) }
     user = req.session.user;
@@ -57,9 +59,10 @@ app.get('/dashboard', function(req, res){
 
 
 
+
 app.get('/edit_reviews', function(req, res){
   if (!is_LoggedIn(req)) { return redirect_to_login(res) }
-  const Review = require('../db/models/reviews.model.js');
+  const Review = require('../db/models/review.model.js');
   Review.find()
   .then(reviews => {
     return res.status(200).render('dashboardUser.ejs', {

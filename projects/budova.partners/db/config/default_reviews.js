@@ -1,4 +1,4 @@
-var Review_model = require('../models/reviews.model.js');
+var Review_model = require('../models/review.model.js');
 var default_reviews =  {
   lama: new Review_model({
     author : "Виктория",

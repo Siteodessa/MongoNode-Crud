@@ -35,9 +35,6 @@
 		<div class="container">
 			<div class="row">
 
-<!-- Необходимо добавить поля - подзаголовок
-Цены от
-Галерея -->
 
 				<% include ../partials/single/single_top %>
 			</div>
@@ -62,31 +59,32 @@
 
 					<!-- Listing Additional Details -->
 					<div class="listing_additional_details">
-						<div class="listing_subtitle">Additional Details</div>
+						<div class="listing_subtitle">Дополнительная информация</div>
 						<ul class="additional_details_list">
-							<li class="additional_detail"><span>bedroom features:</span> Main Floor Master Bedroom, Walk-In Closet</li>
-							<li class="additional_detail"><span>dining area:</span> Breakfast Counter/Bar, Living/Dining Combo</li>
-							<li class="additional_detail"><span>doors & windows:</span> Bay Window</li>
-							<li class="additional_detail"><span>entry location:</span> Mid Level</li>
-							<li class="additional_detail"><span>floors:</span> Raised Foundation, Vinyl Tile, Wall-to-Wall Carpet, Wood</li>
+							<li class="additional_detail"><span>Деталь:</span> ее подробности</li>
+							<li class="additional_detail"><span>Деталь:</span> ее подробности</li>
+							<li class="additional_detail"><span>Деталь:</span> ее подробности</li>
+							<li class="additional_detail"><span>Деталь:</span> ее подробности</li>
+							<li class="additional_detail"><span>Деталь:</span> ее подробности</li>
 						</ul>
 					</div>
 
 					<!-- Listing Video -->
 					<div class="listing_video">
-						<div class="listing_subtitle">Property Video</div>
+						<div class="listing_subtitle"><%- d.title %> на видео</div>
 						<div class="listing_video_link">
-							<a class="video" href="https://vimeo.com/99340873" title=""><img src="/images/listing_video.jpg" alt="https://www.pexels.com/u/binyaminmellish/"></a>
-							<div class="video_play"><img src="/images/play.svg" alt=""></div>
+							<a class="video" href="<%- d.video %>" title="">
+								<img src="/video/video_banner.png" alt="/video/video_banner.png"><div class="video_play"><img src="/images/play.svg" alt=""></div></a>
+
 						</div>
 					</div>
 
 					<!-- Listing Map -->
 					<div class="listing_map">
-						<div class="listing_subtitle">Property on map</div>
+						<div class="listing_subtitle"><%- d.title %> на карте</div>
 						<div id="google_map">
 							<div class="map_container">
-								<%= d.map_iframe %>
+								<%- d.map_iframe %>
 							</div>
 						</div>
 					</div>
@@ -97,142 +95,11 @@
 		</div>
 	</div>
 
-	<!-- Newsletter -->
+<% include ../partials/newsletter %>
+<% include ../partials/footer %>
 
-	<div class="newsletter">
-		<div class="container">
-			<div class="row row-equal-height">
 
-				<div class="col-lg-6">
-					<div class="newsletter_title">
-						<h3>subscribe to our newsletter</h3>
-						<span class="newsletter_subtitle">Get the latest offers</span>
-					</div>
-					<div class="newsletter_form_container">
-						<form action="#">
-							<div class="newsletter_form_content d-flex flex-row">
-								<input id="newsletter_email" class="newsletter_email" type="email" placeholder="Your email here" required="required" data-error="Valid email is required.">
-								<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_200" value="Submit">subscribe</button>
-							</div>
-						</form>
-					</div>
-				</div>
-
-				<div class="col-lg-6">
-					<a href="#">
-						<div class="weekly_offer">
-							<div class="weekly_offer_content d-flex flex-row">
-								<div class="weekly_offer_icon d-flex flex-column align-items-center justify-content-center">
-									<img src="/images/prize.svg" alt="">
-								</div>
-								<div class="weekly_offer_text text-center">weekly offer</div>
-							</div>
-							<div class="weekly_offer_image" style="background-image:url(/images/weekly.jpg)"></div>
-						</div>
-					</a>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-	<!-- Footer -->
-
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-
-				<!-- Footer About -->
-
-				<div class="col-lg-3 footer_col">
-					<div class="footer_col_title">
-						<div class="logo_container">
-							<a href="/">
-								<div class="logo">
-									<img src="<%= d.logo %>" alt="">
-									<span><%= d.logo %></span>
-								</div>
-							</a>
-						</div>
-					</div>
-					<div class="footer_social">
-						<ul class="footer_social_list">
-							<li class="footer_social_item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-							<li class="footer_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-							<li class="footer_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-							<li class="footer_social_item"><a href="#"><i class="fab fa-dribbble"></i></a></li>
-							<li class="footer_social_item"><a href="#"><i class="fab fa-behance"></i></a></li>
-						</ul>
-					</div>
-					<div class="footer_about">
-						<p>Lorem ipsum dolor sit amet, cons ectetur  quis ferme adipiscing elit. Suspen dis se tellus eros, placerat quis ferme ntum et, viverra sit amet lacus. Nam gravida  quis ferme semper augue.</p>
-					</div>
-				</div>
-
-				<!-- Footer Useful Links -->
-
-				<div class="col-lg-3 footer_col">
-					<div class="footer_col_title">useful links</div>
-					<ul class="footer_useful_links">
-						<li class="useful_links_item"><a href="#">Listings</a></li>
-						<li class="useful_links_item"><a href="#">Favorite Cities</a></li>
-						<li class="useful_links_item"><a href="#">Clients Testimonials</a></li>
-						<li class="useful_links_item"><a href="#">Featured Listings</a></li>
-						<li class="useful_links_item"><a href="#">Properties on Offer</a></li>
-						<li class="useful_links_item"><a href="#">Services</a></li>
-						<li class="useful_links_item"><a href="#">News</a></li>
-						<li class="useful_links_item"><a href="#">Our Agents</a></li>
-					</ul>
-				</div>
-
-				<!-- Footer Contact Form -->
-				<div class="col-lg-3 footer_col">
-					<div class="footer_col_title">say hello</div>
-					<div class="footer_contact_form_container">
-						<form id="footer_contact_form" class="footer_contact_form" action="post">
-							<input id="contact_form_name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required.">
-							<input id="contact_form_email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required.">
-							<textarea id="contact_form_message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
-							<button id="contact_send_btn" type="submit" class="contact_send_btn trans_200" value="Submit">send</button>
-						</form>
-					</div>
-				</div>
-
-				<!-- Footer Contact Info -->
-
-				<div class="col-lg-3 footer_col">
-					<div class="footer_col_title">contact info</div>
-					<ul class="contact_info_list">
-						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="/images/placeholder.svg" alt=""></div></div>
-							<div class="contact_info_text">4127 Raoul Wallenber 45b-c Gibraltar</div>
-						</li>
-						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="/images/phone-call.svg" alt=""></div></div>
-							<div class="contact_info_text">2556-808-8613</div>
-						</li>
-						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="/images/message.svg" alt=""></div></div>
-							<div class="contact_info_text"><a href="mailto:contactme@gmail.com?Subject=Hello" target="_top">contactme@gmail.com</a></div>
-						</li>
-						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><img src="/images/planet-earth.svg" alt=""></div></div>
-							<div class="contact_info_text"><a href="https://colorlib.com">www.colorlib.com</a></div>
-						</li>
-					</ul>
-				</div>
-
-			</div>
-		</div>
-	</footer>
-
-	<!-- Credits -->
-
-	<div class="credits">
-		<span>
-	Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Proudly presented to you <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://siteodessa.com" target="_blank">Siteodessa.com</a>
-	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
-	</div>
+	
 	</div>
 	<script src="/js/jquery-3.2.1.min.js"></script>
 	<script src="/styles/bootstrap4/popper.js"></script>

@@ -16,5 +16,5 @@ app.use(express.static('./public'));
     const image_routes = require('./image.routes')(app, is_LoggedIn, redirect_to_login);
     const auth_routes = require('./auth.routes')(app, is_LoggedIn, redirect_to_login, cf);
     const admin_pages_routes = require('./admin.pages.routes')(app, is_LoggedIn, redirect_to_login, cf);
-
+    const admin_api_routes = require('./admin.api.routes')(cf);
 };

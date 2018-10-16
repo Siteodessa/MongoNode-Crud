@@ -21,3 +21,7 @@ iframe.img_upl_frame {
     border: none;
     height: 60px;
 }
+
+.text-white {
+    color: #fff;
+}
