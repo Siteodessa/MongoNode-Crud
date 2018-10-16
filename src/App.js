@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import css from './css/z.css';
 import bootstrap from './css/bootstrap.min.css';
 import './App.css';
-//read
 class App extends Component {
   constructor(props) {
     super(props);
@@ -11,44 +10,52 @@ class App extends Component {
       response: null,
     };
   }
-//
 componentDidMount() {
-    let dis = this;
-    dis.callApi() .then(res =>{
-      return JSON.stringify(res)
+    this.callApi().then(res =>{
+      return res
     }).then(data =>{
       let i = 0
-      let cards = data.map((card) => {
-        return (
+      let card_statuses = {
+          "Срочное"  : "small-box bg-red",
+          "Важное"   : "small-box bg-orange",
+          "Нужное"   : "small-box bg-yellow",
+          "Готовое"  : "small-box bg-green",
+          "Ожидание" : "small-box bg-purple"
+      }
 
+      const cards = data.map((card) => {
+        return (
           <div key={++i}>
-              <div>{card.task}</div>
+              <div className="col-lg-3 col-xs-6">
+                <div className={card_statuses[card.task_status]}>
+                  <div className="inner">
+                    <h3>{i}</h3>
+                    <p>{card.task}</p>
+                    <blockquote>{card.task_desc}</blockquote>
+                    <span>{card.task_status}</span>
+                  </div>
+                  <div className="icon">
+                    <i className="ion ion-edit"></i>
+                  </div>
+                </div>
+              </div>
           </div>
         )
 
       })
-
+      this.setState({cards: cards});
+      console.log("state", this.state.cards)
   }).catch(err => console.log(err));
 }
 callApi = async () => { const response = await fetch('http://localhost:27/task_management'); const body = await response.json(); if (response.status !== 200) throw Error(body.message); return body; };
   render() {
     return (
       <div className="App">
-        <section className="content">
-        <h1>Задачи</h1>
-        <a href="https://reactjs.org/docs/lists-and-keys.html">ОТВЕТ ТУТ</a>
-        <a href="https://blog.hellojs.org/fetching-api-data-with-react-js-460fe8bbf8f2">А ТУТ ЕЩЕ ЛУЧШЕ</a>
-        <div className="taskcard">
-
-        </div>
-        </section>
+          {this.state.cards}
       </div>
     );
   }
 }
-
-
-
 
 class AddTask extends App {
 
