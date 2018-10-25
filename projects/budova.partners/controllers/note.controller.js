@@ -198,7 +198,7 @@ exports.findOne = (req, res) => {// Find a single note with a noteId
 };
 exports.custom_update = (req, res) => {
 
-var the_data = req.body;
+let the_data = req.body;
 
 // for (let prop in req.body) {
 //   console.log('gotcha');
@@ -209,7 +209,13 @@ var the_data = req.body;
 // }
 // delete the_data["noteId"];
 
-console.log(the_data);
+console.log(the_data["gallery"]);
+
+the_data["gallery"] = the_data["gallery"][1].replace('[object Object]', '');
+the_data["gallery"] = JSON.stringify(the_data["gallery"])
+console.log('Handled');
+console.log(the_data["gallery"]);
+
     Note.findByIdAndUpdate(req.params.noteId, the_data, {new: true})
     .then(note => {
         if(!note) {

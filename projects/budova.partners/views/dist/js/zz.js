@@ -70,9 +70,38 @@
           // }
         })
       }
+      this.update_iframes = function(iframe0, iframe_elem, data) {
+        var iframe0 = $(iframe0);
+        var iframe_elem = iframe0.contents().find(iframe_elem)
+         iframe_elem.html('<span id="the_image"><img src="/uploads/' + data['home_background'] + '"></span><span>' + data['home_background'] + '</span>')
+        iframe_elem.css({
+          "position": "absolute"
+        })
+        iframe_elem.find('img').css({
+          "max-width": "60px",
+                    "margin": "0 20px -3px 90px",
+          "max-height": "40px"
+        })
+
+      }
+      this.update_multimedia_iframes = function(iframe0, iframe_elem, data) {
+        var iframe0 = $(iframe0);
+        var iframe_elem = iframe0.contents().find(iframe_elem)
+        if (typeof(data['gallery']) == 'undefined') return
+        gallery_html = '<div class="gallery">'
+        data['gallery'] = data['gallery'].split('"')[1]
+        if (typeof(data['gallery']) == 'undefined') return
+        iframe0.contents().find('div#multimedialinks').text(data['gallery'])
+        data['gallery'].split(',').forEach(elem => {
+          gallery_html += '<div class="gallery_elem"><span id="the_image"><img src="/uploads/' + elem + '"></span></div>'
+        });
+         iframe_elem.html(gallery_html + '</div>')
+      }
       // ?DANGER
       this.listen = function(activator, add_new_obj_elem) {
         update_rows_data = this.update_rows_data
+        update_iframes = this.update_iframes
+        update_multimedia_iframes = this.update_multimedia_iframes
         $('.elems.edit').click(function() {
           let id = $(this).find('i').attr('id')
           $.get({
@@ -83,22 +112,14 @@
             })
             .done(function(data) {
               data = JSON.parse(data)
-              console.log(data);
+              // console.log(data);
               update_rows_data('.db_group', data)
               let iframe = document.querySelector('iframe.cke_wysiwyg_frame.cke_reset');
               let iframeElement = iframe.contentWindow.document.activeElement.innerHTML = data["content"];
-              var iframe0 = $('iframe#media_upload');
-              var iframe_elem = iframe0.contents().find('#imagedata')
               var modal_body = $('.modal-body');
-               iframe_elem.html('<span id="the_image"><img src="/uploads/' + data['home_background'] + '"></span><span>' + data['home_background'] + '</span>')
-              iframe_elem.css({
-                "position": "absolute"
-              })
-              iframe_elem.find('img').css({
-                "max-width": "60px",
-                "margin": "0 20px -3px 90px",
-                "max-height": "40px"
-              })
+              update_iframes('iframe#media_upload', '#imagedata', data)
+              update_multimedia_iframes('iframe#multimedia_upload', '#multimediadata', data)
+
               modal_body.attr('id', id)
               $(add_new_obj_elem).click()
               $('button.save').hide()
@@ -110,13 +131,18 @@
     var saveform = function(result_form, ajax_form, url, method, close_after) {
       this.getdata = function() {
         var iframe0 = $('iframe#media_upload');
+        var iframe1 = $('iframe#multimedia_upload');
         var iframe_select = iframe0.contents().find('div#imagedata').text().replace(/\r?\n/g, "").replace(' ', "").replace(',', "").replace(' ', "").replace(' ', "").replace(' ', "").replace(' ', "");
+        var iframe_multimedia = '' + iframe1.contents().find('div#multimedialinks').text()
+        console.log(iframe_multimedia);
         let z = $('.' + ajax_form + ' input[name!=editor1]').not("[name='home_background']").not("[type='radio']").serialize()
         let iframe = document.querySelector('iframe.cke_wysiwyg_frame.cke_reset');
         let iframeDocument = iframe.contentWindow.document.activeElement.innerHTML;
         z +=
           b = '&content=' + iframeDocument +
-          '&home_background=' + iframe_select;
+          '&home_background=' + iframe_select +
+          '&gallery=' + iframe_multimedia +
+
         $('.db_group').each(function() {
           let labels = $(this).find('div').children('label')
           labels.each(function() {
@@ -126,14 +152,17 @@
               let vall = $(this).text().trim()
               if (name == 'home_background') {
                 vall = $(this).text()
-                console.log(vall);
+                // console.log(vall);
               }
               z += '&' + name + '=' + vall
             }
           })
         })
+
+        z += '&house_deploy_date=' + $('#datepicker').val()
         z = decodeURI(z)
-        // console.log(z);
+        console.log(z);
+        // alert(z);
         return z
       }
       this.get_iframe_description = function() {
@@ -158,7 +187,7 @@
             result = $.parseJSON(response);
             show_new_page_success('#result_form p', result)
             close_after ? close_after() : $('#result_form p');
-            console.log(response);
+            // console.log(response);
           },
           error: function(response) {
             if (response.responseText && response.responseText !== undefined) {
@@ -170,13 +199,13 @@
               }
               let str = response.responseText.split("title:");
               if (str[1] == undefined) {
-                console.log(response);
+                // console.log(response);
                 $('#result_form p').text(response.responseText).addClass('shown');
               } else {
-                console.log('and response is');
-                console.log(response);
-                console.log('and response text is');
-                console.log(response.responseText);
+                // console.log('and response is');
+                // console.log(response);
+                // console.log('and response text is');
+                // console.log(response.responseText);
                 let str1 = str[1].split('"');
                 let str2 = str1[0];
                 $('#result_form p').text(response.responseText).addClass('shown');
@@ -256,16 +285,11 @@ $('#example1').ready(function() {
           tablo.row(parent).remove().draw();
         },
         error: function(response) {
-          console.log('error occured');
+          // console.log('error occured');
         }
       });
     })
     make_roundy_images('img.obj')
 
       CKEDITOR_activate(CKEDITOR)
-
-
-    // setTimeout(function() {
-    //   console.clear()
-    // }, 2000)
   });

@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="section_title text-center">
+        <h3>Описание «ЖК Скай Сити»</h3>
+        <span class="section_subtitle">Жилой комплекс «Скай Сити» Одесса — это смарт помещения с огромным парковочным местом, оборудованной игровой зоной для детей и отдыха, жилье в одном из самых элитных районов города с удобной транспортной развязкой и развитой инфрастуктурой. Говорить о достоинствах доанного проекта можно бесконечно, поэтому сконцентрируемся на самых приоритетных моментах</span>
+      </div>
+    </div>
+  </div>
+  <div class="row featured_row">
+    <ul class="nav nav-pills">
+      <li><a data-toggle="pill" href="#home">Описание</a></li>
+      <li><a data-toggle="pill" href="#menu1">Цены</a></li>
+      <li><a data-toggle="pill" href="#menu2">Рассрочка</a></li>
+      <li><a class="tab_active" data-toggle="pill" href="#menu3">Планировки</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="home" class="tab-pane fade in active">
+        <% include ../partials/tabs/tab1 %>
+    </div>
+      <div id="menu1" class="tab-pane fade">
+        <% include ../partials/tabs/tab2 %>
+      </div>
+      <div id="menu2" class="tab-pane fade">
+        <% include ../partials/tabs/tab3 %>
+      </div>
+      <div id="menu3" class="tab-pane fade">
+        <% include ../partials/tabs/tab4 %>
+      </div>
+    </div>
+  </div>
+		</div>
+		</div>
+    <script>
+$('.tab_active').ready(function(){
+    $('.tab_active').click()
+})
+    </script>

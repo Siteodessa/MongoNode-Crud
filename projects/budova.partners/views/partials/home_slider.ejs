@@ -1,65 +1,91 @@
 <div class="home_slider_container">
-  <div class="owl-carousel owl-theme home_slider">
-    <!-- Home Slider Item -->
-    <div class="owl-item home_slider_item">
-      <!-- Image by https://unsplash.com/@aahubs -->
-      <div class="home_slider_background" style="background-image:url(images/omega.jpg)"></div>
-      <div class="home_slider_content_container text-center">
-        <div class="home_slider_content">
-          <h1 data-animation-in="flipInX" data-animation-out="animate-out fadeOut">Старт продаж</h1>
-          <div class="text-center text-white all">
-          <p class="row1"> Новый дом от СК Будова </p>
-          <p class="row2"> Гагаринское плато </p>
-          <p class="row3"> Скидка 7% </p>
-          <p class="row4"> До 01.06.2018   при 100% оплате, от 50 м<sup>2</sup> </p> </div>
-        </div>
-      </div>
-    </div>
-    <!-- Home Slider Item -->
-    <div class="owl-item home_slider_item">
-      <!-- Image by https://unsplash.com/@aahubs -->
-      <div class="home_slider_background" style="background-image:url(images/altair3.jpg)"></div>
-      <div class="home_slider_content_container text-center">
-        <div class="home_slider_content">
-          <h1 data-animation-in="flipInX" data-animation-out="animate-out fadeOut">Старт продаж</h1>
+  <link rel="stylesheet" href="/styles/swiper.min.css">
 
-            <div class="text-center text-white all">
-          <p class="row1"> Новый дом от СК Будова </p>
-          <p class="row2"> Альтаир - 3 </p>
-          <p class="row3"> Скидка 7% </p>
-          <p class="row4"> До 01.10.2018   при 100% оплате, от 50 м<sup>2</sup> </p>
-        </div>
-        </div>
-      </div>
-    </div>
-    <!-- Home Slider Item -->
-    <div class="owl-item home_slider_item">
-      <!-- Image by https://unsplash.com/@aahubs -->
-      <div class="home_slider_background" style="background-image:url(images/omega.jpg)"></div>
-      <div class="home_slider_content_container text-center">
-        <div class="home_slider_content">
-          <h1 data-animation-in="flipInX" data-animation-out="animate-out fadeOut">Старт продаж</h1>
+   <!-- Demo styles -->
+   <style>
+     html, body {
+       position: relative;
+       height: 100%;
+     }
+     body {
+       background: #eee;
+       font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+       font-size: 14px;
+       color:#000;
+       margin: 0;
+       padding: 0;
+     }
+     .swiper-container {
+       width: 100%;
+       height: 100%;
+       background: #000;
+     }
+     .swiper-wrapper {
+       height: 50%;
+       width: 100%;
+       position: relative;
+       top: 25%
+     }
+     .swiper-slide {
+       height: 100%;
+       text-align: center;
+       font-size: 18px;
+       background: #fff;
+       display: -webkit-box;
+       display: -ms-flexbox;
+       display: -webkit-flex;
+       display: flex;
+       -webkit-box-pack: center;
+       -ms-flex-pack: center;
+       -webkit-justify-content: center;
+       justify-content: center;
+       -webkit-box-align: center;
+       -ms-flex-align: center;
+       -webkit-align-items: center;
+       align-items: center;
+     }
+   </style>
 
-              <div class="text-center text-white all">
-                <p class="row1">
-            Новый дом от СК Будова
-          </p>
-          <p class="row2">
-            Гагаринское плато
-          </p>
-          <p class="row3">
-            Скидка 7%
-          </p>
-          <p class="row4">
-             До 01.06.2018   при 100% оплате, от 50 м<sup>2</sup>
-          </p>
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Home Slider Nav -->
-  <div class="home_slider_nav_left home_slider_nav d-flex flex-row align-items-center justify-content-end">
-    <img src="images/nav_left.png" alt="">
-  </div>
+ <body>
+   <!-- Swiper -->
+   <% let gallery_html = '' %>
+   <% d['gallery'] = d['gallery'].split('"')[1] %>
+   <%      d['gallery'].split(',').forEach(elem => {
+             gallery_html += '<div class="swiper-slide"><img src="/uploads/' + elem + '" /></div>'
+           });
+            %>
+   <div class="swiper-container">
+     <div class="swiper-wrapper">
+            <%- gallery_html %>
+     </div>
+     <!-- Add Pagination -->
+     <div class="swiper-pagination"></div>
+   </div>
+
+   <!-- Swiper JS -->
+   <script src="/js/swiper.min.js"></script>
+
+   <!-- Initialize Swiper -->
+   <script>
+     var swiper = new Swiper('.swiper-container', {
+       slidesPerView: 3,
+       spaceBetween: 30,
+       autoplay: {
+          delay: 250000,
+          disableOnInteraction: false,
+        },
+       pagination: {
+         el: '.swiper-pagination',
+         clickable: true,
+       },
+     });
+   </script>
+
+
+
+
+
+
+
+
 </div>

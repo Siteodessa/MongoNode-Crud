@@ -5,7 +5,8 @@ const NoteSchema = mongoose.Schema
     title:  { type: String, unique:true,minlength: [4, 'Слишком короткий заголовок'], maxlength: [50, 'Слишком длинный заголовок']},
     home_title: String,
     page_link: String,
-    home_background : String,
+    home_background : { type: String},
+    gallery: { type: String, default: '', ru_label: 'Галерея', input_type: 'Multimedia'},
     subheading : String,
     prices_start_at : { type:  Number,label:  'Цены от (Число)'},
     breadcrumbs : Array,
@@ -35,6 +36,7 @@ const NoteSchema = mongoose.Schema
     contact_info : String,
     notes : String,
     dbtest : String,
+    prices_start_at_per_meter : {type: Number, ru_label: 'Цены от (у.е. за м2)'},
     listing_details_iconblock: Array,
     useful_links_menu_list: String,
     floors_quant: { type: String, enum:["1", "2", "3", "4","5","6","7","8","9","10","11", "12", "13", "14","15","16","17","18","19","20","21", "22", "23", "24","25","26","27","28","29","30"] },
@@ -53,6 +55,7 @@ const NoteSchema = mongoose.Schema
     content: String,
     counter:  { type: Number, default: 0 },
     house_deploy_time:  { type: String, default: 'Строящийся', enum:["Строящийся", "Сдан"] ,url_params:['stroyaschiesya-doma', 'sdannye-doma'], ru_label: 'Строится или сдан', },
+    house_deploy_date:  { type: String, default: '' , ru_label: 'Дата сдачи',input_type: 'datepicker'},
 }, {
     timestamps: true
 });

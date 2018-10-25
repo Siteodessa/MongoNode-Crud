@@ -3,7 +3,8 @@ var default_sitedata =  {
   project: new Sitedata({
     sitename: 'Budova.partners',
     logo: '/images/logo.png',
-    phone: '+380936460780',
+    phone: '(067)621-93-24',
+    phone1: '(050)424-73-70',
     mail: 'mail.mail',
     address: 'adress',
     fb_link: 'fblink',

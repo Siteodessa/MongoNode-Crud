@@ -6,37 +6,44 @@
 	 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 	 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
 	</head>
-<body>
+<body class="homepage">
 <div class="super_container">
+
 	<div class="home">
 		<% include ../partials/home_slider %>
 	</div>
+
+
 	<header class="header trans_300">
 		<% include ../partials/header %>
 	</header>
-	<div class="search_box">
-		<% include ../partials/searchbox %>
+
+	<div class="houses_loop">
+		<% include ../partials/houses_loop %>
 	</div>
-	<div class="featured">
-		<% include ../partials/properties %>
+
+	<div class="home_advantages">
+		<% include ../partials/home_advantages %>
 	</div>
-	<div class="testimonials">
-	<% include ../partials/testimonials %>
-		</div>
-	<div class="workflow">
-			<% include ../partials/workflow %>
+
+	<div class="advantages adv">
+		<% include ../partials/advantages %>
 	</div>
-	<div class="cities">
-		<% include ../partials/slider_6_pcs %>
+
+	<div class="related rlt">
+		<% include ../partials/related %>
 	</div>
-	<div class="cta_1">
-			<% include ../partials/cta %>
+
+	<div class="contact_us">
+		<% include ../partials/contact_us %>
 	</div>
-	<div class="newsletter">
-		<% include ../partials/newsletter %>
-	</div>
-	<% include ../partials/footer %>
+
+
+
+	<% // include ../partials/old_home %>
 </div>
+
+
 <% include ../partials/foot %>
 </body>
 </html>

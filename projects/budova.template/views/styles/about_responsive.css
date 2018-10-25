@@ -1,0 +1,218 @@
+@charset "utf-8";
+@media only screen and (max-width: 1199px)
+{
+	.main_nav
+	{
+		margin-right: 56px;
+	}
+	.main_nav_item
+	{
+		margin-right: 33px;
+	}
+	.phone_home
+	{
+		padding-left: 31px;
+    	padding-right: 29px;
+	}
+	.phone_home span
+	{
+		font-size: 14px;
+	}
+}
+@media only screen and (max-width: 991px)
+{
+	.main_nav
+	{
+		display: none;
+	}
+	.phone_home
+	{
+		display: none;
+	}
+	.logo span
+	{
+		font-size: 20px;
+	}
+	.logo img
+	{
+		width: 60px;
+	}
+	.hamburger_container
+	{
+		display: block;
+	}
+	.intro_image
+	{
+		padding-left: 0px;
+		padding-top: 0px;
+	}
+	.intro_title
+	{
+		margin-top: 50px;
+	}
+	.milestone_col
+	{
+		margin-bottom: 60px;
+	}
+	.milestone_col:last-child
+	{
+		margin-bottom: 0px;
+	}
+	.agent_col
+	{
+		margin-bottom: 60px;
+	}
+	.agent_col:last-child
+	{
+		margin-bottom: 0px;
+	}
+	.weekly_offer
+	{
+		height: auto;
+	}
+	.weekly_offer_image
+	{
+		position: relative;
+		top: auto;
+		left: auto;
+		width: 100%;
+		height: 220px;
+		margin-top: 80px;
+	}
+	.footer_col
+	{
+		margin-bottom: 60px;
+	}
+	.footer_col:last-child
+	{
+		margin-bottom: 0px;
+	}
+}
+@media only screen and (max-width: 767px)
+{
+	.weekly_offer_image
+	{
+		height: 162px;
+	}
+}
+@media only screen and (max-width: 575px)
+{
+	h2{font-size: 28px;}
+	h3{font-size: 20px;}
+	p{font-size: 13px;}
+	.header
+	{
+		height: 80px;
+	}
+	.header_container
+	{
+		height: 80px;
+	}
+	.header.scrolled
+	{
+		height: 70px;
+	}
+	.header.scrolled .header_container
+	{
+		height: 70px;
+	}
+	.logo img
+	{
+		width: 36px;
+	}
+	.logo span
+	{
+		font-size: 12px;
+	}
+	.menu_item a
+	{
+		font-size: 14px;
+		line-height: 42px;
+	}
+	.home
+	{
+		height: 372px;
+	}
+	.home_content
+	{
+		margin-top: 205px;
+	}
+	.section_subtitle
+	{
+		font-size: 14px;
+	}
+	.button
+	{
+		height: 41px;
+	}
+	.button a
+	{
+	    font-size: 12px;
+	    line-height: 41px;
+	    padding-left: 27px;
+	    padding-right: 26px;
+	}
+	.intro_title
+	{
+		margin-top: 45px;
+	}
+	.intro_text
+	{
+		margin-top: 29px;
+	}
+	.milestone_counter
+	{
+		font-size: 36px;
+		margin-top: 30px;
+	}
+	.milestone_text
+	{
+		font-size: 12px;
+		margin-top: 10px;
+	}
+	.newsletter_email
+	{
+		height: 40px;
+	}
+	.newsletter_submit_btn
+	{
+		height: 40px;
+		font-size: 12px;
+	}
+	.weekly_offer_image
+	{
+		height: calc((100vw - 30px) / 3.13);
+		margin-top: 43px;
+	}
+	.weekly_offer_content
+	{
+		height: 40px;
+	}
+	.weekly_offer_icon
+	{
+		width: 54px;
+	}
+	.weekly_offer_icon img
+	{
+		width: 22px;
+	}
+	.weekly_offer_text
+	{
+		font-size: 12px;
+		line-height: 40px;
+		padding-left: 25px;
+		padding-right: 25px;
+	}
+	.useful_links_item a
+	{
+		font-size: 13px;
+	}
+}
+@media only screen and (max-width: 479px)
+{
+	h2{font-size: 24px;}
+	.intro_subtitle
+	{
+		font-size: 14px;
+	}
+}

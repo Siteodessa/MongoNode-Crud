@@ -8,6 +8,8 @@
       default:'logo not set', ru_label: 'Лого',  input_type: 'single_image'},
     phone:  { type: String, minlength: [4, 'Short phone'],maxlength: [100, 'Long phone'],
       default:'phone not set', ru_label: 'Телефон',  input_type: 'phone'},
+    phone1:  { type: String, minlength: [4, 'Short phone'],maxlength: [100, 'Long phone'],
+      default:'phone not set', ru_label: 'Телефон 2',  input_type: 'phone'},
     mail:  { type: String, minlength: [4, 'Short mail'],maxlength: [100, 'Long mail'],
       default:'mail not set', ru_label: 'Почта',  input_type: 'email'},
     address:  { type: String, minlength: [4, 'Short address'],maxlength: [100, 'Long address'],

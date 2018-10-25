@@ -1,23 +1,33 @@
 const Task = require('../db/models/task.model');
 const Reviews_m = require('../db/models/review.model');
 exports.create = (req, res) => {
-
+console.log('MAN WATAFAk');
   console.log(req.body.task);
     const task = new Task({    // Create a Task
 
 
-        task: req.body.task || "Не охренеть и ",
-        task_desc: req.body.task_desc || "Допилить это",
+        task: req.body.task || "Задание не сохранилось",
+        task_desc: req.body.task_desc || "Свяжитесь с системным администратором",
         task_status: req.body.task_status || "Срочное",
 
     });
 
     task.save()    // Save Task in the database
     .then(data => {
-      res.setHeader('Content-Type', 'application/json').status(200).send(JSON.stringify(data));
+      res.set({
+        'Content-Type': 'text/plain',
+        'Access-Control-Allow-Methods': 'POST, GET',
+        'Access-Control-Allow-Headers': 'Origin,X-Requested-With,content-type',
+        'Access-Control-Allow-Origin': '*'
+      }).status(200).send(JSON.stringify(data));
     }).catch(err => {
       console.log(err);
-        res.status(500).send({
+        res.set({
+          'Content-Type': 'text/plain',
+          'Access-Control-Allow-Methods': 'POST, GET',
+          'Access-Control-Allow-Headers': 'Origin,X-Requested-With,content-type',
+          'Access-Control-Allow-Origin': '*'
+        }).status(500).send({
             message: err.message || "Some error occurred while creating the Task."
 
         });
@@ -28,6 +38,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => { // Retrieve and return all tasks from the database.
     Task.find()
     .then(tasks => {
+      res.setHeader('Content-Type', 'application/json')
       res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
       res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
       res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type')

@@ -1,0 +1,130 @@
+
+
+
+
+              <% function ifDefined(elem, markup, elser) {
+                if   (typeof(elem) !== 'undefined' )  {
+                  return markup
+                } else {
+                  return elser
+                }
+              }
+              %>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title><%= sitedata.contacts_page_title %></title>
+	 <% include ../partials/head %>
+<link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
+<link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
+</head>
+<body>
+<div class="super_container">
+	<div class="home">
+		<div class="home_background" style="background-image:url(<%- ifDefined(sitedata.contacts_page_background, sitedata.contacts_page_background, '/images/contact.jpg') %>)"></div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="home_content">
+						<div class="home_title">
+							<h2><%= sitedata.contacts_page_title %></h2>
+						</div>
+						<div class="breadcrumbs">
+							<span><a href="/">Главная</a></span>
+							<span><a href="#"> <%= sitedata.contacts_page_title %></a></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<header class="header trans_300">
+	<% include ../partials/header %>
+	</header>
+	<div class="contact">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 contact_col">
+					<div class="estate_contact_form">
+						<div class="contact_title"><%= sitedata.contacts_page_form_title %></div>
+						<div class="estate_contact_form_container">
+							<form id="estate_contact_form" class="estate_contact_form" action="post">
+								<input id="estate_contact_form_name" class="estate_input_field estate_contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required.">
+								<input id="estate_contact_form_email" class="estate_input_field estate_contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required.">
+								<input id="estate_contact_form_subject" class="estate_input_field estate_contact_form_subject" type="email" placeholder="Subject" required="required" data-error="Subject is required.">
+								<textarea id="estate_contact_form_message" class="estate_text_field estate_contact_form_message" name="message" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
+								<button id="estate_contact_send_btn" type="submit" class="estate_contact_send_btn trans_200" value="Submit">send</button>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 contact_col">
+					<div class="contact_title"><%= sitedata.contacts_page_contact_title %></div>
+					<ul class="contact_info_list estate_contact">
+						<%- ifDefined(sitedata.address, `
+								<li class="contact_info_item d-flex flex-row">
+								<div>
+									<div class="contact_info_icon">
+										<img src="images/placeholder.svg" alt="">
+									</div>
+								</div>
+									<div class="contact_info_text">${sitedata.address}</div>
+								</li>
+						 `) %>
+
+
+						<%- ifDefined(sitedata.phone, `
+								<li class="contact_info_item d-flex flex-row">
+								 <div>
+									 <div class="contact_info_icon">
+										<img src="images/phone-call.svg" alt="">
+									 </div>
+								 </div>
+								 <div class="contact_info_text">${sitedata.phone}</div>
+								</li>
+						 `) %>
+
+						<%- ifDefined(sitedata.mail, `
+							<li class="contact_info_item d-flex flex-row">
+								<div><div class="contact_info_icon"><img src="images/message.svg" alt=""></div></div>
+								<div class="contact_info_text"><a href="mailto:${sitedata.mail}?Subject=Hello" target="_top">${sitedata.mail}</a></div>
+							</li>
+							`) %>
+							<li class="contact_info_item d-flex flex-row">
+								<div><div class="contact_info_icon"><img src="images/planet-earth.svg" alt=""></div></div>
+								<div class="contact_info_text"><a href="/"><%- ifDefined(sitedata.sitename, sitedata.sitename) %></a></div>
+							</li>
+					</ul>
+					<div class="estate_social">
+						<ul class="estate_social_list">
+
+							            <%- 		ifDefined(sitedata.fb_link, '<li class="footer_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>') %>
+							            <%- 		ifDefined(sitedata.insta_link, '<li class="footer_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li></a></li>') %>
+							            <%- 		ifDefined(sitedata.twitter_link, '<li class="footer_social_item"><a href="#"><i class="fab fa-instagram"></i></a></li></a></li>') %>
+
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 contact_col">
+					<div class="contact_title">about</div>
+					<div class="estate_about_text">
+						<p>Lorem ipsum dolor sit amet, cons ectetur  quis ferme adipiscing elit. Suspen dis se tellus eros, placerat quis ferme ntum et, adipiscingvive rra sit ipsum amet lacus. </p>
+						<p>Nam gravida quis placerat quis fe rme ntum et ferme sadipiscinge te llus semper augue.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+<% include ../partials/newsletter %>
+	<% include ../partials/footer %>
+</div>
+	 <% include ../partials/foot %>
+	 <script src="js/contact_custom.js"></script>
+	 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<style>label.radion {
+    background: #fff;
+    padding:  6px 8px;
+    border-radius: 15px;
+    color: #f39c12;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px transparent;
+    transition: .5s;
+    margin: 4px 6px;    border: 1px solid #fff;
+}
+
+
+
+
+.page_added {
+    display:  inline;
+    margin:  0 5px;
+}
+iframe#media_upload {
+    width:  100%;
+    border: none;
+    height: 90px;
+}
+.db_group {
+    margin:  5px 0 10px;
+}
+
+div#result_form p {
+    padding:  10px  10px 5px;
+    transform: translate(-100%);
+    transition: .5s;
+    opacity: 0;
+}
+
+div#result_form p.shown {
+    transform: translate(0%);
+    opacity: 1;
+
+}
+div#result_form  {
+    overflow: hidden;margin: 0
+}
+
+label.radion.checked {
+    background: linear-gradient(to bottom, #48c6ef 0%, #6f86d6 100%);  color: #fff;
+
+}
+</style>
+              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-warning">
+                Добавить новый
+              </button>
+        <div class="modal modal-warning fade" id="modal-warning" style="display: none;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+                        <form class="form-horizontal" id="add_new_form" action="/media_uploader" method="POST" enctype="multipart/form-data">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Добавить новый объект</h4>
+              </div>
+              <div class="modal-body">
+
+
+
+
+              <% function permitted_for_frontend_field(prop){ %>
+          <%       restricted_fields = ["_id", "id", "updatedAt", "updatedAt", "createdAt", "updatedAt", "__v", "useful_links_menu_list", "listing_details_iconblock", "dbtest", "notes", "contact_info", "footer_col_title", "useful_links", "page_link", "footer_about", "footer_social", "weekly_offer", "subscribe", "listing_video", "additional_details_block", "listing_details", "listing_slider", "listing_price_col", "room_tags", "listing_text", "logo", "phone", "main_nav_list","counter", "breadcrumbs", "home_title", "listing_title", "additional_details", "map_heading", "content"] %>
+          <%       let result = restricted_fields.filter(word => word !== prop); %>
+          <%        if(result.length != restricted_fields.length){ return false } return true  %>
+            <%    } %>
+              <% function has_enum(tree,prop){ %>
+                <%  if(tree[prop]["enum"]) %>
+                <%  return true %>
+                <%  return false %>
+            <%    } %>
+              <% function humanized_name(prop){ %>
+                <%  let translation_base =  {"block":"Район","address":"Адрес", "bldr":"Застройщик", "parking":"Парковка", "elevator":"Лифт", "warming":"Отопление", "floor_height":"Высота потолков", "windows":"Окна", "walls":"Стены", "frontend_material":"Фасад", "construction_type":"Тип конструкции", "appart_on_floor_quant":"Количество квартир на этаже", "sections_quant":"Количество секций", "floors_quant":"Количество этажей", "title":"Заголовок", "home_title":"Заголовок","home_background":"Фото", "home_background":"Фото", "description":"Описание",  "content":"Дополнительное описание", "map_iframe":"Ссылка на карту", "page_link":"Ссылка", "subheading":"Подзаголовок", "prices_start_at":"Цены от (Число)"} %>
+                <%  if(translation_base[prop]) return translation_base[prop] %>
+                <%  return prop %>
+            <%    } %>
+              <% function enumo(schema, prop){ %>
+                <%  if(schema.tree[prop]["enum"]) %>
+                <%  return schema.tree[prop]["enum"] %>
+                <%  return false %>
+            <%    } %>
+<% for (let prop in schema.tree) { %>
+      <% if(permitted_for_frontend_field(prop)) {%>
+      <div class="db_group" name="<%= prop %>" >
+      <%  enums = enumo(schema, prop); %>
+              <%   if(enums) { %>
+                    <label><%= humanized_name(prop) %></label>
+                    <div>
+                    <% enums.forEach(elem => { %>
+                    <label class="radion">      <input class="" name="<%= prop %>" type="radio"  value="<%= elem %>"> <%= elem %></label>
+                    <%  });%>
+                    </div>
+                <% } else { %>
+                    <% if(prop == "home_background" || prop == "image") {%>
+
+                          <iframe scroll="no" id="media_upload" src="media_upload"></iframe>
+                          <% include ../image_uploader  %>
+                      <% } else { %>
+                                        <% if(prop == "description" || prop == "content" || prop == "review_body") {%>
+                                          <label><%= humanized_name(prop) %></label>
+                                          <% include ../text_editor  %>
+                                              <% } else { %>
+                                                <label><%= humanized_name(prop) %></label>
+                                                <input class="form-control input-lg" name="<%= prop %>" type="text">
+                                        <% }%>
+                    <% }%>
+              <% }%>
+      </div>
+      <% }%>
+<% } %>
+
+              </div>
+              <div id="result_form">   <p></p></div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Закрыть</button>
+                  <button type="button" class="save btn btn-outline">Сохранить</button>
+                  <button type="button" class="save and_close btn btn-outline">Сохранить и закрыть</button>
+                  <button type="button" class="update btn btn-outline">Обновить</button>
+                  <button type="button" class="update and_close btn btn-outline">Обновить и закрыть</button>
+              </div>
+
+            </form>
+            </div>
+          </div>
+        </div>
+
+<script></script>

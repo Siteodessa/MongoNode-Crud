@@ -336,65 +336,7 @@ section
 	height: 120px;
 }
 
-/*********************************
-4.1 Logo
-*********************************/
 
-.logo_container
-{
-	
-}
-.logo
-{
-	text-align: center;
-}
-.logo span
-{
-	display: block;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 22px;
-	font-weight: 700;
-	color: #FFFFFF;
-	text-transform: uppercase;
-	margin-top: 1px;
-}
-
-/*********************************
-4.2 Main Navigation
-*********************************/
-
-.main_nav
-{
-	margin-left: auto;
-	margin-right: 10px;
-}
-.main_nav_item
-{
-	display: inline-block;
-	margin-right: 15px;
-}
-.main_nav_item:last-child
-{
-	margin-right: 0px;
-}
-.main_nav_item a
-{
-	font-size: 14px;
-	font-weight: 700;
-	text-transform: uppercase;
-	color: #FFFFFF;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	-webkit-transition: all 200ms ease;
-	-moz-transition: all 200ms ease;
-	-ms-transition: all 200ms ease;
-	-o-transition: all 200ms ease;
-	transition: all 200ms ease;
-}
-.main_nav_item a:hover
-{
-	color: #fd784f;
-}
 
 /*********************************
 4.3 Phone Home

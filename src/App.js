@@ -22,7 +22,6 @@ componentDidMount() {
           "Готовое"  : "small-box bg-green",
           "Ожидание" : "small-box bg-purple"
       }
-
       const cards = data.map((card) => {
         return (
           <div key={++i}>
@@ -41,53 +40,60 @@ componentDidMount() {
               </div>
           </div>
         )
-
       })
       this.setState({cards: cards});
       console.log("state", this.state.cards)
   }).catch(err => console.log(err));
 }
-callApi = async () => { const response = await fetch('http://localhost:27/task_management'); const body = await response.json(); if (response.status !== 200) throw Error(body.message); return body; };
+callApi = async () => { const response = await fetch('http://localhost:27/task_management');
+const body = await response.json(); if (response.status !== 200) throw Error(body.message);
+return body; };
   render() {
     return (
       <div className="App">
-          {this.state.cards}
+      <div className="Cards">
+        {this.state.cards}
+      </div>
+      <div className="AddTask">
+      <AddTask />
+      </div>
       </div>
     );
   }
 }
-
 class AddTask extends App {
-
       constructor() {
       super();
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.callApiPost = this.callApiPost.bind(this);
+    }
+    callApiPost = async (data) => {
+    const response = await fetch('http://localhost:27/task_management', {
+                method: 'POST',
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                zzz: data
+              });
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+     return body;
     }
     handleSubmit(event) {
       event.preventDefault();
-      // const data = new FormData(event.target);
       const data = JSON.stringify({
         "task" : document.getElementById('task').value,
         "task_desc" : document.getElementById('task_desc').value,
         "task_status" : document.getElementById('task_status').value
       })
-      console.log(data)
-      fetch('/task_management', {
-            method: 'POST',
-        headers: {
-                    "Content-Type": "application/json; charset=utf-8"
-                },
-        zzz: data
-    })
+          this.callApiPost(data)
     }
       render() {
         return (
-                  <div className="col-lg-12 col-xs-12">
+                  <div className="col-lg-12 col-xs-12 box-header with-border">
                     <form onSubmit={this.handleSubmit}>
                       <div className="row">
                         <div className="col-md-12">
                         <label htmlFor="task">Введите задание</label>
-                        <input id="task" name="task" type="text" />
+                        <input id="task" name="task" type="text"  />
                         </div>
                         <div className="col-md-12">
                         <label htmlFor="task_desc">Введите описание задания</label>

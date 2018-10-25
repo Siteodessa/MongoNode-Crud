@@ -37,6 +37,7 @@
           }
         }).single('imageUpload');
 
+
           app.get('/media_upload', (req, res) =>        { if (!is_LoggedIn(req)) { return redirect_to_login(res) }; res.render('image_uploader_prototype.ejs')});
 
           app.post('/media_uploader', function(req, res){
@@ -62,6 +63,52 @@
               }
             });
           })
+
+
+
+          const multimediastorage = multer.diskStorage({
+          destination: './public/uploads/',
+            filename: function(req, file, cb){
+            cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+            }
+          });
+
+          const multimediaupload = multer({
+          storage: multimediastorage,
+          limits:{fileSize: 1000000},
+          fileFilter: function(req, file, cb){
+          checkFileType(file, cb, path);
+          }
+        }).array('gallery', 50);
+
+                  app.get('/multimedia_upload', (req, res) =>        { if (!is_LoggedIn(req)) { return redirect_to_login(res) }; res.render('multimedia_uploader_prototype.ejs')});
+
+                  app.post('/multimedia_uploader', multimediaupload,  function(req, res){
+                  if (!is_LoggedIn(req)) { return redirect_to_login(res) }
+
+                    upload(req, res, (err) => {
+                      if(err){
+                        res.render('multimedia_uploader_prototype.ejs', {
+                          msg: err
+                        });
+                      } else {
+                        if(req.files == undefined){
+                          res.render('multimedia_uploader_prototype.ejs', {
+                            msg: 'Error: No File Selected!'
+                          });
+                        } else {
+                          let uploaded_files = JSON.stringify(req.files)
+                          res.render('multimedia_uploader_prototype.ejs', {
+                            msg: `${uploaded_files}`,
+                            files: `uploads/${req.files}`
+                          });
+                        }
+                      }
+                    });
+                  })
+
+
+
 
 
 };
