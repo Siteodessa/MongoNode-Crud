@@ -1,27 +1,113 @@
-<div class="col">
-  <div class="listing_slider_container">
-    <div class="owl-carousel owl-theme listing_slider">
-      <div class="owl-item listing_slider_item">
-        <img src="/images/listing_slider_1.jpg" alt="https://unsplash.com/@astute">
-      </div>
-      <div class="owl-item listing_slider_item">
-        <img src="/images/listing_slider_1.jpg" alt="https://unsplash.com/@astute">
-      </div>
-      <div class="owl-item listing_slider_item">
-        <img src="/images/listing_slider_1.jpg" alt="https://unsplash.com/@astute">
-      </div>
-      <div class="owl-item listing_slider_item">
-        <img src="/images/listing_slider_1.jpg" alt="https://unsplash.com/@astute">
-      </div>
-      <div class="owl-item listing_slider_item">
-        <img src="/images/listing_slider_1.jpg" alt="https://unsplash.com/@astute">
-      </div>
-    </div>
-    <div class="listing_slider_nav listing_slider_prev d-flex flex-row align-items-center justify-content-center trans_200">
-      <img src="/images/nav_left.png" alt="">
-    </div>
-    <div class="listing_slider_nav listing_slider_next d-flex flex-row align-items-center justify-content-center trans_200">
-      <img src="/images/nav_right.png" alt="">
-    </div>
-  </div>
+<div class="home_slider_container">
+  <link rel="stylesheet" href="/styles/swiper.min.css">
+
+   <!-- Demo styles -->
+   <style>
+     html, body {
+       position: relative;
+       height: 100%;
+     }
+     body {
+       background: #eee;
+       font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+       font-size: 14px;
+       color:#000;
+       margin: 0;
+       padding: 0;
+     }
+     .swiper-container {
+       width: 100%;
+       height: 100%;
+       background: #000;
+     }
+     .swiper-wrapper {
+       height: 50%;
+       width: 100%;
+       position: relative;
+       top: 25%
+     }
+     .swiper-slide {
+       height: 100%;
+       text-align: center;
+       font-size: 18px;
+       background: #fff;
+       display: -webkit-box;
+       display: -ms-flexbox;
+       display: -webkit-flex;
+       display: flex;
+       -webkit-box-pack: center;
+       -ms-flex-pack: center;
+       -webkit-justify-content: center;
+       justify-content: center;
+       -webkit-box-align: center;
+       -ms-flex-align: center;
+       -webkit-align-items: center;
+       align-items: center;
+     }
+   </style>
+
+ <body>
+   <!-- Swiper -->
+
+
+<%
+function print_swiper_gallery(gallery_links_array) {
+        if (typeof gallery_links_array == 'undefined') return false
+        let gallery_html = ''
+        gallery_links_array = gallery_links_array.split('"')[1]
+        if (typeof gallery_links_array == 'undefined') return false
+        gallery_links_array.split(',').forEach(elem => {
+          gallery_html += '<div class="swiper-slide"><img src="/uploads/' + elem + '" /></div>'
+        });
+        return gallery_html
+}
+%>
+
+<% if (print_swiper_gallery(d['gallery']) !== false) { %>
+
+
+   <div class="swiper-container">
+     <div class="swiper-wrapper">
+            <%- print_swiper_gallery(d['gallery']) %>
+     </div>
+     <!-- Add Pagination -->
+     <div class="swiper-pagination"></div>
+   </div>
+<% }  else { %>
+
+
+<% include ./single_no_gallery %>
+
+<%  } %>
+
+
+
+
+
+   <!-- Swiper JS -->
+   <script src="/js/swiper.min.js"></script>
+
+   <!-- Initialize Swiper -->
+   <script>
+     var swiper = new Swiper('.swiper-container', {
+       slidesPerView: 3,
+       spaceBetween: 30,
+       autoplay: {
+          delay: 250000,
+          disableOnInteraction: false,
+        },
+       pagination: {
+         el: '.swiper-pagination',
+         clickable: true,
+       },
+     });
+   </script>
+
+
+
+
+
+
+
+
 </div>

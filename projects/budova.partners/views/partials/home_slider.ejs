@@ -51,11 +51,25 @@
 
 
 <%
+
+function is_empty(obj) {
+  if (obj === '') return true
+                 return false
+}
+function is_undefined(obj) {
+if (typeof obj === 'undefined') return true
+                                return false
+}
+function is_empty_or_undefined(obj) {
+  if (is_empty(obj) || is_undefined(obj)) return true
+                                          return false
+}
+
 function print_swiper_gallery(gallery_links_array) {
-        if (typeof gallery_links_array == 'undefined') return false
+        if (is_empty_or_undefined(gallery_links_array)) return false
         let gallery_html = ''
         gallery_links_array = gallery_links_array.split('"')[1]
-        if (typeof gallery_links_array == 'undefined') return false
+        if (is_empty_or_undefined(gallery_links_array)) return false
         gallery_links_array.split(',').forEach(elem => {
           gallery_html += '<div class="swiper-slide"><img src="/uploads/' + elem + '" /></div>'
         });
@@ -75,8 +89,7 @@ function print_swiper_gallery(gallery_links_array) {
    </div>
 <% }  else { %>
 
-
-<% include ../partials/single/single_no_gallery %>
+23
 
 <%  } %>
 
