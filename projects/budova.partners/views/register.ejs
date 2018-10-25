@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<%# <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> %>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+body#LoginForm{     height: 100vh; background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;}
+.form-heading { color:#fff; font-size:23px; text-align: center;margin: 100px auto 20px}
+.panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
+.panel p {     white-space: nowrap;
+color:#777777; font-size:14px; margin-bottom:30px; line-height:24px;}
+.login-form .form-control {
+  background: #f7f7f7 none repeat scroll 0 0;
+  border: 1px solid #d4d4d4;
+  border-radius: 4px;
+  font-size: 14px;
+  height: 50px;
+  line-height: 50px;
+}
+.main-div {
+  background: #ffffff none repeat scroll 0 0;
+  border-radius: 2px;
+  margin: 10px auto 30px;
+  max-width: 38%;
+  padding: 50px 70px 40px 70px;
+  height: 400px;
+
+}
+a.login.btn.home_link {
+    margin:  0;
+}
+.login-form .form-group {
+  margin-bottom:10px;
+}
+.login-form{ text-align:center;}
+.forgot a {
+  color: #777777;
+  font-size: 14px;
+  text-decoration: underline;
+}
+.login-form  .btn.btn-primary {
+  background: #f0ad4e none repeat scroll 0 0;
+  border-color: #f0ad4e;
+  color: #ffffff;
+  font-size: 14px;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  padding: 0;
+}
+.forgot {
+  text-align: left; margin-bottom:30px;
+}
+.botto-text {
+  color: #ffffff;
+  font-size: 14px;
+  margin: auto;
+}
+.login-form .btn.btn-primary.reset {
+  background: #ff9900 none repeat scroll 0 0;
+}
+.back { text-align: left; margin-top:10px;}
+.back a {color: #444444; font-size: 13px;text-decoration: none;}
+
+a.login.btn {
+    color: #ad8d92;
+    margin: 20px 0 0px;
+
+}
+</style>
+<!------ Include the above in your HEAD tag ---------->
+  </head>
+<body id="LoginForm">
+<div class="container">
+<h1 class="form-heading">Регистрация</h1>
+<div class="login-form">
+  <br>
+<div class="main-div">
+    <div class="panel">
+<div id="result_form">   <p>Введите новые логин и пароль</p></div>
+   </div>
+
+    <form id="ajax_form1" method="post">
+        <div class="form-group">
+            <input type="username" class="form-control" value="" id="username1" placeholder="Ваш логин">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" value=""  id="password1" placeholder="Пароль">
+        </div>
+        <div class="forgot">
+        <%# <a href="reset.html">Forgot password?</a> %>
+</div>
+        <button type="button" id="btn1" type="submit" value="Отправить" class="btn btn-primary">Зарегистрироваться</button>
+    </form>
+
+      <a href="/login" class="login btn">Войти</a>
+
+<div>
+  <a href="/" class="login btn home_link">На главную</a>
+</div>
+    </div>
+<p class="botto-text"> Designed by Siteodessa</p>
+</div></div></div>
+<script>$( document ).ready(function() {
+    $("#btn1").click(
+		function(){
+			sendAjaxForm1('result_form', 'ajax_form1', 'http://localhost/register');
+			return false;
+		}
+	);
+});
+
+function sendAjaxForm1(result_form, ajax_form, url) {
+    $.ajax({
+        url:     url,
+        type:     "POST",
+        dataType: "html",
+        data: {
+          username: $("#username1").val(),
+          password: $("#password1").val()
+        },
+        success: function(response, xhr) {
+        	result = $.parseJSON(response);
+        	$('#result_form p').text(''+result.result+'');
+    	},
+    	error: function(response) {
+            $('#result_form p').text('Пользователь с таким именем существует.');
+    	}
+ 	});
+}
+</script>
+</body>
+</html>

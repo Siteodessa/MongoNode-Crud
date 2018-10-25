@@ -38,6 +38,9 @@
 /***********
 1. Fonts
 ***********/
+.room_image img {
+    width:  100%;
+}
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:300,400,600,700');
 
@@ -45,30 +48,7 @@
 2. Body and some general stuff
 *********************************/
 
-*
-{
-	margin: 0;
-	padding: 0;
-	-webkit-font-smoothing: antialiased;
-	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
-	text-shadow: rgba(0,0,0,.01) 0 0 1px;
-}
-body
-{
-	font-family: 'Open Sans', sans-serif;
-	font-size: 14px;
-	font-weight: 400;
-	background: #FFFFFF;
-	color: #a5a5a5;
-}
-div
-{
-	display: block;
-	position: relative;
-	-webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
+
 ul
 {
 	list-style: none;
@@ -275,7 +255,7 @@ section
 {
 	width: 100%;
 	height: 100%;
-	padding-top: calc(50vh - 25px);
+	padding-top: calc(39vh - 25px);
 	padding-left: 30px;
 	padding-right: 30px;
 }
@@ -293,6 +273,7 @@ section
 	font-weight: 700;
 	text-transform: uppercase;
 	color: #FFFFFF;
+	text-shadow:  0px 0px 41px #444;
 }
 .home_slider_nav
 {
@@ -352,20 +333,15 @@ section
 	left: 0;
 	width: 100%;
 	height: 150px;
-	border-bottom: solid 1px #aeaead;
 	z-index: 15;
 }
 .header.scrolled
 {
 	height: 120px;
-	background: #0e1d41;
+	/* background: #0e1d41; */
 	border: none;
 }
-.header_container
-{
-	width: 100%;
-	height: 150px;
-}
+
 .header.scrolled .header_container
 {
 	height: 120px;
@@ -379,57 +355,11 @@ section
 {
 	
 }
-.logo
-{
-	text-align: center;
-}
-.logo span
-{
-	display: block;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 24px;
-	font-weight: 700;
-	color: #FFFFFF;
-	text-transform: uppercase;
-	margin-top: 1px;
-}
+
 
 /*********************************
 4.2 Main Navigation
 *********************************/
-
-.main_nav
-{
-	margin-left: auto;
-	margin-right: 112px;
-}
-.main_nav_item
-{
-	display: inline-block;
-	margin-right: 40px;
-}
-.main_nav_item:last-child
-{
-	margin-right: 0px;
-}
-.main_nav_item a
-{
-	font-size: 14px;
-	font-weight: 700;
-	text-transform: uppercase;
-	color: #FFFFFF;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	-webkit-transition: all 200ms ease;
-	-moz-transition: all 200ms ease;
-	-ms-transition: all 200ms ease;
-	-o-transition: all 200ms ease;
-	transition: all 200ms ease;
-}
-.main_nav_item a:hover
-{
-	color: #fd784f;
-}
 
 /*********************************
 4.3 Phone Home
@@ -440,8 +370,8 @@ section
 	width: auto;
 	height: 44px;
 	background: #fd784f;
-	padding-left: 46px;
-	padding-right: 39px;
+	padding-left: 16px;
+	padding-right: 9px;
 }
 .phone_home span
 {
@@ -862,28 +792,15 @@ section
 {
 	padding-top: 37px;
 	margin: 0 auto;
+	position: relative;
 }
-.section_title::after
-{
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-o-transform: translateX(-50%);
-	transform: translateX(-50%);
-	width: 3px;
-	height: 25px;
-	background: #fd784f;
-	content: '';
-}
+
 .section_title h3
 {
 	text-transform: uppercase;
 	color: #1e2c4e;
 	font-weight: 700;
+	margin: 0px 0 40px;
 }
 .section_subtitle
 {
@@ -902,28 +819,18 @@ section
 {
 	padding-top: 100px;
 	padding-bottom: 100px;
+	background: #fff;
 }
 .featured_row
 {
 	padding-top: 73px;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 .featured_card_container
 {
 	width: 100%;
-}
-.featured_panel
-{
-	position: absolute;
-	left: 0;
-	top: 21px;
-	font-size: 14px;
-	font-weight: 600;
-	text-transform: uppercase;
-	color: #FFFFFF;
-	background: #fd784f;
-	line-height: 41px;
-	padding-left: 29px;
-	padding-right: 26px;
 }
 .card
 {
@@ -938,6 +845,9 @@ section
 .card-img-top
 {
 	border-radius: 0px;
+	width:  auto;
+	max-height: 270px;
+	min-width:  100%;
 }
 .card-body
 {
@@ -949,19 +859,8 @@ section
 {
 	margin-top: 24px;
 }
-.card-title a
-{
-	font-size: 22px;
-	font-weight: 600;
-	color: #0e1d41;
-}
-.card-text
-{
-	font-size: 14px;
-	font-weight: 400;
-	color: #838383;
-	margin-top: 14px;
-}
+
+
 .rooms
 {
 	margin-top: 30px;
@@ -1017,14 +916,6 @@ section
 	padding-right: 13px;
 	padding-top: 1px;
 	padding-bottom: 2px;
-}
-.featured_card_box
-{
-	width: 100%;
-	height: 86px;
-	background: #1e2c4e;
-	margin-top: 7px;
-	padding-left: 30px;
 }
 .featured_card_container:hover .featured_card_box
 {
@@ -1113,8 +1004,8 @@ section
 }
 .testimonial_image
 {
-	width: 81px;
-	height: 81px;
+	width: 61px;
+	height: 61px;
 	border-radius: 50%;
 	overflow: hidden;
 }
@@ -1340,7 +1231,7 @@ section
 	-o-transform: translateX(-50%);
 	transform: translateX(-50%);
 	bottom: 21px;
-	width: 113px;
+	width: 100%;
 	height: 34px;
 	background: #fd784f;
 	text-align: center;
@@ -1897,4 +1788,20 @@ section
 {
 	color: #485165;
 	line-height: 49px;
+}
+.city_image {
+    overflow: hidden;
+}
+
+.owl-carousel .owl-item a.page_link img {
+    height: auto;
+}
+
+.city_name span {
+    font-size: 9px;
+    line-height: 0;
+}
+
+.owl-carousel .testimonial_user img {
+    height: 61px;
 }

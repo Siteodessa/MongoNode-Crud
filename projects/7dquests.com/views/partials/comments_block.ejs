@@ -1,0 +1,47 @@
+<%   function formatDate(timestamp) {
+    date = new Date(timestamp);
+  var dd = date.getDate();
+  if (dd < 10) dd = '0' + dd;
+
+  var mm = date.getMonth() + 1;
+  if (mm < 10) mm = '0' + mm;
+
+  var yy = date.getFullYear() % 100;
+  if (yy < 10) yy = '0' + yy;
+
+  var hh = date.getHours();
+  var min = date.getMinutes();
+
+  return dd + '.' + mm + '.' + yy + ' в ' + hh + ':' + min;
+}
+%>
+
+<div class="comments-area">
+  <h4>05 отзывов</h4>
+  <div class="comments-block">
+  		<% reviews.forEach(function(review){ %>
+        <% if(review.quest == d.page_link) {  %>
+              <div class="comment-list">
+                <div class="single-comment justify-content-between d-flex">
+                    <div class="user justify-content-between d-flex">
+                        <div class="thumb">
+                        <i class="fa fa-user thumb_def"></i>
+                        </div>
+                        <div class="desc">
+                            <h5><a href="#"><%= review.author %></a></h5>
+                            <p class="date"><%= formatDate(Date.parse(review.createdAt)) %> </p>
+                            <p class="comment">
+                            <%= review.review_body %>
+                            </p>
+                        </div>
+                    </div>
+                    <%# <div class="reply-btn">
+                           <a href="" class="btn-reply text-uppercase">Ответить</a>
+                    </div> %>
+                </div>
+              </div>
+        <% } else { } %>
+	  <% }); %>
+</div>
+</div>
+<% include ./reviews_form %>

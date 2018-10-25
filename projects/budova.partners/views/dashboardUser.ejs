@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<% include ./partials/admin/head  %>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+  <header class="main-header">
+  <% include ./partials/admin/header  %>
+</header>
+  <aside class="main-sidebar">
+    <% include ./partials/admin/aside  %>
+  </aside>
+  <div class="content-wrapper">
+
+  <div>
+    <%- include('partials/admin/'+dash_sub) %>
+  </div>
+
+
+  </div>
+  <% include ./partials/admin/footer  %>
+  <aside class="control-sidebar control-sidebar-dark">
+    <% include ./partials/admin/aside_right  %>
+  </aside>
+  <div class="control-sidebar-bg"></div>
+</div>
+<% include ./partials/admin/foot  %>
+</body>
+</html>

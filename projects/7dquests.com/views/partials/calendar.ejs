@@ -1,0 +1,392 @@
+<% function montharr(m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11) { this[0] = m0; this[1] = m1; this[2] = m2; this[3] = m3; this[4] = m4; this[5] = m5; this[6] = m6; this[7] = m7; this[8] = m8; this[9] = m9; this[10] = m10; this[11] = m11; } %>
+            <% function make_columns(startDay) {
+  column = 0;
+  the_result = {}
+  result = ''
+  for (i = 0; i < startDay; i++) {
+    result += "<td width='30'>";
+    column++;
+  }
+  the_result.column = column
+  the_result.result = result
+  return the_result;
+} %>
+<% function week_names_row() {
+  return '<div class="cal_row week_days"> <div class="cell">Пн </div><div class="cell">Вт</div> <div class="cell">Ср</div> <div class="cell">Чт</div> <div class="cell">Пт</div> <div class="cell">Сб</div> <div class="cell">Вс</div> </div>';
+} %>
+
+
+<% function formatDate(timestamp) {
+  date = new Date(timestamp);
+var dd = date.getDate();
+if (dd < 10) dd = '0' + dd;
+
+var mm = date.getMonth() + 1;
+if (mm < 10) mm = '0' + mm;
+
+var yy = date.getFullYear() % 100;
+if (yy < 10) yy = '0' + yy;
+
+var hh = date.getHours();
+var min = date.getMinutes();
+
+return dd + '.' + mm + '.' + yy + ' в ' + hh + ':' + min;
+}  %>
+
+
+
+<% function fill_rows(nDays, thisDay, column, add_month) {
+
+
+let has_brones;
+let brone_time;
+  result = ''
+  result +=  "<div class='cal_row weeks'>"
+  for (i = 1; i <= nDays; i++) {
+    let z = (i * 0.01) + 1
+
+
+
+
+    hasbrones = ''
+    brone_time = []
+
+    brones.forEach(function(brone){
+
+      if (get_year_val() == brone.brone_time.split('-')[0] &&
+      i == brone.brone_time.split('-')[2].split(' ')[0] &&
+       get_month_val(add_month) == brone.brone_time.split('-')[1] ) {
+          hasbrones = 'hasbrones'
+          brone_time.push(brone.brone_time.split('-')[2].split(' ')[1])
+      }
+    });
+    brone_time = brone_time.join(',')
+result +=  "<div class='cal_cell " + hasbrones + "' brones='" + brone_time + "' yv='" + (get_year_val()) + "' dv='" + (i) + "' mv='" + (get_month_val(add_month)) + "' style='transition-delay:" + (z) + "s'>"
+
+    if (i == thisDay)
+      result +=  "<span class = 'today'>"
+    result +=  i
+    if (i == thisDay)
+      result += "</span>"
+      result +=  "</div>"
+    column++;
+    if (column == 7) {
+      result +=  "</div><div class='cal_row s7 weeks'>"
+      column = 0;
+    }
+  }
+result +=  "</div>"
+return result
+}
+%>
+<% function check_cal_args(el) {
+  if (typeof(el) !== 'undefined' && el !== 0) {
+    return true
+  }
+  return false;
+} %>
+<% function get_month_name(add_month) {
+  let d = new Date();
+  monthA = 'Январь,Февраль,Март,Апрель,Май,Июнь,Июль,Август,Сентябрь,Октябрь,Ноябрь,Декабрь'.split(',');
+    if (check_cal_args(add_month)) {
+      return monthA[d.getMonth() + add_month]
+    }
+    return monthA[d.getMonth()]
+}
+%>
+<% function get_month_val(add_month) {
+  let d = new Date();
+  monthA = 'Январь,Февраль,Март,Апрель,Май,Июнь,Июль,Август,Сентябрь,Октябрь,Ноябрь,Декабрь'.split(',');
+    if (check_cal_args(add_month)) {
+      return d.getMonth() + add_month
+    }
+    return d.getMonth()
+}
+%>
+
+<% function get_year_val() {
+  let d = new Date();
+    return d.getFullYear()
+}
+%>
+
+
+
+<% function calendar(add_month) {
+  var today = new Date();
+  var nextDay = new Date(today);
+  var thisDay;
+  var monthDays = new montharr(31, 28, 31, 30, 31, 30, 31, 31, 30,31, 30, 31);
+  if (check_cal_args(add_month)) {
+  nextDay.setDate(today.getDate() + nDays * add_month);
+  today = nextDay
+  }
+  year = today.getYear();
+  if (year < 2000)
+    year = year + 1900;
+  thisDay = today.getDate();
+    if (check_cal_args(add_month)) {
+      thisDay = null
+    }
+  if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+    monthDays[1] = 29;
+  nDays = monthDays[today.getMonth()];
+  firstDay = today;
+  firstDay.setDate(1);
+  testMe = firstDay.getDate();
+  if (testMe == 2)
+    firstDay.setDate(0);
+  startDay = firstDay.getDay();
+  startDay --; if (startDay < 0) startDay = 6;
+let the_column = make_columns(startDay).column
+  let result =  `<div align = 'center' class="calendar">
+<div border = '1'>
+${week_names_row()}
+${fill_rows(nDays, thisDay, the_column, add_month)}
+</div>
+</div>
+  `
+  return result
+}
+%>
+</div>
+</div>
+</div>
+<div class="calendars" id="calendars">
+  <div class="container">
+  <h2 class="text-white text-center">Онлайн бронирование</h2>
+  <p class="text-white text-center">
+    После получения бронирования, наш администратор свяжется с вами
+  </p>
+
+
+
+      <div class="months" id="months">
+        <div class="row cal-row" id="scroll_present">
+        <div class="col-md-4">
+          <h3 class="text-white text-center"> <%- get_month_name(0) %> </h3>
+          <%- calendar(0) %>
+        </div>
+        <div class="col-md-4">
+          <h3 class="text-white text-center"> <%- get_month_name(1) %> </h3>
+          <%- calendar(1) %>
+        </div>
+        <div class="col-md-4">
+          <h3 class="text-white text-center"> <%- get_month_name(2) %> </h3>
+          <%- calendar(2) %>
+        </div>
+        </div>
+
+        <div class="hours" id="hours">
+          <div id="back">
+            <i class="fa fa-arrow-left"></i>
+          </div>
+          <div id="day_picked">
+            <h4></h4>
+          </div>
+          <div class="ul">
+  <div class="time_picker"><div time="10:30" price="600">10:30 - 12:00 </div><span>600 грн</span></div>
+  <div class="time_picker"><div time="12:00" price="600">12:00 - 13:30</div><span>600 грн</span></div>
+  <div class="time_picker"><div time="13:30" price="600">13:30 - 15:00</div><span>600 грн</span></div>
+  <div class="time_picker"><div time="15:00" price="600">15:00 - 16:30</div><span>600 грн</span></div>
+  <div class="time_picker"><div time="16:30" price="600">16:30 - 18:00</div><span>600 грн</span></div>
+  <div class="time_picker"><div time="18:00" price="800">18:00 - 19:30</div><span>800 грн</span></div>
+  <div class="time_picker"><div time="19:30" price="800">19:30 - 21:00</div><span>800 грн</span></div>
+  <div class="time_picker"><div time="21:00" price="800">21:00 - 22:30</div><span>800 грн</span></div>
+  <div class="time_picker"><div time="22:30" price="800">22:30 - 23:59</div><span>800 грн</span></div>
+  <div class="time_picker"><div time="23:59" price="900">23:59 -  <span> ∞ </span> </div><span>900 грн</span></div>
+  </div>
+        </div>
+
+        <div class="form" id="form">
+          <div class="response">
+
+          </div>
+          <form class="brone_form">
+            <div class="input_group glass">
+
+            <input placeholder="Имя/ФИО" class="inp-contus" name="name" id="name" type="text" maxlength="100">
+          </div>
+          <div class="input_group glass">
+
+            <input placeholder="Телефон" class="inp-contus" name="phone" id="phone" type="text" maxlength="100">
+          </div>
+            <div class="input_group glass">
+
+            <select id="quantity" name="quantity" placeholder="Количество гостей" class="select-contus place_holder">
+              <option style="display: none;">Количество гостей</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+          </div>
+          <button type="button" id="brone_submit" name="button" class="submit glass">Забронировать</button>
+
+          </form>
+      </div>
+
+
+
+      </div>
+
+  </div>
+</div>
+
+
+<script>
+
+
+var Scrollio = function () {
+ function isElementOutViewport(el){
+     var rect = el.getBoundingClientRect();
+     return rect.bottom < 0 || rect.right < 0 || rect.left > window.innerWidth || rect.top > window.innerHeight;
+ }
+ this.listen = function (el) {
+   let observed = document.getElementById(el)
+   let action_scroll = this.action_scroll
+   $(window).on('scroll', function() {
+     action_scroll(observed, el)
+   });
+ }
+ this.action_scroll = function (observed, el) {
+   let zel = $('#' + el);
+   if (isElementOutViewport(observed)) {
+         $('.cal_cell').addClass('notransition')
+    zel.removeClass('visible')
+  } else {
+           $('.cal_cell').removeClass('notransition')
+    setTimeout(function () {
+    zel.addClass('visible')
+    }, 50)
+  }
+ }
+}
+var scrollio = new Scrollio()
+scrollio.listen('calendars')
+
+
+
+
+
+var Choice_maker = function (el) {
+
+  this.remove_All_add_One_Class = function (this_jel, querysel, clsname) {
+    $(querysel).removeClass(clsname)
+    this_jel.addClass(clsname)
+  }
+
+
+  this.get_brone_times = function (jel) {
+    return jel.attr('brones').split(',')
+  }
+  this.time_lock = function (broned_hours, timepickers) {
+    jQuery(timepickers).removeClass('locked')
+    jQuery(timepickers).each( function() {
+        let d = $(this)
+        let timepick = d.find('div').attr('time')
+                  broned_hours.forEach(chosen_hour => {
+                    if (timepick == chosen_hour) {
+                      d.addClass('locked')
+                    }
+});});
+  // Array.from(document.getElementsByClassName(timepickers)).forEach(timepick => {
+  //   console.log('2');
+  //           broned_hours.forEach(chosen_hour => {
+  //             if (timepick.find('div').attr('time') == chosen_hour) {
+  //               timepick.addClass('locked')
+  //             }
+  //         });
+  //   });
+  }
+
+
+
+  this.switch_to_hours = function (jel) {
+      remove_All_add_One_Class(jel, '.cal_cell', 'brone_time')
+      $('#calendars').removeClass('visible')
+      $('#months').addClass('switch_to_hours')
+      let broned_hours = get_brone_times(jel);
+      time_lock(broned_hours, '.hours .ul .time_picker');
+  }
+  this.switch_to_months = function (jel) {
+      $('#months').removeClass('switch_to_hours')
+      $('#calendars').addClass('visible')
+  }
+  this.switch_to_form = function (jel) {
+      remove_All_add_One_Class(jel, '.time_picker', 'brone_time')
+      $('#hours').addClass('switch_to_form')
+      $('#form').addClass('visible')
+  }
+  this.action = function (jel) {
+}
+  this.serialize_form = function (jel) {
+    let r = {}
+    let yv = $(".brone_time").attr('yv')
+    let mv = $(".brone_time").attr('mv')
+    let dv = $(".brone_time").attr('dv')
+    let time = $(".time_picker.brone_time div").attr('time')
+    let price = $(".time_picker.brone_time div").attr('price')
+    r.name = $("#name").val()
+    r.phone = $("#phone").val()
+    r.quantity =  jQuery('#quantity option:selected').text();
+    r.brone_time = yv + '-' + mv + '-' + dv + ' ' + time
+    r.time = time
+    r.price = price
+    r.quest_name = '<%= d.page_link %>'
+    r.company_name = '<%= d.company_name %>'
+    return r;
+}
+
+
+
+let action = this.action
+let switch_to_hours = this.switch_to_hours
+let switch_to_months = this.switch_to_months
+let switch_to_form = this.switch_to_form
+let get_brone_times = this.get_brone_times
+let serialize_form = this.serialize_form
+let time_lock = this.time_lock
+let remove_All_add_One_Class = this.remove_All_add_One_Class
+let cal_cell = $('.' + el);
+let back = $('#back');
+let timepicker = $('.time_picker');
+let brone_submit = $('#brone_submit');
+
+   this.listen = function () {
+     cal_cell.on('click', function() {
+       switch_to_hours($(this))
+     });
+     back.on('click', function() {
+       switch_to_months($(this))
+     });
+     timepicker.on('click', function() {
+       switch_to_form($(this))
+     });
+     brone_submit.on('click', function() {
+       let data = serialize_form($(this))
+          $.ajax({
+              url: "/brones",
+              data: data,
+              error: function (xhr, status, errorThrown) {
+              $('.response').text('Пожалуйста, заполните все поля')
+               },
+              method: "POST",
+              beforeSend: function( xhr ) { xhr.overrideMimeType( "text/plain; charset=utf-8" ); }
+          })
+          .done(function( data ) {
+              $('.response').html('<h1 class="text-white">Благодарим за Ваш выбор!</h1>')
+            console.log( "Sample of data:", data.slice( 0, 100 ) );
+          });
+     });
+ }
+
+}
+
+var choice_maker = new Choice_maker('cal_cell')
+choice_maker.listen()
+
+</script>
+<div class="container">
+<div class="single-post row">

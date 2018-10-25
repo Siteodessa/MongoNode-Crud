@@ -24,6 +24,7 @@
     height: 100%;
     -moz-backface-visibility: hidden;
     /* fix firefox animation glitch */
+    background: #000;
 }
 .owl-carousel .owl-stage:after
 {
@@ -58,16 +59,19 @@
     position: relative;
     min-height: 1px;
     width: 100%;
-    height: 100%;
+    height: 80%;
     float: left;
     -webkit-backface-visibility: hidden;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
+    /* margin: 10% auto; */
+    top: 10%;
 }
 .owl-carousel .owl-item img
 {
     display: block;
-    width: 100%;
+    width: auto;
+    height: 290px;
 }
 .owl-carousel .owl-nav.disabled,
 .owl-carousel .owl-dots.disabled

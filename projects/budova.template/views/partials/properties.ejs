@@ -1,0 +1,55 @@
+
+
+
+
+
+<style>.search_box_outer {
+    display: none;
+}</style>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="section_title text-center">
+        <h3>Продажи стартовали!</h3>
+        <span class="section_subtitle">Будьте в курсе новостей</span>
+      </div>
+    </div>
+  </div>
+  <div class="row featured_row">
+
+
+
+
+    <% let i = 0; %>
+
+
+
+    <% content.forEach(function(obj){ %>
+
+
+      <% i++; %>
+      <% if (i < 10) { %>
+
+        <%- include ./property_card.ejs  %>
+          <%  } %>
+
+
+
+
+
+
+    <% }); %>
+		</div>
+		</div>

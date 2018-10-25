@@ -1,0 +1,103 @@
+<style>label.radion {
+    background: #fff;
+    padding:  6px 8px;
+    border-radius: 15px;
+    color: #f39c12;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px transparent;
+    transition: .5s;
+    margin: 4px 6px;
+
+}
+.db_group {
+    margin:  5px 0 10px;
+}
+label.radion.checked {
+  background: #0d3805;
+  box-shadow: 0px 0px 0px 3px #a5a5a5;
+  color: #fff;
+}
+
+
+</style>
+              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-warning">
+                Добавить новый
+              </button>
+        <div class="modal modal-warning fade" id="modal-warning" style="display: none;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+                        <form class="form-horizontal">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Добавить новый объект</h4>
+              </div>
+              <div class="modal-body">
+
+
+
+
+              <% function permitted_for_frontend_field(prop){ %>
+          <%       restricted_fields = ["_id", "id", "updatedAt", "updatedAt", "createdAt", "updatedAt", "__v", "useful_links_menu_list", "listing_details_iconblock", "dbtest", "notes", "contact_info", "footer_col_title", "useful_links", "footer_about", "footer_social", "weekly_offer", "subscribe", "listing_video", "additional_details_block", "listing_details", "listing_slider", "listing_price_col", "room_tags", "listing_text", "logo", "phone", "main_nav_list", "breadcrumbs", "title", "listing_title", "additional_details", "map_heading", "content"] %>
+          <%       let result = restricted_fields.filter(word => word !== prop); %>
+          <%        if(result.length != restricted_fields.length){ return false } return true  %>
+            <%    } %>
+              <% function has_enum(tree,prop){ %>
+                <%  if(tree[prop]["enum"]) %>
+                <%  return true %>
+                <%  return false %>
+            <%    } %>
+              <% function humanized_name(prop){ %>
+                <%  let translation_base =  {"block":"Район","address":"Адрес", "bldr":"Застройщик", "parking":"Парковка", "elevator":"Лифт", "warming":"Отопление", "floor_height":"Высота потолков", "windows":"Окна", "walls":"Стены", "frontend_material":"Фасад", "construction_type":"Тип конструкции", "appart_on_floor_quant":"Количество квартир на этаже", "sections_quant":"Количество секций", "floors_quant":"Количество этажей", "title":"Заголовок", "home_title":"Заголовок","home_background":"Фото", "home_background":"Фото", "description":"Описание",  "content":"Дополнительное описание", "map_iframe":"Ссылка на карту"} %>
+                <%  if(translation_base[prop]) return translation_base[prop] %>
+                <%  return prop %>
+            <%    } %>
+              <% function enumo(schema, prop){ %>
+                <%  if(schema.tree[prop]["enum"]) %>
+                <%  return schema.tree[prop]["enum"] %>
+                <%  return false %>
+            <%    } %>
+<% for (let prop in schema.tree) { %>
+
+      <% label = schema.tree[prop]["ru_label"] ;%>
+      <% field_type = schema.tree[prop]["input_type"] ;%>
+      <% if(permitted_for_frontend_field(prop)) {%>
+      <div class="db_group" name="<%= prop %>" >
+      <%  enums = enumo(schema, prop); %>
+              <%   if(enums) { %>
+                    <label><%= label %></label>
+                    <div>
+                    <% enums.forEach(elem => { %>
+                    <label class="radion">      <input class="" name="<%= prop %>" type="radio"  value="<%= elem %>"> <%= elem %></label>
+                    <%  });%>
+                    </div>
+                <% } else { %>
+                    <% if(field_type == "single_image") {%>
+
+                          <% include ../image_uploader  %>
+                      <% } else { %>
+                                        <% if(prop == "description" || prop == "content") {%>
+                                          <label><%= label %></label>
+                                          <% include ../text_editor  %>
+                                              <% } else { %>
+                                                <label><%= label %></label>
+                                                <input class="form-control input-lg" name="<%= prop %>" type="text">
+                                        <% }%>
+                    <% }%>
+              <% }%>
+      </div>
+      <% }%>
+<% } %>
+
+
+              </div>
+              <div id="result_form">   <p></p></div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Закрыть</button>
+                <button type="button"  class="save btn btn-outline">Сохранить изменения</button>
+              </div>
+
+            </form>
+            </div>
+          </div>
+        </div>

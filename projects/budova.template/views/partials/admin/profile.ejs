@@ -1,0 +1,100 @@
+<style>
+li.list-group-item.inactive {
+    opacity:  .5;
+}</style>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Страница профиля
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Домой</a></li>
+        <li><a href="#">Кабинет</a></li>
+        <li class="active">Профиль</li>
+      </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-md-3">
+          <!-- Profile Image -->
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle" src="<%= user.image %>" alt="User profile picture">
+              <h3 class="profile-username text-center"><%= user.username %></h3>
+              <p class="text-muted text-center"><%= user.user_role %></p>
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>Телефон</b> <a class="pull-right"><%= user.phone %></a>
+                </li>
+                <li class="list-group-item">
+                  <b>Возраст</b> <a class="pull-right"><%= user.age %></a>
+                </li>
+                <li class="list-group-item">
+                  <b>Пол</b> <a class="pull-right">
+                  <% if(user.gender == 'male'){ %>
+         Мужской
+              <%    } else { %>
+Женский
+        <%         }%></a>
+                </li>
+
+
+                <li class="list-group-item">
+                  <b>Лайки</b> <a class="pull-right"><%= user.liked %></a>
+                </li>
+
+
+
+                    <li class="list-group-item inactive">
+                      <b>Каналы</b> <a class="pull-right">1,322</a>
+                    </li>
+                    <li class="list-group-item inactive">
+                      <b>Подписчики</b> <a class="pull-right">543</a>
+                    </li>
+                    <li class="list-group-item inactive">
+                      <b>Друзья</b> <a class="pull-right">13,287</a>
+                    </li>
+              </ul>
+              <a href="#" class="btn btn-primary btn-block"><b>Подписаться на обновления</b></a>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+          <!-- About Me Box -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">О себе</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <strong><i class="fa fa-book margin-r-5"></i> Информация</strong>
+              <p class="text-muted">
+              <%= user.content %>
+              </p>
+              <hr>
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Сейчас в</strong>
+              <p class="text-muted">  <%= user.address %></p>
+              <%# <hr>
+              <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+              <p>
+                <span class="label label-danger">UI Design</span>
+                <span class="label label-success">Coding</span>
+                <span class="label label-info">Javascript</span>
+                <span class="label label-warning">PHP</span>
+                <span class="label label-primary">Node.js</span>
+              </p> %>
+              <hr>
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Контакты</strong>
+              <p><%= user.contacts %></p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->

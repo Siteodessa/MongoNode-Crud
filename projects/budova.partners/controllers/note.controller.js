@@ -1,0 +1,330 @@
+const Note = require('../db/models/note.model.js');
+
+
+function transliterate(word){
+  var a = {"Ё":"yo","Й":"i","Ц":"ts","У":"u","К":"k","Е":"e","Н":"n","Г":"g","Ш":"sh","Щ":"sch","З":"z","Х":"h","Ъ":"'","ё":"yo","й":"i","ц":"ts","у":"u","к":"k","е":"e","н":"n","г":"g","ш":"sh","щ":"sch","з":"z","х":"h","ъ":"'","Ф":"f","Ы":"i","В":"v","А":"a","П":"p","Р":"r","О":"o","Л":"l","Д":"D","Ж":"zh","Э":"E","ф":"f","ы":"i","в":"v","а":"a","п":"p","р":"r","о":"o","л":"l","д":"d","ж":"zh","э":"e","Я":"Ya","Ч":"CH","С":"S","М":"M","И":"I","Т":"T","Ь":"'","Б":"B","Ю":"yu","я":"ya","ч":"ch","с":"s","м":"m","и":"i","т":"t","ь":"'","б":"b","ю":"yu"};
+
+  return word.split('').map(function (char) {
+    return a[char] || char;
+  }).join("");
+}
+
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
+
+
+function remove_symbols(word){
+   newstr = word.replace('*', '');
+   newstr = newstr.replaceAll(' ', '');
+   newstr = newstr.replace('/', '');
+   newstr = newstr.replace('\\', '');
+   newstr = newstr.replace('%', '');
+   newstr = newstr.replace('', '');
+   newstr = newstr.replace('@', '');
+   newstr = newstr.replace('#', '');
+   newstr = newstr.replace('$', '');
+   newstr = newstr.replace('^', '');
+   newstr = newstr.replace('*', '');
+   newstr = newstr.replace('(', '');
+   newstr = newstr.replace(')', '');
+   newstr = newstr.replace('%20', '');
+  return newstr
+}
+
+
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
+
+
+function handle_background(req) {
+ // let backg = req.body.home_background.slice(1);
+ // if (req.body.home_background.length < 2 ) {
+ //   console.log('dis way');
+ //   backg = null
+ // } else {
+ //   console.log('dat way');
+ // backg = '/uploads/' + backg;
+ // }
+ return req.body.home_background
+}
+function handle_page_link(req) {
+ let page_link = req.body.title;
+
+ console.log('get_title');
+console.log(page_link);
+ page_link = remove_symbols(page_link);
+
+
+ console.log('remove_symbols');
+ console.log(page_link);
+
+ page_link = transliterate(page_link);
+
+ console.log('transliterate');
+ console.log(page_link);
+ return page_link;
+}
+
+
+
+
+
+exports.upload = (req, res) => {
+
+}
+
+exports.findOnePage = (req, res) => {// Find a single note with a noteId
+     Note.find()
+    .then(notes => {
+      elemo = null;
+      notes.forEach(elem => {
+      if (elem.page_link == req.params.page_link) {
+      elemo =  elem
+      }
+       });
+       return elemo
+    }).catch(err => {
+        res.send({
+            message: err.message || "Some error occurred while retrieving notes."
+        });
+    });
+ };
+
+
+
+
+
+exports.create = (req, res) => {
+
+let home_background = handle_background(req);
+let page_link = handle_page_link(req);
+
+
+
+
+
+    const note = new Note({
+        title: req.body.title || "",
+        home_title: req.body.home_title || "",
+        page_link: page_link || "",
+        content: req.body.content || "",
+        home_background :  home_background || "city.jpg",
+        breadcrumbs : req.body.breadcrumbs || "OOPS!!",
+        main_nav_list : req.body.main_nav_list || "OOPS!!",
+        phone : req.body.phone || "OOPS!!",
+        logo : req.body.logo || "/images/logo.png",
+        listing_title : req.body.listing_title || "OOPS!!",
+        listing_text : req.body.listing_text || "OOPS!!",
+        room_tags : req.body.room_tags || "OOPS!!",
+        listing_price_col : req.body.listing_price_col || "OOPS!!",
+        listing_slider : req.body.listing_slider || "OOPS!!",
+        listing_details : req.body.listing_details || "OOPS!!",
+        description : req.body.description || "OOPS!!",
+        additional_details : req.body.additional_details || "OOPS!!",
+        listing_video : req.body.listing_video || "OOPS!!",
+        map : req.body.map || "OOPS!!",
+        subscribe : req.body.subscribe || "OOPS!!",
+        weekly_offer : req.body.weekly_offer || "OOPS!!",
+        footer_social : req.body.footer_social || "OOPS!!",
+        footer_about : req.body.footer_about || "OOPS!!",
+        useful_links : req.body.useful_links || "OOPS!!",
+        footer_col_title : req.body.footer_col_title || "OOPS!!",
+        contact_info : req.body.contact_info || "OOPS!!",
+        notes : req.body.notes || "OOPS!!",
+        dbtest : req.body.dbtest || "OOPS!!",
+        content: req.body.content || "OOPS!!",
+        floors_quant : req.body.floors_quant || '1',
+        sections_quant : req.body.sections_quant || '1',
+        appart_on_floor_quant : req.body.appart_on_floor_quant || '4',
+        construction_type : req.body.construction_type || 'Монолитный каркас',
+        frontend_material : req.body.frontend_material || 'Штукатурка',
+        walls : req.body.walls || 'Газобетон 40 см / Газобетон 20 см',
+        windows : req.body.windows || 'Евробрус',
+        floor_height : req.body.floor_height || '3',
+        warming : req.body.warming || 'Котельная на крыше',
+        elevator : req.body.elevator || 'Пассажирский / Грузовой',
+        parking : req.body.parking || 'Подземный',
+        bldr : req.body.bldr || 'Будова',
+        block : req.body.block || 'Приморский',
+        content : req.body.content || ' '
+    });
+    note.save()    // Save Note in the database
+    .then(data => {
+      res.send(JSON.stringify(data));
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while creating the Note."
+
+        });
+    });
+};
+
+
+exports.findAll = (req, res) => { // Retrieve and return all notes from the database.
+    Note.find()
+    .then(notes => {
+        res.status(200).send(notes);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving notes."
+        });
+    });
+};
+exports.findOne = (req, res) => {// Find a single note with a noteId
+    Note.findById(req.params.noteId)
+    .then(note => {
+        if(!note) {
+            return res.status(404).send({
+                message: "Note not found with id " + req.params.noteId
+            });
+        }
+        res.send(note);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Note not found with id " + req.params.noteId
+            });
+        }
+        return res.status(500).send({
+            message: "Error retrieving note with id " + req.params.noteId
+        });
+    });
+};
+exports.custom_update = (req, res) => {
+
+let the_data = req.body;
+
+// for (let prop in req.body) {
+//   console.log('gotcha');
+//
+//   if (!JSON.parse(req.body[prop])){console.error('ERO');}
+//   console.log(prop);
+//   the_data[prop] = JSON.parse(prop)
+// }
+// delete the_data["noteId"];
+
+console.log(the_data["gallery"]);
+
+the_data["gallery"] = the_data["gallery"][1].replace('[object Object]', '');
+the_data["gallery"] = JSON.stringify(the_data["gallery"])
+console.log('Handled');
+console.log(the_data["gallery"]);
+
+    Note.findByIdAndUpdate(req.params.noteId, the_data, {new: true})
+    .then(note => {
+        if(!note) {
+
+            return res.status(404).send({
+                message: "Note not found with id " + req.params.noteId
+            });
+        }
+
+        res.send(the_data);
+
+    }).catch(err => {
+      console.log(err);
+        if(err.kind === 'ObjectId') {
+
+
+            return res.status(404).send({
+                message: "Note not found with id " + req.params.noteId
+            });
+        }
+        if(err.kind === 'number') {
+
+let cf = require('./custom_functions');
+            return res.status(500).send('В поле "Цены стартуют от" должно быть указано число!');
+        }
+else {
+  return res.status(500).send({
+      message: "Error updating note with id " + req.params.noteId
+  });
+}
+
+    });
+};
+
+
+exports.update = (req, res) => {// Update a note identified by the noteId in the request
+    if(!req.body.content) {    // Validate Request
+        return res.status(400).send({
+            message: "Note content can not be empty"
+        });
+    }
+    Note.findByIdAndUpdate(req.params.noteId, {
+      // title: req.body.title || "Budova.partners",
+      // home_title: req.body.home_title || "SINGLE LISTING",
+      // content: req.body.content || "OOPS!!",
+      // home_background : req.body.home_background || "OOPS!!",
+      // breadcrumbs : req.body.breadcrumbs || "OOPS!!",
+      // main_nav_list : req.body.main_nav_list || "OOPS!!",
+      // phone : req.body.phone || "OOPS!!",
+      // logo : req.body.logo || "OOPS!!",
+      // listing_title : req.body.listing_title || "OOPS!!",
+      // listing_text : req.body.listing_text || "OOPS!!",
+      // room_tags : req.body.room_tags || "OOPS!!",
+      // listing_price_col : req.body.listing_price_col || "OOPS!!",
+      // listing_slider : req.body.listing_slider || "OOPS!!",
+      // listing_details : req.body.listing_details || "OOPS!!",
+      // description : req.body.description || "OOPS!!",
+      // additional_details : req.body.additional_details || "OOPS!!",
+      // listing_video : req.body.listing_video || "OOPS!!",
+      // map : req.body.map || "OOPS!!",
+      // subscribe : req.body.subscribe || "OOPS!!",
+      // weekly_offer : req.body.weekly_offer || "OOPS!!",
+      // footer_social : req.body.footer_social || "OOPS!!",
+      // footer_about : req.body.footer_about || "OOPS!!",
+      // useful_links : req.body.useful_links || "OOPS!!",
+      // footer_col_title : req.body.footer_col_title || "OOPS!!",
+      // contact_info : req.body.contact_info || "OOPS!!",
+      // notes : req.body.notes || "OOPS!!",
+      // dbtest : req.body.dbtest || "OOPS!!",
+      // content: req.body.content || "OOPS!!"
+    }, {new: true})
+    .then(note => {
+        if(!note) {
+            return res.status(404).send({
+
+                message: "Note not found with id " + req.params.noteId
+            });
+        }
+        res.status(200).send(note);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+
+            return res.status(404).send({
+                message: "Note not found with id " + req.params.noteId
+            });
+        }
+
+        return res.status(500).send({
+            message: "Error updating note with id " + req.params.noteId
+        });
+    });
+};
+exports.delete = (req, res) => { // Delete a note with the specified noteId in the request
+    Note.findByIdAndRemove(req.params.noteId)
+    .then(note => {
+        if(!note) {
+            return res.status(404).send({
+                message: "Note not found with id " + req.params.noteId
+            });
+        }
+        res.status(200).send({message: "Note deleted successfully!"});
+    }).catch(err => {
+        if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+            return res.status(404).send({
+                message: "Note not found with id " + req.params.noteId
+            });
+        }
+        return res.status(500).send({
+            message: "Could not delete note with id " + req.params.noteId
+        });
+    });
+};

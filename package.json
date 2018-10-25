@@ -1,26 +1,19 @@
 {
-  "name": "tasknode",
-  "version": "1.0.0",
-  "description": "Restful CRUD API with Node.js Express and mondodb.",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "Express",
-    "RestAPI",
-    "MongoDB",
-    "Mongoose",
-    "Notes"
-  ],
-  "author": "callicoder",
-  "license": "MIT",
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": {
+     "/task_management": "http://127.0.0.1:27/task_management"
+   },
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "ejs": "^2.6.1",
-    "express": "^4.16.3",
-    "mongoose": "^5.1.2",
-    "require-ejs": "0.0.3",
-    "serve-index": "^1.9.1"
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-scripts": "1.1.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
