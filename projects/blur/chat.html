@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+ <head>
+   <title>Blur</title>
+   <style>
+
+   </style>
+   <link rel="stylesheet" type="text/css" href="/public/css.css">
+ </head>
+ <body class="style1">
+
+   <div class="chatpage">
+   <div class="chatscreen">
+   <ul id="messages"></ul>
+   <form action="">
+     <input id="m" autocomplete="off" /><button>Отправить</button>
+   </form>
+ </div>
+ </div>
+ <div id="renderchat">
+
+ </div>
+
+
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+   <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+   <script>
+     $(function () {
+       var socket = io();
+       $('form').submit(function(){
+         socket.emit('chat message', $('#m').val());
+         $('#m').val('');
+         $('#m').focus();
+         return false;
+       });
+       var date = '';
+       var msgdata = '';
+       var localedate = '';
+       socket.on('chat message', function(msg){
+         date = new Date();
+         localedate = date.toLocaleString("ru");
+         date = date.getHours();
+         msgdata = '<span class="cover"><span class="message">'+ msg +'</span><span class="time">'+ date +'</span></span>'
+         $('#messages').append('<li>'+ msgdata +'</li>');
+         window.scrollTo(0, document.body.scrollHeight);
+        date = '';
+        msgdata = '';
+       });
+     });
+   </script>
+ </body>
+</html>
