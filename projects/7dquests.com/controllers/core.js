@@ -1,4 +1,4 @@
-const bodyParser = require('../../../node_modules/body-parser');
+const bodyParser = require('body-parser');
 console.log('preparing core...');
 
 function type_n_log(a) {
