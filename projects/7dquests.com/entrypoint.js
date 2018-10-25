@@ -1,9 +1,9 @@
 console.log('Starting...');
 var fs = require('fs');
-let express = require('express'); 
+let express = require('express');
 let app = express();
 const dbConfig = require('./db/config/database.config.js');
-const mongoose = require('../../node_modules/mongoose');
+const mongoose = require('mongoose');
 var start_mongoose = require('./db/start_mongoose')(mongoose, dbConfig);
 var core = require('./controllers/core');
 core.app = app;
