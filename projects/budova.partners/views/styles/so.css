@@ -5,6 +5,7 @@
 	-webkit-font-smoothing: antialiased;
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
+	    transition: 0.45s;
 }
 
 @charset "utf-8";
@@ -2735,4 +2736,65 @@ span.block.indented {
 
 .singlepage .related .section_title {
     padding-top: 330px;
+}
+
+.h100 {
+    height: 100%;
+}
+.overlay {
+    background: #000000bd;
+}
+.cc {
+    align-items: center;
+    justify-content: center;
+}
+.flex {
+    display: flex;
+}
+.cwhite {
+    color: #fff;
+}
+.h100 {
+    height: 100%;
+}
+.w100 {
+    width: 100%;
+}
+.no-gallery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no_anim .overlay {
+    background: #00000000;
+}
+
+.no_anim .overlay h1 {
+    transform: translateY(30vh);
+    opacity: 0;
+}
+
+.overlay h1 {
+    opacity: 1;
+    font-size: 8em;
+}
+
+.flecol {
+    flex-direction: column;
+}
+
+.rel {
+    position: relative;
+}
+
+.scroll {
+    position: absolute;
+    bottom: 10vh;
+    transform: none;
+    transition-delay:.2s
+}
+
+.no_anim .scroll {
+    transform: translateY(30vh);
 }

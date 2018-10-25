@@ -48,19 +48,41 @@
 
  <body>
    <!-- Swiper -->
-   <% let gallery_html = '' %>
-   <% d['gallery'] = d['gallery'].split('"')[1] %>
-   <%      d['gallery'].split(',').forEach(elem => {
-             gallery_html += '<div class="swiper-slide"><img src="/uploads/' + elem + '" /></div>'
-           });
-            %>
+
+
+<%
+function print_swiper_gallery(gallery_links_array) {
+        if (typeof gallery_links_array == 'undefined') return false
+        let gallery_html = ''
+        gallery_links_array = gallery_links_array.split('"')[1]
+        if (typeof gallery_links_array == 'undefined') return false
+        gallery_links_array.split(',').forEach(elem => {
+          gallery_html += '<div class="swiper-slide"><img src="/uploads/' + elem + '" /></div>'
+        });
+        return gallery_html
+}
+%>
+
+<% if (print_swiper_gallery(d['gallery']) !== false) { %>
+
+
    <div class="swiper-container">
      <div class="swiper-wrapper">
-            <%- gallery_html %>
+            <%- print_swiper_gallery(d['gallery']) %>
      </div>
      <!-- Add Pagination -->
      <div class="swiper-pagination"></div>
    </div>
+<% }  else { %>
+
+
+<% include ../partials/single/single_no_gallery %>
+
+<%  } %>
+
+
+
+
 
    <!-- Swiper JS -->
    <script src="/js/swiper.min.js"></script>
