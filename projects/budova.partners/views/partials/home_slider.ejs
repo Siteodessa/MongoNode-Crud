@@ -89,7 +89,21 @@ function print_swiper_gallery(gallery_links_array) {
    </div>
 <% }  else { %>
 
-23
+
+
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+         <div class="swiper-slide"><img src="http://localhost:27/uploads/imageUpload-1537185344500.jpg" /></div>
+         <div class="swiper-slide"><img src="http://localhost:27/uploads/imageUpload-1537206478321.jpg" /></div>
+         <div class="swiper-slide"><img src="http://localhost:27/uploads/imageUpload-1537206637124.jpg" /></div>
+         <div class="swiper-slide"><img src="http://localhost:27/uploads/imageUpload-1537223936079.jpg" /></div>
+         <div class="swiper-slide"><img src="http://localhost:27/uploads/imageUpload-1537224628852.jpg" /></div>
+
+  </div>
+  <!-- Add Pagination -->
+  <div class="swiper-pagination"></div>
+</div>
+
 
 <%  } %>
 
@@ -105,6 +119,7 @@ function print_swiper_gallery(gallery_links_array) {
      var swiper = new Swiper('.swiper-container', {
        slidesPerView: 3,
        spaceBetween: 30,
+       loop: true,
        autoplay: {
           delay: 250000,
           disableOnInteraction: false,
@@ -115,12 +130,5 @@ function print_swiper_gallery(gallery_links_array) {
        },
      });
    </script>
-
-
-
-
-
-
-
 
 </div>

@@ -48,6 +48,20 @@ sitedata: sitedata
 });
 }
 
+function is_empty(obj) {
+  if (obj === '') return true
+                 return false
+}
+function is_undefined(obj) {
+if (typeof obj === 'undefined') return true
+                                return false
+}
+function is_empty_or_undefined(obj) {
+  if (is_empty(obj) || is_undefined(obj)) return true
+                                          return false
+}
+
+
 
   function is_LoggedIn(req) {
        if (req.session.user) { return true};return false;
@@ -74,5 +88,8 @@ custom_functions.bodyParser = bodyParser;
 custom_functions.default_data = default_data;
 custom_functions.is_LoggedIn = is_LoggedIn;
 custom_functions.redirect_to_login = redirect_to_login;
+custom_functions.is_empty = is_empty;
+custom_functions.is_undefined = is_undefined;
+custom_functions.is_empty_or_undefined = is_empty_or_undefined;
 
 module.exports = custom_functions;

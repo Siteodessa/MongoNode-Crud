@@ -59,7 +59,7 @@
           let input_radio = dis.find('input[type="radio"]')
           input_radio.each(function() {
             let radio_name = $(this).attr('name')
-            if (data[radio_name].trim() == $(this).attr('value')) {
+            if (data[radio_name] && typeof data[radio_name] !== 'undefined' && data[radio_name].trim() == $(this).attr('value')) {
               $(this).parent('label').click()
             }
           })

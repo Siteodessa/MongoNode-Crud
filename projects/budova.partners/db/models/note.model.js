@@ -5,6 +5,8 @@ const NoteSchema = mongoose.Schema
     title:  { type: String, unique:true,minlength: [4, 'Слишком короткий заголовок'], maxlength: [50, 'Слишком длинный заголовок']},
     home_title: String,
     page_link: String,
+    note_type:  { type: String, default: 'Объект', enum:["Объект", "Страница"], ru_label: 'Тип объекта' },
+    template_link:  { type: String, default: '', ru_label: 'Ссылка на шаблон' },
     home_background : { type: String},
     gallery: { type: String, default: '', ru_label: 'Галерея', input_type: 'Multimedia'},
     subheading : String,

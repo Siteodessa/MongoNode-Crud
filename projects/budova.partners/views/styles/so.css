@@ -858,6 +858,7 @@ section
 	width:  auto;
 	max-height: 270px;
 	min-width:  100%;
+	min-height: 200px;
 }
 .card-body
 {
@@ -2797,4 +2798,8 @@ span.block.indented {
 
 .no_anim .scroll {
     transform: translateY(30vh);
+}
+
+.new_houses .featured_row {
+    flex-direction: row;
 }
