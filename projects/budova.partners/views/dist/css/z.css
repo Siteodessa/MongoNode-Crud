@@ -25,3 +25,11 @@ iframe.img_upl_frame {
 .text-white {
     color: #fff;
 }
+
+.big.fa {
+    font-size: 40px;
+}
+
+.db_group.working {
+    background: #00ff5c54;
+}

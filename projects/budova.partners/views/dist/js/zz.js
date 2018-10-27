@@ -1,5 +1,4 @@
   $(function() {
-
     function show_new_page_success(obj, result) {
       $(obj).html('Запись "' + result.title + '" успешно добавлена!<div class="page_added">Вы можете на нее <a href="/doma/' + result.page_link + '">Перейти</a></div>').addClass('shown');
     }
@@ -32,8 +31,10 @@
       })
     }
     function CKEDITOR_activate(CKEDITOR) {
-      CKEDITOR.replace('editor1')
-      $('.textarea').wysihtml5()
+      if (document.getElementById('editor1')) {
+        CKEDITOR.replace('editor1')
+        $('.textarea').wysihtml5()
+      }
     }
 
 
@@ -115,10 +116,12 @@
               // console.log(data);
               update_rows_data('.db_group', data)
               let iframe = document.querySelector('iframe.cke_wysiwyg_frame.cke_reset');
-              let iframeElement = iframe.contentWindow.document.activeElement.innerHTML = data["content"];
+              let iframeElement;
+              if (iframe) { iframeElement = iframe.contentWindow.document.activeElement.innerHTML = data["content"]; }
               var modal_body = $('.modal-body');
               update_iframes('iframe#media_upload', '#imagedata', data)
               update_multimedia_iframes('iframe#multimedia_upload', '#multimediadata', data)
+              update_multimedia_iframes('iframe#layout_upload', '#multimediadata', data)
 
               modal_body.attr('id', id)
               $(add_new_obj_elem).click()
@@ -291,5 +294,8 @@ $('#example1').ready(function() {
     })
     make_roundy_images('img.obj')
 
-      CKEDITOR_activate(CKEDITOR)
+
+        CKEDITOR_activate(CKEDITOR)
+
+
   });
