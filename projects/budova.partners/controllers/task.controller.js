@@ -1,15 +1,16 @@
 const Task = require('../db/models/task.model');
 const Reviews_m = require('../db/models/review.model');
 exports.create = (req, res) => {
-console.log('MAN WATAFAk');
+
+
+  console.log('req.body.task');
+  console.log(req.body);
   console.log(req.body.task);
-    const task = new Task({    // Create a Task
-
-
+  if (req.body.task == 'undefined') { return }
+    const task = new Task({
         task: req.body.task || "Задание не сохранилось",
         task_desc: req.body.task_desc || "Свяжитесь с системным администратором",
         task_status: req.body.task_status || "Срочное",
-
     });
 
     task.save()    // Save Task in the database

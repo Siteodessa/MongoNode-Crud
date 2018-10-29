@@ -1,0 +1,29 @@
+<style> label.radion { background: #fff; padding:  6px 8px; border-radius: 15px; color: #f39c12; cursor: pointer; box-shadow: 0px 0px 0px transparent; transition: .5s; margin: 4px 6px;    border: 1px solid #fff; } .page_added { display:  inline; margin:  0 5px; } iframe#media_upload { width:  100%; border: none; height: 90px; } .db_group { margin:  5px 0 10px; } div#result_form p { padding:  10px  10px 5px; transform: translate(-100%); transition: .5s; opacity: 0; } div#result_form p.shown { transform: translate(0%); opacity: 1; } div#result_form  { overflow: hidden;margin: 0 } label.radion.checked { background: linear-gradient(to bottom, #48c6ef 0%, #6f86d6 100%);  color: #fff; } iframe#media_upload, iframe#multimedia_upload { width:  100%; border: none; height: 90px; } </style>
+<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-warning"> Добавить новый </button>
+        <div class="modal modal-warning fade" id="modal-warning" style="display: none;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+                        <form class="form-horizontal" id="add_new_form" action="/media_uploader" method="POST" enctype="multipart/form-data">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Добавить новый объект</h4>
+              </div>
+              <div class="modal-body">
+                  <div id="re_editor"> </div>
+                </div>
+                <div id="result_form"><p></p></div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Закрыть</button>
+                  <button type="button" class="save btn btn-outline">Сохранить</button>
+                  <button type="button" class="save and_close btn btn-outline">Сохранить и закрыть</button>
+                  <button type="button" class="update btn btn-outline">Обновить</button>
+                  <button type="button" class="update and_close btn btn-outline">Обновить и закрыть</button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+<script src="\bower_components\bootstrap-datepicker\dist\js\bootstrap-datepicker.min.js"></script>
+<script> $('#datepicker').datepicker({ autoclose: true, }) </script>
+<script> </script>

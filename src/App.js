@@ -29,6 +29,7 @@ componentDidMount() {
                 <div className={card_statuses[card.task_status]}>
                   <div className="inner">
                     <h3>{i}</h3>
+                    <p>{card.id}</p>
                     <p>{card.task}</p>
                     <blockquote>{card.task_desc}</blockquote>
                     <span>{card.task_status}</span>
@@ -45,7 +46,7 @@ componentDidMount() {
       console.log("state", this.state.cards)
   }).catch(err => console.log(err));
 }
-callApi = async () => { const response = await fetch('http://localhost:27/task_management');
+callApi = async () => { const response = await fetch('/task_management');
 const body = await response.json(); if (response.status !== 200) throw Error(body.message);
 return body; };
   render() {
@@ -68,22 +69,28 @@ class AddTask extends App {
       this.callApiPost = this.callApiPost.bind(this);
     }
     callApiPost = async (data) => {
+
     const response = await fetch('http://localhost:27/task_management', {
                 method: 'POST',
-                headers: { "Content-Type": "application/json; charset=utf-8" },
-                zzz: data
-              });
+                headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+              })
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
-     return body;
+    this.setState({cards: body});
+        console.log(body);
+       return body;
     }
     handleSubmit(event) {
       event.preventDefault();
-      const data = JSON.stringify({
+      const data = {
         "task" : document.getElementById('task').value,
         "task_desc" : document.getElementById('task_desc').value,
         "task_status" : document.getElementById('task_status').value
-      })
+      }
           this.callApiPost(data)
     }
       render() {

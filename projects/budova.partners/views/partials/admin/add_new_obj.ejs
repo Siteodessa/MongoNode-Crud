@@ -32,29 +32,7 @@
     <% result = null;if (!note_types) { return } ; note_types = note_types + '';note_types.split(',').forEach(elem => { if (elem == note_type) { result = true } }); %>
     <%  return result %>
 <%    } %>
-<% function cast_structure(structure_model,input_type, schema, prop){ %>
-<% result = ''  %>
-<% result += `  <div class="db_group working" name="${prop}" input_type=""${input_type}" >`;  %>
-<% let label = get_ru_label(schema, prop);  %>
-<% label = `<label>${label}</label>`  ;  %>
-<% result += label;  %>
-<% if (typeof structure_model == 'string') { return }  %>
-<% structure_model.forEach(elem => {  %>
-  <% result += `<div class="minigroup">${elem}</div>`;/* create 1 function for all types and call it  PRINTER  */  %>
-<% });%>
-<% result += `</div>`;  %>
-<%  return result;  %>
-<%    } %>
-<% function cast_input(structure_model,input_type, schema, prop) { %>
-    <% let result; %>
-    <% if (input_type == 'media') {      %><% result = `<div class="db_group" name="${prop}"  input_type="${input_type}" > <iframe scroll="no" id="media_upload" src="/media_upload"></iframe> <input class="hidden" type="text" name="home_background" class="home_background"> </div> ` }%>
-    <% if (input_type == 'text') {       %><% result = `<div class="db_group" name="${prop}"  input_type="${input_type}" > <label>${humanized_name(prop)}</label> <input class="form-control input-lg" name="${prop}" type="text"> </div>` }%>
-    <% if (input_type == 'radio') {      %><% result = ''; let enums = enumo(schema, prop); let ru_name = get_ru_label(schema, prop); %> <% result += `<div class="db_group" name="${prop}"  input_type="${input_type}" ><label>${ru_name}</label>`; %> <% result += `<div>`; enums.forEach(elem => { result += `<label class="radion"><input class="" name="${prop}" type="radio"  value="${elem}"> ${elem} </label>`; }); result += `</div>`; %> <% result += `</div>`; %> <% } %>
-    <% if (input_type == 'texteditor') { %><% result = ''; let ru_name = get_ru_label(schema, prop); %> <% result += `<div class="db_group" name="${prop}"  input_type="${input_type}" ><label>${ru_name}</label>`; %> <% result += `<div class="box box-info"> <div class="box-body pad"> <form> <textarea id="editor1" name="editor1" rows="10" cols="80"> </textarea> </form> </div> </div>`; %> <% result += `</div>`; %> <% } %>
-    <% if (input_type == 'structure') { %><% result = cast_structure(structure_model,input_type, schema, prop); } %>
-    <% if (input_type == 'datepicker') { %><% result = ''; let ru_name = get_ru_label(schema, prop); result += `<div class="db_group" name="${prop}"  input_type="${input_type}" ><label>${ru_name}</label> <div class="input-group date"> <div class="input-group-addon"> <i class="fa fa-calendar"></i> </div> <input type="text" class="form-control pull-right" id="datepicker"> </div> </div> `;  } %>
-    <% if (input_type == 'multimedia') { %><% result = ''; let ru_name = get_ru_label(schema, prop); result += `<div class="db_group" name="${prop}"  input_type="${input_type}" ><label>${ru_name}</label><iframe scroll="no" id="multimedia_upload" src="/multimedia_upload"></iframe> <input class="hidden" type="text" name="${prop}" class="${prop}">`;} %>
-<% return result;} /* end function cast_input */%>
+
 <style> label.radion { background: #fff; padding:  6px 8px; border-radius: 15px; color: #f39c12; cursor: pointer; box-shadow: 0px 0px 0px transparent; transition: .5s; margin: 4px 6px;    border: 1px solid #fff; } .page_added { display:  inline; margin:  0 5px; } iframe#media_upload { width:  100%; border: none; height: 90px; } .db_group { margin:  5px 0 10px; } div#result_form p { padding:  10px  10px 5px; transform: translate(-100%); transition: .5s; opacity: 0; } div#result_form p.shown { transform: translate(0%); opacity: 1; } div#result_form  { overflow: hidden;margin: 0 } label.radion.checked { background: linear-gradient(to bottom, #48c6ef 0%, #6f86d6 100%);  color: #fff; } iframe#media_upload, iframe#multimedia_upload { width:  100%; border: none; height: 90px; } </style>
 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-warning"> Добавить новый </button>
         <div class="modal modal-warning fade" id="modal-warning" style="display: none;">
@@ -67,21 +45,140 @@
                 <h4 class="modal-title">Добавить новый объект</h4>
               </div>
               <div class="modal-body">
+
+
+  <% function cast_structure(structure_model,input_type, schema, prop, label){ %>
+          <% result = ''  %>
+          <% result += `  <div class="db_group working" name="${prop}" input_type=""${input_type}" >`;  %>
+          <% label_tag = `<label>${label}</label>`  ;  %>
+          <% result += label_tag;  %>
+          <% if (typeof structure_model == 'string') { return }  %>
+          <% structure_model.forEach(elem => {  %>
+          <% console.log('structure_model   ' + structure_model);  %>
+          <% console.log('elem              ' + elem);  %>
+          <% console.log('input_type        ' + input_type);  %>
+          <% console.log('----------------------');  %>
+            <% result += `<div class="minigroup">${cast_input(structure_model,elem, schema,input_type, label )}</div>`;/* create 1 function for all types and call it  PRINTER  */  %>
+          <% });%>
+          <% result += `</div>`;  %>
+          <%  return result;  %>
+  <%    } %>
+  <% function cast_input(structure_model,input_type, schema, prop, label) { %>
+      <% let result; %>
+      <% if (input_type == 'media') {      %>
+                  <% result = `<div class="db_group" name="${prop}"  input_type="${input_type}" >
+                  <iframe scroll="no" id="media_upload" src="/media_upload"></iframe>
+                  <input class="hidden" type="text" name="${prop}" class="${prop}"> </div> ` }%>
+      <% if (input_type == 'text') {       %>
+                  <% if(prop == 'structure') { prop = label}
+                  result = `<div class="db_group" name="${prop}"  input_type="${input_type}" >
+                  <label>${label}</label>
+                  <input class="form-control input-lg" name="${prop}" type="text"> </div>` }%>
+      <% if (input_type == 'radio') {      %>
+                  <% result = ''; let enums = enumo(schema, prop);  %>
+                  <% result += `<div class="db_group" name="${prop}"  input_type="${input_type}" >
+                  <label>${label}</label>`; %>
+                  <% result += `<div>`;
+                  enums.forEach(elem => { result += `<label class="radion">
+                  <input class="" name="${prop}" type="radio"  value="${elem}"> ${elem} </label>`; });
+                  result += `</div>`; %> <% result += `</div>`; %> <% } %>
+      <% if (input_type == 'texteditor') { %>
+                  <% result = '';  %>
+                  <% result += `<div class="db_group" name="${prop}"  input_type="${input_type}" >
+                  <label>${label}</label>`; %>
+                  <% result += `<div class="box box-info"> <div class="box-body pad">
+                  <form>
+                  <textarea id="editor1" name="editor1" rows="10" cols="80"> </textarea>
+                  </form> </div> </div>`; %>
+                  <% result += `</div>`; %> <% } %>
+      <% if (input_type == 'structure') { %>
+                  <% result = cast_structure(structure_model,input_type, schema, prop, label); } %>
+      <% if (input_type == 'datepicker') { %>
+                  <% result = '';  result += `<div class="db_group" name="${prop}"  input_type="${input_type}" >
+                  <label>${label}</label> <div class="input-group date">
+                  <div class="input-group-addon"> <i class="fa fa-calendar"></i> </div>
+                  <input type="text" class="form-control pull-right" id="datepicker"> </div> </div> `;  } %>
+      <% if (input_type == 'multimedia') { %>
+                  <% result = '';  result += `<div class="db_group" name="${prop}"  input_type="${input_type}" >
+                  <label>${label}</label>
+                  <iframe scroll="no" id="multimedia_upload" src="/multimedia_upload"></iframe>
+                  <input class="hidden" type="text" name="${prop}" class="${prop}">`;} %>
+  <% return result;} /* end function cast_input */%>
+
+
+
+<% function input_cast(structure_model,input_type, schema, prop, label) {
+  this.media = function() {
+    return result = `<div class="db_group" name="${prop}"  input_type="${input_type}" >
+    <iframe scroll="no" id="media_upload" src="/media_upload"></iframe>
+    <label>${label}</label>
+    <input class="hidden" type="text" name="${prop}" class="${prop}"> </div>`
+  };
+  this.text = function() {
+    if(prop == 'structure') { prop = label}
+    return result = `<div class="db_group" name="${prop}"  input_type="${input_type}" >
+                      <label>${label}</label>
+                      <input class="form-control input-lg" name="${prop}" type="text"> </div>`
+  };
+  this.radio = function() {
+      result = ''; let enums = enumo(schema, prop);
+      result += `<div class="db_group" name="${prop}"  input_type="${input_type}" >
+      <label>${label}</label><div class="radio_values">`;
+      enums.forEach(elem => { result += `<label class="radion">
+      <input class="" name="${prop}" type="radio"  value="${elem}"> ${elem} </label>`; });
+      result += `</div></div>`;
+      return result
+  };
+  this.texteditor = function() {
+    return result = `<div class="db_group" name="${prop}"  input_type="${input_type}" >
+    <label>${label}</label>
+    <div class="box box-info"> <div class="box-body pad">
+    <form>
+    <textarea id="editor1" name="editor1" rows="10" cols="80"> </textarea>
+    </form> </div> </div></div>`;
+    };
+  this.structure = function() {
+    console.log( '223232' );
+  };
+  this.datepicker = function() {
+    return result = `<div class="db_group" name="${prop}"  input_type="${input_type}" >
+    <label>${label}</label> <div class="input-group date">
+    <div class="input-group-addon"> <i class="fa fa-calendar"></i> </div>
+    <input type="text" class="form-control pull-right" id="datepicker"> </div> </div> `
+    };
+  this.multimedia = function() {
+    result = '';  result += `<div class="db_group" name="${prop}"  input_type="${input_type}" >
+    <label>${label}</label>
+    <iframe scroll="no" id="multimedia_upload" src="/multimedia_upload"></iframe>
+    <input class="hidden" type="text" name="${prop}" class="${prop}">`
+  };
+  var self = this;
+
+
+
+
+  }
+
+ %>
+
+ <%# structure_model = menu = prop = input_type = label ='2s' %>
+ <%# new input_cast(structure_model,input_type, schema, prop, label); %>
+  <%# if (action) { self[action](); } %>
+
+
+
 <% for (let prop in schema.tree) { %>
-<% let tree = schema.tree %>
-<% let input_type = tree[prop]["input_type"] || '' %>
-<% let note_type = tree[prop]["note_type"] || '';  %>
-<% let visibility = tree[prop]["visibility"] || '';  %>
-<% let structure_model = tree[prop]["structure_model"] || '';  %>
+<% let tree_prop = schema.tree[prop] %>
+<% let input_type = tree_prop["input_type"] || '' %>
+<% let note_type = tree_prop["note_type"] || '';  %>
+<% let visibility = tree_prop["visibility"] || '';  %>
+<% let structure_model = tree_prop["structure_model"] || '';  %>
+<% let label = tree_prop["ru_label"] || prop;  %>
 <% if (visibility == 'hidden') { continue; }  %>
 <% if (!is_supported_note_type(note_type, 'Объект')) { continue; } %>
-<%   if(input_type  == 'datepicker') {  %> <%- cast_input(structure_model,input_type, schema, prop);%> <% continue; } %>
-<%   if(input_type  == 'multimedia') {  %> <%- cast_input(structure_model,input_type, schema, prop);%> <% continue; } %>
-<%   if(input_type  == 'structure') {  %> <%- cast_input(structure_model,input_type, schema, prop);%> <% continue; } %>
-<%   if(input_type  == 'texteditor') { %> <%- cast_input(structure_model,input_type, schema, prop);%> <% continue; } %>
-<%   if(input_type  == 'radio') {      %> <%- cast_input(structure_model,input_type, schema, prop);%> <% continue; } %>
-<%   if(input_type  == 'media') {      %> <%- cast_input(structure_model,input_type, schema, prop);%> <% continue; } %>
-<%   if(input_type  == 'text') {       %> <%- cast_input(structure_model,input_type, schema, prop);%> <% continue; } %>
+<%- cast_input(structure_model,input_type, schema, prop, label);%>
+<%# - new input_cast(structure_model,input_type, schema, prop, label)[input_type];  %>
+
 <% } /* end for props in schema.tree */ %>
               </div> <div id="result_form">   <p></p></div>
               <div class="modal-footer">

@@ -4,9 +4,10 @@ module.exports = (cf) => {
   let app = cf.app;
   let Task_c = cf.Task_c;
 
-  app.use(cf.bodyParser.urlencoded({ extended: true }))
 
-  app.post('/task_management',Task_c.create);
+
+
+  app.post('/task_management',Task_c.create)
   app.get('/task_management',Task_c.findAll);
   app.get('/task_management/:noteId',Task_c.findOne);
   app.put('/task_management/:noteId',Task_c.update);
