@@ -1,39 +1,42 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import css from './css/z.css';
-import bootstrap from './css/bootstrap.min.css';
-import './App.css';
+import App from './App';
 
-class AddTask extends App {
-
+class AddTask extends Component {
       constructor() {
       super();
       this.handleSubmit = this.handleSubmit.bind(this);
       this.callApiPost = this.callApiPost.bind(this);
     }
-
     callApiPost = async (data) => {
 
-    const response = await fetch('http://localhost:27/task_management', {
+    const response = await fetch('/task_management', {
                 method: 'POST',
-                headers: { "Content-Type": "application/json; charset=utf-8" },
-                zzz: data
-              });
-
+                headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+              })
     const body = await response.json();
-    if (response.status !== 200) throw Error(body.message); return body;
+    if (response.status !== 200) throw Error(body.message);
+    // this.state.cards.push(body)
+    // this.setState({cards: body});
+    this.setState({ cards: this.state.cards.concat([body]) })
+
+        console.log('body is');
+        console.log(body);
+        console.log(' ~ and state is');
+        console.log(this.state.cards);
+       return body;
     }
-
-
-
-
     handleSubmit(event) {
       event.preventDefault();
-      const data = JSON.stringify({
+      const data = {
         "task" : document.getElementById('task').value,
         "task_desc" : document.getElementById('task_desc').value,
         "task_status" : document.getElementById('task_status').value
-      })
+      }
           this.callApiPost(data)
     }
       render() {
@@ -60,3 +63,4 @@ class AddTask extends App {
         )
     }
 }
+export default AddTask;

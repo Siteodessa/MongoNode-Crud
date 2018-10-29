@@ -2,10 +2,6 @@ const Task = require('../db/models/task.model');
 const Reviews_m = require('../db/models/review.model');
 exports.create = (req, res) => {
 
-
-  console.log('req.body.task');
-  console.log(req.body);
-  console.log(req.body.task);
   if (req.body.task == 'undefined') { return }
     const task = new Task({
         task: req.body.task || "Задание не сохранилось",
@@ -19,7 +15,7 @@ exports.create = (req, res) => {
         'Content-Type': 'text/plain',
         'Access-Control-Allow-Methods': 'POST, GET',
         'Access-Control-Allow-Headers': 'Origin,X-Requested-With,content-type',
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*:3000'
       }).status(200).send(JSON.stringify(data));
     }).catch(err => {
       console.log(err);
@@ -27,7 +23,7 @@ exports.create = (req, res) => {
           'Content-Type': 'text/plain',
           'Access-Control-Allow-Methods': 'POST, GET',
           'Access-Control-Allow-Headers': 'Origin,X-Requested-With,content-type',
-          'Access-Control-Allow-Origin': '*'
+          'Access-Control-Allow-Origin': '*:3000'
         }).status(500).send({
             message: err.message || "Some error occurred while creating the Task."
 
