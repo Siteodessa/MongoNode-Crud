@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import store from './the_redux_store';
 
 class AddTask extends Component {
       constructor() {
@@ -22,12 +22,8 @@ class AddTask extends Component {
     if (response.status !== 200) throw Error(body.message);
     // this.state.cards.push(body)
     // this.setState({cards: body});
-    this.setState({ cards: this.state.cards.concat([body]) })
+    store.dispatch({'type': 'new_card', 'payload': body})
 
-        console.log('body is');
-        console.log(body);
-        console.log(' ~ and state is');
-        console.log(this.state.cards);
        return body;
     }
     handleSubmit(event) {

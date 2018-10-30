@@ -1,21 +1,14 @@
+import './index.css';
+import registerServiceWorker from './registerServiceWorker';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import css from './css/z.css';
 import bootstrap from './css/bootstrap.min.css';
 import './App.css';
 import card_statuses from './card_statuses';
-
-
-
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import the_redux_store from './the_redux_store';
-
-
-
-
-
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -112,4 +105,8 @@ class App extends Component {
     );
   }
 }
-export default App;
+ReactDOM.render(
+  <Provider store={the_redux_store}>
+  <App />
+   </Provider>, document.getElementById('root'));
+registerServiceWorker();
