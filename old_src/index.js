@@ -11,7 +11,7 @@ import About from './About';
 import { Router, Route , HashRouter, Link  } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory'
 import { syncHistoryWithStore } from 'react-router-redux';
-import Card from './Card'
+import Track from './Track'
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 const history = syncHistoryWithStore(createHistory(), store)
 
@@ -26,7 +26,7 @@ ReactDOM.render(
         <div>
         <Route exact path="/" component={App} />
         <Route path="/about" component={About} />
-        <Route path="/cards/:id" component={Card} />
+        <Route path="/tracks/:id" component={Track} />
         </div>
       </HashRouter>
       </Provider>,

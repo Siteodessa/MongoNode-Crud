@@ -2,13 +2,13 @@ import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 
 
-import cards from './cards';
+import tracks from './tracks';
 import playlists from './playlists';
-import filterCards from './filterCards';
+import filterTracks from './filterTracks';
 
 export default combineReducers({
   routing,
-  cards,
+  tracks,
   playlists,
-  filterCards
+  filterTracks
 })
