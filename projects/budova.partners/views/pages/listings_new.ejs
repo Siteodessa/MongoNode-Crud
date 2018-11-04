@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The Estate - Listings</title>
+<title><%= sitedata.new_houses_title %></title>
 	 <% include ../partials/head %>
 <link rel="stylesheet" type="text/css" href="styles/listings_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/listings_responsive.css">
@@ -43,9 +43,10 @@
 
 
 				<!-- <div class="col-lg-12 listings_col"> -->
+
 				<% content.forEach(function(obj){ %>
-					<% 	if (obj.house_deploy_time !== 'Сдан') {  %>
-					<%- include ../partials/property_card.ejs  %>
+					<% 	if (obj.note_type !== 'Страница'  && Date.parse(obj.house_deploy_date) > Date.now()) {  %>
+						<%- include ../partials/new_property_cardmd4.ejs  %>
 			<% 		}  %>
 				<%  }) %>
 			<% /* include ../partials/listing_item_wide_template */ %>
@@ -54,8 +55,13 @@
 			<% /* include ../partials/posts_nav_buttons */ %>
 		</div>
 	</div>
-<% include ../partials/newsletter %>
-<% include ../partials/footer %>
+	<div class="seobox seob">
+	<% include ../partials/seobox %>
+</div>
+	<div class="contact_us">
+		<% include ../partials/contact_us %>
+	</div>
+
 </div>
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="styles/bootstrap4/popper.js"></script>

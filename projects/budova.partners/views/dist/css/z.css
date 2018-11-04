@@ -34,3 +34,7 @@ iframe.img_upl_frame {
     background: #00ff5c54;
     padding: 10px;
 }
+
+.loaded .small-box button {
+    color: black;
+}

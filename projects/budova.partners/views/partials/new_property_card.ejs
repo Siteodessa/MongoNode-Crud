@@ -43,14 +43,15 @@ function convert_quarter_string(datestring) {
       <div class="col-md-3">
         <div class="el_card">
           <div class="image_c">
-            <img src="/uploads/<%= obj.home_background %>" alt="">
+          <a href="/doma/<%= obj.page_link %>">  <img src="/uploads/<%= obj.home_background %>" alt=""></a>
           </div>
-            <div class="panel bordered">
+                  <div class="panel bordered">
+                    <a href="/doma/<%= obj.page_link %>">
               <h4><%= obj.title %></h4>
-              <p> ул. Жаботинского 54а</p>
+              <p> <%= obj.address %></p>
               <span><img src="/brief/icons8-money-52.png" /> <span class="bold">от <%= obj.prices_start_at_per_meter %>  у.е./м<sup>2</sup></span></span>
               <span><img src="/brief/icons8-calendar-96.png" /><%- convert_quarter_string(obj.house_deploy_date) %></span>
-              <a href="/doma/<%= obj.page_link %>">Узнать подробнее <i class="fa fa-arrow-right"></i></a>
+          Узнать подробнее <i class="fa fa-arrow-right"></i></a>
             </div>
           </div>
         </div>

@@ -1,0 +1,56 @@
+
+
+
+<%
+function get_year_quarter(month_number) {
+  switch (month_number) {
+  case '01':
+  case '02':
+  case '03':
+    return '1 квартал'
+    break;
+  case '04':
+  case '05':
+  case '06':
+    return '2 квартал'
+    break;
+  case '07':
+  case '08':
+  case '09':
+  return '3 квартал'
+  break;
+  case '10':
+  case '11':
+  case '12':
+  return '4 квартал'
+  break;
+  default:
+    return ''
+}
+
+return month_number
+}
+%>
+<%
+function convert_quarter_string(datestring) {
+  if (typeof(datestring) == 'undefined' || datestring == null || datestring == '') { return }
+  return '' + get_year_quarter(datestring.split('/')[0]) + ' ' + datestring.split('/')[2] + 'г'
+}
+%>
+
+
+
+      <div class="col-md-12">
+        <div class="el_card">
+          <div class="image_c">
+            <img src="/uploads/<%= obj.home_background %>" alt="">
+          </div>
+            <div class="panel bordered">
+              <h4><%= obj.title %></h4>
+              <p> <%= obj.address %></p>
+              <span><img src="/brief/icons8-money-52.png" /> <span class="bold">от <%= obj.prices_start_at_per_meter %>  у.е./м<sup>2</sup></span></span>
+              <span><img src="/brief/icons8-calendar-96.png" /><%- convert_quarter_string(obj.house_deploy_date) %></span>
+              <a href="/doma/<%= obj.page_link %>">Узнать подробнее <i class="fa fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>

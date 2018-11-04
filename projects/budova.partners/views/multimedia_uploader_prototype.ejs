@@ -11,7 +11,7 @@
     position: absolute;
     left: 0;
 }
-div#multimedialinks {
+div#imagedata {
     position: absolute;
     opacity: 0;
 }
@@ -604,7 +604,7 @@ position:relative}
     <%- print_files_object(msg) %>
     <%  } %>
   </div>
-<div id="multimedialinks"><% if (typeof msg != 'undefined') { %><%- print_filenames(msg) %><%  } %></div>
+<div id="imagedata"><% if (typeof msg != 'undefined') { %><%- print_filenames(msg) %><%  } %></div>
 
     <form id="multimedia_uploader" action="/multimedia_uploader" method="POST" enctype="multipart/form-data" <%= typeof file != 'undefined' ? disp : '' %>>
       <div class="file-field input-field">

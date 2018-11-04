@@ -1,18 +1,41 @@
 const initialState = [
 {
-  id: '1234',
-  name: 'My soopercard'
+  createdAt: "",
+  task: "",
+  task_desc: "",
+  task_status: "",
+  updatedAt: "",
+  __v: 0,
+  _id: "",
 }
 ];
 
+const callApiPost = async (data) => {
+const response = await fetch('/task_management', {
+            method: 'POST',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+          })
+const body = await response.json();
+if (response.status !== 200) throw Error(body.message);
+   return body;
+}
+
 export default function cards(state = initialState, action) {
-  if (action.type === 'ADD_TRACK') {
-    return [
-      ...state,
-      action.payload
-    ]
-  } else if (action.type === 'FETCH_TRACKS_SUCCESS') {
+  if (action.type === 'ADD_CARD') {
+    callApiPost(action.payload)
+    return [...state, action.payload]
+
+  } else if (action.type === 'FETCH_CARDS_SUCCESS') {
     return action.payload;
+
+  } else if (action.type === 'DELETE_CARD') {
+    var removeIndex = state.map(function(card) { return card._id; }).indexOf(action.payload);
+    state.splice(removeIndex, 1);
+      return [...state]
   }
   return state;
 }

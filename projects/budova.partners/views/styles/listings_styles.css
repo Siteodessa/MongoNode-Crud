@@ -261,7 +261,7 @@ section
 {
 	display: inline-block;
 	height: 31px;
-	background: #fd784f;
+	background: #318dad;
 }
 .home_title h2
 {
@@ -317,13 +317,13 @@ section
 	left: 0;
 	width: 100%;
 	height: 150px;
-	border-bottom: solid 1px rgba(255,255,255, 0.22);
+	/* border-bottom: solid 1px rgba(255,255,255, 0.22); */
 	z-index: 15;
 }
 .header.scrolled
 {
 	height: 120px;
-	background: #0e1d41;
+	/* background: #0e1d41; */
 	border: none;
 }
 .header_container
@@ -1432,7 +1432,7 @@ section
 }
 
 .overlay.default {
-    background: rgba(14, 29, 65, 0.8);
+    background: rgba(60, 176, 215, 0.58);
     width: 100%;
     height: 100%;
 }

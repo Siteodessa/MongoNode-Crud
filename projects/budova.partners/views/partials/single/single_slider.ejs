@@ -1,7 +1,5 @@
 <div class="home_slider_container">
   <link rel="stylesheet" href="/styles/swiper.min.css">
-
-   <!-- Demo styles -->
    <style>
      html, body {
        position: relative;
@@ -45,11 +43,7 @@
        align-items: center;
      }
    </style>
-
  <body>
-   <!-- Swiper -->
-
-
 <%
 function print_swiper_gallery(gallery_links_array) {
         if (typeof gallery_links_array == 'undefined') return false
@@ -62,36 +56,22 @@ function print_swiper_gallery(gallery_links_array) {
         return gallery_html
 }
 %>
-
-<% if (print_swiper_gallery(d['gallery']) !== false) { %>
-
-
+<% if (print_swiper_gallery(d['gallery']) !== false && d['gallery'] !== '""') { %>
    <div class="swiper-container">
      <div class="swiper-wrapper">
-            <%- print_swiper_gallery(d['gallery']) %>
+       <%- print_swiper_gallery(d['gallery']) %>
      </div>
-     <!-- Add Pagination -->
      <div class="swiper-pagination"></div>
    </div>
 <% }  else { %>
-
-
 <% include ./single_no_gallery %>
-
 <%  } %>
-
-
-
-
-
-   <!-- Swiper JS -->
    <script src="/js/swiper.min.js"></script>
-
-   <!-- Initialize Swiper -->
    <script>
      var swiper = new Swiper('.swiper-container', {
        slidesPerView: 3,
-       spaceBetween: 30,       loop: true,
+       spaceBetween: 30,
+       loop: true,
        autoplay: {
           delay: 250000,
           disableOnInteraction: false,
@@ -102,12 +82,4 @@ function print_swiper_gallery(gallery_links_array) {
        },
      });
    </script>
-
-
-
-
-
-
-
-
 </div>

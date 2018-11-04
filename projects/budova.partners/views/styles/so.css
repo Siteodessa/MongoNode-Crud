@@ -292,7 +292,7 @@ section
 	left: 0;
 	width: 140px;
 	height: 64px;
-	background: #fd784f;
+	background:#3d85cd;
 	z-index: 10;
 	cursor: pointer;
 }
@@ -379,7 +379,7 @@ section
 {
 	width: auto;
 	height: 44px;
-	background: #fd784f;
+	background:#3d85cd;
 	padding-left: 16px;
 	padding-right: 9px;
 }
@@ -413,7 +413,7 @@ section
 }
 .hamburger i:active
 {
-	color: #fd784f;
+	color:#3d85cd;
 }
 
 /*********************************
@@ -508,7 +508,7 @@ section
 {
 	width: 100%;
 	height: 100%;
-	background: #fd784f;
+	background:#3d85cd;
 }
 .search_box_title_icon
 {
@@ -559,7 +559,7 @@ section
 	left: 0;
 	width: 125px;
 	height: 125px;
-	background: #fd784f;
+	background:#3d85cd;
 	border-radius: 50%;
 	overflow: hidden;
 }
@@ -652,11 +652,11 @@ section
 }
 .dropdown_item_select:hover
 {
-	border: solid 1px #fd784f;
+	border: solid 1px#3d85cd;
 }
 .dropdown_item_select:focus
 {
-	outline-color: #fd784f;
+	outline-color:#3d85cd;
 }
 .search_button
 {
@@ -666,7 +666,7 @@ section
 {
 	width: 97px;
 	height: 34px;
-	background: #fd784f;
+	background:#3d85cd;
 	border: none;
 	font-size: 11px;
 	font-weight: 400;
@@ -745,7 +745,7 @@ section
 }
 .search_features_item div:hover .search_features_cb
 {
-	border: 1px solid #fd784f;
+	border: 1px solid#3d85cd;
 }
 .search_features_checkbox
 {
@@ -771,7 +771,7 @@ section
 .search_features_cb:focus
 {
 	outline: none;
-	border: 1px solid #fd784f;
+	border: 1px solid#3d85cd;
 }
 .search_features_cb:checked::after
 {
@@ -782,7 +782,7 @@ section
 	width: calc(100% - 4px);
 	height: calc(100% - 4px);
 	content: '';
-	background: #fd784f;
+	background:#3d85cd;
 }
 .search_features label
 {
@@ -915,7 +915,7 @@ section
 {
 	display: inline-block;
 	font-size: 12px;
-	background: #fd784f;
+	background:#3d85cd;
 	margin-right: 7px;
 	margin-bottom: 9px;
 }
@@ -1030,7 +1030,7 @@ section
 	font-size: 14px;
 	font-weight: 700;
 	text-transform: uppercase;
-	color: #fd784f;
+	color:#3d85cd;
 	margin-top: 17px;
 }
 .testimonial_title
@@ -1055,7 +1055,7 @@ section
 {
 	width: 10px !important;
 	height: 10px !important;
-	border: solid 2px #fd784f;
+	border: solid 2px#3d85cd;
 	background: transparent !important;
 }
 .testimonials_slider .owl-dot.active span
@@ -1063,7 +1063,7 @@ section
 	width: 10px !important;
 	height: 10px !important;
 	border: none;
-	background: #fd784f !important;
+	background:#3d85cd !important;
 }
 
 /*********************************
@@ -1140,7 +1140,7 @@ section
 }
 .workflow_item:hover .workflow_num
 {
-	background: #fd784f;
+	background:#3d85cd;
 }
 .workflow_image
 {
@@ -1244,7 +1244,7 @@ section
 	bottom: 21px;
 	width: 100%;
 	height: 34px;
-	background: #fd784f;
+	background:#3d85cd;
 	text-align: center;
 }
 .city_name span
@@ -1295,7 +1295,7 @@ section
 }
 .cities_nav:hover
 {
-	background: #fd784f;
+	background:#3d85cd;
 }
 .cities_prev
 {
@@ -1341,7 +1341,7 @@ section
 }
 .cta_1_text span
 {
-	color: #fd784f;
+	color:#3d85cd;
 }
 .cta_1_phone
 {
@@ -1353,7 +1353,7 @@ section
 	color: #FFFFFF;
 	font-size: 18px;
 	font-weight: 600;
-	background: #fd784f;
+	background:#3d85cd;
 	margin-left: auto;
 	white-space: nowrap;
 }
@@ -1381,7 +1381,7 @@ section
 	left: 0;
 	width: 3px;
 	height: 25px;
-	background: #fd784f;
+	background:#3d85cd;
 	content: '';
 }
 .newsletter_title h3
@@ -1409,12 +1409,12 @@ section
 	border: none;
 	padding-left: 27px;
 	font-weight: 500;
-	color: #fd784f;
+	color:#3d85cd;
 	background: #4a5b85;
 }
 .newsletter_email:focus
 {
-	outline: solid 2px #fd784f;
+	outline: solid 2px#3d85cd;
 }
 .newsletter_email::-webkit-input-placeholder
 {
@@ -1456,7 +1456,7 @@ section
 	width: 132px;
 	height: 55px;
 	border: none;
-	background: #fd784f;
+	background:#3d85cd;
 	color: #FFFFFF;
 	font-size: 14px;
 	font-weight: 600;
@@ -1495,7 +1495,7 @@ section
 .weekly_offer_icon
 {
 	width: 64px;
-	background: #fd784f;
+	background:#3d85cd;
 }
 .weekly_offer_icon img
 {
@@ -1565,7 +1565,7 @@ section
 	display: inline-block;
 	width: 31px;
 	height: 31px;
-	border: solid 2px #fd784f;
+	border: solid 2px#3d85cd;
 	border-radius: 50%;
 	text-align: center;
 	-webkit-transition: all 200ms ease;
@@ -1590,7 +1590,7 @@ section
 {
 	display: block;
 	position: relative;
-	color: #fd784f;
+	color:#3d85cd;
 	top: 50%;
 	-webkit-transform: translateY(-50%);
 	-moz-transform: translateY(-50%);
@@ -1606,7 +1606,7 @@ section
 }
 .footer_social_item:hover
 {
-	background: #fd784f;
+	background:#3d85cd;
 }
 .footer_social_item:hover a i
 {
@@ -1646,7 +1646,7 @@ section
 }
 .useful_links_item a:hover
 {
-	color: #fd784f;
+	color:#3d85cd;
 }
 
 /*********************************
@@ -1669,12 +1669,12 @@ section
 	margin-bottom: 9px;
 	height: 38px;
 	padding-left: 17px;
-	color: #fd784f;
+	color:#3d85cd;
 }
 .input_field:focus
 {
 	outline: none !important;
-	border-color: #fd784f;
+	border-color:#3d85cd;
 }
 .text_field
 {
@@ -1684,19 +1684,19 @@ section
 	border: solid 2px transparent;
 	padding-left: 17px;
 	margin-bottom: 7px;
-	color: #fd784f;
+	color:#3d85cd;
 	padding-top: 10px;
 }
 .text_field:focus
 {
 	outline: none !important;
-	border-color: #fd784f;
+	border-color:#3d85cd;
 }
 .contact_send_btn
 {
 	width: 86px;
 	height: 32px;
-	background: #fd784f;
+	background:#3d85cd;
 	font-size: 12px;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -1783,7 +1783,7 @@ section
 .contact_info_item:hover .contact_info_text,
 .contact_info_item:hover .contact_info_text a
 {
-	color: #fd784f;
+	color:#3d85cd;
 }
 
 /*********************************
@@ -1937,7 +1937,7 @@ div
 	font-weight: 600;
 	text-transform: uppercase;
 	color: #FFFFFF;
-	background: #fd784f;
+	background:#3d85cd;
 	line-height: 41px;
 	padding-left: 29px;
 	padding-right: 26px;
@@ -2715,6 +2715,9 @@ span.block.indented {
 
 .homepage .swiper-slide.swiper-slide-active + div img {
     height: auto;
+    max-height: 100%;
+    width: auto;
+    min-width: inherit;
 }
 
 .homepage .swiper-slide.swiper-slide-active + div {
@@ -2800,6 +2803,42 @@ span.block.indented {
     transform: translateY(30vh);
 }
 
-.new_houses .featured_row {
+.new_houses .featured_row, .old_houses .featured_row {
     flex-direction: row;
+}
+
+.col-md-12 .el_card {
+    display: flex;
+    margin: 20px 0;
+}
+
+.col-md-12 .el_card .panel.bordered {
+    transform: translate(0px, 0px);
+}
+
+.col-md-12 .el_card .image_c {
+    width: 30%;
+}
+
+.about .overlay.default {
+    background: rgba(60, 176, 215, 0.58);
+    width: 100%;
+    height: 100%;
+}
+
+body.about .home {
+    height: 433px;
+}
+
+body.contacts .home {
+    height: 433px;
+}
+
+.panel.bordered a {
+    display: block;
+}
+
+.panel.bordered span {
+    display: flex;
+    align-items: center;
 }

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'aphrodite/no-important'
-import { blackSquare } from './squareStyles'
+import { timeline_item } from './timeline_item'
 //He can do crossbrowser prexifing, but looks like it 's switched off by default for now'
 export default StyleSheet.create({
   addCard: {
@@ -7,10 +7,12 @@ export default StyleSheet.create({
       color: 'white',
       display: 'flex',
   },
-  square: {
-...blackSquare,
-width:'50px'
-,height:'50px'
+  transparent: {
+      opacity: '0',
+      display: 'none'
+  },
+  preloader: {
+...timeline_item,
     }
 
 })

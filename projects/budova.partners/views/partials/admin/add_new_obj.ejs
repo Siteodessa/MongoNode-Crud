@@ -67,7 +67,7 @@
       <% let result; %>
       <% if (input_type == 'media') {      %>
                   <% result = `<div class="db_group" name="${prop}"  input_type="${input_type}" >
-                  <iframe scroll="no" id="media_upload" src="/media_upload"></iframe>
+                  <iframe scroll="no" name="${prop}" id="media_upload" src="/media_upload"></iframe>
                   <input class="hidden" type="text" name="${prop}" class="${prop}"> </div> ` }%>
       <% if (input_type == 'text') {       %>
                   <% if(prop == 'structure') { prop = label}
@@ -92,7 +92,7 @@
                   </form> </div> </div>`; %>
                   <% result += `</div>`; %> <% } %>
       <% if (input_type == 'structure') { %>
-                  <% result = cast_structure(structure_model,input_type, schema, prop, label); } %>
+                  <%  result = cast_structure(structure_model,input_type, schema, prop, label); } %>
       <% if (input_type == 'datepicker') { %>
                   <% result = '';  result += `<div class="db_group" name="${prop}"  input_type="${input_type}" >
                   <label>${label}</label> <div class="input-group date">
@@ -101,7 +101,7 @@
       <% if (input_type == 'multimedia') { %>
                   <% result = '';  result += `<div class="db_group" name="${prop}"  input_type="${input_type}" >
                   <label>${label}</label>
-                  <iframe scroll="no" id="multimedia_upload" src="/multimedia_upload"></iframe>
+                  <iframe scroll="no"  name="${prop}" id="multimedia_upload" src="/multimedia_upload"></iframe>
                   <input class="hidden" type="text" name="${prop}" class="${prop}">`;} %>
   <% return result;} /* end function cast_input */%>
 
@@ -176,6 +176,7 @@
 <% let label = tree_prop["ru_label"] || prop;  %>
 <% if (visibility == 'hidden') { continue; }  %>
 <% if (!is_supported_note_type(note_type, 'Объект')) { continue; } %>
+
 <%- cast_input(structure_model,input_type, schema, prop, label);%>
 <%# - new input_cast(structure_model,input_type, schema, prop, label)[input_type];  %>
 

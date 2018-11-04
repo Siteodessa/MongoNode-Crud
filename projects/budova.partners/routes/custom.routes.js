@@ -36,9 +36,9 @@ homepage('/', 'pages/home.ejs', cf)
 
      app.get('/doma/:page_link',  function(req, res) {
           note_model.find().then(notes => {
-              d = null; notes.forEach(elem => { if (elem.page_link == req.params.page_link) { d = elem; } });
-            note_model.find({title: d.title}).then(notes => { let note = notes[0]; note.counter++; note_model.findByIdAndUpdate(note.id, {counter:note.counter}, {new: true})    .then(note => { console.log(d.title + ' was visited ' + note.counter + ' times'); }); }).catch(err => { console.log(err); })
-              res.render('pages/listings_single.ejs', {d: d, sitedata: sitedata})
+              d  = null;  notes.forEach(elem => { if (elem.page_link == req.params.page_link) { d = elem;} });
+            note_model.find({title: d.title}).then(notes => {   let note = notes[0]; note.counter++; note_model.findByIdAndUpdate(note.id, {counter:note.counter}, {new: true})    .then(note => { console.log(d.title + ' was visited ' + note.counter + ' times'); }); }).catch(err => { console.log(err); })
+              res.render('pages/listings_single.ejs', {d: d, sitedata: sitedata, content: notes})
             }).catch(err => { res.send({ message: err.message || "Some error occurred while retrieving notes." });
           });
      });

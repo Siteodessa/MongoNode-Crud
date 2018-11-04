@@ -16,7 +16,7 @@ const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 const history = syncHistoryWithStore(createHistory(), store)
 
 store.subscribe(() => {
-  console.log('subscribe', store.getState());
+  // console.log('subscribe', store.getState());
 })
 // HashRouter in react > 4.0  does not support custom history, it has it s own.
 // To use custom history, use         <Router history={history}> </Router>, it supports custom history
@@ -31,4 +31,9 @@ ReactDOM.render(
       </HashRouter>
       </Provider>,
       document.getElementById('root'));
+      document.getElementById('getcard').click()
+      setTimeout(function(){
+
+        document.querySelectorAll('.Cards')[0].classList += ' loaded'
+      }, 1500 )
 registerServiceWorker();
