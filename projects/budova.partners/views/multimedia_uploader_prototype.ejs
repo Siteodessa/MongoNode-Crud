@@ -11,9 +11,33 @@
     position: absolute;
     left: 0;
 }
-div#imagedata {
+.gallery_img, .gallery_img img {
+    height: 40px;
+}
+
+#multimediagallery {
+    display: flex;
+    width: 70%;
     position: absolute;
+    left: 100px;
+}
+.link {
     opacity: 0;
+    display: none;
+}.chosen_image, .chosen_image img {
+    height: 100%;
+}
+.chosen_images {
+  height: 100%;
+      max-height: 40px;
+      position: absolute;
+      left: 0;
+      display: flex;
+      justify-content: flex-start;    padding-left: 90px;
+
+}
+div#multimediadata {
+    position: absolute;
 }
 .gallery_elem {
     position: relative;
@@ -557,7 +581,7 @@ div#multimediadata {
   display: flex;
   position: absolute;
   width: calc(100% - 90px);
-  margin: 0 90px;
+  display: none
 }
 
 .gallery_img {
@@ -599,12 +623,12 @@ position:relative}
 </head>
 <body style="overflow:hidden">
 <div id="gallery_data">
-<div id="multimediadata">
+<div id="multimediagallery">
   <%   if (typeof msg != 'undefined') { %>
     <%- print_files_object(msg) %>
     <%  } %>
   </div>
-<div id="imagedata"><% if (typeof msg != 'undefined') { %><%- print_filenames(msg) %><%  } %></div>
+<div id="multimediadata"><% if (typeof msg != 'undefined') { %><%- print_filenames(msg) %><%  } %></div>
 
     <form id="multimedia_uploader" action="/multimedia_uploader" method="POST" enctype="multipart/form-data" <%= typeof file != 'undefined' ? disp : '' %>>
       <div class="file-field input-field">

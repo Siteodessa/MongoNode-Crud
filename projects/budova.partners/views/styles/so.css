@@ -2138,7 +2138,8 @@ ul.nav.nav-pills li:hover a {
 }
 
 .tab-content {
-    margin: 80px 0 0;
+    margin: 30px 0 0;
+    width: 100%;
 }
 
 ul.nav.nav-pills li a {
@@ -2308,6 +2309,7 @@ ul.nav.nav-pills li a.active:before {
 
 .plannimg {
     padding: 0 50px;
+    overflow: hidden;
 }
 
 .sel_group {
@@ -2328,6 +2330,7 @@ ul.nav.nav-pills li a.active:before {
 .planning_tab {
     display: flex;
     flex-direction: row-reverse;
+    align-items: start;
 }
 
 .planning_tab ul {
@@ -2353,7 +2356,7 @@ span.big.circle {
 
 .planning_tab ul.nav.nav-pills li a {
     border: none;
-    padding: 10px 0px 11px;
+    padding: 10px 0px 11px 12px;
     font-size: 17px;
     letter-spacing: 0.7px;
 }
@@ -2375,6 +2378,7 @@ span.big.circle {
     display: table;
     padding: 40px 32px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .planning_tab ul.nav.nav-pills li {
@@ -2407,6 +2411,9 @@ span.big.circle {
 .panel_col {
     justify-content: center;
     align-items: center;
+    min-width: 20vw;
+    max-width: 20vw;
+    margin: 30px 0;
 }
 
 .flex_col {
@@ -2677,11 +2684,11 @@ span.block.indented {
 }
 
 .featured ul.nav.nav-pills li:hover a {
-    color: #fff;
+    color: #3d85cd;
 }
 
 .featured ul.nav.nav-pills li {
-    margin: 10px;
+    /* margin: 10px; */
 }
 
 .prices_tab span.phone_icon {
@@ -2841,4 +2848,8 @@ body.contacts .home {
 .panel.bordered span {
     display: flex;
     align-items: center;
+}
+
+.plannimg img {
+    width: 100%;
 }

@@ -14,8 +14,26 @@ html,body{height:100%}.layout-boxed html,.layout-boxed body{height:100%}body{fon
     padding:  4px;
 }
 
+.minigroups {
+    display: flex;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+}
 
-iframe#logo {}
+.minigroup iframe {
+    margin: 13px 0;
+}
+
+.minigroup input {
+    height: 42px;
+    margin: 0px 0;
+}
+
+.db_group[input_type="structure"] {
+    background: #6892db;
+    padding: 10px 16px;
+}
 
 iframe.img_upl_frame {
     border: none;
@@ -37,4 +55,45 @@ iframe.img_upl_frame {
 
 .loaded .small-box button {
     color: black;
+}
+
+.minigroup, .minicontrols, .minigroup * {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.plus_icon {
+    background: #db8b0b;
+    padding: 6px 10px;
+    border-radius: 100%;
+    height: 35px;
+    width: 35px;
+    font-size: 18px;
+    transition: .4s;
+    cursor: pointer;
+}
+
+.plus_icon:hover {
+    background: #6399dd;
+}
+
+.minigroup {
+    overflow: hidden;
+}
+
+.minicontrols {
+    margin: 0px 6px;
+    position: absolute;
+    bottom: 11px;
+    right: 60px;
+}
+
+.structure {
+    position: relative;
+}
+
+.ministructure {
+    flex-direction: column;
 }
