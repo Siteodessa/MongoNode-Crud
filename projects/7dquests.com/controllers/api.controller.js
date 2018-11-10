@@ -24,6 +24,47 @@ exports.quests = (req, res) => {
 }
 
 
+exports.quests_create = (req, res) => {
+    if(!req.body) {
+        return res.status(400).send({"success": false, "message": "Указанное время занято" });
+    }
+    let mir_kvestov_brone_request = req.body
+
+    const brone = new Brone_m(req.body);
+    // we can add md5 later
+    brone.save(
+{      timestamp : Date.now(),
+      brone_time : req.body.date + ' ' + req.body.time,
+      name : req.body.first_name + ' ' + req.body.family_name || req.body.first_name || '',
+      phone : req.body.phone,
+      price : req.body.price,
+      time : req.body.time,
+      quest_name : req.body.quest_name,
+      mk_unique_id : req.body.unique_id,
+      mk_your_slot_id : req.body.your_slot_id,
+      company_name : req.body.company_name}
+    )
+    .then(data => {
+          console.log('da');
+          console.log(data);
+      res.status(200).send(data);
+    }).catch(err => {
+        res.status(500).send({"success": false, "message": "Указанное время занято" });
+    });
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 exports.create = (req, res) => {
     if(!req.body) {
         return res.status(400).send({

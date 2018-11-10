@@ -17,4 +17,5 @@ module.exports = (core, api_c, notes, subscribe_c, brone_c, reviews, quests, que
   app.delete('/quests/:noteId', quests.delete);
   app.get('/api/:api_data', api_c.quests);
   app.get('/api/*', api_c.quests);
+  app.post('/api/*', api_c.quests_create);
 }
