@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://127.0.0.1:27/task/management",
+  "proxy": "http://127.0.0.1:27/",
   "dependencies": {
     "aphrodite": "^2.2.3",
     "ejs": "^2.6.1",
@@ -20,7 +20,8 @@
     "redux": "4.0.1",
     "redux-async-initial-state": "^0.3.0",
     "redux-devtools-extension": "^2.13.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "watch": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

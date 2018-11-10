@@ -388,13 +388,12 @@ section
 .hamburger_container
 {
 	display: none;
-	margin-left: auto;
 }
 .hamburger i
 {
 	font-size: 20px;
 	padding: 5px;
-	color: #FFFFFF;
+	color: #3c85cd;
 	cursor: pointer;
 }
 .hamburger i:hover
@@ -1804,4 +1803,8 @@ section
 
 .owl-carousel .testimonial_user img {
     height: 61px;
+}
+
+.houses_loop h2 {
+    padding: 90px 0 0px;
 }

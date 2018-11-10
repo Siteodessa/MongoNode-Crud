@@ -1,13 +1,14 @@
 
-
-
+<% let toning; %>
+<% if (d.header_type == 'Без') { toning = 'no-toning' }  else  {   toning = 'toning' } %>
 
 <section class="banner-area relative home" id="home" style="background:url('/<%= d.single_image %>') ;    background-attachment: fixed; background-size:cover ;background-repeat: no-repeat">
-  <div class="overlay overlay-bg"></div>
+  <div class="overlay <%= toning %> overlay-bg"></div>
   <div class="container">
     <div class="row d-flex align-items-center justify-content-center">
       <div class="about-content col-lg-12">
         <h1 class="text-white">
+
         <%= d.quest_name %>
         </h1>
         <p class="text-white link-nav">

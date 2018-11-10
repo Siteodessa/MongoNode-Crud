@@ -5,6 +5,10 @@ module.exports = (core, dbmodel, quests_m, quests) => {
 
 
 
+    app.get('/quests/:page_link',  function(req, res) {
+      app.use(express.static('views'));
+      quests.single_page(req, res, app, express,  quests_m)
+    })
 
       app.get('/quests', function(req, res) {
         app.use(express.static('views'));

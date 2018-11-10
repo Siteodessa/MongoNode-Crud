@@ -5,8 +5,8 @@ function update_counter(model, elem) {
   .then(elem => { console.log(elem.title + ' was visited ' + elem.counter + ' times'); }) .catch(err => { console.log(err); })
 }
 
-function render_page(res, elem, reviews, brones) {
-   res.render('./quests_single.ejs', {d: elem,reviews: reviews, brones: brones})
+function render_page(res, elem, reviews, brones, quests) {
+   res.render('./pages/quests_single.ejs', {d: elem,reviews: reviews, brones: brones, quests:quests})
 }
 
 function equals(a, b) {
@@ -40,7 +40,7 @@ exports.single_page = (req, res, quests_m) => {
                   quests.forEach(elem => {
                     if (equals(elem.page_link, req.params.page_link)) {
                       update_counter(Quest_m, elem);
-                      render_page(res, elem, reviews, brones)
+                      render_page(res, elem, reviews, brones, quests)
                     }
                   });
                 })

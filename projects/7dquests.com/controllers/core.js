@@ -56,22 +56,35 @@ return myJSON;
 
 
 
-    function express_page(db_id, pageurl, ejs_file, app, dbmodel, express,  IsParseableJson){
+    function express_page(db_id, pageurl, ejs_file, app, dbmodel, express,  IsParseableJson, reviews_m){
       app.get(pageurl, function(req, res) {
       d = {};
+      const Reviews_m = require('../db/models/reviews.model');
+      const Quests_m = require('../db/models/quest.model');
+      dbmodel.find().then(data => {
+      Reviews_m.find().then(reviews => {
+      Quests_m.find().then(quests => {
+        app.use(express.static('views'));
+        data.forEach(elem => {
+        if (elem.id == db_id)
+        for (let prop in elem) {
+        if (IsParseableJson(elem[prop])) {   d[prop] = JSON.parse(elem[prop]) }
+        else { d[prop] = elem[prop] }
+        }
+        }
+        );
+        res.status(200).render(ejs_file, {
+        d: d,
+        reviews: reviews,
+        quests: quests,
+        notes: data
+
+        });
+        });
+      })
+      })
       dbmodel.find({}, function(err, data) {
-      app.use(express.static('views'));
-      data.forEach(elem => {
-      if (elem.id == db_id)
-      for (let prop in elem) {
-      if (IsParseableJson(elem[prop])) {   d[prop] = JSON.parse(elem[prop]) }
-      else { d[prop] = elem[prop] }
-      }
-      }
-      );
-      res.status(200).render(ejs_file, {
-      d: d
-      });
+
       });
       });
     }

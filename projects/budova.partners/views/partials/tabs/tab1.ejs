@@ -1,3 +1,13 @@
+<ul class="nav nav-pills">
+  <li><a class="tab_active"  href="#home">Описание</a></li>
+  <li><a  href="#menu1">Цены</a></li>
+  <li><a  href="#menu2">Рассрочка</a></li>
+  <li><a  href="#menu3">Планировки</a></li>
+</ul>
+<div id="home" class="tab-pane fade in active">
+
+
+
 <div class="inline-flex">
 
 <div class="sticky_block">
@@ -133,3 +143,21 @@
     </div>
 </div>
 </div>
+  </div>
+
+
+
+
+
+  <script>
+
+      function sticky_block (parent, child){
+    $(parent).children(child).on('click', function(){
+      $(parent).addClass('staging')
+      setTimeout(function(){$(parent).removeClass('staging')},600)
+      $(child).removeClass('active')
+      $(this).addClass('active')
+    })
+      }
+    sticky_block ('.inline-flex', '.sticky_block')
+  </script>

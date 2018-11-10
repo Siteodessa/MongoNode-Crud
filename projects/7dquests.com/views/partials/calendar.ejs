@@ -14,45 +14,28 @@
 <% function week_names_row() {
   return '<div class="cal_row week_days"> <div class="cell">Пн </div><div class="cell">Вт</div> <div class="cell">Ср</div> <div class="cell">Чт</div> <div class="cell">Пт</div> <div class="cell">Сб</div> <div class="cell">Вс</div> </div>';
 } %>
-
-
 <% function formatDate(timestamp) {
   date = new Date(timestamp);
 var dd = date.getDate();
 if (dd < 10) dd = '0' + dd;
-
 var mm = date.getMonth() + 1;
 if (mm < 10) mm = '0' + mm;
-
 var yy = date.getFullYear() % 100;
 if (yy < 10) yy = '0' + yy;
-
 var hh = date.getHours();
 var min = date.getMinutes();
-
 return dd + '.' + mm + '.' + yy + ' в ' + hh + ':' + min;
 }  %>
-
-
-
 <% function fill_rows(nDays, thisDay, column, add_month) {
-
-
 let has_brones;
 let brone_time;
   result = ''
   result +=  "<div class='cal_row weeks'>"
   for (i = 1; i <= nDays; i++) {
     let z = (i * 0.01) + 1
-
-
-
-
     hasbrones = ''
     brone_time = []
-
     brones.forEach(function(brone){
-
       if (get_year_val() == brone.brone_time.split('-')[0] &&
       i == brone.brone_time.split('-')[2].split(' ')[0] &&
        get_month_val(add_month) == brone.brone_time.split('-')[1] ) {
@@ -62,7 +45,6 @@ let brone_time;
     });
     brone_time = brone_time.join(',')
 result +=  "<div class='cal_cell " + hasbrones + "' brones='" + brone_time + "' yv='" + (get_year_val()) + "' dv='" + (i) + "' mv='" + (get_month_val(add_month)) + "' style='transition-delay:" + (z) + "s'>"
-
     if (i == thisDay)
       result +=  "<span class = 'today'>"
     result +=  i
@@ -89,7 +71,9 @@ return result
   let d = new Date();
   monthA = 'Январь,Февраль,Март,Апрель,Май,Июнь,Июль,Август,Сентябрь,Октябрь,Ноябрь,Декабрь'.split(',');
     if (check_cal_args(add_month)) {
-      return monthA[d.getMonth() + add_month]
+      let result = d.getMonth() + add_month
+      if (result >= 12) { add_month = add_month - 12; result = d.getMonth() + add_month; }
+      return monthA[result]
     }
     return monthA[d.getMonth()]
 }
@@ -98,20 +82,18 @@ return result
   let d = new Date();
   monthA = 'Январь,Февраль,Март,Апрель,Май,Июнь,Июль,Август,Сентябрь,Октябрь,Ноябрь,Декабрь'.split(',');
     if (check_cal_args(add_month)) {
-      return d.getMonth() + add_month
+      let result = d.getMonth() + add_month + 1
+      if (result > 12) { add_month = add_month - 12; result = d.getMonth() + add_month + 1; }
+      return d.getMonth() + add_month + 1
     }
-    return d.getMonth()
+    return d.getMonth() + 1
 }
 %>
-
 <% function get_year_val() {
   let d = new Date();
     return d.getFullYear()
 }
 %>
-
-
-
 <% function calendar(add_month) {
   var today = new Date();
   var nextDay = new Date(today);
@@ -158,9 +140,6 @@ ${fill_rows(nDays, thisDay, the_column, add_month)}
   <p class="text-white text-center">
     После получения бронирования, наш администратор свяжется с вами
   </p>
-
-
-
       <div class="months" id="months">
         <div class="row cal-row" id="scroll_present">
         <div class="col-md-4">
@@ -176,7 +155,6 @@ ${fill_rows(nDays, thisDay, the_column, add_month)}
           <%- calendar(2) %>
         </div>
         </div>
-
         <div class="hours" id="hours">
           <div id="back">
             <i class="fa fa-arrow-left"></i>
@@ -197,22 +175,17 @@ ${fill_rows(nDays, thisDay, the_column, add_month)}
   <div class="time_picker"><div time="23:59" price="900">23:59 -  <span> ∞ </span> </div><span>900 грн</span></div>
   </div>
         </div>
-
         <div class="form" id="form">
           <div class="response">
-
           </div>
           <form class="brone_form">
             <div class="input_group glass">
-
             <input placeholder="Имя/ФИО" class="inp-contus" name="name" id="name" type="text" maxlength="100">
           </div>
           <div class="input_group glass">
-
             <input placeholder="Телефон" class="inp-contus" name="phone" id="phone" type="text" maxlength="100">
           </div>
             <div class="input_group glass">
-
             <select id="quantity" name="quantity" placeholder="Количество гостей" class="select-contus place_holder">
               <option style="display: none;">Количество гостей</option>
               <option value="2">2</option>
@@ -223,21 +196,12 @@ ${fill_rows(nDays, thisDay, the_column, add_month)}
             </select>
           </div>
           <button type="button" id="brone_submit" name="button" class="submit glass">Забронировать</button>
-
           </form>
       </div>
-
-
-
       </div>
-
   </div>
 </div>
-
-
 <script>
-
-
 var Scrollio = function () {
  function isElementOutViewport(el){
      var rect = el.getBoundingClientRect();
@@ -265,19 +229,11 @@ var Scrollio = function () {
 }
 var scrollio = new Scrollio()
 scrollio.listen('calendars')
-
-
-
-
-
 var Choice_maker = function (el) {
-
   this.remove_All_add_One_Class = function (this_jel, querysel, clsname) {
     $(querysel).removeClass(clsname)
     this_jel.addClass(clsname)
   }
-
-
   this.get_brone_times = function (jel) {
     return jel.attr('brones').split(',')
   }
@@ -300,9 +256,6 @@ var Choice_maker = function (el) {
   //         });
   //   });
   }
-
-
-
   this.switch_to_hours = function (jel) {
       remove_All_add_One_Class(jel, '.cal_cell', 'brone_time')
       $('#calendars').removeClass('visible')
@@ -338,9 +291,6 @@ var Choice_maker = function (el) {
     r.company_name = '<%= d.company_name %>'
     return r;
 }
-
-
-
 let action = this.action
 let switch_to_hours = this.switch_to_hours
 let switch_to_months = this.switch_to_months
@@ -353,7 +303,6 @@ let cal_cell = $('.' + el);
 let back = $('#back');
 let timepicker = $('.time_picker');
 let brone_submit = $('#brone_submit');
-
    this.listen = function () {
      cal_cell.on('click', function() {
        switch_to_hours($(this))
@@ -381,12 +330,9 @@ let brone_submit = $('#brone_submit');
           });
      });
  }
-
 }
-
 var choice_maker = new Choice_maker('cal_cell')
 choice_maker.listen()
-
 </script>
 <div class="container">
 <div class="single-post row">

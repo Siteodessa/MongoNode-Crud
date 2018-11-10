@@ -1,106 +1,55 @@
 <section class="testomial-area section-gap" id="testimonail">
-        <div class="container">
-          <div class="row d-flex justify-content-center">
-            <div class="menu-content pb-60 col-lg-7">
-              <div class="title text-center">
-                <h1 class="mb-10 text-white">Отзывы наших посетителей</h1>
-                <p class="text-white">Не забудьте оставить свое мнение после игры!</p>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="active-testimonial-carusel">
-              <div class="single-testimonial item">
-                <img class="mx-auto" src="img/t1.png" alt="">
-                <p class="desc">
-                  Время, проведенное в "Сиянии", прошло очень увлекательно. Все логично и интересно, антураж на высоте. Порадовали загадки и интересные механизмы.
-                </p>
-                <h5>Mark Alviro Wiens</h5>
-                <p>
-                  CEO at Google
-                </p>
-              </div>
-              <div class="single-testimonial item">
-                <img class="mx-auto" src="img/t2.png" alt="">
-                <p class="desc">
-                  Потрясающе, антуражно и очень захватывающе. Ждём открытия новых комнат с нетерпением;)
-                </p>
-                <h5>Mark Alviro Wiens</h5>
-                <p>
-                  CEO at Google
-                </p>
-              </div>
-              <div class="single-testimonial item">
-                <img class="mx-auto" src="img/t3.png" alt="">
-                <p class="desc">
-                  Неделю назад посетили комнату "Карантин" и до сих пор под впечатлением,понравилось то,что очень энергично проходила игра,правда без подсказок не обошлось,нас спасала девушка-администратор за что ей отдельное спасибо))))Очень нравится у Вас))))
-                </p>
-                <h5>Mark Alviro Wiens</h5>
-                <p>
-                  CEO at Google
-                </p>
-              </div>
-              <div class="single-testimonial item">
-                <img class="mx-auto" src="img/t1.png" alt="">
-                <p class="desc">
-                  Спасибо за отлично проведенное время
-                </p>
-                <h5>Mark Alviro Wiens</h5>
-                <p>
-                  CEO at Google
-                </p>
-              </div>
-              <div class="single-testimonial item">
-                <img class="mx-auto" src="img/t2.png" alt="">
-                <p class="desc">
-                  Сияние - самая мощная комната из всех что мы проходили, есть пугающие моменты, как ни странно, но сам квест просто обалденный!!!
-                </p>
-                <h5>Mark Alviro Wiens</h5>
-                <p>
-                  CEO at Google
-                </p>
-              </div>
-              <div class="single-testimonial item">
-                <img class="mx-auto" src="img/t3.png" alt="">
-                <p class="desc">
-                  Очень интересная комната, остались хорошие впечатления! рекомендую
-                </p>
-                <h5>Mark Alviro Wiens</h5>
-                <p>
-                  CEO at Google
-                </p>
-              </div>
-              <div class="single-testimonial item">
-                <img class="mx-auto" src="img/t1.png" alt="">
-                <p class="desc">
-                  Впечатления очень яркие. Некоторые моменты особенно интересные! Спасибо за кучу положительных эмоций:)
-                </p>
-                <h5>Mark Alviro Wiens</h5>
-                <p>
-                  CEO at Google
-                </p>
-              </div>
-              <div class="single-testimonial item">
-                <img class="mx-auto" src="img/t2.png" alt="">
-                <p class="desc">
-                  Прекрасный линейный квест, прикольный антураж, и средней сложности задания. Время провели позитивно, в планах пройти все квест комнаты на этой площадке. Спасибо организаторам, все супер!!!
-                </p>
-                <h5>Mark Alviro Wiens</h5>
-                <p>
-                  CEO at Google
-                </p>
-              </div>
-              <div class="single-testimonial item">
-                <img class="mx-auto" src="img/t3.png" alt="">
-                <p class="desc">
-                  Очень интересная комната, остались хорошие впечатления! рекомендую
-                </p>
-                <h5>Mark Alviro Wiens</h5>
-                <p>
-                  CEO at Google
-                </p>
-              </div>
-            </div>
-          </div>
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content pb-60 col-lg-7">
+        <div class="title text-center">
+          <h1 class="mb-10 text-white">Отзывы наших посетителей</h1>
+          <p class="text-white">Не забудьте оставить свое мнение после игры!</p>
         </div>
-      </section>
+      </div>
+    </div>
+    <div class="row">
+      <div class="active-testimonial-carusel">
+
+                  <% function i_m_not_proud_about_this_func(quest_name) {
+
+                    switch (quest_name) {
+                      case 'siyanie':
+                        return 'Сияние'
+                        break;
+                      case 'anabel':
+                        return 'Проклятье Аннабель'
+                        break;
+                      case 'texas':
+                        return 'Техасская резня бензопилой'
+                        break;
+                      default:
+                      return quest_name
+                    }
+                    %>
+
+
+
+                  <% } %>
+
+
+                  <% reviews.forEach(function(review){ %>
+
+              <div class="single-testimonial item">
+                <i class="fa fa-user big thumb_def"></i>
+                <p class="desc">
+  <%= review.review_body %>
+                </p>
+                <h5><%= review.author %></h5>
+                <p>
+                   К квесту <a href="/quests/<%= review.quest %>">  "<%= i_m_not_proud_about_this_func(review.quest) %>" </a>
+                </p>
+              </div>
+
+            <% }); %>
+
+
+      </div>
+    </div>
+  </div>
+</section>

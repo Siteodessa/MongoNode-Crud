@@ -3,26 +3,25 @@
 
   <div class="single-sidebar-widget popular-post-widget">
     <h4 class="popular-title">Популярные квесты</h4>
-    <div class="popular-post-list">
-      <div class="single-post-list d-flex flex-row align-items-center">
-        <div class="thumb">
-          <img class="img-fluid" src="/img/quest_anabel.jpg" alt="">
+
+        <div class="popular-post-list">
+
+          <% quests.forEach(function(quest){     %>
+          <% if (quest.page_link !== d.page_link) {%>
+
+                  <div class="single-post-list d-flex flex-row align-items-center">
+                    <div class="thumb">
+                      <img class="img-fluid" src="/<%= quest["image"] %>" alt="">
+                    </div>
+                    <div class="details">
+                      <a href="/quests/<%= quest["page_link"] %>"><h6><%= quest["quest_name"]	%></h6></a>
+                      <p><%= quest["quest_legend"]	%></p>
+                    </div>
+                  </div>
+          <% }}); %>
+
+
         </div>
-        <div class="details">
-          <a href="blog-single.html"><h6>Проклятие Анабель</h6></a>
-          <p>Проверьте свои нервы</p>
-        </div>
-      </div>
-      <div class="single-post-list d-flex flex-row align-items-center">
-        <div class="thumb">
-          <img class="img-fluid" src="/img/texas.jpg" alt="">
-        </div>
-        <div class="details">
-          <a href="blog-single.html"><h6>Техасская резня бензопилой</h6></a>
-          <p>Проверьте свои нервы</p>
-        </div>
-      </div>
-    </div>
   </div>
   <div class="single-sidebar-widget grad">
     <a href="#"><img class="img-fluid" src="/img/shin.gif" alt=""></a>

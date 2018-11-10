@@ -1,4 +1,4 @@
-module.exports = (core, notes, subscribe_c, brone_c, reviews, quests, quests_m) => {
+module.exports = (core, api_c, notes, subscribe_c, brone_c, reviews, quests, quests_m) => {
   let app = core.app;
   let express = core.express;
   app.post('/notes', notes.create);
@@ -15,8 +15,6 @@ module.exports = (core, notes, subscribe_c, brone_c, reviews, quests, quests_m) 
   app.put('/quests/:noteId', quests.update);
   app.put('/quests/m_update/:noteId', quests.custom_update);
   app.delete('/quests/:noteId', quests.delete);
-  app.get('/quests/:page_link',  function(req, res) {
-    app.use(express.static('views'));
-    quests.single_page(req, res, app, express,  quests_m)
-  })
+  app.get('/api/:api_data', api_c.quests);
+  app.get('/api/*', api_c.quests);
 }

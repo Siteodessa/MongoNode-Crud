@@ -1,6 +1,15 @@
 
 
-<% try  { %>
+<% try  {    if (d.layouts !== '') { %>
+
+
+      <ul class="nav nav-pills">
+        <li><a  href="#home">Описание</a></li>
+        <li><a  href="#menu1">Цены</a></li>
+        <li><a  href="#menu2">Рассрочка</a></li>
+        <li><a class="tab_active"  href="#menu3">Планировки</a></li>
+      </ul>
+      <div id="menu3" class="tab-pane fade">
 
 
 <div class="planning_tab">
@@ -8,6 +17,9 @@
 <div class="panel">
   <h4 class="underlined">Планировки</h4>
 <ul class="nav nav-pills">
+
+
+
 
 
   <% console.log( JSON.parse(d.layouts));  %>
@@ -32,4 +44,6 @@
 </div>
 </div>
 </div>
-<% }    catch (e) { console.log(e);}  %>
+</div>
+
+<% }  }     catch (e) { console.log(e);}  %>

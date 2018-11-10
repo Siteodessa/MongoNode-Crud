@@ -16,8 +16,18 @@
 }
 %>
 
+<%   function get_reviews_length_status(len) {
+if (len == 0)  return 'Нет комментариев'
+if (len == 21)  return len + 'комментарий'
+if (len <= 4)  return len + ' комментария'
+if (len > 4)  return len + ' коментариев'
+
+
+} %>
+<% reviews = reviews.filter( elem => elem.quest === d.page_link)%>
+
 <div class="comments-area">
-  <h4>05 отзывов</h4>
+  <h4><%= get_reviews_length_status(reviews.length) %></h4>
   <div class="comments-block">
   		<% reviews.forEach(function(review){ %>
         <% if(review.quest == d.page_link) {  %>

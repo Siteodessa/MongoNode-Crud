@@ -1,8 +1,21 @@
 <div class="container">
   <div class="row">
+    <div class="top_banner w100" id="top_banner">
+      <div class="flex blueb spaceb whitec_all p20" id="flex">
+        <div class="address" id="address"> <span class="inline-flex">Наш офис: г.Одесса.</span><span class="inline-flex"> Французский бульвар</span></div>
+        <div class="work_time" id="work_time">  <span class="inline-flex">График работы:</span> <span class="inline-flex">Пн-Вс с 9:00 до 21:00</span> </div>
+        <div class="messengers" id="messengers">
+          <ul class="flex">
+            <li><a href="whatsapp://send?abid=[users name]&text=[message text]"> <img class="small" src="/images/whatsapp_icon.png"> </a></li>
+            <li><a href="tg://user?id=123456789"> <img class="small" src="/images/telegram_icon.png"></a></li>
+            <li><a href="viber://pa?chatURI=[public account URI]&text=[message text]"> <img class="small" src="/images/viber_icon.png"> </a></li>
+          </ul>
+        </div>
+            <div class="phone nowrap" id="phone">067-621-93-24</div>
+      </div>
+    </div>
     <div class="col">
       <div class="header_container d-flex flex-row align-items-center trans_300">
-        <!-- Logo -->
         <div class="logo_container">
           <a href="/">
             <div class="logo">
@@ -13,18 +26,12 @@
         </div>
         <nav class="main_nav">
           <ul class="main_nav_list">
-            <li class="main_nav_item"><a href="/">Главная</a>
-            </li>
-            <li class="main_nav_item"><a href="/stroyaschiesya-doma">Строящиеся дома</a>
-            </li>
-            <li class="main_nav_item"><a href="/sdannye-doma">Сданные дома</a>
-            </li>
-            <li class="main_nav_item"><a href="/tseni">Цены</a>
-            </li>
-            <li class="main_nav_item"><a href="/onas">О нас</a>
-            </li>
-            <li class="main_nav_item"><a href="/contacts">Контакты</a>
-            </li>
+            <li class="main_nav_item"><a href="/">Главная</a> </li>
+            <li class="main_nav_item"><a href="/stroyaschiesya-doma">Строящиеся дома</a> </li>
+            <li class="main_nav_item"><a href="/sdannye-doma">Сданные дома</a> </li>
+            <li class="main_nav_item"><a href="/tseni">Цены</a> </li>
+            <li class="main_nav_item"><a href="/onas">О нас</a> </li>
+            <li class="main_nav_item"><a href="/contacts">Контакты</a> </li>
           </ul>
         </nav>
         <div class="header_right">
@@ -36,8 +43,6 @@
             <span><%= sitedata.phone1 %></span>
           </div>
         </div>
-
-        <!-- Hamburger -->
         <div class="hamburger_container menu_mm">
           <div class="hamburger menu_mm">
             <i class="fas fa-bars trans_200 menu_mm"></i>
@@ -47,14 +52,13 @@
     </div>
   </div>
 </div>
-<!-- Menu -->
 <div class="menu menu_mm">
   <ul class="menu_list">
     <li class="menu_item">
       <div class="container">
         <div class="row">
           <div class="col">
-<a href="/">Главная</a>
+            <a href="/">Главная</a>
           </div>
         </div>
       </div>
@@ -106,8 +110,6 @@
     </li>
   </ul>
 </div>
-
-
 <div class="login">
 <a href="/login"><img src="/images/login.svg" /></a>
 </div>
