@@ -2,7 +2,8 @@ const Quest_m = require('../db/models/quest.model.js');
 const Reviews_m = require('../db/models/reviews.model');
 const Brone_m = require('../db/models/brone.model');
 const Single_page_c = require('./single_page.controller');
-const Calendar_c = require('./calendar.controller');
+const Calendar_c = require('./mk.controller');
+const Qroom_c = require('./qr.controller');
 let error = require('./error.controller').error;
 
 
@@ -10,10 +11,10 @@ let error = require('./error.controller').error;
 
 exports.quests = (req, res) => {
     let url = req.url.split('/')
+
       Brone_m.find()
       .then(brones => {
-        brones = brones.filter( brone => brone.quest_name == url[2]);
-        if (brones.length < 1) error(res, 'Неверный запрос')
+        brones = brones.filter( brone => brone.quest_name === url[3]); if (brones.length < 1) error(res, 'No quests found')
         let schedule = Calendar_c.scheduler(14, brones)
         let mir_kvestov_schedule = JSON.stringify(schedule)
         mir_kvestov_schedule = mir_kvestov_schedule.slice(1, -1)
@@ -21,6 +22,33 @@ exports.quests = (req, res) => {
       }).catch(err => {
       error(res, err)
       });
+}
+
+
+
+
+
+
+exports.questroom_api = (req, res) => {
+  console.log('questroom_api');
+  let questroom_request = req.body
+  Brone_m.find()
+  .then(brones => {
+    brones = brones.filter( brone => brone.quest_name === req.body.room.split('-')[0]);
+    if (brones.length < 1) error(res, 'No quests found')
+    if (req.body.token !== '67CZ8DGLhljpSLo7iXrD') error(res, 'Wrong key')
+       switch (req.body.task) {
+         case 'showDays_all': Qroom_c.showDays_all(); break;
+         case 'showDay_any':  Qroom_c.showDay_any();  break;
+         case 'showHour':     Qroom_c.showHour();     break;
+         case 'bookingHour':  Qroom_c.bookingHour();  break;
+         default:
+         error(res, 'Assignment unknown')
+       }
+  }).catch(err => {
+  error(res, err)
+  });
+
 }
 
 
@@ -52,18 +80,6 @@ exports.quests_create = (req, res) => {
         res.status(500).send({"success": false, "message": "Указанное время занято" });
     });
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 exports.create = (req, res) => {
     if(!req.body) {

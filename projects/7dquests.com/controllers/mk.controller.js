@@ -1,9 +1,6 @@
-
-
 function day_table(days_passed = 0) {
   const Brone_m = require('../db/models/brone.model');
   this.date = new Date(new Date().getTime() + 24 * 60 * 60 * 1000 * days_passed)
-
     this.formatDate = function (timestamp) {
         return this.formatDays(timestamp) + ' ' + this.formatDays(formatTime)
         }
@@ -24,8 +21,6 @@ function day_table(days_passed = 0) {
         var sec = date.getSeconds();if (sec < 10 ) { sec = '0' + sec }
         return hh + ':' + min
         }
-
-
     this.zero_hour = this.date.setHours(0,0,0)
     this.is_weekend = function () {  return this.date.getDay() === 0 || this.date.getDay() === 7}
     this.first_timestamp = function () { if (!this.is_weekend()) { return this.zero_hour + (10 * 3600000) + 1800000 } else { return this.zero_hour + (12 * 3600000) } }
@@ -51,7 +46,6 @@ function day_table(days_passed = 0) {
     }
     return this
   }
-
 const Sync_schedules = (schedule, brones) => {
   this.setAvailability = function (schedule, brones) {
     schedule.forEach(sched => {
@@ -61,7 +55,6 @@ const Sync_schedules = (schedule, brones) => {
       }
     });
     });
-
     return schedule;
   }
   this.setPrice = function (schedule, brones) {
@@ -99,7 +92,6 @@ const Sync_schedules = (schedule, brones) => {
   }
   return this
 }
-
   exports.scheduler = (days_number, brones = []) => {
     let single_day, ts, ng; let schedule = []
     for (let i = 0; i < days_number; i++) {
