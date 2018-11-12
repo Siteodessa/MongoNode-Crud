@@ -36,12 +36,13 @@ exports.questroom_api = (req, res) => {
   .then(brones => {
     brones = brones.filter( brone => brone.quest_name === req.body.room.split('-')[0]);
     if (brones.length < 1) error(res, 'No quests found')
-    if (req.body.token !== '67CZ8DGLhljpSLo7iXrD') error(res, 'Wrong key')
+    if (req.body.token !== '67CZ8DGLhljpSLo7iXrD') error(res, 'Wrong key');
+     req.brones = brones;
        switch (req.body.task) {
-         case 'showDays_all': Qroom_c.showDays_all(); break;
-         case 'showDay_any':  Qroom_c.showDay_any();  break;
-         case 'showHour':     Qroom_c.showHour();     break;
-         case 'bookingHour':  Qroom_c.bookingHour();  break;
+         case 'showDays_all': Qroom_c.showDays_all(req, res); break;
+         case 'showDay_any':  Qroom_c.showDay_any(req, res);  break;
+         case 'showHour':     Qroom_c.showHour(req, res);     break;
+         case 'bookingHour':  Qroom_c.bookingHour(req, res);  break;
          default:
          error(res, 'Assignment unknown')
        }

@@ -2,8 +2,11 @@
   <div class="row">
     <div class="top_banner w100" id="top_banner">
       <div class="flex blueb spaceb whitec_all p20" id="flex">
+        <div class="address_time" id="address_time">
         <div class="address" id="address"> <span class="inline-flex">Наш офис: г.Одесса.</span><span class="inline-flex"> Французский бульвар</span></div>
         <div class="work_time" id="work_time">  <span class="inline-flex">График работы:</span> <span class="inline-flex">Пн-Вс с 9:00 до 21:00</span> </div>
+      </div>
+
         <div class="messengers" id="messengers">
           <ul class="flex">
             <li><a href="whatsapp://send?abid=[users name]&text=[message text]"> <img class="small" src="/images/whatsapp_icon.png"> </a></li>
@@ -26,12 +29,7 @@
         </div>
         <nav class="main_nav">
           <ul class="main_nav_list">
-            <li class="main_nav_item"><a href="/">Главная</a> </li>
-            <li class="main_nav_item"><a href="/stroyaschiesya-doma">Строящиеся дома</a> </li>
-            <li class="main_nav_item"><a href="/sdannye-doma">Сданные дома</a> </li>
-            <li class="main_nav_item"><a href="/tseni">Цены</a> </li>
-            <li class="main_nav_item"><a href="/onas">О нас</a> </li>
-            <li class="main_nav_item"><a href="/contacts">Контакты</a> </li>
+		<% include ./header_menu %>
           </ul>
         </nav>
         <div class="header_right">

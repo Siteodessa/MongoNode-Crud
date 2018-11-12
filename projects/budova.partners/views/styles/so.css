@@ -2179,7 +2179,7 @@ mark {
 
 .prices_tab {display: flex;justify-content: center;}
 
-.prices_button button {
+.prices_button button, .vertical_button button {
     transform: rotate(-90deg);
     position: absolute;
     top: 150px;
@@ -2192,9 +2192,10 @@ mark {
     font-size: 19px;
 }
 
-.prices_button {
+.contacts .vertical_button {
     position: relative;
-    width: 50px;
+    width: 49px;
+    top: 52px;
 }
 
 .button_c {
@@ -2205,7 +2206,7 @@ mark {
 
 span.phone_icon {
     width: 55px;
-    height: 52px;
+    height: 54px;
     background: #65a5e4;
     margin: 30px 0 10px -4px;
 }
@@ -2380,14 +2381,16 @@ span.big.circle {
     width: 60px;
     border: 1px solid #fff;
     padding: 13px;
+    height: 60px;
 }
 
 .button_c button {
     background: #3d85cd;
     color: #fff;
-    padding: 13px 13px 12px;
+    padding: 13px 63px 12px;
     border: none;
-    height: 52px;
+    height: 54px;
+    font-size: 20px;
 }
 
 .adv span.phone_icon {
@@ -2592,7 +2595,7 @@ p.bordered-left {
 }
 
 .f_col {
-    margin: 90px 0 0;
+    margin: 30px 0 0;
     align-items: center;
     justify-content: center;
 }
@@ -2657,7 +2660,7 @@ li {}
 }
 
 .header_right img {
-    width: 30px;
+    width: 28px;
     margin: 10px 8px 0 0;
 }
 
@@ -2745,6 +2748,184 @@ li {}
     position: relative;
 }
 
+
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.staging .sticky_block:nth-child(1) {
+    transform: translate(-33%,30px);
+}
+
+.staging .sticky_block:nth-child(3) {
+    transform: translate(-26%,-30px);
+}
+
+.sticky_block.active {
+    z-index: 9;
+}
+
+body.contacts {
+    padding: 200px 0 0;
+}
+
+.jc {
+    justify-content: center;
+}
+
+.contacts {
+    border: 1px solid #808080;
+    padding: 27px;
+    background: #fff;
+    width: 100%;
+}
+
+.contacts span {
+    display: block;
+}
+
+.contacts .row .row {
+    margin: 30px 0 30px;
+}
+
+div.contacts div.messengers {
+    margin: 20px 0;
+}
+
+.contacts .icon {
+    width: 24px;
+}
+
+.contacts .row .col-md-10 {margin: 0px 0 15px;}
+
+.inline, .contacts span.inline {
+    display: inline-block;
+}
+
+div.contacts h2 {
+    padding: 0;
+    text-align: left;
+    font-size: 30px;
+}
+
+.text-left.section_title::before {
+    left: calc(5% + 12px);
+    bottom: -52px;
+}
+
+.text-left.section_title::after {
+    left: calc(9% + -12px);
+    bottom: -42px;
+}
+
+.text-black {
+    color: #000;
+}
+
+.contacts .vertical_button button {
+    width: 230px;
+    left: -92px;
+    top: 170px;
+}
+
+.vertical_button span.phone_icon {
+    margin: 30px 0 10px -4px;
+}
+
+.row_form, .row_pros {
+    margin: 50px 0;
+}
+
+.row.form .col-md-9 {
+    padding-right: 0;
+}
+
+.row.form .col-md-3 {
+    padding: 0;
+}
+
+.vertical_button  span.phone_icon {
+    height: 52px;
+}
+
+.pros {
+    padding: 0 5vw;
+}
+
+.pros span {
+    font-size: 19px;
+    color: #000;
+}
+
+.contacts span.circle {
+    width: 20px;
+    height: 20px;
+    margin: 0 9px 0 0;
+}
+
+.pros h2 span, .pros h2 {
+    font-size: 30px;
+}
+
+.pros .rows {
+    margin: 50px 0 0;
+}
+
+.pros_tab {
+    border: 1px solid #e2e2e2;
+}
+
+.pros .w100 {
+    margin: 0px 0 40px;
+}
+
+.pros .row .row {
+    margin: 20px 0;
+}
+
+.contacts span.bold {
+    display: inline;
+}
+
+.cus h2:before {
+    bottom: -1px;
+    height: 85px;
+}
+
+.cus h2:after {
+    bottom: 9px;
+    height: 85px;
+}
+
+.cus h2 {
+    font-size: 25px;
+}
+
+.cus ul.main_nav_list {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 60px;
+}
+
+.cus ul.main_nav_list li a {
+    color: #fff;
+}
+
+.cus ul.main_nav_list li:before {
+    content: '-';
+    position: absolute;
+    top: 8px;
+}
+
+.cus ul.main_nav_list li {
+    position: relative;
+}
+
+.cus .messengers {
+    margin: 10px 0 20px;
+}
 .scroll {
     position: absolute;
     bottom: 10vh;
@@ -2840,9 +3021,73 @@ ul.nav.nav-pills li a.tab_active {
 }
 
 
+div#address_time {
+    display: flex;
+}
+
+div.work_time {
+    display: flex;
+    margin: 0 20px;
+}
+
+.square img {
+    width: 30px;
+}
 
 
-@media only screen and (min-width:100px) and (max-width:576px){ }
+@media only screen and (max-width: 576px) and (min-width: 100px){
+	span.blue.bold + p{
+		font-size: 20px;
+	}
+	.section_title{
+		font-size: 20px;
+	}
+	.square img{
+		width: 23px;
+	}
+	.square{
+		width: 45px;
+		height: 45px;
+		padding: 10px;
+	}
+	.row.advs p{
+		font-size: 16px;
+		margin: 4px 2px 25px;
+	}
+	.contacts .row .row{margin: 10px 0 10px;}
+	.button_c button{
+		padding: 13px 25px 12px;
+	}
+	div.work_time{
+		margin: 0;
+	}
+	div#address_time{
+		flex-direction: column;
+		white-space: nowrap;
+		font-size: 10px;
+	}
+div.phone.nowrap{
+	display:none
+}
+.text-left.section_title::before{
+    left: calc(50% + 12px);
+}
+.text-left.section_title::after{
+    left: calc(50% + -12px);
+}
+div.contacts h2{
+	text-align: center;
+	font-size: 25px;
+}
+div.contacts {
+	margin: 20px 10px;
+	padding: 27px 10px;
+}
+	 .contacts .vertical_button{
+	 	display:none
+	 }
+
+	  }
 
 @media only screen and (min-width:576px) and (max-width:768px){
 div#phone {
@@ -2867,20 +3112,3 @@ header.header.trans_300 .container{
 
 @media only screen and (min-width:1200px) and (max-width:5120){ }
 
-
-
-.nowrap {
-    white-space: nowrap;
-}
-
-.staging .sticky_block:nth-child(1) {
-    transform: translate(-33%,30px);
-}
-
-.staging .sticky_block:nth-child(3) {
-    transform: translate(-26%,-30px);
-}
-
-.sticky_block.active {
-    z-index: 9;
-}

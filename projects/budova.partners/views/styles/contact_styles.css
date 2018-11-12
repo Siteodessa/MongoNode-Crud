@@ -561,44 +561,42 @@ section
 	color: #0e1d41;
 	text-transform: uppercase;
 }
-.estate_contact_form_container
+.budova_contact_form_container
 {
 	margin-top: 38px;
 }
-.estate_input_field
+.budova_input_field
 {
 	width: 100%;
-	background: #e2e6f1;
 	border: solid 2px transparent;
 	margin-bottom: 9px;
 	height: 38px;
 	padding-left: 17px;
 	color:#3d85cd;
+	border: 1px solid #e2e2e2;
 }
-.estate_input_field:focus
+.budova_input_field:focus
 {
 	outline: none !important;
 	border-color:#3d85cd;
 }
-.estate_text_field
+.budova_text_field
 {
 	width: 100%;
-	height: 117px;
-	background: #e2e6f1;
+	height: 134px;
 	border: solid 2px transparent;
 	padding-left: 17px;
 	color:#3d85cd;
 	padding-top: 10px;
+	border: 1px solid #e2e2e2;
 }
-.estate_text_field:focus
+.budova_text_field:focus
 {
 	outline: none !important;
 	border-color:#3d85cd;
 }
-.estate_contact_send_btn
+.budova_contact_send_btn
 {
-	width: 86px;
-	height: 32px;
 	background:#3d85cd;
 	font-size: 12px;
 	font-weight: 600;
@@ -606,80 +604,82 @@ section
 	color: #FFFFFF;
 	cursor: pointer;
 	border: none;
-	margin-top: 39px;
+	margin-top: 9px;
+	padding: 10px 40px 11px;
+	display: block;
 }
-.estate_contact_send_btn:focus
+.budova_contact_send_btn:focus
 {
 	outline: solid 1px #FFFFFF;
 	border: green !important;
 }
-.estate_input_field::-webkit-input-placeholder,
-.estate_text_field::-webkit-input-placeholder
+.budova_input_field::-webkit-input-placeholder,
+.budova_text_field::-webkit-input-placeholder
 {
 	font-size: 11px !important;
 	font-style: italic !important;
 	font-weight: 400 !important;
 	color: #6678a3 !important;
 }
-.estate_input_field:-moz-placeholder,
-.estate_text_field:-moz-placeholder
+.budova_input_field:-moz-placeholder,
+.budova_text_field:-moz-placeholder
 {
 	font-size: 11px !important;
 	font-style: italic !important;
 	font-weight: 400 !important;
 	color: #6678a3 !important;
 }
-.estate_input_field::-moz-placeholder,
-.estate_text_field::-moz-placeholder
+.budova_input_field::-moz-placeholder,
+.budova_text_field::-moz-placeholder
 {
 	font-size: 11px !important;
 	font-style: italic !important;
 	font-weight: 400 !important;
 	color: #6678a3 !important;
 } 
-.estate_input_field:-ms-input-placeholder,
-.estate_text_field:-ms-input-placeholder
+.budova_input_field:-ms-input-placeholder,
+.budova_text_field:-ms-input-placeholder
 { 
 	font-size: 11px !important;
 	font-style: italic !important;
 	font-weight: 400 !important;
 	color: #6678a3 !important;
 }
-.estate_input_field::input-placeholder,
-.estate_text_field::input-placeholder
+.budova_input_field::input-placeholder,
+.budova_text_field::input-placeholder
 {
 	font-size: 11px !important;
 	font-style: italic !important;
 	font-weight: 400 !important;
 	color: #6678a3 !important;
 }
-.estate_contact .contact_info_text,
-.estate_contact .contact_info_text a
+.budova_contact .contact_info_text,
+.budova_contact .contact_info_text a
 {
 	color: #838383;
 }
-.estate_contact
+.budova_contact
 {
 	margin-top: 38px !important;
 }
-.estate_about_text
+.budova_about_text
 {
 	margin-top: 30px;
 }
-.estate_about_text p
+.budova_about_text p
 {
 	line-height: 2.29;
 	margin-bottom: 32px;
 }
-.estate_about_text p:last-of-type
+.budova_about_text p:last-of-type
 {
 	margin-bottom: 0px;
 }
-.estate_social
+.budova_social
 {
 	margin-top: 28px;
 }
-.estate_social_item
+.budova_social_item
 {
 	display: inline-block;
 	width: 31px;
@@ -694,18 +694,18 @@ section
 	transition: all 200ms ease;
 	margin-right: 9px;
 }
-.estate_social_item:last-child
+.budova_social_item:last-child
 {
 	margin-right: 0px;
 }
-.estate_social_item a
+.budova_social_item a
 {
 	display: block;
 	position: relative;
 	width: 100%;
 	height: 100%;
 }
-.estate_social_item a i
+.budova_social_item a i
 {
 	display: block;
 	position: relative;
@@ -723,11 +723,11 @@ section
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
-.estate_social_item:hover
+.budova_social_item:hover
 {
 	background:#3d85cd;
 }
-.estate_social_item:hover a i
+.budova_social_item:hover a i
 {
 	color: #FFFFFF;
 }
@@ -736,7 +736,7 @@ section
 9. Google Map
 *********************************/
 
-.estate_map
+.budova_map
 {
 	margin-top: 100px;
 }

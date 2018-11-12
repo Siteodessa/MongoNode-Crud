@@ -582,51 +582,51 @@ ARG_1...ARG_N - аргументы и их значения разные для 
   "2017-03-28": {
     "result": 2,
     "dates": {
-      "2017-03-28": {
-        "date": "2017-03-28"
-      }
-    },
+              "2017-03-28": {
+                "date": "2017-03-28"
+              }
+            },
     "times": {
       "11:00": {
-        "time": "11:00",
-        "price": 400,
-        "is_booked": 2
-      },
+                "time": "11:00",
+                "price": 400,
+                "is_booked": 2
+              },
       "12:30": {
-        "time": "12:30",
-        "price": 400,
-        "is_booked": 2
-      },
+                "time": "12:30",
+                "price": 400,
+                "is_booked": 2
+              },
       "14:00": {
-        "time": "14:00",
-        "price": 400,
-        "is_booked": 2
-      },
+                "time": "14:00",
+                "price": 400,
+                "is_booked": 2
+              },
       "15:30": {
-        "time": "15:30",
-        "price": 400,
-        "is_booked": 2
-      },
+                "time": "15:30",
+                "price": 400,
+                "is_booked": 2
+              },
       "17:00": {
-        "time": "17:00",
-        "price": 500,
-        "is_booked": 2
-      },
+                "time": "17:00",
+                "price": 500,
+                "is_booked": 2
+              },
       "18:30": {
-        "time": "18:30",
-        "price": 500,
-        "is_booked": 2
-      },
+                "time": "18:30",
+                "price": 500,
+                "is_booked": 2
+              },
       "20:00": {
-        "time": "20:00",
-        "price": 500,
-        "is_booked": 2
-      },
+                "time": "20:00",
+                "price": 500,
+                "is_booked": 2
+              },
       "21:30": {
-        "time": "21:30",
-        "price": 600,
-        "is_booked": 2
-      }
+                "time": "21:30",
+                "price": 600,
+                "is_booked": 2
+              }
     }
   },
   "error": 0

@@ -1,7 +1,3 @@
-
-
-
-
               <% function ifDefined(elem, markup, elser) {
                 if   (typeof(elem) !== 'undefined' )  {
                   return markup
@@ -10,8 +6,6 @@
                 }
               }
               %>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,118 +15,167 @@
 <% include ../partials/head %>
 </head>
 <body  class="contacts">
+
+  <header class="header trans_300">
+  <% include ../partials/header %>
+  </header>
+
 <div class="super_container">
-	<div class="home">
+<div class="row row_contacts">
+  <div class="container">
+    <div class="flex jc">
+      <div class="vertical_button">
+        <div class="button_c">
+          <button type="button" name="button">Заказать звонок</button>
+          <span class="phone_icon"><img src="/images/phone.png"></span>
+        </div>
+      </div>
+    <div class="contacts">
+      <h2 class="text-left text-black section_title "> Связаться <span class="inline bold">с нами</span></h2>
+      <div class="row">
+    <div class="col-md-6">
+    <div class="row">
+    <div class="col-md-2">
+      <span class="icon"><img src="images/placeholder.svg" alt=""> </span>
+    </div>
+    <div class="col-md-10">
+      <span> г.Одесса ул. Екатерининская. 27</span>
+      <span>ТЦ «KADORR» 4 этаж, офис 27</span>
+      <br>
+      <span> г.Одесса ул. Днепропетровская дорога 3 </span>
+      <span> ТЦ «Этаж», офис 3</span>
+      <div class="messengers" id="messengers">
+        <ul class="flex">
+          <li><a href="whatsapp://send?abid=[users name]&amp;text=[message text]"> <img class="small" src="/images/whatsapp_icon.png"> </a></li>
+          <li><a href="tg://user?id=123456789"> <img class="small" src="/images/telegram_icon.png"></a></li>
+          <li><a href="viber://pa?chatURI=[public account URI]&amp;text=[message text]"> <img class="small" src="/images/viber_icon.png"> </a></li>
+        </ul>
+      </div>
+      <span> 073 144 92 10</span>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-2">
+    <span class="icon"><img src="images/phone-call.svg" alt=""></span>
+    </div>
+    <div class="col-md-10">
+      <span> 048 771 97 79</span>
+      <span> 073 144 92 10</span>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-2">
+    <span class="icon"><img src="images/message.svg" alt=""></span>
+    </div>
+    <div class="col-md-10">
+      <span> info@novostroiki.od.ua</span>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-6">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5485.303031811779!2d30.802457428866575!3d46.57435630306219!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x516b6cf69b54cff7!2z0KLQpiDQrdC60LLQsNGC0L7RgA!5e0!3m2!1sru!2sua!4v1542031433484"
+        width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+</div>
 
 
 
 
 
-11111111111111111111
 
 
 
+<div class="row row_form">
+  <div class="container">
+    <form id="budova_contact_form" class="budova_contact_form" action="post">
+      <div class="row">
+
+      <div class="col-md-3">
+      <input id="budova_contact_form_name" class="budova_input_field budova_contact_form_name" type="text" placeholder="Имя*" required="required" data-error="Name is required.">
+      <input id="budova_contact_form_subject" class="budova_input_field budova_contact_form_subject" type="text" placeholder="Телефон" required="required" data-error="Subject is required.">
+      <input id="budova_contact_form_email" class="budova_input_field budova_contact_form_email" type="email" placeholder="E-mail*" required="required" data-error="Valid email is required.">
+    </div>
+    <div class="col-md-9">
+    <textarea id="budova_contact_form_message" class="budova_text_field budova_contact_form_message" name="message" placeholder="Сообщение" required="required" data-error="Please, write us a message."></textarea>
+    <button id="budova_contact_send_btn" type="submit" class="budova_contact_send_btn trans_200" value="Submit">Отправить</button>
+    </div>
+    </div>
+
+    </form>
+    </div>
+</div>
+
+<div class="row row_pros">
+    <div class="container">
+    <div class="pros_tab">
+      <div class="pros">
+      <h2 class="text-left text-black section_title ">  <span class="inline bold">Наши</span> преимущества</h2>
+      <div class="rows">
+        <div class="row">
+          <div class="col-md-6 row">
+            <span class="circle"></span>
+              <span class="">Первоначальный<br> взнос- от 4%</span>
+          </div>
+          <div class="col-md-6 row">
+            <span class="circle"></span>
+              <span class="">Кредит <br> под 9% годовых</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 row">
+            <span class="circle"></span>
+              <span class="">Рассрочка <br>до 10 лет</span>
+          </div>
+          <div class="col-md-6 row">
+            <span class="circle"></span>
+              <span class="">Рассрочка <br>до 10 лет</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 row">
+            <span class="circle"></span>
+              <span class="">Кредит <br> под 9% годовых</span>
+          </div>
+          <div class="col-md-6 row">
+            <span class="circle"></span>
+              <span class="">Первоначальный взнос- от 4%</span>
+          </div>
+        </div>
+        </div>
+        <div class="w100">
+      <div class="button_c">
+        <button type="button" name="button">Заказать звонок</button>
+        <span class="phone_icon"><img src="/images/phone.png"></span>
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
+<div class="row_adv">
+  <div class="advantages adv">
+    <% include ../partials/advantages %>
+  </div>
+</div>
 
-
-		<div class="home_background" style="background-image:url(<%- ifDefined(sitedata.contacts_page_background, sitedata.contacts_page_background, '/images/contact.jpg') %>)"></div>
-
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="home_content">
-						<div class="home_title">
-							<h2><%= sitedata.contacts_page_title %></h2>
-						</div>
-						<div class="breadcrumbs">
-							<span><a href="/">Главная</a></span>
-							<span><a href="#"> <%= sitedata.contacts_page_title %></a></span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+<div class="row_related">
+  <div class="related rlt">
+		<% include ../partials/related %>
 	</div>
-	<header class="header trans_300">
-	<% include ../partials/header %>
-	</header>
-	<div class="contact">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 contact_col">
-					<div class="estate_contact_form">
-						<div class="contact_title"><%= sitedata.contacts_page_form_title %></div>
-						<div class="estate_contact_form_container">
-							<form id="estate_contact_form" class="estate_contact_form" action="post">
-								<input id="estate_contact_form_name" class="estate_input_field estate_contact_form_name" type="text" placeholder="Имя" required="required" data-error="Name is required.">
-								<input id="estate_contact_form_email" class="estate_input_field estate_contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required.">
-								<input id="estate_contact_form_subject" class="estate_input_field estate_contact_form_subject" type="email" placeholder="Тема" required="required" data-error="Subject is required.">
-								<textarea id="estate_contact_form_message" class="estate_text_field estate_contact_form_message" name="message" placeholder="Сообщение" required="required" data-error="Please, write us a message."></textarea>
-								<button id="estate_contact_send_btn" type="submit" class="estate_contact_send_btn trans_200" value="Submit">Отправить</button>
-							</form>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 contact_col">
-					<div class="contact_title"><%= sitedata.contacts_page_contact_title %></div>
-					<ul class="contact_info_list estate_contact">
-						<%- ifDefined(sitedata.address, `
-								<li class="contact_info_item d-flex flex-row">
-								<div>
-									<div class="contact_info_icon">
-										<img src="images/placeholder.svg" alt="">
-									</div>
-								</div>
-									<div class="contact_info_text">${sitedata.address}</div>
-								</li>
-						 `) %>
+</div>
 
 
-						<%- ifDefined(sitedata.phone, `
-								<li class="contact_info_item d-flex flex-row">
-								 <div>
-									 <div class="contact_info_icon">
-										<img src="images/phone-call.svg" alt="">
-									 </div>
-								 </div>
-								 <div class="contact_info_text">${sitedata.phone}</div>
-								</li>
-						 `) %>
 
-						<%- ifDefined(sitedata.mail, `
-							<li class="contact_info_item d-flex flex-row">
-								<div><div class="contact_info_icon"><img src="images/message.svg" alt=""></div></div>
-								<div class="contact_info_text"><a href="mailto:${sitedata.mail}?Subject=Hello" target="_top">${sitedata.mail}</a></div>
-							</li>
-							`) %>
-							<li class="contact_info_item d-flex flex-row">
-								<div><div class="contact_info_icon"><img src="images/planet-earth.svg" alt=""></div></div>
-								<div class="contact_info_text"><a href="/"><%- ifDefined(sitedata.sitename, sitedata.sitename) %></a></div>
-							</li>
-					</ul>
-					<div class="estate_social">
-						<ul class="estate_social_list">
+<% /* include ./old-contacts */ %>
 
-							            <%- 		ifDefined(sitedata.fb_link, '<li class="footer_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>') %>
-							            <%- 		ifDefined(sitedata.insta_link, '<li class="footer_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li></a></li>') %>
-							            <%- 		ifDefined(sitedata.twitter_link, '<li class="footer_social_item"><a href="#"><i class="fab fa-instagram"></i></a></li></a></li>') %>
 
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3 contact_col">
-					<div class="contact_title">about</div>
-					<div class="estate_about_text">
-						<p>Lorem ipsum dolor sit amet, cons ectetur  quis ferme adipiscing elit. Suspen dis se tellus eros, placerat quis ferme ntum et, adipiscingvive rra sit ipsum amet lacus. </p>
-						<p>Nam gravida quis placerat quis fe rme ntum et ferme sadipiscinge te llus semper augue.</p>
-					</div>
-				</div>
-			</div>
-		</div>
 
-	</div>
   <div class="seobox seob">
 	<% include ../partials/seobox %>
 </div>
