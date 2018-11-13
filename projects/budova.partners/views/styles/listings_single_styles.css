@@ -236,10 +236,6 @@ section
 	padding: 0px !important;
 }
 
-/*********************************
-3. Home
-*********************************/
-
 .home_background
 {
 	position: absolute;
@@ -311,17 +307,6 @@ section
 {
 	text-align: center;
 }
-
-
-/*********************************
-4.2 Main Navigation
-*********************************/
-
-.main_nav
-{
-	/* margin-left: auto; */
-	/* margin-right: 10px; */
-}
 .main_nav_item
 {
 	display: inline-block;
@@ -331,9 +316,6 @@ section
 {
 	margin-right: 0px;
 }
-/*********************************
-4.3 Phone Home
-*********************************/
 
 .phone_home
 {
@@ -351,10 +333,6 @@ section
 	color: #FFFFFF;
 }
 
-/*********************************
-4.4 Hamburger
-*********************************/
-
 .hamburger_container
 {
 	display: none;
@@ -364,7 +342,6 @@ section
 {
 	font-size: 20px;
 	padding: 5px;
-	color: #FFFFFF;
 	cursor: pointer;
 }
 .hamburger i:hover
@@ -375,11 +352,6 @@ section
 {
 	color: #fd784f;
 }
-
-/*********************************
-5. Menu
-*********************************/
-
 .menu
 {
 	display: block;

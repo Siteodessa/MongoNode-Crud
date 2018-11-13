@@ -371,7 +371,6 @@ section
 {
 	font-size: 20px;
 	padding: 5px;
-	color: #FFFFFF;
 	cursor: pointer;
 }
 .hamburger i:hover
@@ -491,19 +490,7 @@ section
 	padding-right: 33px;
 }
 
-/*********************************
-8. Listings
-*********************************/
 
-.listings
-{
-	padding-top: 100px;
-	padding-bottom: 100px;
-}
-
-/*********************************
-9. Search Box
-*********************************/
 
 .search_box
 {

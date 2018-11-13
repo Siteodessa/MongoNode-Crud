@@ -6,12 +6,7 @@
 </ul>
 <div id="home" class="tab-pane fade in active">
 
-
-
-<div class="inline-flex">
-
-<div class="sticky_block">
-    <h3 class="underlined">Конструктивная характеристика комплекса</h3>
+<% let construction1 = `    <h3 class="underlined">Конструктивная характеристика комплекса</h3>
     <div class="rows">
       <div class="row">
         <div class="col-md-6">
@@ -49,108 +44,108 @@
           Выполнены из газобетонных блоков, толщиной 200мм
         </div>
       </div>
+    </div>` %>
+<% let construction2 = `<h3 class="underlined">Конструктивная характеристика комплекса</h3>
+<div class="rows">
+  <div class="row">
+    <div class="col-md-6">
+      <span class="circle"></span>
+        <span class="bold">Фундаменты</span>
     </div>
-</div>
-
-
-
-
-<div class="sticky_block">
-    <h3 class="underlined">Конструктивная характеристика комплекса</h3>
-    <div class="rows">
-      <div class="row">
-        <div class="col-md-6">
-          <span class="circle"></span>
-            <span class="bold">Фундаменты</span>
-        </div>
-        <div class="col-md-6">
-          Свайные с монолитным железобетонным ростверком.
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <span class="circle"></span>
-          <span class="bold">Наружные стены</span>
-        </div>
-        <div class="col-md-6">
-          Цоколь, 1 этаж -пенобетон, толщина 300мм. Выше 2-го этажа - утепленные трехслойные фасадные системы.
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <span class="circle"></span>
-          <span class="bold"></span>Внутренние несущие стены</span>
-        </div>
-        <div class="col-md-6">
-          Из монолитного железобетона, толщиной 200мм и 400мм соответственно.
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <span class="circle"></span>
-          <span class="bold"></span>Перегородки между квартирами</span>
-        </div>
-        <div class="col-md-6">
-          Выполнены из газобетонных блоков, толщиной 200мм
-        </div>
-      </div>
+    <div class="col-md-6">
+      Свайные с монолитным железобетонным ростверком.
     </div>
-</div>
-
-
-
-
-
-<div class="sticky_block">
-    <h3 class="underlined">Конструктивная характеристика комплекса</h3>
-    <div class="rows">
-      <div class="row">
-        <div class="col-md-6">
-          <span class="circle"></span>
-            <span class="bold">Фундаменты</span>
-        </div>
-        <div class="col-md-6">
-          Свайные с монолитным железобетонным ростверком.
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <span class="circle"></span>
-          <span class="bold">Наружные стены</span>
-        </div>
-        <div class="col-md-6">
-          Цоколь, 1 этаж -пенобетон, толщина 300мм. Выше 2-го этажа - утепленные трехслойные фасадные системы.
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <span class="circle"></span>
-          <span class="bold"></span>Внутренние несущие стены</span>
-        </div>
-        <div class="col-md-6">
-          Из монолитного железобетона, толщиной 200мм и 400мм соответственно.
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <span class="circle"></span>
-          <span class="bold"></span>Перегородки между квартирами</span>
-        </div>
-        <div class="col-md-6">
-          Выполнены из газобетонных блоков, толщиной 200мм
-        </div>
-      </div>
-    </div>
-</div>
-</div>
   </div>
+  <div class="row">
+    <div class="col-md-6">
+      <span class="circle"></span>
+      <span class="bold">Наружные стены</span>
+    </div>
+    <div class="col-md-6">
+      Цоколь, 1 этаж -пенобетон, толщина 300мм. Выше 2-го этажа - утепленные трехслойные фасадные системы.
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <span class="circle"></span>
+      <span class="bold"></span>Внутренние несущие стены</span>
+    </div>
+    <div class="col-md-6">
+      Из монолитного железобетона, толщиной 200мм и 400мм соответственно.
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <span class="circle"></span>
+      <span class="bold"></span>Перегородки между квартирами</span>
+    </div>
+    <div class="col-md-6">
+      Выполнены из газобетонных блоков, толщиной 200мм
+    </div>
+  </div>
+</div>    ` %>
+<% let construction3 = `     <h3 class="underlined">Конструктивная характеристика комплекса</h3>
+    <div class="rows">
+      <div class="row">
+        <div class="col-md-6">
+          <span class="circle"></span>
+            <span class="bold">Фундаменты</span>
+        </div>
+        <div class="col-md-6">
+          Свайные с монолитным железобетонным ростверком.
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <span class="circle"></span>
+          <span class="bold">Наружные стены</span>
+        </div>
+        <div class="col-md-6">
+          Цоколь, 1 этаж -пенобетон, толщина 300мм. Выше 2-го этажа - утепленные трехслойные фасадные системы.
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <span class="circle"></span>
+          <span class="bold"></span>Внутренние несущие стены</span>
+        </div>
+        <div class="col-md-6">
+          Из монолитного железобетона, толщиной 200мм и 400мм соответственно.
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <span class="circle"></span>
+          <span class="bold"></span>Перегородки между квартирами</span>
+        </div>
+        <div class="col-md-6">
+          Выполнены из газобетонных блоков, толщиной 200мм
+        </div>
+      </div>
+    </div>
+</div>
+   ` %>
+
+<div class="inline-flex only-desk">
+  <div class="sticky_block">
+    <%- construction1 %>
+  </div>
+  <div class="sticky_block">
+  <%- construction2 %>
+  </div>
+  <div class="sticky_block">
+  <%- construction3 %>
+  </div>
+</div>
 
 
-
-
+<div class="inline-flex only-mob construction_slider">
+  <div class="container">
+  <% include ../single/construction_slider %>
+</div>
+</div>
 
   <script>
-
       function sticky_block (parent, child){
     $(parent).children(child).on('click', function(){
       $(parent).addClass('staging')

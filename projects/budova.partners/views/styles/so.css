@@ -13,6 +13,85 @@
     width:  100%;
 }
 
+.np {
+    padding: 0;
+}
+
+.menu.menu_mm {
+    position: fixed;
+    top: 0;
+    width: 80%;
+    padding: 30px 60px 0 10px;
+    height: 100vh;
+    max-height: initial !important;
+}
+li.main_nav_item a img {
+    display: none;
+}
+.menu.menu_mm ul {
+    height: 100%;
+}
+
+
+
+.underlined:after {
+    content: '';
+    display: block;
+    border: 1px solid #3d85cd;
+    position: absolute;
+    top: auto;
+    bottom: -17px;
+    width: 35px;
+    left: calc(50% - 9px);
+}
+
+.swiper-slide.swiper-slide-active + div img {
+    filter: none;
+}
+
+.swiper-slide {
+    margin-top: 10vh;
+}
+
+
+
+.planning_tab ul.nav.nav-pills li a.tab_active:before {
+    display: none;
+}
+
+.planning_tab ul.nav.nav-pills li a.tab_active {
+    background: #fff;
+    color: #3d85cd;
+}
+
+a.show_all {
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    display: block;
+    color: #3d85cd !important;
+    text-decoration: underline !important;
+    font-size: 15px;
+}
+
+a.show_all i {
+    font-size: 11px;
+}
+
+.only-mob {
+    display: none;
+}
+ul.nav.nav-pills li a.tab_active:before {
+    content: '';
+    background: #3d85cd;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    bottom: -4px;
+    transform: rotate(45deg);
+    z-index: 0;
+    left: calc(50% - 5px);
+}
 @import url('https://fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:300,400,600,700');
 
 ul
@@ -83,6 +162,40 @@ h1, h2, h3, h4, h5, h6
 	-webkit-font-smoothing: antialiased;
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+
+.scroll-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2em;
+  width: 1.2em;
+  font-size: 22px;
+  color: rgba(#fff, .5);
+  border-radius: 2em;
+  border: solid 2px;
+  transition: .4s;
+  color: #fff;
+}
+
+.scroll-icon:hover {
+  background-color: rgba(#fff, .05);
+  color: #fff;
+}
+
+.scroll-icon::after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background-color: #fff;
+  border-radius: 50%;
+  animation: scroll-icon 2.2s infinite cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+@keyframes scroll-icon {
+    0% { transform: translateY(-12px); opacity: 0; }
+   30%, 70% { opacity: 1; }
+  100% { transform: translateY(12px); opacity: 0; }
 }
 .form-control
 {
@@ -341,18 +454,18 @@ section
 
 .hamburger_container
 {
-	display: none;
+	/* display: none; */
 }
 .hamburger i
 {
 	font-size: 20px;
 	padding: 5px;
-	color: #FFFFFF;
+	color: #3d85cd;
 	cursor: pointer;
 }
 .hamburger i:hover
 {
-	color: #f2f2f2;
+	color: #479aec;
 }
 .hamburger i:active
 {
@@ -932,6 +1045,22 @@ section
 .testimonials .section_title h1
 {
 	color: #FFFFFF;
+}
+
+.construction_slider .swiper-slide {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    margin: 0;
+}
+
+.construction_slider {
+    overflow: hidden;
+    padding: 40px 0 80px;
+}
+
+.only-mob {
+    display: none;
 }
 .testimonials_slider_container
 {
@@ -1807,6 +1936,9 @@ div
     flex-direction:  column;
 }
 
+.rows.advs .row.advs {
+    margin: 20px;
+}
 .main_nav
 {
 	margin-left: 0;
@@ -2017,13 +2149,13 @@ header.header.trans_300 .container {
     filter: brightness(0.1);
 }
 
-.swiper-slide.swiper-slide-active  + div {
+.home_slider_container swiper-slide-active + div {
     transform: scale(1.2);
     transition: .4s;
     z-index: 9;
     border: 12px solid #fff;
-    /* width: 60vw !important; */
-    /* margin: 0 -15vw; */
+    width: 60vw !important;
+    margin: 10vh -15vw;
     overflow: hidden;
 }
 
@@ -2080,7 +2212,7 @@ ul.nav.nav-pills li:hover a {
 }
 
 .tab-content {
-    margin: 30px 0 0;
+    margin: 0px 0 0;
     width: 100%;
 }
 
@@ -2127,8 +2259,9 @@ span.circle {
     border: 1px solid #3d85cd;
     position: absolute;
     top: auto;
-    bottom: -7px;
-    width: 11%;
+    bottom: -10px;
+    width: 35px;
+    left: calc(50% - 26px);
 }
 
 .underlined {
@@ -2303,13 +2436,13 @@ span.big.circle {
 
 .planning_tab ul.nav.nav-pills li a {
     border: none;
-    padding: 2px 0px 8px 12px;
+    padding: 6px 0px 6px 12px;
     font-size: 17px;
     letter-spacing: 0.7px;
 }
 
 .planning_tab ul.nav.nav-pills li:hover {
-    background: rgba(61, 133, 205, 0.18);
+    background: rgba(61, 133, 205, 0.32);
 }
 
 .planning_tab ul.nav.nav-pills li:hover .big {
@@ -2330,6 +2463,9 @@ span.big.circle {
 
 .planning_tab ul.nav.nav-pills li {
     margin: 0;
+    width: 100%;
+    text-align: left;
+    margin: 0 1vw;
 }
 
 .planning_tab button {
@@ -2342,7 +2478,7 @@ span.big.circle {
 
 .planning_tab span.phone_icon {
     margin: 0;
-    height: 52px;
+    height: 100%;
     width: 70px;
 }
 
@@ -2411,9 +2547,6 @@ span.big.circle {
 
 .row.advs p {margin: 0px 20px;font-size: 26px;text-indent: 20px;}
 
-.row.advs {
-    margin: 50px 0;
-}
 
 .percents {
     width: 100%;
@@ -2681,8 +2814,8 @@ li {}
     transition: .4s;
     z-index: 9;
     border: 12px solid #fff;
-    width: 60vw !important;
-    margin: 0 -15vw;
+    width: 70vw !important;
+    margin: 9.5vh -21vw;
     overflow: hidden;
 }
 
@@ -2829,6 +2962,10 @@ div.contacts h2 {
     top: 170px;
 }
 
+.singlepage .home_slider_container .swiper-slide.swiper-slide-active + div {
+    margin: 10vh 0vw;
+    width: auto !important;
+}
 .vertical_button span.phone_icon {
     margin: 30px 0 10px -4px;
 }
@@ -2917,6 +3054,7 @@ div.contacts h2 {
     content: '-';
     position: absolute;
     top: 8px;
+    color: #fff;
 }
 
 .cus ul.main_nav_list li {
@@ -3010,7 +3148,7 @@ div.phone {
 }
 
 .tab-pane {
-    padding: 120px 0 70px;
+    padding: 90px 0 70px;
 }
 .login {
     display: none;
@@ -3026,6 +3164,7 @@ div#address_time {
 }
 
 div.work_time {
+	
     display: flex;
     margin: 0 20px;
 }
@@ -3034,13 +3173,250 @@ div.work_time {
     width: 30px;
 }
 
-
+@media only screen and (max-width: 991px){
+		.hamburger_container
+	{
+		display: block;
+		position: absolute;
+		left: -8px;
+	}
+}
 @media only screen and (max-width: 576px) and (min-width: 100px){
+	.home_slider_container .swiper-pagination-bullets {
+    bottom: -4px !important;
+}
+	.text-center{
+		text-align:left !important
+	}
+.text-center:before {
+    left: calc(5% - 26px);
+}
+.related .section_title::before{
+	left: calc(50% - 26px);
+}
+.related .section_title::after{
+	left: calc(50% - 9px);
+}
+.desc.text-center:before {
+    left: calc(50% - 9px);
+}
+.desc.text-center:after {
+    left: calc(50% - 26px);
+}
+
+.text-center:after {
+    left: calc(5% - 9px);
+}
+
+.adv .text-center:before , featured .text-center:before{
+    left: calc(50% - 26px);
+}
+
+.adv .text-center:after , featured .text-center:after{
+    left: calc(50% - 9px);
+}
+	.only-mob{
+		display:block
+	}
+	.only-desk{
+	display:none	
+	}
+	.only-mob{
+		display: block;
+	}
+	.plannimg, .plannimg img{
+    padding: 0 0px;
+    width: 100%;
+}
+	.panel h4{
+		font-size: 20px;
+		text-align: center;
+	}
+	.planning_tab ul.nav.nav-pills li:first-child{
+		opacity: 1 !important;
+		height: auto !important;
+		transform: none !important;
+	}
+	.planning_tab .closed ul.nav.nav-pills li{
+		height: 0px;
+		opacity: 0;
+		transform: translate(100%);
+	}
+	.planning_tab{
+		flex-direction: column;
+		margin: 0 13px;
+	}
+	.planning_tab .tab-pane{
+    padding: 0px 0 10px;
+}
+.planning_tab .flex_col{
+		width: 100%;
+		min-width: initial;
+		max-width: initial;
+	}
+	.rows.advs .row.advs{
+    margin: 0 20px;
+}
+	.tab-pane{}
+	.rows.advs{
+		
+	}
+	.row.cols{
+    margin: 30px 0;
+}
+	mark, .prices span{
+    font-size: 14px;
+}	mark, .prices span{
+    font-size: 14px;
+}
+	.prices .rows .row{
+    margin: 0px 0;
+    display: flex;
+    flex-direction: row !important;
+    flex-wrap: nowrap;
+    padding: 8px 0;
+}
+.installments_tab .prices .rows .row{
+	flex-direction: column !important;
+}
+	.rows.advs{
+    margin: 80px 0 0;
+}
+	.map .col-md-6.blueb{
+    padding: 0px 50px 40px;
+}
+.featured_row .tab-pane{
+	padding: 0px 0 0px;
+}
+	.tab-pane{padding: 40px 0 40px;width: 100%;}
+.vertical_button span.phone_icon, span.phone_icon{
+	margin: 0px 0 10px -4px;
+	height: 100%;
+}.installments_tab{
+    width: 100%;
+}
+	.prices_tab.flex.jc, .installments_tab{
+		flex-direction: column-reverse;
+	}.prices_button button, .vertical_button button{
+		transform: none;
+		position: static;
+	}.planning_tab ul.nav.nav-pills li a{
+    padding: 3px 0px 3px 12px;
+}
+	ul.nav.nav-pills li a{
+		padding: 5px 12px 10px;
+		font-size: 15px;
+		position: relative;
+	}ul.nav.nav-pills li{
+    text-align: center;
+    width: 46%;
+    margin: 5px auto;
+}.planning_tab ul.nav.nav-pills li:hover{
+    background: rgba(61, 133, 205, 0.7);
+}
+
+ul.nav.nav-pills {width: 80%;margin: 0 auto;}
+.planning_tab ul.nav.nav-pills {width: 100%;margin: 0 auto;align-items: flex-start;}
+
+	a.scroll-icon{
+    display: none;
+}
+	.overlay h1{
+    font-size: 1.5em;
+    margin: 30% 0 0;
+}
+	.featured{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+	.panel{
+    padding: 20px 23px;
+    margin: 0 13px;
+}.prices{
+    margin: 0 13px;
+}.prices .col-md-6{
+	padding: 0;
+}
+
+.installments_tab .prices {
+    padding: 27px 6vw;
+}
+	.cus ul.main_nav_list li img{
+    display: none;
+}
+	.singlepage .home_slider_container .swiper-slide.swiper-slide-active + div{
+    width: 75vw !important;
+    margin: 10vh -23vw !important;
+    border: 4px solid #fff;
+}.singlepage .home_slider_container .swiper-slide.swiper-slide-active + div{
+	width: 60vw !important;
+	margin: 10vh 0vw 0 -15vw !important;
+}
+.singlepage  .construction_slider .swiper-slide.swiper-slide-active + div {
+    /* width: initial !important; */
+    /* margin: 0 auto !important; */
+}
+	.header .col{
+    box-shadow: 0px 0px 8px #909090;
+}	.header ul .col{
+    box-shadow: none;
+}
+	body.contacts{
+    padding: 140px 0 0;
+}
+.header_right img{
+    width: 23px;
+    margin: 5px 5px 0 9px;
+}
+.phones span{
+    font-size: 12px;
+}
+.logo span.official{
+    font-size: 3.5vw;
+    text-align: center;
+}.logo{
+    margin: 0 2px 0 22px;
+}
+.logo img{
+    width: 47vw;
+}
+.col-md-6.cdata{
+    margin: 30px 0px 10px 20px;
+    padding: 0;
+}
+.cus h2:before,.cus h2:after{display:none}
+.cus .f_col{
+    align-items: flex-start;
+}
+	.cus ul.main_nav_list{
+    flex-direction: column;
+    margin: 10px 20px;
+}span.blue.bold{
+    font-size: 32px;
+}.percents .flex-col{
+    margin: 50px 0 30px;
+}
 	span.blue.bold + p{
 		font-size: 20px;
 	}
-	.section_title{
-		font-size: 20px;
+	.houses_loop h2{
+    padding: 50px 0 0px !important;
+}
+.singlepage .related .section_title{
+    padding-top: 270px;
+}
+	.section_title, .section_title span{
+		font-size: 20px !important;
+		text-align: center;
+	}	.cus .section_title{
+		text-align: left !important;
+	}
+
+
+	 .section_title span.section_subtitle{
+		font-size: 15px !important;
+		font-weight: normal;
+		text-align: left;
 	}
 	.square img{
 		width: 23px;
@@ -3053,10 +3429,30 @@ div.work_time {
 	.row.advs p{
 		font-size: 16px;
 		margin: 4px 2px 25px;
-	}
+	}p.bordered-left{
+    padding: 0px;
+    border-left: 0px solid #fff;
+}.contact_us{
+    padding: 70px 0 0px;
+    background-position: center;
+}
+	.related .section_title::before{
+    bottom: -140px;
+}	.related .section_title::after{
+    bottom: -130px;
+}.cus .button_c {
+    display: none;
+}
+.contacts .icon img{
+    position: absolute;
+    left: -30px;
+}.contacts .icon {
+    position: relative;
+}
 	.contacts .row .row{margin: 10px 0 10px;}
 	.button_c button{
-		padding: 13px 25px 12px;
+		padding: 10px 25px 12px;
+		height: 100%;
 	}
 	div.work_time{
 		margin: 0;
@@ -3086,10 +3482,20 @@ div.contacts {
 	 .contacts .vertical_button{
 	 	display:none
 	 }
+	.home_slider_container, .home{height: 50vh !important;}
+
+.button_c{
+	height: 50px;
+}
+
 
 	  }
 
 @media only screen and (min-width:576px) and (max-width:768px){
+		.overlay h1{
+    font-size: 2em;
+}
+
 div#phone {
     display: none;
 }
@@ -3110,5 +3516,34 @@ header.header.trans_300 .container{
 
 @media only screen and (min-width:992px) and (max-width:1200px){ }
 
-@media only screen and (min-width:1200px) and (max-width:5120){ }
+@media only screen and (min-width:1200px) and (max-width:5120){
+ }
 
+
+
+
+
+.construction {
+    max-width: 90vw;
+    margin: 0 5vw;
+    border: 1px solid #b5b5b5;
+    padding: 12px;
+}
+
+.swiper-pagination-bullet {
+    margin: 0 2px;
+    width: 12px !important;
+    height: 12px !important;
+}
+
+
+.adv.text-center:after {}
+
+.swiper-container1 {
+    transform: translate(41.5%);
+}
+
+.swiper-pagination-bullets {
+    display: block;
+    width: 100%;
+}

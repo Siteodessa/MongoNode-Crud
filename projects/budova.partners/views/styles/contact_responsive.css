@@ -40,6 +40,8 @@
 	.hamburger_container
 	{
 		display: block;
+		position: absolute;
+		left: -8px;
 	}
 	.contact_col
 	{
