@@ -439,22 +439,7 @@ section
 	padding-top: 37px;
 	margin: 0 auto;
 }
-.section_title::after
-{
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-o-transform: translateX(-50%);
-	transform: translateX(-50%);
-	width: 3px;
-	height: 25px;
-	background: #fd784f;
-	content: '';
-}
+
 .section_title h3
 {
 	text-transform: uppercase;

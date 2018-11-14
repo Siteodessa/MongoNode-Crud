@@ -7,16 +7,24 @@
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	    transition: 0.45s;
 }
-
 @charset "utf-8";
 .room_image img {
     width:  100%;
 }
-
+.menu_mm .col a img {
+    width: 20px;
+    margin: 0 9px 0 0;
+}
 .np {
     padding: 0;
 }
-
+.home_advantages .prices.installments {
+    border: none;
+    margin: 0;
+}
+.home_advantages .rows h3 {
+    text-align: center;
+}
 .menu.menu_mm {
     position: fixed;
     top: 0;
@@ -30,10 +38,8 @@ li.main_nav_item a img {
 }
 .menu.menu_mm ul {
     height: 100%;
+    margin: 25px  0;
 }
-
-
-
 .underlined:after {
     content: '';
     display: block;
@@ -44,26 +50,20 @@ li.main_nav_item a img {
     width: 35px;
     left: calc(50% - 9px);
 }
-
 .swiper-slide.swiper-slide-active + div img {
     filter: none;
 }
-
 .swiper-slide {
     margin-top: 10vh;
 }
 
-
-
 .planning_tab ul.nav.nav-pills li a.tab_active:before {
     display: none;
 }
-
 .planning_tab ul.nav.nav-pills li a.tab_active {
     background: #fff;
     color: #3d85cd;
 }
-
 a.show_all {
     z-index: 2;
     text-align: center;
@@ -73,11 +73,9 @@ a.show_all {
     text-decoration: underline !important;
     font-size: 15px;
 }
-
 a.show_all i {
     font-size: 11px;
 }
-
 .only-mob {
     display: none;
 }
@@ -93,7 +91,6 @@ ul.nav.nav-pills li a.tab_active:before {
     left: calc(50% - 5px);
 }
 @import url('https://fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:300,400,600,700');
-
 ul
 {
 	list-style: none;
@@ -145,11 +142,9 @@ p a:hover::after
 }
 ::selection
 {
-	
 }
 p::selection
 {
-	
 }
 h1{font-size: 48px;}
 h2{font-size: 36px;}
@@ -163,7 +158,6 @@ h1, h2, h3, h4, h5, h6
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
-
 .scroll-icon {
   display: flex;
   justify-content: center;
@@ -177,12 +171,10 @@ h1, h2, h3, h4, h5, h6
   transition: .4s;
   color: #fff;
 }
-
 .scroll-icon:hover {
   background-color: rgba(#fff, .05);
   color: #fff;
 }
-
 .scroll-icon::after {
   content: '';
   width: 5px;
@@ -191,7 +183,6 @@ h1, h2, h3, h4, h5, h6
   border-radius: 50%;
   animation: scroll-icon 2.2s infinite cubic-bezier(0.65, 0.05, 0.36, 1);
 }
-
 @keyframes scroll-icon {
     0% { transform: translateY(-12px); opacity: 0; }
    30%, 70% { opacity: 1; }
@@ -285,8 +276,6 @@ section
 {
 	padding: 0px !important;
 }
-
-
 .home
 {
 	width: 100%;
@@ -332,7 +321,6 @@ section
 	max-width: 900px;
 	height: 100%;
 	margin: 0 auto;
-	
 }
 .home_slider_content h1
 {
@@ -387,11 +375,9 @@ section
 {
 	animation-delay: 600ms;
 }
-
 /*********************************
 4. Header
 *********************************/
-
 .header
 {
 	display: block;
@@ -408,30 +394,22 @@ section
 	/* background: #0e1d41; */
 	border: none;
 }
-
 .header.scrolled .header_container
 {
 	height: 90px;
 }
-
 /*********************************
 4.1 Logo
 *********************************/
-
 .logo_container
 {
-	
 }
-
-
 /*********************************
 4.2 Main Navigation
 *********************************/
-
 /*********************************
 4.3 Phone Home
 *********************************/
-
 .phone_home
 {
 	width: auto;
@@ -447,11 +425,9 @@ section
 	line-height: 44px;
 	color: #FFFFFF;
 }
-
 /*********************************
 4.4 Hamburger
 *********************************/
-
 .hamburger_container
 {
 	/* display: none; */
@@ -471,11 +447,9 @@ section
 {
 	color:#3d85cd;
 }
-
 /*********************************
 5. Menu
 *********************************/
-
 .menu
 {
 	display: block;
@@ -519,11 +493,9 @@ section
 	padding-bottom: 5px;
 	line-height: 60px;
 }
-
 /*********************************
 6. Search Box
 *********************************/
-
 .search_box
 {
 	width: 100%;
@@ -542,11 +514,9 @@ section
 	padding-top: 32px;
 	padding-bottom: 25px;
 }
-
 /*********************************
 6.1 Search Box Title
 *********************************/
-
 .search_box_title
 {
 	position: absolute;
@@ -591,11 +561,9 @@ section
 	text-transform: uppercase;
 	margin-left: 7%;
 }
-
 /*********************************
 6.2 Search Box Arrow
 *********************************/
-
 .search_arrow_box
 {
 	position: absolute;
@@ -625,11 +593,9 @@ section
 	font-weight: 600;
 	color: #FFFFFF;
 }
-
 /*********************************
 6.3 Search Form
 *********************************/
-
 .search_form
 {
 	width: 100%;
@@ -849,18 +815,15 @@ section
 	cursor: pointer;
 	color: #FFFFFF;
 }
-
 /*********************************
 7. Section Title
 *********************************/
-
 .section_title
 {
 	padding-top: 37px;
 	margin: 0 auto;
 	position: relative;
 }
-
 .section_title h3
 {
 	text-transform: uppercase;
@@ -876,11 +839,9 @@ section
 	color: #b0b1b3;
 	margin-top: -4px;
 }
-
 /*********************************
 8. Featured
 *********************************/
-
 .featured
 {
 	padding-top: 100px;
@@ -926,8 +887,6 @@ section
 {
 	margin-top: 24px;
 }
-
-
 .rooms
 {
 	margin-top: 30px;
@@ -1010,11 +969,9 @@ section
 	color: #FFFFFF;
 	margin-top: -3px;
 }
-
 /*********************************
 9. Testimonials
 *********************************/
-
 .testimonials
 {
 	width: 100%;
@@ -1046,19 +1003,16 @@ section
 {
 	color: #FFFFFF;
 }
-
 .construction_slider .swiper-slide {
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
     margin: 0;
 }
-
 .construction_slider {
     overflow: hidden;
     padding: 40px 0 80px;
 }
-
 .only-mob {
     display: none;
 }
@@ -1137,11 +1091,9 @@ section
 	border: none;
 	background:#3d85cd !important;
 }
-
 /*********************************
 10. Workflow
 *********************************/
-
 .workflow
 {
 	padding-top: 100px;
@@ -1165,7 +1117,6 @@ section
 }
 .workflow_item
 {
-
 }
 .workflow_image_background
 {
@@ -1252,11 +1203,9 @@ section
 	margin-top: 17px;
 	margin-bottom: 0px;
 }
-
 /*********************************
 11. Cities
 *********************************/
-
 .cities
 {
 	padding-top: 100px;
@@ -1377,11 +1326,9 @@ section
 {
 	right: -165px;
 }
-
 /*********************************
 12. Call to Action 1
 *********************************/
-
 .cta_1
 {
 	padding-top: 64px;
@@ -1405,6 +1352,35 @@ section
 {
 	width: 100%;
 }
+     .swiper-container {
+       width: 100%;
+       height: 100%;
+       background: #000;
+     }
+     .swiper-wrapper {
+       height: 50% !important;
+       width: 100%;
+       position: relative;
+       top: 18%;
+     }
+     .swiper-slide {
+       height: 100%;
+       text-align: center;
+       font-size: 18px;
+       background: #fff;
+       display: -webkit-box;
+       display: -ms-flexbox;
+       display: -webkit-flex;
+       display: flex;
+       -webkit-box-pack: center;
+       -ms-flex-pack: center;
+       -webkit-justify-content: center;
+       justify-content: center;
+       -webkit-box-align: center;
+       -ms-flex-align: center;
+       -webkit-align-items: center;
+       align-items: center;
+     }
 .cta_1_text
 {
 	color: #1e2c4e;
@@ -1429,11 +1405,9 @@ section
 	margin-left: auto;
 	white-space: nowrap;
 }
-
 /*********************************
 13. Newsletter
 *********************************/
-
 .newsletter
 {
 	padding-top: 76px;
@@ -1584,11 +1558,9 @@ section
 	padding-left: 30px;
 	padding-right: 30px;
 }
-
 /*********************************
 14. Footer
 *********************************/
-
 .footer
 {
 	padding-top: 150px;
@@ -1602,11 +1574,9 @@ section
 	text-transform: uppercase;
 	color: #FFFFFF;
 }
-
 /*********************************
 14.1 Footer - About
 *********************************/
-
 .footer .logo_container
 {
 	display: inline-block;
@@ -1695,11 +1665,9 @@ section
 	line-height: 2.29;
 	margin-bottom: 0px;
 }
-
 /*********************************
 14.2 Footer - Useful Links
 *********************************/
-
 .footer_useful_links
 {
 	margin-top: 27px;
@@ -1720,18 +1688,15 @@ section
 {
 	color:#3d85cd;
 }
-
 /*********************************
 14.3 Footer - Contact Form
 *********************************/
-
 .footer_contact_form_container
 {
 	margin-top: 41px;
 }
 .footer_contact_form
 {
-	
 }
 .input_field
 {
@@ -1821,11 +1786,9 @@ section
 	font-weight: 400 !important;
 	color: #6678a3 !important;
 }
-
 /*********************************
 14.4 Footer - Contact Info
 *********************************/
-
 .contact_info_list
 {
 	margin-top: 44px;
@@ -1857,11 +1820,9 @@ section
 {
 	color:#3d85cd;
 }
-
 /*********************************
 15. Credits
 *********************************/
-
 .credits
 {
 	background: #040b1d;
@@ -1875,16 +1836,13 @@ section
 .city_image {
     overflow: hidden;
 }
-
 .owl-carousel .owl-item a.page_link img {
     height: auto;
 }
-
 .city_name span {
     font-size: 9px;
     line-height: 0;
 }
-
 .owl-carousel .testimonial_user img {
     height: 61px;
 }
@@ -1900,7 +1858,6 @@ body
 {
 	text-align: center;
 }
-
 div
 {
 	display: block;
@@ -1930,12 +1887,10 @@ div
     position:  fixed;
     top: 10px;
     right: 10px;
-    
     z-index:  9999;
     display:  flex;
     flex-direction:  column;
 }
-
 .rows.advs .row.advs {
     margin: 20px;
 }
@@ -2072,15 +2027,9 @@ a.page_link img {
 	font-weight: 600;
 	color: #0e1d41;
 }
-
-
 .prices .listing_image_container {
     overflow: hidden;
 }
-
-
-
-
 .main_nav
 {
 	margin-left: 0;
@@ -2114,9 +2063,6 @@ a.page_link img {
 {
 	color: #fbfbfb;
 }
-
-
-
 .main_nav_item a
 {
 	font-size: 14px;
@@ -2137,18 +2083,15 @@ a.page_link img {
 	font-weight: normal;
 	transition: .4s;
 }
-
 header.header.trans_300 .container {
     background: white;
 }
-
 .swiper-slide img {
     min-width: 100%;
     min-height: 100%;
     height: 100%;
     filter: brightness(0.1);
 }
-
 .home_slider_container swiper-slide-active + div {
     transform: scale(1.2);
     transition: .4s;
@@ -2158,7 +2101,6 @@ header.header.trans_300 .container {
     margin: 10vh -15vw;
     overflow: hidden;
 }
-
 .logo span.official {
     text-transform: initial;
     line-height: 1.2;
@@ -2167,14 +2109,11 @@ header.header.trans_300 .container {
     white-space: nowrap;
     text-align: left;
 }
-
 .main_nav_item a:hover {}
-
 .main_nav_item a:hover {
     background: #3d85cd;
     color: #fff;
 }
-
 .section_title::before {
     display: block;
     position: absolute;
@@ -2191,9 +2130,7 @@ header.header.trans_300 .container {
     content: '';
     bottom: -66px;
 }
-
 ul.nav.nav-pills li {margin: 10px 5px 0;transition: 0.8s;}
-
 ul.nav.nav-pills li a {
     font-size: 20px;
     font-weight: bold;
@@ -2201,28 +2138,23 @@ ul.nav.nav-pills li a {
     font-weight: bold;
     letter-spacing: -0.4px;
 }
-
 ul.nav.nav-pills li:hover {
     background: #3d85cd;
     cursor: pointer;
 }
-
 ul.nav.nav-pills li:hover a {
     color: #3d85cd;
 }
-
 .tab-content {
     margin: 0px 0 0;
     width: 100%;
 }
-
 ul.nav.nav-pills li a {
     display: block;
     padding: 10px 24px 11px;
     border: 1px solid #e2e2e2;
     position: relative;
 }
-
 span.circle {
     border: 2px solid #3d85cd;
     width: 10px;
@@ -2231,28 +2163,23 @@ span.circle {
     border-radius: 100%;
     transition: .3s 0.2s;
 }
-
 .inline-flex {
     display: inline-flex;
 }
-
 .sticky_block:nth-child(3) {
     transform: translate(-80%,-30px);
     z-index: 3;
 }
-
 .sticky_block:nth-child(1) {
     transform: translate(17%,30px);
     z-index: 1;
 }
-
 .sticky_block {
     background: #fff;
     border: 1px solid #e2e2e2;
     padding: 37px;
     min-width: 46%;
 }
-
 .underlined:before {
     content: '';
     display: block;
@@ -2263,39 +2190,32 @@ span.circle {
     width: 35px;
     left: calc(50% - 26px);
 }
-
 .underlined {
     position: relative;
     margin: 0 0 30px;
     font-size: 22px;
 }
-
 .advs .rows .row {
     margin: 140px 0;
     display: flex;
     align-items: center;
 }
-
 .sticky_block:nth-child(2) {
     transform: translate(-30%,0px);
     z-index: 2;
 }
-
 .prices {
     border: 1px solid #e2e2e2;
     padding: 27px;
     background: #fff;
 }
-
 .bold {
     font-weight: bold;
 }
-
 .prices span {
     font-size: 18px;
     display: inline-block;
 }
-
 mark {
     color: #3d85cd;
     background: transparent;
@@ -2303,15 +2223,12 @@ mark {
     font-weight: bold;
     padding: 0;
 }
-
 .prices .rows .row {
     align-items: initial;
     margin: 30px 0;
     line-height: 1.3;
 }
-
 .prices_tab {display: flex;justify-content: center;}
-
 .prices_button button, .vertical_button button {
     transform: rotate(-90deg);
     position: absolute;
@@ -2324,37 +2241,31 @@ mark {
     left: -72px;
     font-size: 19px;
 }
-
 .contacts .vertical_button {
     position: relative;
     width: 49px;
     top: 52px;
 }
-
 .button_c {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
-
 span.phone_icon {
     width: 55px;
     height: 54px;
     background: #65a5e4;
     margin: 30px 0 10px -4px;
 }
-
 span.phone_icon img {
     width: 50%;
     margin: 14px 27%;
 }
-
 ul.nav.nav-pills li a.active {
     background: #3d85cd;
     color: #fff;
     border: 1px solid transparent;
 }
-
 ul.nav.nav-pills li a.active:before {
     content: '';
     position: absolute;
@@ -2366,93 +2277,75 @@ ul.nav.nav-pills li a.active:before {
     transform: rotate(45deg);
     left: calc(50% - 7px);
 }
-
 .installments_tab {
     display: flex;
     justify-content: center;
     min-height: 300px;
 }
-
 .installments_tab .col-md-6 {
     margin: 10px 0;
 }
-
 .flex-col {
     display: flex;
     flex-direction: column;
 }
-
 .logo img {
     width: initial;
     max-width: 165px;
 }
-
 .plannimg {
     padding: 0 50px;
     overflow: hidden;
 }
-
 .sel_group {
     padding: 8px 0;
 }
-
 .sel_group span.circle {
     width: 20px;
     height: 20px;
     margin: 10px 0 -5px;
 }
-
 .plannimgs {
     display: -webkit-inline-box;
     overflow: hidden;
 }
-
 .planning_tab {
     display: flex;
     flex-direction: row-reverse;
     align-items: start;
 }
-
 .planning_tab ul {
     display: flex;
     flex-direction: column;
 }
-
 .planning_tab ul.nav.nav-pills a.active {
     background: transparent;
     color: #3d85cd;
     white-space: nowrap;
 }
-
 ul.nav.nav-pills li a.active:before {
     display: none;
 }
-
 span.big.circle {
     width: 18px;
     height: 18px;
     margin: 3px 18px -2px 0;
 }
-
 .planning_tab ul.nav.nav-pills li a {
     border: none;
     padding: 6px 0px 6px 12px;
     font-size: 17px;
     letter-spacing: 0.7px;
 }
-
 .planning_tab ul.nav.nav-pills li:hover {
     background: rgba(61, 133, 205, 0.32);
 }
-
 .planning_tab ul.nav.nav-pills li:hover .big {
     background: rgba(61, 133, 205, 0.35);
 }
-
 .planning_tab ul.nav.nav-pills a.active .big {
     background: #3d85cd;
 }
-
 .panel {
     border: 1px solid #e2e2e2;
     display: table;
@@ -2460,14 +2353,12 @@ span.big.circle {
     margin: 0 auto;
     width: 100%;
 }
-
 .planning_tab ul.nav.nav-pills li {
     margin: 0;
     width: 100%;
     text-align: left;
     margin: 0 1vw;
 }
-
 .planning_tab button {
     height: min-content;
     border: none;
@@ -2475,22 +2366,18 @@ span.big.circle {
     display: block;
     font-size: 18px;
 }
-
 .planning_tab span.phone_icon {
     margin: 0;
     height: 100%;
     width: 70px;
 }
-
 .planning_tab span.phone_icon img {
     margin: 12px 27%;
 }
-
 .panel_col .button_c {
     margin: 20px 0;
     width: 100%;
 }
-
 .panel_col {
     justify-content: center;
     align-items: center;
@@ -2498,28 +2385,23 @@ span.big.circle {
     max-width: 20vw;
     margin: 30px 0;
 }
-
 .flex_col {
     display: flex;
     flex-direction: column;
 }
-
 .adv {
     background: url(/images/back.jpg);
     background-size: cover;
 }
-
 .block {
     display: block;
 }
-
 .square {
     width: 60px;
     border: 1px solid #fff;
     padding: 13px;
     height: 60px;
 }
-
 .button_c button {
     background: #3d85cd;
     color: #fff;
@@ -2528,26 +2410,19 @@ span.big.circle {
     height: 54px;
     font-size: 20px;
 }
-
 .adv span.phone_icon {
     margin: 0;
 }
-
 .rows.advs {
     margin: 120px 0 0;
 }
-
 .row.advs .col-md-6 {
     display: flex;
 }
-
 .w100 {
     width: 100%;
 }
-
 .row.advs p {margin: 0px 20px;font-size: 26px;text-indent: 20px;}
-
-
 .percents {
     width: 100%;
     display: flex;
@@ -2555,46 +2430,36 @@ span.big.circle {
     align-items: center;
     justify-content: center;
 }
-
 .percents .flex-col {
     margin: 80px 0 30px;
 }
-
 .blue {
     color: #3d85cd;
 }
-
 span.blue.bold {
     font-size: 40px;
 }
-
 span.blue.bold + p {
     font-size: 27px;
     margin: 5px 12px;
 }
-
 .map {
     background: url(/images/map.png);
     background-size: cover;
 }
-
-.related {
-    padding: 29px 0 0px;
+.related.rlt {
+    padding: 0px 0 0px;
 }
-
 .map .banner {
     transform: translate(0%,250px);
     background: #fff;
 }
-
 .col-md-6.dark {
     background: #212121;
 }
-
 .blueb {
     background: #3d85cd;
 }
-
 .map .col-md-6 .row {
     display: flex;
     justify-content: space-between;
@@ -2607,68 +2472,53 @@ span.blue.bold + p {
     text-align: left;
     flex-wrap: nowrap;
 }
-
 .map .col-md-6 .row span img {
     width: 40px;
 }
-
 .col-md-6.dark .col-md-12 {
     margin: 25px 0;
 }
-
 .row.padded_t {
     padding: 42px 0 0;
 }
-
 .map .col-md-6 {
     padding: 50px 50px 10px;
 }
-
 .panel.bordered span {
     margin: 8px 0;
 }
-
 .map .col-md-6 .row span {
     text-align: left;
 }
-
 .space-between {
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
-
 .map .col-md-6 .row .space-between {
     margin: 0 20px;
 }
-
 .image_c {
     height: 200px;
     overflow: hidden;
 }
-
 .image_c img {
     height: 100%;
 }
-
 .row.cols {
-    margin: 70px 0;
+    margin: 70px 0 0;
 }
-
 .related .section_subtitle {
     max-width: 520px;
     margin: 12px auto;
     display: block;
 }
-
 .related .section_title::after {
     bottom: -100px;
 }
-
 .related .section_title::before {
     bottom: -110px;
 }
-
 .panel.bordered {
     border-color: #3d85cd;
     display: block;
@@ -2681,29 +2531,23 @@ span.blue.bold + p {
     padding: 20px 22px;
     cursor: pointer;
 }
-
 .el_card span img {
     width: 26px;
 }
-
 .panel.bordered:hover {
     background: #3d85cd;
 }
-
 .panel.bordered:hover * {
     color: #fff;
     transition: .5s;
 }
-
 .panel.bordered:hover span img {
     background: #fff;
     margin: 0 7px 0 0;
 }
-
 .panel.bordered span img {
     padding: 5px;
 }
-
 p.bordered-left {
     border-left: 1px solid #fff;
     padding: 0px 80px 0;
@@ -2716,91 +2560,71 @@ p.bordered-left {
     line-height: 1.8;
     letter-spacing: 0px;
 }
-
 .info_box.blueb {
     padding: 50px 0;
 }
-
 .contact_us {
     background: url(/brief/sea.jpg);
     background-size: cover;
     padding: 70px 0 170px;
 }
-
 .f_col {
     margin: 30px 0 0;
     align-items: center;
     justify-content: center;
 }
-
 .w100 span.phone_icon {
     margin: 0px;
 }
-
 span.block.indented {
     text-indent: 89px;
 }
-
 .f_col p {
     font-size: 18px;
     text-align: center;
 }
-
 .p2 span.block.indented {
     text-indent: 132px;
 }
-
 .p3 span.block.indented {
     text-indent: 30px;
 }
-
 .p3 {
     padding: 0px 0px 0 82px;
 }
-
 .cus .button_c button {
     font-size: 17px;
     margin-left: 30px;
 }
-
 .featured ul.nav.nav-pills li:hover a {
     color: #ffffff;
 }
-
 .featured ul.nav.nav-pills li {
 }
-
 li {}
-
 .prices_tab span.phone_icon {
     width: 52px;
 }
-
 .phones {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     white-space: nowrap;
 }
-
 .phones span {
     font-size: 17px;
     color: #000;
 }
-
 .header_right {
     display: flex;
 }
-
 .header_right img {
     width: 28px;
     margin: 10px 8px 0 0;
 }
-
 .homepage span.official {
     font-size: 14px;
 }
-
 .homepage .swiper-slide.swiper-slide-active + div img {
     height: auto;
     max-height: 100%;
@@ -2808,29 +2632,24 @@ li {}
     min-width: inherit;
     filter: none;
 }
-
 .homepage .swiper-slide.swiper-slide-active + div {
     transform: scale(1.2);
     transition: .4s;
     z-index: 9;
     border: 12px solid #fff;
-    width: 70vw !important;
-    margin: 9.5vh -21vw;
+    width: 50vw !important;
+    margin: 9.5vh -9vw;
     overflow: hidden;
 }
-
 .panel h4 {
     font-size: 14px;
 }
-
 .panel.bordered p {
     margin: 0;
 }
-
 .singlepage .related .section_title {
     padding-top: 330px;
 }
-
 .h100 {
     height: 100%;
 }
@@ -2858,110 +2677,84 @@ li {}
     align-items: center;
     justify-content: center;
 }
-
 .no_anim .overlay {
     background: #00000000;
 }
-
 .no_anim .overlay h1 {
     transform: translateY(30vh);
     opacity: 0;
 }
-
 .overlay h1 {
     opacity: 1;
     font-size: 8em;
 }
-
 .flecol {
     flex-direction: column;
 }
-
 .rel {
     position: relative;
 }
-
-
-
 .nowrap {
     white-space: nowrap;
 }
-
 .staging .sticky_block:nth-child(1) {
     transform: translate(-33%,30px);
 }
-
 .staging .sticky_block:nth-child(3) {
     transform: translate(-26%,-30px);
 }
-
 .sticky_block.active {
     z-index: 9;
 }
-
 body.contacts {
     padding: 200px 0 0;
 }
-
 .jc {
     justify-content: center;
 }
-
 .contacts {
     border: 1px solid #808080;
     padding: 27px;
     background: #fff;
     width: 100%;
 }
-
 .contacts span {
     display: block;
 }
-
 .contacts .row .row {
     margin: 30px 0 30px;
 }
-
 div.contacts div.messengers {
     margin: 20px 0;
 }
-
 .contacts .icon {
     width: 24px;
 }
-
 .contacts .row .col-md-10 {margin: 0px 0 15px;}
-
 .inline, .contacts span.inline {
     display: inline-block;
 }
-
 div.contacts h2 {
     padding: 0;
     text-align: left;
     font-size: 30px;
 }
-
 .text-left.section_title::before {
     left: calc(5% + 12px);
     bottom: -52px;
 }
-
 .text-left.section_title::after {
     left: calc(9% + -12px);
     bottom: -42px;
 }
-
 .text-black {
     color: #000;
 }
-
 .contacts .vertical_button button {
     width: 230px;
     left: -92px;
     top: 170px;
 }
-
 .singlepage .home_slider_container .swiper-slide.swiper-slide-active + div {
     margin: 10vh 0vw;
     width: auto !important;
@@ -2969,98 +2762,77 @@ div.contacts h2 {
 .vertical_button span.phone_icon {
     margin: 30px 0 10px -4px;
 }
-
 .row_form, .row_pros {
     margin: 50px 0;
 }
-
 .row.form .col-md-9 {
     padding-right: 0;
 }
-
 .row.form .col-md-3 {
     padding: 0;
 }
-
 .vertical_button  span.phone_icon {
     height: 52px;
 }
-
 .pros {
     padding: 0 5vw;
 }
-
 .pros span {
     font-size: 19px;
     color: #000;
 }
-
 .contacts span.circle {
     width: 20px;
     height: 20px;
     margin: 0 9px 0 0;
 }
-
 .pros h2 span, .pros h2 {
     font-size: 30px;
 }
-
 .pros .rows {
     margin: 50px 0 0;
 }
-
 .pros_tab {
     border: 1px solid #e2e2e2;
 }
-
 .pros .w100 {
     margin: 0px 0 40px;
 }
-
 .pros .row .row {
     margin: 20px 0;
 }
-
 .contacts span.bold {
     display: inline;
 }
-
 .cus h2:before {
     bottom: -1px;
     height: 85px;
 }
-
 .cus h2:after {
     bottom: 9px;
     height: 85px;
 }
-
 .cus h2 {
     font-size: 25px;
 }
-
 .cus ul.main_nav_list {
     width: 100%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 60px;
 }
-
 .cus ul.main_nav_list li a {
     color: #fff;
 }
-
 .cus ul.main_nav_list li:before {
     content: '-';
     position: absolute;
     top: 8px;
     color: #fff;
 }
-
 .cus ul.main_nav_list li {
     position: relative;
 }
-
 .cus .messengers {
     margin: 10px 0 20px;
 }
@@ -3070,59 +2842,46 @@ div.contacts h2 {
     transform: none;
     transition-delay:.2s
 }
-
 .no_anim .scroll {
     transform: translateY(30vh);
 }
-
 .new_houses .featured_row, .old_houses .featured_row {
     flex-direction: row;
 }
-
 .col-md-12 .el_card {
     display: flex;
     margin: 20px 0;
 }
-
 .col-md-12 .el_card .panel.bordered {
     transform: translate(0px, 0px);
 }
-
 .col-md-12 .el_card .image_c {
     width: 30%;
 }
-
 .about .overlay.default {
     background: rgba(60, 176, 215, 0.58);
     width: 100%;
     height: 100%;
 }
-
 body.about .home {
     height: 433px;
 }
-
 body.contacts .home {
     height: 433px;
 }
-
 .panel.bordered a {
     display: block;
 }
-
 .panel.bordered span {
     display: flex;
     align-items: center;
 }
-
 .plannimg img {
     width: 100%;
 }
-
 .spaceb {
     justify-content: space-between;
 }
-
 .whitec_all * {
     color: #fff;
 }
@@ -3132,21 +2891,17 @@ body.contacts .home {
 .p20 {
     padding: 8px 18px;
 }
-
 img.small {
     width: 22px;
     height: 22px;
     margin: 0 4.5px;
 }
-
 div.phone {
     font-weight: bold;
 }
-
 .adv .overlay {
     padding: 50px 0;
 }
-
 .tab-pane {
     padding: 90px 0 70px;
 }
@@ -3157,22 +2912,16 @@ ul.nav.nav-pills li a.tab_active {
     background: #3d85cd;
     color: #fff;
 }
-
-
 div#address_time {
     display: flex;
 }
-
 div.work_time {
-	
     display: flex;
     margin: 0 20px;
 }
-
 .square img {
     width: 30px;
 }
-
 @media only screen and (max-width: 991px){
 		.hamburger_container
 	{
@@ -3182,6 +2931,33 @@ div.work_time {
 	}
 }
 @media only screen and (max-width: 576px) and (min-width: 100px){
+.col-md-3{
+	
+}
+.installments_icon{
+	display:block
+}
+	.panel.bordered span, .panel.bordered p, .panel.bordered a{
+		font-size: 16px;
+	}
+	.home_advantages h3.underlined{
+		text-align: center;
+		font-size: 20px;
+	}
+		.home_advantages h3.underlined span{
+		text-align: center;
+		font-size: 20px;
+	}
+	.home_advantages .rows{
+    margin: 20px 0;
+}
+	.homepage .swiper-slide.swiper-slide-active + div{
+		border: 6px solid #fff;
+	}
+	.swiper-wrapper{
+    height: 40% !important;
+    top: 30% !important;
+}
 	.home_slider_container .swiper-pagination-bullets {
     bottom: -4px !important;
 }
@@ -3191,10 +2967,10 @@ div.work_time {
 .text-center:before {
     left: calc(5% - 26px);
 }
-.related .section_title::before{
+.related .section_title::before, .houses_loop .section_title::before{
 	left: calc(50% - 26px);
 }
-.related .section_title::after{
+.related .section_title::after, .houses_loop .section_title::after{
 	left: calc(50% - 9px);
 }
 .desc.text-center:before {
@@ -3203,15 +2979,12 @@ div.work_time {
 .desc.text-center:after {
     left: calc(50% - 26px);
 }
-
 .text-center:after {
     left: calc(5% - 9px);
 }
-
 .adv .text-center:before , featured .text-center:before{
     left: calc(50% - 26px);
 }
-
 .adv .text-center:after , featured .text-center:after{
     left: calc(50% - 9px);
 }
@@ -3230,7 +3003,6 @@ div.work_time {
 }
 	.panel h4{
 		font-size: 20px;
-		text-align: center;
 	}
 	.planning_tab ul.nav.nav-pills li:first-child{
 		opacity: 1 !important;
@@ -3259,15 +3031,26 @@ div.work_time {
 }
 	.tab-pane{}
 	.rows.advs{
-		
 	}
 	.row.cols{
-    margin: 30px 0;
+    margin: 0;
 }
 	mark, .prices span{
     font-size: 14px;
 }	mark, .prices span{
     font-size: 14px;
+}
+.home_advantages .prices span.phone_icon{
+	font-size: 16px;
+	margin: 0;
+}
+.home_advantages .prices span{
+	font-size: 16px;
+	margin: 6px 7px 6px 0;
+}
+.home_advantages .prices .rows .row{
+    flex-direction: column !important;
+    padding: 0px;
 }
 	.prices .rows .row{
     margin: 0px 0;
@@ -3314,10 +3097,8 @@ div.work_time {
 }.planning_tab ul.nav.nav-pills li:hover{
     background: rgba(61, 133, 205, 0.7);
 }
-
 ul.nav.nav-pills {width: 80%;margin: 0 auto;}
 .planning_tab ul.nav.nav-pills {width: 100%;margin: 0 auto;align-items: flex-start;}
-
 	a.scroll-icon{
     display: none;
 }
@@ -3329,6 +3110,10 @@ ul.nav.nav-pills {width: 80%;margin: 0 auto;}
     padding-top: 20px;
     padding-bottom: 20px;
 }
+.home_advantages .panel{
+    margin: 0;
+    padding: 20px 12px;
+}
 	.panel{
     padding: 20px 23px;
     margin: 0 13px;
@@ -3337,7 +3122,12 @@ ul.nav.nav-pills {width: 80%;margin: 0 auto;}
 }.prices .col-md-6{
 	padding: 0;
 }
-
+.home_advantages .prices .col-md-6{
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
 .installments_tab .prices {
     padding: 27px 6vw;
 }
@@ -3401,6 +3191,7 @@ ul.nav.nav-pills {width: 80%;margin: 0 auto;}
 	}
 	.houses_loop h2{
     padding: 50px 0 0px !important;
+    margin: 0 auto 60px !important;
 }
 .singlepage .related .section_title{
     padding-top: 270px;
@@ -3411,8 +3202,16 @@ ul.nav.nav-pills {width: 80%;margin: 0 auto;}
 	}	.cus .section_title{
 		text-align: left !important;
 	}
-
-
+.related h2.section_title, .related h2.section_title + span{
+	text-align: center !important;
+}
+.related h2.section_title + span{
+    margin: 0 0 60px;
+    padding: 12px 0;
+}
+ .related span {
+    text-align: center !important;
+}
 	 .section_title span.section_subtitle{
 		font-size: 15px !important;
 		font-weight: normal;
@@ -3433,8 +3232,15 @@ ul.nav.nav-pills {width: 80%;margin: 0 auto;}
     padding: 0px;
     border-left: 0px solid #fff;
 }.contact_us{
-    padding: 70px 0 0px;
+    padding: 0;
     background-position: center;
+    background: url(/images/sea_m.jpg);
+    background-size: cover;
+}
+
+.cus {
+	background: rgba(0, 0, 0, 0.87);
+	padding: 30px 0 0px;
 }
 	.related .section_title::before{
     bottom: -140px;
@@ -3483,67 +3289,111 @@ div.contacts {
 	 	display:none
 	 }
 	.home_slider_container, .home{height: 50vh !important;}
-
 .button_c{
 	height: 50px;
 }
-
-
 	  }
-
 @media only screen and (min-width:576px) and (max-width:768px){
+
+	.logo {
+    margin: 0 2px 0 22px;
+}
+	.col-sm-6 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+}
+	.home_advantages h3.underlined {
+    text-align: center;
+}
+	.row.advs p{
+    text-align: left !important;
+    font-size: 21px;
+    margin: 0;
+}
+	.homepage .swiper-slide {
+    margin-top: 6vh;
+}
+	.homepage .home{
+    height: 70vh !important;
+}
 		.overlay h1{
     font-size: 2em;
 }
-
 div#phone {
     display: none;
 }
-
 .swiper-slide{
     height: 330px !important;
 }
-.homepage .swiper-slide.swiper-slide-active + div{width: 80vw !important;margin: 0px -25vw;height: 330px;}
-
+.homepage .swiper-slide.swiper-slide-active + div{width: 80vw !important;margin: 6vh -25vw;height: 330px;}
 header.header.trans_300 .container{
     width: 100vw;
     max-width: initial;
 }
-
 	 }
-
 @media only screen and (min-width:768px) and (max-width:992px){ }
-
-@media only screen and (min-width:992px) and (max-width:1200px){ }
-
+@media only screen and (min-width:992px) and (max-width:1200px){ 
+.homepage .swiper-slide.swiper-slide-active + div{
+    width: 70vw !important;
+    margin: 9.5vh -20vw;
+}
+.panel.bordered{
+	padding: 14px 11px;
+}
+.swiper-wrapper {
+    top: 24%;
+}
+	.main_nav_item a{
+		font-size: 10px;
+	}
+	.main_nav_item{
+		margin-right: 0px !important;
+	}
+	}
 @media only screen and (min-width:1200px) and (max-width:5120){
  }
-
-
-
-
-
 .construction {
     max-width: 90vw;
     margin: 0 5vw;
     border: 1px solid #b5b5b5;
     padding: 12px;
 }
-
 .swiper-pagination-bullet {
     margin: 0 2px;
     width: 12px !important;
     height: 12px !important;
 }
-
-
 .adv.text-center:after {}
-
 .swiper-container1 {
     transform: translate(41.5%);
 }
-
 .swiper-pagination-bullets {
     display: block;
     width: 100%;
 }
+
+.row houses_loop .col-md-3 {
+    position: relative;
+    z-index: 1;
+}
+
+.installments_icon {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    right: 20px;
+    top: calc(50% - 25px);
+    width: 50px;
+    height: 50px;
+    display: none;
+}
+
+.col-md-4.np {
+    height: 300px;
+}
+
+body {
+    background: #fff;
+}
+

@@ -1,53 +1,5 @@
-<div class="home_slider_container">
+<div class="home_slider_container faded">
   <link rel="stylesheet" href="/styles/swiper.min.css">
-
-   <!-- Demo styles -->
-   <style>
-     html, body {
-       position: relative;
-       height: 100%;
-     }
-     body {
-       background: #eee;
-       font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-       font-size: 14px;
-       color:#000;
-       margin: 0;
-       padding: 0;
-     }
-     .swiper-container {
-       width: 100%;
-       height: 100%;
-       background: #000;
-     }
-     .swiper-wrapper {
-       height: 50%;
-       width: 100%;
-       position: relative;
-       top: 25%
-     }
-     .swiper-slide {
-       height: 100%;
-       text-align: center;
-       font-size: 18px;
-       background: #fff;
-       display: -webkit-box;
-       display: -ms-flexbox;
-       display: -webkit-flex;
-       display: flex;
-       -webkit-box-pack: center;
-       -ms-flex-pack: center;
-       -webkit-justify-content: center;
-       justify-content: center;
-       -webkit-box-align: center;
-       -ms-flex-align: center;
-       -webkit-align-items: center;
-       align-items: center;
-     }
-   </style>
-
- <body>
-   <!-- Swiper -->
 
 
 <%
@@ -117,6 +69,8 @@ function print_swiper_gallery(gallery_links_array) {
    <!-- Initialize Swiper -->
    <script>
      var swiper = new Swiper('.swiper-container', {
+       centeredSlides: false,
+
        slidesPerView: 3,
        spaceBetween: 30,
        loop: true,
