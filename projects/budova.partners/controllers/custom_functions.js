@@ -1,5 +1,5 @@
 console.log('body-parser...');
-const bodyParser = require('../../../node_modules/body-parser');
+const bodyParser = require('body-parser');
 
 
 console.log('custom_functions...');
