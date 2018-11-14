@@ -13,28 +13,6 @@ html,body{height:100%}.layout-boxed html,.layout-boxed body{height:100%}body{fon
     color:  #fff;
     padding:  4px;
 }
-
-.minigroups {
-    display: flex;
-    height: 60px;
-    justify-content: center;
-    align-items: center;
-}
-
-.minigroup iframe {
-    margin: 13px 0;
-}
-
-.minigroup input {
-    height: 42px;
-    margin: 0px 0;
-}
-
-.db_group[input_type="structure"] {
-    background: #6892db;
-    padding: 10px 16px;
-}
-
 iframe.img_upl_frame {
     border: none;
     height: 60px;
@@ -42,61 +20,25 @@ iframe.img_upl_frame {
 
 .text-white {
     color: #fff;
+}.Cards h4 {
+    color: #fff;
 }
 
 .big.fa {
     font-size: 40px;
 }
 
-.db_group.working {
-    background: #00ff5c54;
-    padding: 10px;
+
+.flex {display: flex;}
+
+.cardsearch.flex {
+    background: #dedede;
+    padding: 14px 16px 15px;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    margin: 10px 0;
 }
 
-.loaded .small-box button {
-    color: black;
-}
-
-.minigroup, .minicontrols, .minigroup * {
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.plus_icon {
-    background: #db8b0b;
-    padding: 6px 10px;
-    border-radius: 100%;
-    height: 35px;
-    width: 35px;
-    font-size: 18px;
-    transition: .4s;
-    cursor: pointer;
-}
-
-.plus_icon:hover {
-    background: #6399dd;
-}
-
-.minigroup {
-    overflow: hidden;
-}
-
-.minicontrols {
-    margin: 0px 6px;
-    position: absolute;
-    bottom: 11px;
-    right: 60px;
-}
-
-.structure {
-    position: relative;
-}
-
-.ministructure {
-    flex-direction: column;
-}
 .deleteicon img {
     height: 20px;
 }
@@ -104,5 +46,5 @@ iframe.img_upl_frame {
 .deleteicon {
   background: none;
   border: none;
-  float: right; 
+  float: right;
 }
