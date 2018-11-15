@@ -16,7 +16,6 @@ function is_empty_or_undefined(obj) {
   if (is_empty(obj) || is_undefined(obj)) return true
                                           return false
 }
-
 function print_swiper_gallery(gallery_links_array) {
         if (is_empty_or_undefined(gallery_links_array)) return false
         let gallery_html = ''
@@ -28,49 +27,31 @@ function print_swiper_gallery(gallery_links_array) {
         return gallery_html
 }
 %>
-
 <% if (print_swiper_gallery(d['gallery']) !== false) { %>
-
-
    <div class="swiper-container">
      <div class="swiper-wrapper">
             <%- print_swiper_gallery(d['gallery']) %>
      </div>
-     <!-- Add Pagination -->
      <div class="swiper-pagination"></div>
    </div>
 <% }  else { %>
-
-
-
 <div class="swiper-container">
   <div class="swiper-wrapper">
          <div class="swiper-slide">
-
-
            <img src="/images/1.jpg" />
          </div>
          <div class="swiper-slide"><img src="/images/2.jpg" /></div>
          <div class="swiper-slide"><img src="/images/3.jpg" /></div>
   </div>
+  <div class="swiper-button-next"></div>
+<div class="swiper-button-prev"></div>
   <div class="swiper-pagination"></div>
 </div>
-
-
 <%  } %>
-
-
-
-
-
-   <!-- Swiper JS -->
    <script src="/js/swiper.min.js"></script>
-
-   <!-- Initialize Swiper -->
    <script>
      var swiper = new Swiper('.swiper-container', {
        centeredSlides: false,
-
        slidesPerView: 3,
        spaceBetween: 30,
        loop: true,
@@ -82,7 +63,10 @@ function print_swiper_gallery(gallery_links_array) {
          el: '.swiper-pagination',
          clickable: true,
        },
+       navigation: {
+   nextEl: '.swiper-button-next',
+   prevEl: '.swiper-button-prev',
+ }
      });
    </script>
-
 </div>

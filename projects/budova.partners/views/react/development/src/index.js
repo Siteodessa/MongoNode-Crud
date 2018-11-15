@@ -30,10 +30,9 @@ ReactDOM.render(
         </div>
       </HashRouter>
       </Provider>,
-      document.getElementById('root'));
+      document.getElementById('budova_estate'));
       document.getElementById('getcard').click()
       setTimeout(function(){
-
         document.querySelectorAll('.Cards')[0].classList += ' loaded'
       }, 1500 )
 registerServiceWorker();
