@@ -13,7 +13,6 @@ const App = ({ cards, onFindCard, onGetCards, ownProps }) => {
   let cardInput = ''; let searchInput = ''; let taskInput = ''; let task_descInput = ''; let task_statusInput = ''; let i = 0; const loader = () => { i++; if (!i) onGetCards() }
 
   const findCard = () => { onFindCard(searchInput.value) }
-
       return (
       <div className="Cards" onLoad={loader}>
         <div className="fields" >
