@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getCards } from './actions/getcards';
-import DropdownMenu from './components/dropdown/DropdownMenu';
+import DropdownMultiple from './components/dropdown/components/DropdownMultiple';
 import DropdownProto from './components/dropdown/DropdownProto';
 import get_year_quarter from './js/get_year_quarter';
 import convert_quarter_string from './js/convert_quarter_string';
 import cssfiles from './cssfiles.js'
+import LoopHeading from './fields.js'
 
 
 const App = ({ cards, onFindCard, onGetCards, ownProps }) => {
@@ -26,20 +27,15 @@ const App = ({ cards, onFindCard, onGetCards, ownProps }) => {
                   <button onClick={findCard}> <img alt="search" src="/brief/magnifying-glass.svg" /> </button>
                 </div>
               <div className="dropdown_menu">
-                <DropdownMenu />
+                <DropdownMultiple />
               </div>
               <div className="dropdown_proto">
-                <DropdownProto />
+                {/* <DropdownProto /> */}
               </div>
             </div>
           </div>
         </div>
-        <div className="row">
-          <h2 className="text-black text-center section_title loop_title ">
-            Все жилые комплексы
-            <span className="bold">«СК БУДОВА»</span>
-          </h2>
-        </div>
+        <LoopHeading />
         <div className="container">
         <div className="row">
         {
