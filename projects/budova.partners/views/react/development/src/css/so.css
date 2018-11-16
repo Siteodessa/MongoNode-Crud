@@ -28,7 +28,9 @@
     position: relative;
     display: inline-block;
 }
-
+select {
+    width: 100%;
+}
 .dropdown-content {
     display: none;
     position: absolute;
@@ -38,6 +40,7 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 		padding-top: 10px;
+		width: 100%
 }
 .field_box span {
     background: #fff;
@@ -113,9 +116,14 @@
     	width:80%;
 }
 .dropdown-content p {
-    padding: 0 0 0 20px;
+	padding: 6px 0px 6px 10px;
+	margin-bottom: 0;
 }
-
+.dropdown-content span.circle {
+    width: 15px;
+    height: 15px;
+		margin: 0px 3px -3px 0;
+}
 .dropdown-content p:hover {
     background: #444;
     cursor: pointer;

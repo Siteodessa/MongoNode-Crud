@@ -1,16 +1,10 @@
-// import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
-// import { Menu } from './Menu';
-// import card_statuses from './data/card_statuses';
-// import card_icons from './data/card_icons';
-// import bin from './data/trash.svg';
 import React from 'react';
 import { connect } from 'react-redux';
 import { getCards } from './actions/getcards';
 import { css } from 'aphrodite/no-important';
 import styles from './AppStyles';
 import bootstrap from './css/bootstrap.min.css';
-// import fontawesome from './css/fontawesome-all.css';0
+import fontawesome from './css/fontawesome-all.css';
 import owlcarousel from './css/owl.carousel.css';
 import owltheme from './css/owl.theme.default.css';
 import animatecss from './css/animate.css';
@@ -18,6 +12,10 @@ import socss from './css/so.css';
 import main_styles from './css/main_styles.css';
 import responsive from './css/responsive.css';
 import swipermincss from './css/swiper.min.css';
+import DropdownMenu from './components/dropdown/DropdownMenu';
+
+    
+
 const App = ({ cards, onFindCard, onGetCards, ownProps }) => {
   let cardInput = '';
   let searchInput = '';
@@ -74,6 +72,11 @@ const App = ({ cards, onFindCard, onGetCards, ownProps }) => {
         <input type="text" onChange={findCard} ref={(input) => { searchInput = input}} />
         <button className={css(styles.addCard)} onClick={findCard}> <img alt="search" src="/brief/magnifying-glass.svg" /> </button>
       </div>
+
+
+      <div className="dropdown_menu">
+        <DropdownMenu />
+      </div>
       <div className="dropdown_menu">
         <div className="dropdown field_box block_field">
           <div className="option_box" >
@@ -84,11 +87,11 @@ const App = ({ cards, onFindCard, onGetCards, ownProps }) => {
               <span className="gray_icon"><img alt="search" src="/images/placeholder.svg" /></span>
           </div>
           <div className="dropdown-content">
-            <p>Все районы</p>
-            <p>Малиновский район</p>
-            <p>Приморский район</p>
-            <p>Суворовский район</p>
-            <p>Киевский район</p>
+            <p><span className="circle"></span>Все районы</p>
+            <p><span className="circle"></span>Малиновский район</p>
+            <p><span className="circle"></span>Приморский район</p>
+            <p><span className="circle"></span>Суворовский район</p>
+            <p><span className="circle"></span>Киевский район</p>
           </div>
         </div>
         <div className="dropdown field_box price_field">
@@ -100,11 +103,11 @@ const App = ({ cards, onFindCard, onGetCards, ownProps }) => {
               <span className="gray_icon"><img alt="search" src="/images/placeholder.svg" /></span>
           </div>
           <div className="dropdown-content">
-            <p>Любая</p>
-            <p>до 30 000 $</p>
-            <p>до 40 000 $</p>
-            <p>до 60 000 $</p>
-            <p>до 100 000 $</p>
+            <p><span className="circle"></span>Любая</p>
+            <p><span className="circle"></span>до 30 000 $</p>
+            <p><span className="circle"></span>до 40 000 $</p>
+            <p><span className="circle"></span>до 60 000 $</p>
+            <p><span className="circle"></span>до 100 000 $</p>
           </div>
         </div>
         <div className="dropdown field_box area_field">
@@ -116,13 +119,13 @@ const App = ({ cards, onFindCard, onGetCards, ownProps }) => {
               <span className="gray_icon"><img alt="search" src="/images/placeholder.svg" /></span>
           </div>
           <div className="dropdown-content">
-            <p>от 30 до 40</p>
-            <p>от 40 до 50</p>
-            <p>от 50 до 60</p>
-            <p>от 70 до 80</p>
-            <p>от 80 до 90</p>
-            <p>от 90 до 100</p>
-            <p>больше 100</p>
+            <p><span className="circle"></span>от 30 до 40</p>
+            <p><span className="circle"></span>от 40 до 50</p>
+            <p><span className="circle"></span>от 50 до 60</p>
+            <p><span className="circle"></span>от 70 до 80</p>
+            <p><span className="circle"></span>от 80 до 90</p>
+            <p><span className="circle"></span>от 90 до 100</p>
+            <p><span className="circle"></span>больше 100</p>
           </div>
         </div>
         <div className="dropdown field_box rooms_field">
@@ -134,9 +137,9 @@ const App = ({ cards, onFindCard, onGetCards, ownProps }) => {
               <span className="gray_icon"><img alt="search" src="/images/placeholder.svg" /></span>
           </div>
           <div className="dropdown-content">
-            <p>1 комнатная</p>
-            <p>2 комнатная</p>
-            <p>3 комнатная</p>
+            <p><span className="circle"></span>1 комнатная</p>
+            <p><span className="circle"></span>2 комнатная</p>
+            <p><span className="circle"></span>3 комнатная</p>
           </div>
         </div>
         <div className="dropdown field_box choose_field">
