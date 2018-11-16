@@ -16,7 +16,7 @@ class App extends Component {
   }
   resetThenSet = (id, key) => {
     let temp = JSON.parse(JSON.stringify(this.state[key]))
-    temp.forEach(item => item.selected = false);
+    temp.map(item => item.selected = false);
     temp[id].selected = true;
     this.setState({
       [key]: temp

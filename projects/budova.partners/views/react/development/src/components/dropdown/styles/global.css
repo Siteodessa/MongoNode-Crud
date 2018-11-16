@@ -61,7 +61,7 @@ p {
       -ms-user-select: none;
           user-select: none;
   position: relative;
-  width: 222px;
+  width: 242px;
 }
 .dd-header {
   display: -webkit-box;
@@ -106,7 +106,7 @@ p {
   font-weight: 700;
   padding: 15px 0;
   max-height: 215px;
-  overflow-y: scroll;
+  overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 }
 .dd-list-item {
@@ -117,7 +117,15 @@ p {
   cursor: default;
   display: inline-block;
   white-space: nowrap;
+  cursor: pointer;
   text-overflow: ellipsis;
+  color: #838383
+}
+li.dd-list-item span{
+  color:#838383
+}
+li.dd-list-item:hover span{
+  color:#fff
 }
 .dd-list-item.selected {
   color: #fff;

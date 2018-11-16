@@ -14,15 +14,9 @@ class DropdownMultiple extends Component{
   }
   static getDerivedStateFromProps(nextProps){
     const count = nextProps.list.filter(function(a) { return a.selected; }).length;
-    if(count === 0){
-      return {headerTitle: nextProps.title}
-    }
-    else if(count === 1){
-      return {headerTitle: `Выбрано ${nextProps.titleHelper}ов: ${count} `}
-    }
-    else if(count > 1){
-      return {headerTitle: `Выбрано ${nextProps.titleHelper}ов: ${count} `}
-    }
+    if(count === 0){ return {headerTitle: nextProps.title} }
+    else if(count === 1){ return {headerTitle: `Выбрано ${nextProps.titleHelper}ов: ${count} `} }
+    else if(count > 1){ return {headerTitle: `Выбрано ${nextProps.titleHelper}ов: ${count} `} }
   }
   handleClickOutside(){
     this.setState({
