@@ -1,18 +1,52 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getCards } from './actions/getcards';
-import DropdownMultiple from './components/dropdown/components/DropdownMultiple';
+import Blocks from './components/dropdown/components/InitialState';
+// import DropdownMultiple from './components/dropdown/components/DropdownMultiple';
+// <DropdownMultiple />
 import DropdownProto from './components/dropdown/DropdownProto';
 import get_year_quarter from './js/get_year_quarter';
 import convert_quarter_string from './js/convert_quarter_string';
 import cssfiles from './cssfiles.js'
 import LoopHeading from './fields.js'
+import FontAwesome from 'react-fontawesome';
+import onClickOutside from "react-onclickoutside";
+import './components/dropdown/styles/global.css';
 
+const App = ({  cards, list, listOpen, headerTitle, titleHelper, onFindCard, onGetCards, onToggleSelected, onFilterByLists, onHandleClickOutside, onToggleList, onResetThenSet, ownProps }) => {
 
-const App = ({ cards, onFindCard, onGetCards, ownProps }) => {
-  let cardInput = ''; let searchInput = ''; let taskInput = ''; let task_descInput = ''; let task_statusInput = ''; let i = 0; const loader = () => { i++; if (!i) onGetCards() }
+  let cardInput = ''; let searchInput = ''; let taskInput = ''; let task_descInput = ''; let task_statusInput = '';
+  let i = 0; const loader = () => { i++; if (!i) onGetCards() }
+
 
   const findCard = () => { onFindCard(searchInput.value) }
+
+
+  const toggleSelected = (id, key, value) => {
+    onToggleSelected(id, key, value)
+    onFilterByLists(id, key, value)
+  }
+
+
+  const handleClickOutside = () =>{
+    onHandleClickOutside()
+    this.setState({
+      listOpen: false
+    })
+  }
+  const toggleList = () =>{
+    onToggleList(listOpen)
+  }
+  const resetThenSet = (id, key) => {
+    onResetThenSet(id, key)
+    let temp = JSON.parse(JSON.stringify(this.state[key]))
+    temp.forEach(item => item.selected = false);
+    temp[id].selected = true;
+    this.setState({
+      [key]: temp
+    })
+  }
+
       return (
       <div className="Cards" onLoad={loader}>
         <div className="fields" >
@@ -26,7 +60,22 @@ const App = ({ cards, onFindCard, onGetCards, ownProps }) => {
                   <button onClick={findCard}> <img alt="search" src="/brief/magnifying-glass.svg" /> </button>
                 </div>
               <div className="dropdown_menu">
-                <DropdownMultiple />
+              <div className="dd-wrapper">
+                <div className="dd-header" onClick={toggleList}>
+                  <div className="dd-header-title">{headerTitle}</div>
+                  {listOpen
+                    ? <FontAwesome name="angle-up" size="2x"/>
+                    : <FontAwesome name="angle-down" size="2x"/>
+                  }
+                </div>
+                {listOpen && <ul className="dd-list">
+                   {list.map((item) => (
+                     <li className="dd-list-item" key={item.title} onClick={() => toggleSelected(item.id, item.key, item.value)}>
+                       {item.title} {item.selected && <FontAwesome name="check"/>}
+                     </li>
+                    ))}
+                </ul>}
+              </div>
               </div>
               <div className="dropdown_proto">
                 {/* <DropdownProto /> */}
@@ -37,7 +86,7 @@ const App = ({ cards, onFindCard, onGetCards, ownProps }) => {
         <LoopHeading />
         <div className="container">
         <div className="row">
-        {
+          {
           cards.map((card, index) =>
             <div key={index}  className="col-md-3 col-sm-6">
               <div>
@@ -65,13 +114,19 @@ const App = ({ cards, onFindCard, onGetCards, ownProps }) => {
       </div>
     )
 }
-export default connect(
+export default onClickOutside(connect(
   (state, ownProps) => ({
     cards: state.cards
-    .filter(
-      card => card.note_type === 'Объект' &&
-      card.title.toLowerCase().includes(state.filterCards.toLowerCase())
-    ), ownProps
+      .filter(
+        card => card.note_type === 'Объект' &&
+        card.title.toLowerCase().includes(state.filterCards.toLowerCase())
+        && card.block.toLowerCase().includes(state.filterByList.toLowerCase())
+      ),
+  list: state.lists.list,
+  listOpen: state.lists.listOpen,
+  headerTitle: state.lists.headerTitle,
+  titleHelper: state.lists.titleHelper,
+  ownProps
   }),
   dispatch => ({
     onFindCard : (task) => {
@@ -80,5 +135,16 @@ export default connect(
     onGetCards: () => {
         dispatch(getCards())
     },
+onToggleSelected : (id, key, value) => {
+dispatch({ type: 'TOGGLE_SELECTED_LIST', payload: {id:id, key:key}})
+},
+onFilterByLists : (id, key, value) => {
+dispatch({ type: 'FILTER_BY_LISTS', payload: {id:id, value:value}})
+},
+onHandleClickOutside : (task) => { },
+onToggleList : (listOpen) => {
+  dispatch({ type: 'TOGGLE_LIST', payload: listOpen})
+},
+onResetThenSet : (task) => { }
   }),
-)(App);
+)(App));

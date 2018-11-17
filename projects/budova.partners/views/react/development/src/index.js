@@ -12,6 +12,8 @@ import { Router, Route , HashRouter, Link  } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory'
 import { syncHistoryWithStore } from 'react-router-redux';
 import Card from './Card'
+
+
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 const history = syncHistoryWithStore(createHistory(), store)
 

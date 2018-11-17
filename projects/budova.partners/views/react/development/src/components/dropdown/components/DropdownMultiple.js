@@ -1,41 +1,39 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 import onClickOutside from "react-onclickoutside";
 import InitialState from './InitialState';
 import '../styles/global.css';
 
-class DropdownMultiple extends Component{
-  constructor(){
-    super()
-    this.state = {
-      list: InitialState,
-      listOpen: false,
-      headerTitle: 'Район',
-      titleHelper: 'район',
-    }
-  }
-  toggleSelected(id, key){
 
-    let temp = JSON.parse(JSON.stringify(this.state.list[key]))
+
+  const DropdownMultiple = ({ list ,listOpen ,headerTitle ,titleHelper ,onToggleSelected ,onHandleClickOutside ,onToggleList ,onResetThenSet, ownProps }) => {
+
+
+  const toggleSelected = (id, key) => {
+    let temp = JSON.parse(JSON.stringify(list[key]))
     temp[id].selected = !temp[id].selected
-      console.log('zis.state', this.state);
     this.setState({
       list:{
       [key]: temp
     }
     })
+
+    onToggleSelected(id, key)
   }
-  handleClickOutside(){
+
+
+  const handleClickOutside = () =>{
+    onHandleClickOutside()
     this.setState({
       listOpen: false
     })
   }
-  toggleList(){
-    this.setState(prevState => ({
-      listOpen: !prevState.listOpen
-    }))
+  const toggleList = () =>{
+    onToggleList(listOpen)
   }
-  resetThenSet(id, key){
+  const resetThenSet = (id, key) => {
+    onResetThenSet(id, key)
     let temp = JSON.parse(JSON.stringify(this.state[key]))
     temp.forEach(item => item.selected = false);
     temp[id].selected = true;
@@ -43,18 +41,18 @@ class DropdownMultiple extends Component{
       [key]: temp
     })
   }
-  render(){
+
     return(
       <div className="dd-wrapper">
-      <div className="dd-header" onClick={() => this.toggleList()}>
-          <div className="dd-header-title">{this.state.headerTitle}</div>
-          {this.state.listOpen
+      <div className="dd-header" onClick={() => toggleList()}>
+          <div className="dd-header-title">{headerTitle}</div>
+          {listOpen
             ? <FontAwesome name="angle-up" size="2x"/>
             : <FontAwesome name="angle-down" size="2x"/>
           }
       </div>
-       {this.state.listOpen && <ul className="dd-list">
-         {this.state.list.block.map((item) => (
+       {listOpen && <ul className="dd-list">
+         {list.block.map((item) => (
            <li className="dd-list-item" key={item.title} onClick={() => this.toggleSelected(item.id, item.key)}>
              {item.title} {item.selected && <FontAwesome name="check"/>}
            </li>
@@ -63,5 +61,34 @@ class DropdownMultiple extends Component{
       </div>
     )
   }
-}
-export default onClickOutside(DropdownMultiple);
+
+
+
+export default onClickOutside(connect(
+  (state, ownProps) => ({
+    list: InitialState,
+    listOpen: false,
+    headerTitle: 'Район',
+    titleHelper: 'район', ownProps
+  }),
+  dispatch => ({
+onToggleSelected : (id, key) => {
+                  console.log('id, key', id, key);
+                    console.log('onToggleSelected');
+                  // dispatch({ type: 'FIND_CARD', payload: task})
+                  // dispatch({ type: 'FILTER_CARD', payload: InitialState.block.find(id:id)})
+                },
+onHandleClickOutside : (task) => {
+  console.log('onHandleClickOutside');
+                  // dispatch({ type: 'FIND_CARD', payload: task})
+                },
+onToggleList : (listOpen) => {
+  console.log('listOpen', listOpen);
+                  // dispatch({ type: 'FIND_CARD', payload: task})
+                },
+onResetThenSet : (task) => {
+  console.log('onResetThenSet');
+                  // dispatch({ type: 'FIND_CARD', payload: task})
+                }
+  }),
+)(DropdownMultiple));

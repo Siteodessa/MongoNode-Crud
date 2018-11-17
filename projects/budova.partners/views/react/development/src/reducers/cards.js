@@ -45,7 +45,7 @@ export default function cards(state = initialState, action) {
     return action.payload;
 
   } else if (action.type === 'DELETE_CARD') {
-        callApiDelete(action.payload)
+    callApiDelete(action.payload)
     var removeIndex = state.map(function(card) { return card._id; }).indexOf(action.payload);
     state.splice(removeIndex, 1);
       return [...state]
