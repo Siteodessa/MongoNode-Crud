@@ -13,7 +13,7 @@ import FontAwesome from 'react-fontawesome';
 import onClickOutside from "react-onclickoutside";
 import './components/dropdown/styles/global.css';
 
-const App = ({  cards, list, listOpen, headerTitle, titleHelper, onFindCard, onGetCards, onToggleSelected, onFilterByLists, onHandleClickOutside, onToggleList, onResetThenSet, ownProps }) => {
+const App = ({  cards, list, listOpen, headerTitle, titleHelper, onFindCard, onGetCards, onToggleSelected, onHandleClickOutside, onToggleList, onResetThenSet, ownProps }) => {
 
   let cardInput = ''; let searchInput = ''; let taskInput = ''; let task_descInput = ''; let task_statusInput = '';
   let i = 0; const loader = () => { i++; if (!i) onGetCards() }
@@ -24,7 +24,6 @@ const App = ({  cards, list, listOpen, headerTitle, titleHelper, onFindCard, onG
 
   const toggleSelected = (id, key, value) => {
     onToggleSelected(id, key, value)
-    onFilterByLists(id, key, value)
   }
 
 
@@ -120,7 +119,7 @@ export default onClickOutside(connect(
       .filter(
         card => card.note_type === 'Объект' &&
         card.title.toLowerCase().includes(state.filterCards.toLowerCase())
-        && card.block.toLowerCase().includes(state.filterByList.toLowerCase())
+        && card.block.toLowerCase().includes(state.filterByLists.toLowerCase())
       ),
   list: state.lists.list,
   listOpen: state.lists.listOpen,
@@ -137,8 +136,7 @@ export default onClickOutside(connect(
     },
 onToggleSelected : (id, key, value) => {
 dispatch({ type: 'TOGGLE_SELECTED_LIST', payload: {id:id, key:key}})
-},
-onFilterByLists : (id, key, value) => {
+
 dispatch({ type: 'FILTER_BY_LISTS', payload: {id:id, value:value}})
 },
 onHandleClickOutside : (task) => { },

@@ -38,10 +38,12 @@ if (response.status !== 200) throw Error(body.message);
 
 export default function cards(state = initialState, action) {
   if (action.type === 'ADD_CARD') {
+
     callApiPost(action.payload)
     return [...state, action.payload]
 
   } else if (action.type === 'FETCH_CARDS_SUCCESS') {
+        console.log('ADD_CARD state', state);
     return action.payload;
 
   } else if (action.type === 'DELETE_CARD') {

@@ -41,23 +41,20 @@ const InitialListsState = {
     }
   ]
 }
-
-
-
 export default function lists(state = InitialListsState, action) {
  if (action.type === 'FETCH_LISTS_SUCCESS') {
     return action.payload;
 
-  } else if (action.type === 'FILTER_BY_LISTS') {
-      return [...state]
   } else if (action.type === 'TOGGLE_LIST') {
+    console.log('TOGGLE_LIST state', state);
+
     state.listOpen = !state.listOpen
       return {...state}
   } else if (action.type === 'TOGGLE_SELECTED_LIST') {
+    console.log('TOGGLE_SELECTED_LIST state', state);
     state.list.map( elem => {
-      elem.id === action.payload.id ? elem.selected = !elem.selected :  action.payload.id === 0 ? elem.selected = false : elem.selected;
+      elem.id === action.payload.id ? elem.selected = !elem.selected :  elem.selected = false;
     });
-    console.log(state);
       return {...state}
   }
 
