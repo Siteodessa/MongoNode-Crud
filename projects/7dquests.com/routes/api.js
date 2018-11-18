@@ -15,10 +15,14 @@ module.exports = (core, api_c, notes, subscribe_c, brone_c, reviews, quests, que
   app.put('/quests/:noteId', quests.update);
   app.put('/quests/m_update/:noteId', quests.custom_update);
   app.delete('/quests/:noteId', quests.delete);
-  app.get('/api/mk/*', api_c.quests);
-  app.post('/api/mk/*', api_c.quests_create);
+
+  app.get('/api/mk/*', api_c.mir_kvestov_schedule);
+  app.post('/api/mk/*', api_c.mir_kvestov_brone);
 
   app.get('/api/qr/*', api_c.questroom_api);
   app.post('/api/qr/*', api_c.questroom_api);
+
+
+  
   app.get('/test/*', require('../controllers/qr.controller').showDays_all);
 }

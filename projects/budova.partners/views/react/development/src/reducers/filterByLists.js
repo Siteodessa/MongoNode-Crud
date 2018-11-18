@@ -1,4 +1,4 @@
-const initialState = '';
+const initialState = ['Малиновский' ,'Приморский' ,'Суворовский' ,'Киевский'];
 
 
 export default function filterByLists(state = initialState, action) {

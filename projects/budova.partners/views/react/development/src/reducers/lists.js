@@ -7,7 +7,7 @@ const InitialListsState = {
     {
       id: 0,
       title: 'Все районы',
-      value: '',
+      value: ['Малиновский' ,'Приморский' ,'Суворовский' ,'Киевский'],
       selected: true,
       key: 'block'
     },
@@ -41,6 +41,9 @@ const InitialListsState = {
     }
   ]
 }
+
+
+
 export default function lists(state = InitialListsState, action) {
  if (action.type === 'FETCH_LISTS_SUCCESS') {
     return action.payload;
@@ -51,10 +54,19 @@ export default function lists(state = InitialListsState, action) {
     state.listOpen = !state.listOpen
       return {...state}
   } else if (action.type === 'TOGGLE_SELECTED_LIST') {
-    console.log('TOGGLE_SELECTED_LIST state', state);
     state.list.map( elem => {
-      elem.id === action.payload.id ? elem.selected = !elem.selected :  elem.selected = false;
+      elem.id === action.payload.id ? elem.selected = !elem.selected :  elem.selected;
     });
+    if ( action.payload.id === 0 ) {
+      state.list.map( elem => {
+        elem.id === action.payload.id ? elem.selected = !elem.selected :  elem.selected = false;
+      });
+      state.list[0].selected = true
+    } else {
+      state.list.filter(item => item.selected === true).length === 0 ? state.list[0].selected = true :       state.list[0].selected = false
+    }
+
+
       return {...state}
   }
 

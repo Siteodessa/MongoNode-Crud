@@ -27,7 +27,7 @@ const App = ({  cards, list, listOpen, headerTitle, titleHelper, onFindCard, onG
   }
 
 
-  const handleClickOutside = () =>{
+  this.handleClickOutside = () =>{
     onHandleClickOutside()
     this.setState({
       listOpen: false
@@ -113,13 +113,20 @@ const App = ({  cards, list, listOpen, headerTitle, titleHelper, onFindCard, onG
       </div>
     )
 }
+
+
+function blocksFilter(state, card) {
+  let chosen = []
+  state.lists.list.map( i => { i.selected !== false ?  typeof i.value === 'string' ? chosen.push(i.value) : chosen = i.value : i.value })
+return chosen.includes(card.block)
+}
 export default onClickOutside(connect(
   (state, ownProps) => ({
     cards: state.cards
       .filter(
         card => card.note_type === 'Объект' &&
-        card.title.toLowerCase().includes(state.filterCards.toLowerCase())
-        && card.block.toLowerCase().includes(state.filterByLists.toLowerCase())
+        card.title.toLowerCase().includes(state.filterCards.toLowerCase()) &&
+        blocksFilter(state, card)
       ),
   list: state.lists.list,
   listOpen: state.lists.listOpen,

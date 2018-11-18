@@ -9,7 +9,7 @@ let error = require('./error.controller').error;
 
 
 
-exports.quests = (req, res) => {
+exports.mir_kvestov_schedule = (req, res) => {
     let url = req.url.split('/')
 
       Brone_m.find()
@@ -24,36 +24,7 @@ exports.quests = (req, res) => {
       });
 }
 
-
-
-
-
-
-exports.questroom_api = (req, res) => {
-  console.log('questroom_api');
-  let questroom_request = req.body
-  Brone_m.find()
-  .then(brones => {
-    brones = brones.filter( brone => brone.quest_name === req.body.room.split('-')[0]);
-    if (brones.length < 1) error(res, 'No quests found')
-    if (req.body.token !== '67CZ8DGLhljpSLo7iXrD') error(res, 'Wrong key');
-     req.brones = brones;
-       switch (req.body.task) {
-         case 'showDays_all': Qroom_c.showDays_all(req, res); break;
-         case 'showDay_any':  Qroom_c.showDay_any(req, res);  break;
-         case 'showHour':     Qroom_c.showHour(req, res);     break;
-         case 'bookingHour':  Qroom_c.bookingHour(req, res);  break;
-         default:
-         error(res, 'Assignment unknown')
-       }
-  }).catch(err => {
-  error(res, err)
-  });
-
-}
-
-
-exports.quests_create = (req, res) => {
+exports.mir_kvestov_brone = (req, res) => {
     if(!req.body) {
         return res.status(400).send({"success": false, "message": "Указанное время занято" });
     }
@@ -81,6 +52,39 @@ exports.quests_create = (req, res) => {
         res.status(500).send({"success": false, "message": "Указанное время занято" });
     });
 };
+
+
+exports.questroom_api = (req, res) => {
+  console.log('questroom_api');
+  let questroom_request = req.body
+  Brone_m.find()
+  .then(brones => {
+    brones = brones.filter( brone => brone.quest_name === req.body.room.split('-')[0]);
+    if (brones.length < 1) error(res, 'No quests found')
+    if (req.body.token !== '67CZ8DGLhljpSLo7iXrD') error(res, 'Wrong key');
+     req.brones = brones;
+       switch (req.body.task) {
+         case 'showDays_all': Qroom_c.showDays_all(req, res); break;
+         case 'showDay_any':  Qroom_c.showDay_any(req, res);  break;
+         case 'showHour':     Qroom_c.showHour(req, res);     break;
+         case 'bookingHour':  Qroom_c.bookingHour(req, res);  break;
+         default:
+         error(res, 'Assignment unknown')
+       }
+  }).catch(err => {
+  error(res, err)
+  });
+
+}
+
+
+
+
+
+
+
+
+
 
 exports.create = (req, res) => {
     if(!req.body) {
