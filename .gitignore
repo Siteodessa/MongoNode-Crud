@@ -1,9 +1,9 @@
-# See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
 /node_modules
 /projects/7dquests.com/node_modules
 /projects/budova.partners/node_modules
+/projects/budova.partners/views/react/development/node_modules
 # testing
 /coverage
 

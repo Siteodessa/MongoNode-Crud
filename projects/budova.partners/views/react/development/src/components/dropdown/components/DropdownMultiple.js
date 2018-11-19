@@ -7,7 +7,7 @@ import '../styles/global.css';
 
 
 
-  const DropdownMultiple = ({ list ,listOpen ,headerTitle ,titleHelper ,onToggleSelected ,onHandleClickOutside ,onToggleList ,onResetThenSet, ownProps }) => {
+  const DropdownMultiple = ({ list ,district_listOpen ,headerTitle ,titleHelper ,onToggleSelected ,onHandleClickOutside ,onToggleList ,onResetThenSet, ownProps }) => {
 
 
   const toggleSelected = (id, key) => {
@@ -26,11 +26,11 @@ import '../styles/global.css';
   const handleClickOutside = () =>{
     onHandleClickOutside()
     this.setState({
-      listOpen: false
+      district_listOpen: false
     })
   }
   const toggleList = () =>{
-    onToggleList(listOpen)
+    onToggleList(district_listOpen)
   }
   const resetThenSet = (id, key) => {
     onResetThenSet(id, key)
@@ -46,12 +46,12 @@ import '../styles/global.css';
       <div className="dd-wrapper">
       <div className="dd-header" onClick={() => toggleList()}>
           <div className="dd-header-title">{headerTitle}</div>
-          {listOpen
+          {district_listOpen
             ? <FontAwesome name="angle-up" size="2x"/>
             : <FontAwesome name="angle-down" size="2x"/>
           }
       </div>
-       {listOpen && <ul className="dd-list">
+       {district_listOpen && <ul className="dd-list">
          {list.block.map((item) => (
            <li className="dd-list-item" key={item.title} onClick={() => this.toggleSelected(item.id, item.key)}>
              {item.title} {item.selected && <FontAwesome name="check"/>}
@@ -67,7 +67,7 @@ import '../styles/global.css';
 export default onClickOutside(connect(
   (state, ownProps) => ({
     list: InitialState,
-    listOpen: false,
+    district_listOpen: false,
     headerTitle: 'Район',
     titleHelper: 'район', ownProps
   }),
@@ -82,8 +82,8 @@ onHandleClickOutside : (task) => {
   console.log('onHandleClickOutside');
                   // dispatch({ type: 'FIND_CARD', payload: task})
                 },
-onToggleList : (listOpen) => {
-  console.log('listOpen', listOpen);
+onToggleList : (district_listOpen) => {
+  console.log('district_listOpen', district_listOpen);
                   // dispatch({ type: 'FIND_CARD', payload: task})
                 },
 onResetThenSet : (task) => {
