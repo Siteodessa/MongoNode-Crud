@@ -1,0 +1,10 @@
+console.log('Starting...');
+var fs = require('fs');
+let express = require('express');
+let app = express();
+const dbConfig = require('./db/config/database.config.js');
+console.log('starting mongoose...');
+const mongoose = require('mongoose');
+var start_mongoose = require('./db/start_mongoose')(mongoose, dbConfig);
+var custom_functions = require('./controllers/custom_functions');
+require('./routes/')(app, express, custom_functions );

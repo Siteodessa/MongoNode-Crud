@@ -22,6 +22,14 @@ $(function() {
   function removeParent(el) {
     el.parent().detach()
   }
+
+  function is_empty_object(el) {
+  if  (JSON.stringify(el) === '{}') { return true  } else {return false}
+  }
+  function is_empty_data(el) {
+  if  ( el && el !== '' && !is_empty_object(el) ) { return true }  else { return false }
+  }
+
   function close_modal() {
     setTimeout(function() {
       $('button.btn.btn-outline.pull-left').click()
@@ -53,17 +61,6 @@ $(function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   // editform OBJECT START
   var editform = function(result_form, ajax_form, url, close_after) {
     this.update_rows_data = function(rows, data) {
@@ -83,8 +80,10 @@ $(function() {
     }
     this.update_iframes = function(iframe0, iframe_elem, data) {
       var iframe0 = $(iframe0);
-      var iframe_elem = iframe0.contents().find(iframe_elem)
-       iframe_elem.html('<span id="the_image"><img src="/uploads/' + data['home_background'] + '"></span><span>' + data['home_background'] + '</span>')
+      var name = iframe0.attr('name');
+      console.log('name', name);
+      var iframe_elem = iframe0.first().contents().find(iframe_elem)
+       iframe_elem.html('<span id="the_image"><img src="/uploads/' + data[name] + '"></span><span>' + data[name] + '</span>')
       iframe_elem.css({ "position": "absolute" })
       iframe_elem.find('img').css({ "max-width": "60px", "margin": "0 20px -3px 90px", "max-height": "40px" })
     }
@@ -143,7 +142,7 @@ $(function() {
                   if (name && imdata_node && name === 'structure')  {
                     let parent = $('div[name="layouts"]').find('.ministructure')
                         JSON.parse(data["layouts"]).forEach(function(elem){
-                          parent.prepend('<div class="minigroups"><div class="discard"><i class="fa fa-close"></i></div><div class="minigroup" type="media"><div class="db_group" name="structure" input_type="media"> <img src="/uploads/' + elem.media + '"><input class="hidden" value="' + elem.media + ' type="text" name="structure"> </div> </div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem.text + '" name="text" type="text"> </div></div></div>')
+                          parent.prepend('<div class="minigroups"><div class="discard"><i class="fa fa-close"></i></div><div class="minigroup" type="media"><div class="db_group" name="structure" input_type="media"> <img src="/uploads/' + elem.media + '"><input class="hidden" value="' + elem.media + '" type="text" name="structure"> </div> </div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem.text + '" name="text" type="text"> </div></div></div>')
                         })
 
                   }
@@ -212,6 +211,7 @@ $(function() {
 
           $('.db_group[input_type="structure"]').each(function() {
             let name =  $(this).attr('name')
+            console.log(name);
             $(this).find('.minigroups').each(function(){
               let minigroup_result = {}
             $(this).find('.minigroup').each(function(){
@@ -222,18 +222,31 @@ $(function() {
               }
               if (this_attr === 'media') {
                 let value = $(this).find('iframe').contents().find('div#multimediadata').text().replace(/[\n\r]+/g, '').replace(/[      ]+/g, '');
-                  if (value && value !== '' ) minigroup_result[this_attr] = value
+                  if (value && value !== '' && JSON.stringify(value) !== '{}' ) {minigroup_result[this_attr] = value} else {
+                    let value = $(this).find('input').val();
+                          if (value && value !== '' && JSON.stringify(value) !== '{}')
+                    minigroup_result[this_attr] = value
+                  }
               }
+
+
             })
-            result.push(minigroup_result)
+            if (JSON.stringify(minigroup_result) !== '{}') { result.push(minigroup_result) }
+
             })
            all_structures_data[name] = result
 
           })
 
+
+            console.log(JSON.stringify(all_structures_data));
+
+
           for (let prop in all_structures_data) {
         z += '&' + prop + '=' + JSON.stringify(all_structures_data[prop])
             }
+
+
           return z
         }
         this.getdata = function() {
@@ -268,7 +281,7 @@ $(function() {
       z = this.getdata()
       i = this.get_iframe_description()
 
-       console.log('SENDING DATA STOPPED. You must re-enable content in "getdata" .AND Z is', z);
+       console.log('SENDING DATA STOPPED. You must re-enable content in "getdata" .AND Z is');
         return false
       if (url === '/c_update') {
         let id = $('.modal-body').attr('id')
@@ -309,21 +322,6 @@ $(function() {
     }
   }
     // saveform OBJECT END
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
