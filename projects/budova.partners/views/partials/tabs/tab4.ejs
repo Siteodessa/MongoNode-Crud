@@ -1,9 +1,18 @@
-<% try  {    if (d.layouts !== '') { %>
+
+<% function check_structure(el) {
+  if (el !== '' && typeof el !== 'undefined' && el !== '[{}]') {
+    return true
+  } return false
+} %>
+<% try  {    if (check_structure(d.layouts)) { %>
+  <div class="single_tab" id="single_tab3">
       <ul class="nav nav-pills">
-        <li><a  href="#home">Описание</a></li>
-        <li><a  href="#menu1">Цены</a></li>
-        <li><a  href="#menu2">Рассрочка</a></li>
-        <li><a class="tab_active"  href="#menu3">Планировки</a></li>
+        <li><a  href="#single_tab">Описание</a></li>
+        <li><a  href="#single_tab1">Цены</a></li>
+        <li><a  href="#single_tab2">Рассрочка</a></li>
+        <%  if (check_structure(d.layouts)) { %>
+        <li><a class="tab_active"  href="#single_tab3">Планировки</a></li>
+        <%  } %>
       </ul>
       <div id="menu3" class="tab-pane fade">
 <div class="planning_tab">
@@ -11,10 +20,8 @@
 <div class="panel collapsable closed">
   <h4 class="underlined">Планировки</h4>
 <ul class="nav nav-pills">
-  <% console.log( JSON.parse(d.layouts));  %>
   <% i = 0; JSON.parse(d.layouts).forEach(elem => {  %>
   <%  i ++; let active, active1; if (i == 1) { active = 'in active'; activelink = 'tab_active'; } else { active = activelink = ''}  ;   %>
-  <% console.log('elem.text', elem.text);  %>
   <%   if (elem.text !== undefined) { %>
      <li class=" <%= active %>" ><a data-toggle="pill" class=" <%= activelink %>" href="#slide_<%= i %>"><span class="big circle"></span><%= elem.text %></a></li>
   <%  }}); %>
@@ -30,17 +37,14 @@
   <% i = 0; JSON.parse(d.layouts).forEach(elem => { i ++; let active; if (i == 1) { active = 'in active' } else { active = ''};if (elem.media !== undefined && elem.media !== '') {  %>
       <div id="slide_<%= i %>" class="tab-pane fade <%= active %>"> <div class="plannimg"> <img src="/uploads/<%= elem.media %>" /> </div> </div>
   <%  } }); %>
-
 </div>
 </div>
 </div>
 </div>
-
 <script type="text/javascript">
   $('a#show_all').click(function(){
   $('.panel.collapsable').toggleClass('closed')
-  
   })
 </script>
-
+</div>
 <% }  }     catch (e) { console.log(e);}  %>

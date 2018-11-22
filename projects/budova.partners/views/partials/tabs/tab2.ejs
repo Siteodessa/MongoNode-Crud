@@ -1,8 +1,16 @@
+<div class="single_tab" id="single_tab1">
+  <% function check_structure(el) {
+  if (el !== '' && typeof el !== 'undefined' && el !== '[{}]') {
+    return true
+  } return false
+} %>
 <ul class="nav nav-pills">
-  <li><a  href="#home">Описание</a></li>
-  <li><a class="tab_active"  href="#menu1">Цены</a></li>
-  <li><a  href="#menu2">Рассрочка</a></li>
-  <li><a  href="#menu3">Планировки</a></li>
+  <li><a href="#single_tab">Описание</a></li>
+  <li><a class="tab_active" href="#single_tab1">Цены</a></li>
+  <li><a href="#single_tab2">Рассрочка</a></li>
+  <%  if (check_structure(d.layouts)) { %>
+  <li><a class="tab_active"  href="#single_tab3">Планировки</a></li>
+  <%  } %>
 </ul>
   <div id="menu1" class="tab-pane fade">
     <div class="prices_tab flex jc">
@@ -48,4 +56,6 @@
     </div>
 </div>
 </div>
+</div>
+
 </div>

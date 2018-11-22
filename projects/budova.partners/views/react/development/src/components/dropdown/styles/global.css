@@ -61,7 +61,7 @@ p {
       -ms-user-select: none;
           user-select: none;
   position: relative;
-  width: 242px;
+  min-width: 185px;
 }
 .dd-header {
   display: -webkit-box;
@@ -82,6 +82,7 @@ p {
 }
 .dd-header span {
   margin-right: 20px;
+  color: #ddd
 }
 .dd-header-title {
   font-weight: 300;
@@ -105,7 +106,6 @@ p {
           box-shadow: 0 2px 5px -1px #e8e8e8;
   font-weight: 700;
   padding: 15px 0;
-  max-height: 215px;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 }
@@ -152,4 +152,11 @@ li.dd-list-item:hover span{
 .dd-wrapper-single .dd-list {
   border: 1px solid #ccc;
   border-top: none;
+}
+.dd-header span.gray_icon {
+    height: 44px;
+    display: block;
+    width: 40px;
+    margin: -1px 0 0;
+    padding: 1px 8px 6px;
 }

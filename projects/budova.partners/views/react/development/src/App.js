@@ -9,46 +9,119 @@ import LoopHeading from './fields.js'
 import FontAwesome from 'react-fontawesome';
 import './components/dropdown/styles/global.css';
 
-const App = ({  cards, districts_options ,districts_listOpen ,districts_headerTitle ,districts_titleHelper, onFindCard, onGetCards, onToggleSelected, onToggleList, ownProps }) => {
+const App = ({  cards, filterTypes, onFindCard, onGetCards, onSelectedDistrict, onSelectedPrice, onToggleList, ownProps }) => {
   let cardInput = ''; let searchInput = ''; let taskInput = ''; let task_descInput = ''; let task_statusInput = '';
 
-  let i = 0; const loader = () => { i++; if (!i) onGetCards() }
   const findCard = () => { onFindCard(searchInput.value) }
-  const toggleSelected = (id, key, value) => { onToggleSelected(id, key, value) }
-  const toggleList = () =>{ onToggleList(districts_listOpen) }
+  const toggleList = (ev, name) =>{ onToggleList(name) }
+  const selectedDistrict = (id, key, value) => { onSelectedDistrict(id, key, value) }
+  const selectedPrice = (id, key, value) => { onSelectedPrice(id, key, value) }
 
 
       return (
-      <div className="Cards" onLoad={loader}>
+      <div className="Cards">
         <div className="fields" >
-          <div style={({ display: 'none' })} >
-            <button id="getcard" onClick={onGetCards}>Get cards</button>
-          </div>
-          <DropdownProto />
           <div className="row blueb">
               <div className="container">
                 <div className="col-lg-12 col-xs-12 flex cardsearch">
                   <input type="text" onChange={findCard} ref={(input) => { searchInput = input}} />
                   <button onClick={findCard}> <img alt="search" src="/brief/magnifying-glass.svg" /> </button>
                 </div>
+
+
+
               <div className="dropdown_menu">
+
+
+
+
+
               <div className="dd-wrapper">
-                <div className="dd-header" onClick={toggleList}>
-                  <div className="dd-header-title">{districts_headerTitle}</div>
-                  {districts_listOpen
-                    ? <FontAwesome name="angle-up" size="2x"/>
-                    : <FontAwesome name="angle-down" size="2x"/>
+                <div className="dd-header" onClick={(ev) => toggleList(ev, filterTypes.districts.options[0].key)}>
+                  <div className="dd-header-title">{filterTypes.districts.headerTitle}</div>
+                  {filterTypes.districts.listOpen
+                    ? <FontAwesome name="angle-up"/>
+                    : <FontAwesome name="angle-down"/>
                   }
+                  <span className="gray_icon"><img alt="search" src="/images/placeholder.svg" /></span>
                 </div>
-                {districts_listOpen && <ul className="dd-list">
-                   {districts_options.map((item) => (
-                     <li className="dd-list-item" key={item.title} onClick={() => toggleSelected(item.id, item.key, item.value)}>
+                {filterTypes.districts.listOpen && <ul className="dd-list">
+                   {filterTypes.districts.options.map((item) => (
+                     <li className="dd-list-item" key={item.title} onClick={() => selectedDistrict(item.id, item.key, item.value)}>
                        {item.title} {item.selected && <FontAwesome name="check"/>}
                      </li>
                     ))}
                 </ul>}
               </div>
+
+
+
+              <div className="dd-wrapper">
+                <div className="dd-header" onClick={(ev) => toggleList(ev, filterTypes.prices.options[0].key)}>
+                  <div className="dd-header-title">{filterTypes.prices.headerTitle}</div>
+                  {filterTypes.prices.listOpen
+                    ? <FontAwesome name="angle-up"/>
+                    : <FontAwesome name="angle-down"/>
+                  }<span className="gray_icon"><img alt="search" src="/images/placeholder.svg" /></span>
+                </div>
+                {filterTypes.prices.listOpen && <ul className="dd-list">
+                   {filterTypes.prices.options.map((item) => (
+                     <li className="dd-list-item" key={item.title} onClick={() => selectedPrice(item.id, item.key, item.value)}>
+                       {item.title} {item.selected && <FontAwesome name="check"/>}
+                     </li>
+                    ))}
+                </ul>}
               </div>
+
+
+
+
+              <div className="dd-wrapper">
+                <div className="dd-header" onClick={(ev) => toggleList(ev, filterTypes.spaces.options[0].key)}>
+                  <div className="dd-header-title">{filterTypes.spaces.headerTitle}</div>
+                  {filterTypes.spaces.listOpen
+                    ? <FontAwesome name="angle-up"/>
+                    : <FontAwesome name="angle-down"/>
+                  }<span className="gray_icon"><img alt="search" src="/images/placeholder.svg" /></span>
+                </div>
+                {filterTypes.spaces.listOpen && <ul className="dd-list">
+                   {filterTypes.spaces.options.map((item) => (
+                     <li className="dd-list-item" key={item.title} onClick={() => selectedDistrict(item.id, item.key, item.value)}>
+                       {item.title} {item.selected && <FontAwesome name="check"/>}
+                     </li>
+                    ))}
+                </ul>}
+              </div>
+
+
+
+
+
+
+              <div className="dd-wrapper">
+                <div className="dd-header" onClick={(ev) => toggleList(ev, filterTypes.rooms.options[0].key)}>
+                  <div className="dd-header-title">{filterTypes.rooms.headerTitle}</div>
+                  {filterTypes.rooms.listOpen
+                    ? <FontAwesome name="angle-up"/>
+                    : <FontAwesome name="angle-down"/>
+                  }<span className="gray_icon"><img alt="search" src="/images/placeholder.svg" /></span>
+                </div>
+                {filterTypes.rooms.listOpen && <ul className="dd-list">
+                   {filterTypes.rooms.options.map((item) => (
+                     <li className="dd-list-item" key={item.title} onClick={() => selectedDistrict(item.id, item.key, item.value)}>
+                       {item.title} {item.selected && <FontAwesome name="check"/>}
+                     </li>
+                    ))}
+                </ul>}
+              </div>
+
+
+
+              </div>
+
+
+
+
               <div className="dropdown_proto">
                 {/* <DropdownProto /> */}
               </div>
@@ -83,6 +156,9 @@ const App = ({  cards, districts_options ,districts_listOpen ,districts_headerTi
         )}
         </div>
         </div>
+        <div style={({ display: 'none' })} >
+          <button id="getcard" onClick={onGetCards}>Get cards</button>
+        </div>
       </div>
     )
 }
@@ -90,7 +166,7 @@ const App = ({  cards, districts_options ,districts_listOpen ,districts_headerTi
 
 function districtsFilter(state, card) {
   let chosen = []
-  state.lists.districts.options.map( i => { i.selected !== false ?  typeof i.value === 'string' ? chosen.push(i.value) : chosen = i.value : i.value })
+  state.lists.filterTypes.districts.options.map( i => { i.selected !== false ?  typeof i.value === 'string' ? chosen.push(i.value) : chosen = i.value : i.value })
 return chosen.includes(card.block)
 }
 export default connect(
@@ -101,10 +177,7 @@ export default connect(
         card.title.toLowerCase().includes(state.filterCards.toLowerCase()) &&
         districtsFilter(state, card)
       ),
-  districts_options: state.lists.districts.options,
-  districts_listOpen: state.lists.districts.listOpen,
-  districts_headerTitle: state.lists.districts.headerTitle,
-  districts_titleHelper: state.lists.districts.titleHelper,
+  filterTypes: state.lists.filterTypes,
   ownProps
   }),
   dispatch => ({
@@ -114,13 +187,17 @@ export default connect(
     onGetCards: () => {
         dispatch(getCards())
     },
-onToggleSelected : (id, key, value) => {
-dispatch({ type: 'TOGGLE_SELECTED_LIST', payload: {id:id, key:key}})
+    onToggleList : (payload) => {
+      dispatch({ type: 'TOGGLE_LIST', payload: payload})
+    },
+    onSelectedDistrict : (id, key, value) => {
+      dispatch({ type: 'TOGGLE_SELECTED_ITEM', payload: {id:id, key:key}})
+      dispatch({ type: 'FILTER_BY_LISTS', payload: {id:id, value:value}})
+    },
+    onSelectedPrice : (id, key, value) => {
+      dispatch({ type: 'TOGGLE_SELECTED_ITEM', payload: {id:id, key:key}})
 
-dispatch({ type: 'FILTER_BY_LISTS', payload: {id:id, value:value}})
-},
-onToggleList : (payload) => {
-  dispatch({ type: 'TOGGLE_LIST', payload: payload})
+    //WRITE A FILTER FOR PRICES NOW
 }
   }),
 )(App);

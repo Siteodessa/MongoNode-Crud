@@ -1162,7 +1162,7 @@ section
     padding: 40px 0 80px;
 }
 .only-mob {
-    display: none;
+    display: none !important;
 }
 .testimonials_slider_container
 {

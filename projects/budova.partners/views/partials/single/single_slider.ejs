@@ -28,7 +28,6 @@
        height: 100%;
        text-align: center;
        font-size: 18px;
-       background: #fff;
        display: -webkit-box;
        display: -ms-flexbox;
        display: -webkit-flex;
@@ -47,15 +46,19 @@
 <%
 function print_swiper_gallery(gallery_links_array) {
         if (typeof gallery_links_array == 'undefined') return false
-        let gallery_html = ''
-        gallery_links_array = gallery_links_array.split('"')[1]
+        console.log('gallery_links_array1', gallery_links_array);
+        gallery_links_array = String(gallery_links_array).replace(/"/g, '').replace(/\\/g, '')
+        // console.log('gallery_links_array2', gallery_links_array);
         if (typeof gallery_links_array == 'undefined') return false
+        let gallery_html = ''
         gallery_links_array.split(',').forEach(elem => {
-        elem = elem.replace(/\\/g, '')
-          gallery_html += '<div class="swiper-slide"><img src="/uploads/' + elem + '" /></div>'
+          // console.log(elem);
+      if (elem !== '') gallery_html += '<div class="swiper-slide"><img src="/uploads/' + elem + '" /></div>'
         });
         return gallery_html
 }
+
+
 %>
 <% if (print_swiper_gallery(d['gallery']) !== false && d['gallery'] !== '""') { %>
    <div class="swiper-container">

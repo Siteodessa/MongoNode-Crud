@@ -1,4 +1,6 @@
 $(function() {
+
+
   function show_new_page_success(obj, result) {
     $(obj).html('Запись "' + result.title + '" успешно добавлена!<div class="page_added">Вы можете на нее <a href="/doma/' + result.page_link + '">Перейти</a></div>').addClass('shown');
   }
@@ -16,6 +18,9 @@ $(function() {
       }
       reader.readAsDataURL(input.files[0]);
     }
+  }
+  function removeParent(el) {
+    el.parent().detach()
   }
   function close_modal() {
     setTimeout(function() {
@@ -97,7 +102,7 @@ $(function() {
       });
        iframe_elem.html(gallery_html + '</div>')
     }
-    // ?DANGER
+
     this.listen = function(activator, add_new_obj_elem) {
       update_rows_data = this.update_rows_data
       update_iframes = this.update_iframes
@@ -112,6 +117,7 @@ $(function() {
           })
           .done(function(data) {
             data = JSON.parse(data)
+
             update_rows_data('.db_group', data)
             let iframe = document.querySelector('iframe.cke_wysiwyg_frame.cke_reset');
             let iframeElement;
@@ -119,38 +125,33 @@ $(function() {
             var modal_body = $('.modal-body');
 
 
-// You must update them apart from their id's, so that old ones still working, and layouts\plannings - not
-// Handle over your last script - >
-let editor_iframes = ''
- $('iframe').each(function(){
-        let name = $(this).attr('name')
-        let imdata_node = $(this).contents().find('div#multimediadata')
-        imdata_node
-        if (name && imdata_node && name !== 'structure')  {
-                data[name].split(',').forEach(elem => {
-                  elem = elem.replace(/['"«»\\]/g, '');
-                  imdata_node.append('<div class="chosen_image"><img src="/uploads/'+ elem +'"><div class="link">'+ elem +'</div></div>')
+
+          let editor_iframes = ''
+           $('iframe').each(function(){
+                  let name = $(this).attr('name')
+
+                  let imdata_node = $(this).contents().find('div#multimediadata')
+
+                  if (name && imdata_node && name !== 'structure')  {
+                          data[name].split(',').forEach(elem => {
+                            elem = elem.replace(/['"«»\\]/g, '');
+                            imdata_node.append('<div class="chosen_image"><img src="/uploads/'+ elem +'"><div class="link">'+ elem +'</div></div>')
+                          });
+                          imdata_node.children().wrapAll('<div class="chosen_images"></div>')
+                  }
+
+                  if (name && imdata_node && name === 'structure')  {
+                    let parent = $('div[name="layouts"]').find('.ministructure')
+                        JSON.parse(data["layouts"]).forEach(function(elem){
+                          parent.prepend('<div class="minigroups"><div class="discard"><i class="fa fa-close"></i></div><div class="minigroup" type="media"><div class="db_group" name="structure" input_type="media"> <img src="/uploads/' + elem.media + '"><input class="hidden" value="' + elem.media + ' type="text" name="structure"> </div> </div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem.text + '" name="text" type="text"> </div></div></div>')
+                        })
+
+                  }
                 });
-imdata_node.children().wrapAll('<div class="chosen_images"></div>')
-        }
 
-        if (name && imdata_node && name === 'structure')  {
-    console.log('Look at the place to edit data for existing posts');
-        }
-
-
-      });
-
-
-
-
-
-
-            // update_iframes('iframe#media_upload', '#multimediadata', data)
-            // update_multimedia_iframes('iframe#multimedia_upload', '#multimediadata', data)
-            // update_multimedia_iframes('iframe#layout_upload', '#multimediadata', data)
-
-
+            update_iframes('iframe#media_upload', '#multimediadata', data)
+            update_multimedia_iframes('iframe#multimedia_upload', '#multimediadata', data)
+            update_multimedia_iframes('iframe#layout_upload', '#multimediadata', data)
 
             modal_body.attr('id', id)
             $(add_new_obj_elem).click()
@@ -203,73 +204,72 @@ imdata_node.children().wrapAll('<div class="chosen_images"></div>')
     }
     this.read_structures = function(z) {
 
-      // z += '&house_deploy_date=' + $('#datepicker').val()
+        // z += '&house_deploy_date=' + $('#datepicker').val()
+        // finally you must get &layouts=[{media: 'bla.jpg', text: 'bla bla'}, {...}]&otherstructure=[{media:
 
-      // finally you must get &layouts=[{media: 'bla.jpg', text: 'bla bla'}, {...}]&otherstructure=[{media:
+        let result = []
+        let all_structures_data = {}
 
-    let result = []
-    let all_structures_data = {}
-
-      $('.db_group[input_type="structure"]').each(function() {
-        let name =  $(this).attr('name')
-
-        $(this).find('.minigroups').each(function(){
-          let minigroup_result = {}
-        $(this).find('.minigroup').each(function(){
-          let this_attr = $(this).attr('type')
-          if (this_attr === 'text') {
-            let value = $(this).find('input').val().replace(/[\n\r]+/g, '');
-          if (value && value !== '' ) minigroup_result[this_attr] = value
-          }
-          if (this_attr === 'media') {
-            let value = $(this).find('iframe').contents().find('div#multimediadata').text().replace(/[\n\r]+/g, '').replace(/[      ]+/g, '');
+          $('.db_group[input_type="structure"]').each(function() {
+            let name =  $(this).attr('name')
+            $(this).find('.minigroups').each(function(){
+              let minigroup_result = {}
+            $(this).find('.minigroup').each(function(){
+              let this_attr = $(this).attr('type')
+              if (this_attr === 'text') {
+                let value = $(this).find('input').val().replace(/[\n\r]+/g, '');
               if (value && value !== '' ) minigroup_result[this_attr] = value
-          }
-        })
-        result.push(minigroup_result)
-        })
-       all_structures_data[name] = result
+              }
+              if (this_attr === 'media') {
+                let value = $(this).find('iframe').contents().find('div#multimediadata').text().replace(/[\n\r]+/g, '').replace(/[      ]+/g, '');
+                  if (value && value !== '' ) minigroup_result[this_attr] = value
+              }
+            })
+            result.push(minigroup_result)
+            })
+           all_structures_data[name] = result
 
-      })
+          })
 
-      for (let prop in all_structures_data) {
-    z += '&' + prop + '=' + JSON.stringify(all_structures_data[prop])
+          for (let prop in all_structures_data) {
+        z += '&' + prop + '=' + JSON.stringify(all_structures_data[prop])
+            }
+          return z
         }
-      return z
-    }
-    this.getdata = function() {
-      read_structures = this.read_structures;
-      clear_image_data = this.clear_image_data;
-      read_iframes = this.read_iframes;
-      read_non_iframe_inputs = this.read_non_iframe_inputs;
-      read_datepickers = this.read_datepickers;
-      let z = $('.' + ajax_form + ' input[name!=editor1]').not("[name='home_background']").not("[type='radio']").not(".structure input").serialize()
-      if (document.querySelector('iframe.cke_wysiwyg_frame.cke_reset')) {
-       z += '&content=' + document.querySelector('iframe.cke_wysiwyg_frame.cke_reset').contentWindow.document.activeElement.innerHTML ;
-     }
+        this.getdata = function() {
+          read_structures = this.read_structures;
+          clear_image_data = this.clear_image_data;
+          read_iframes = this.read_iframes;
+          read_non_iframe_inputs = this.read_non_iframe_inputs;
+          read_datepickers = this.read_datepickers;
+          let z = $('.' + ajax_form + ' input[name!=editor1]').not("[name='home_background']").not("[type='radio']").not(".structure input").serialize()
+          if (document.querySelector('iframe.cke_wysiwyg_frame.cke_reset')) {
+           z += '&content=' + document.querySelector('iframe.cke_wysiwyg_frame.cke_reset').contentWindow.document.activeElement.innerHTML ;
+         }
 
-      z = read_iframes(z);
-      z = read_non_iframe_inputs(z);
-      z = read_datepickers(z);
-      z = read_structures(z)
-      z = decodeURI(z)
+          z = read_iframes(z);
+          z = read_non_iframe_inputs(z);
+          z = read_datepickers(z);
+          z = read_structures(z)
+          z = decodeURI(z)
 
 
-      return z
-    }
-    this.get_iframe_description = function() {
-      let iframe = document.querySelector('iframe.cke_wysiwyg_frame.cke_reset');
-      if (iframe) {
-        let iframeDocument = iframe.contentWindow.document.activeElement.innerHTML;
-        return iframeDocument;
-      }
-      return false;
-    }
+          return z
+        }
+        this.get_iframe_description = function() {
+          let iframe = document.querySelector('iframe.cke_wysiwyg_frame.cke_reset');
+          if (iframe) {
+            let iframeDocument = iframe.contentWindow.document.activeElement.innerHTML;
+            return iframeDocument;
+          }
+          return false;
+        }
     this.senddata = function() {
       z = this.getdata()
       i = this.get_iframe_description()
 
-       console.log('SENDING DATA STOPPED. You must re-enable content in "getdata" .AND Z is', z); //return false
+       console.log('SENDING DATA STOPPED. You must re-enable content in "getdata" .AND Z is', z);
+        return false
       if (url === '/c_update') {
         let id = $('.modal-body').attr('id')
         url = '/cupdate/' + id
@@ -375,9 +375,13 @@ var tablo1 = $('#example2').DataTable({
     }
     return false;
   });
+  $("div").on('click', '.discard', (function(el) {
+    removeParent($(this))
+  }));
+
   $(".minicontrols").click(function() {
     let minigroup_data = $(this).siblings('.ministructure').find('.minigroups').first().html()
-    $(this).siblings('.ministructure').append('<div class="minigroups">' + minigroup_data + '</div>')
+    $(this).siblings('.ministructure').append('<div class="minigroups"><div class="discard"><i class="fa fa-close"></i></div>' + minigroup_data + '</div>')
     return false;
   });
   jQuery('a.trash').click(function() {
@@ -395,10 +399,6 @@ var tablo1 = $('#example2').DataTable({
       }
     });
   })
-
-
-
-
 
 
   make_roundy_images('img.obj')

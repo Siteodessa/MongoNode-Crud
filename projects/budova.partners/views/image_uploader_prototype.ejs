@@ -8,7 +8,11 @@
   <style>iframe#media_upload {
       width:  100%;
       border: none;
-  }@-webkit-keyframes preload-show-1 {
+  }
+  form#media_uploader .btn {
+      padding: 0 0.95rem;
+  }
+  @-webkit-keyframes preload-show-1 {
   from {
     -webkit-transform: rotateZ(60deg) rotateY(-90deg) rotateX(0deg);
             transform: rotateZ(60deg) rotateY(-90deg) rotateX(0deg);
@@ -547,7 +551,6 @@
       border: none !important;
   }.input-field {
     position: relative;
-    margin-top: 1.8rem !important;
 }
   .link {
     opacity: 0;0
@@ -559,7 +562,7 @@ div#multimediadata {
   display: flex;
   position: absolute;
   width: calc(100% - 90px);
-  display: none
+  margin: 0 -25px;
 }
 img.responsive-img {
     max-height: 40px;

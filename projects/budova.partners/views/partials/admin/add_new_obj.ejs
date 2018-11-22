@@ -34,19 +34,7 @@
 <%    } %>
 
 <style>
-  .minigroup[type="media"] {
-    width: 85px;
-}
-.ministructure {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}.structure {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-label.radion { background: #fff; padding:  6px 8px; border-radius: 15px; color: #f39c12; cursor: pointer; box-shadow: 0px 0px 0px transparent; transition: .5s; margin: 4px 6px;    border: 1px solid #fff; } .page_added { display:  inline; margin:  0 5px; } iframe#media_upload { width:  100%; border: none; height: 90px; } .db_group { margin:  5px 0 10px; } div#result_form p { padding:  10px  10px 5px; transform: translate(-100%); transition: .5s; opacity: 0; } div#result_form p.shown { transform: translate(0%); opacity: 1; } div#result_form  { overflow: hidden;margin: 0 } label.radion.checked { background: linear-gradient(to bottom, #48c6ef 0%, #6f86d6 100%);  color: #fff; } iframe#media_upload, iframe#multimedia_upload { width:  100%; border: none; height: 90px; } </style>
+</style>
 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-warning"> Добавить новый </button>
         <div class="modal modal-warning fade" id="modal-warning" style="display: none;">
           <div class="modal-dialog">
@@ -60,18 +48,24 @@ label.radion { background: #fff; padding:  6px 8px; border-radius: 15px; color: 
               <div class="modal-body">
 
 
-  <% function cast_structure(structure_model,input_type, schema, prop, label, structure_model_ru_label){ %>
+  <% function cast_structure(structure_model,input_type, schema, prop, label, structure_model_ru_label, params){ %>
           <% result = ''  %>
           <% result += `  <div class="db_group" name="${prop}" input_type="${input_type}" >`;  %>
 
-          <% result += `<label></label>`;  %>
+          <% result += `<label class="structure_label">${label}</label>`;  %>
+
           <% if (typeof structure_model == 'string') { return }  %>
           <% result += `  <div class="structure">`;  %>
           <% result += `  <div class="ministructure">`;  %>
           <% result += `  <div class="minigroups">`;  %>
-          <% structure_model.forEach(elem => {  %>
-            <% result += `<div class="minigroup" type="${elem}">${cast_input(structure_model,elem, schema,input_type, label, structure_model_ru_label )}</div>`;/* create 1 function for all types and call it  PRINTER  */  %>
-          <% });%>
+          <% for (let i = 0; i < structure_model.length; i++) { %>
+
+            <% result += `<div class="minigroup" type="${structure_model[i]}">${cast_input(structure_model,structure_model[i], schema,input_type, structure_model_ru_label.structure_model_ru_label[i], structure_model_ru_label.structure_model_ru_label[i] )}</div>`;/* create 1 function for all types and call it  PRINTER  */  %>
+
+
+          <%       } %>
+
+
           <% result += `</div>`;  %>
           <% result += `</div>`;  %>
           <% result += `<div class="minicontrols"><div class="plus_icon"><i class="fa fa-plus"></i></div></div>`;/* create 1 function for all types and call it  PRINTER  */  %>
@@ -80,45 +74,46 @@ label.radion { background: #fff; padding:  6px 8px; border-radius: 15px; color: 
           <%  return result;  %>
   <%    } %>
 
-  <% function cast_input(structure_model,input_type, schema, prop, label, structure_model_ru_label) { %>
+  <% function cast_input(structure_model,input_type, schema, prop, label, structure_model_ru_label, params) { %>
       <% let result; %>
       <% if (input_type == 'media') { %>
                   <% result = `<div class="db_group" name="${prop}"  input_type="${input_type}" >
+                    <label class="simple">${label}</label>
                   <iframe scroll="no" name="${prop}" id="media_upload" src="/media_upload"></iframe>
                   <input class="hidden" type="text" name="${prop}" class="${prop}"> </div> ` }%>
-      <% if (input_type == 'text') {  if(prop == 'structure') { prop = input_type; label = '';}     %>
+      <% if (input_type == 'text') {  if(prop == 'structure') { prop = input_type; labeltype = 'structure'} else { labeltype = 'simple'}    %>
                   <% result = `<div class="db_group" name="${prop}"  input_type="${input_type}" >
-                  <label>${label}</label>
+                  <label class="${labeltype}">${label}</label>
                   <input class="form-control input-lg" name="${prop}" type="text"> </div>` }%>
       <% if (input_type == 'radio') {      %>
                   <% result = ''; let enums = enumo(schema, prop);  %>
                   <% result += `<div class="db_group" name="${prop}"  input_type="${input_type}" >
-                  <label>${label}</label>`; %>
-                  <% result += `<div>`;
+                  <label class="simple">${label}</label>`; %>
+                  <% result += `<div class="radios">`;
                   enums.forEach(elem => { result += `<label class="radion">
                   <input class="" name="${prop}" type="radio"  value="${elem}"> ${elem} </label>`; });
                   result += `</div>`; %> <% result += `</div>`; %> <% } %>
       <% if (input_type == 'texteditor') { %>
                   <% result = '';  %>
                   <% result += `<div class="db_group" name="${prop}"  input_type="${input_type}" >
-                  <label>${label}</label>`; %>
+                  <label class="simple">${label}</label>`; %>
                   <% result += `<div class="box box-info"> <div class="box-body pad">
                   <form>
                   <textarea id="editor1" name="editor1" rows="10" cols="80"> </textarea>
                   </form> </div> </div>`; %>
                   <% result += `</div>`; %> <% } %>
       <% if (input_type == 'structure') { %>
-                  <%  result = cast_structure(structure_model,input_type, schema, prop, label); } %>
+                  <%  result = cast_structure(structure_model,input_type, schema, prop, label, params); } %>
       <% if (input_type == 'datepicker') { %>
                   <% result = '';  result += `<div class="db_group" name="${prop}"  input_type="${input_type}" >
-                  <label>${label}</label> <div class="input-group date">
+                  <label class="simple">${label}</label> <div class="input-group date">
                   <div class="input-group-addon"> <i class="fa fa-calendar"></i> </div>
                   <input type="text" class="form-control pull-right" id="datepicker"> </div> </div> `;  } %>
       <% if (input_type == 'multimedia') { %>
                   <% result = '';  result += `<div class="db_group" name="${prop}"  input_type="${input_type}" >
-                  <label>${label}</label>
+                  <label class="simple">${label}</label>
                   <iframe scroll="no"  name="${prop}" id="multimedia_upload" src="/multimedia_upload"></iframe>
-                  <input class="hidden" type="text" name="${prop}" class="${prop}">`;} %>
+                  <input class="hidden" type="text" name="${prop}" class="${prop}"> </div>`;} %>
   <% return result;} /* end function cast_input */%>
 
 
@@ -126,6 +121,8 @@ label.radion { background: #fff; padding:  6px 8px; border-radius: 15px; color: 
 
 <% for (let prop in schema.tree) { %>
 <% let tree_prop = schema.tree[prop] %>
+<% let params = {};  %>
+<% params.structure_model_ru_label = tree_prop["structure_model_ru_label"] || 'Не подписано';  %>
 <% let input_type = tree_prop["input_type"] || '' %>
 <% let note_type = tree_prop["note_type"] || '';  %>
 <% let visibility = tree_prop["visibility"] || '';  %>
@@ -134,7 +131,7 @@ label.radion { background: #fff; padding:  6px 8px; border-radius: 15px; color: 
 <% let structure_model_ru_label = tree_prop["structure_model_ru_label"] || prop;  %>
 <% if (visibility == 'hidden') { continue; }  %>
 <% if (!is_supported_note_type(note_type, 'Объект')) { continue; } %>
-<%- cast_input(structure_model,input_type, schema, prop, label, structure_model_ru_label);%>
+<%- cast_input(structure_model,input_type, schema, prop, label, structure_model_ru_label, params);%>
 
 <% } %>
               </div> <div id="result_form">   <p></p></div>

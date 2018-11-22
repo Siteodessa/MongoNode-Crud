@@ -1,11 +1,18 @@
+<div class="single_tab" id="single_tab">
+<% function check_structure(el) {
+  if (el !== '' && typeof el !== 'undefined' && el !== '[{}]') {
+    return true
+  } return false
+} %>
 <ul class="nav nav-pills">
-  <li><a class="tab_active"  href="#home">Описание</a></li>
-  <li><a  href="#menu1">Цены</a></li>
-  <li><a  href="#menu2">Рассрочка</a></li>
-  <li><a  href="#menu3">Планировки</a></li>
+  <li><a class="tab_active"  href="#single_tab">Описание</a></li>
+  <li><a  href="#single_tab1">Цены</a></li>
+  <li><a  href="#single_tab2">Рассрочка</a></li>
+  <%  if (check_structure(d.layouts)) { %>
+  <li><a class="tab_active"  href="#single_tab3">Планировки</a></li>
+  <%  } %>
 </ul>
 <div id="home" class="tab-pane fade in active">
-
 <% let construction1 = `    <h3 class="underlined">Конструктивная характеристика комплекса</h3>
     <div class="rows">
       <div class="row">
@@ -125,7 +132,6 @@
     </div>
 </div>
    ` %>
-
 <div class="inline-flex only-desk">
   <div class="sticky_block">
     <%- construction1 %>
@@ -137,14 +143,11 @@
   <%- construction3 %>
   </div>
 </div>
-
-
 <div class="inline-flex only-mob construction_slider">
   <div class="container">
   <% include ../single/construction_slider %>
 </div>
 </div>
-
   <script>
       function sticky_block (parent, child){
     $(parent).children(child).on('click', function(){
@@ -156,3 +159,4 @@
       }
     sticky_block ('.inline-flex', '.sticky_block')
   </script>
+</div>
