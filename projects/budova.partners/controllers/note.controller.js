@@ -105,20 +105,31 @@ exports.findOne = (req, res) => {// Find a single note with a noteId
 };
 
 
-
+function remove_duplicates(the_data) {
+  for (let prop in the_data) {
+     if (the_data[prop][1] && the_data[prop][0] === the_data[prop][1]) { the_data[prop] = the_data[prop][0] }
+     if (the_data[prop].split(',') && the_data[prop].split(',')[0] === the_data[prop].split(',')[1]) { the_data[prop] = the_data[prop].split(',')[0] }
+   }
+   return the_data
+}
 exports.custom_update = (req, res) => {
 let the_data = req.body;
-the_data["gallery"] = the_data["gallery"][1].replace('[object Object]', '');
-the_data["gallery"] = JSON.stringify(the_data["gallery"])
-the_data["prices_start_at_per_meter"] = the_data["prices_start_at_per_meter"].replace('"', '');
 
-for (let prop in the_data) {
-   if (the_data[prop][1] && the_data[prop][0] === the_data[prop][1]) { the_data[prop] = the_data[prop][0] }
-   if (the_data[prop].split(',') && the_data[prop].split(',')[0] === the_data[prop].split(',')[1]) { the_data[prop] = the_data[prop].split(',')[0] }
- }
+
+console.log('DATAgallery', the_data["gallery"]);
+
+the_data["gallery"] = the_data["gallery"].replace('"', '');
+the_data["prices_start_at_per_meter"] = the_data["prices_start_at_per_meter"].replace('"', '');
+console.log('DATAgallery', the_data["gallery"]);
+
+
+the_data = remove_duplicates(the_data)
+
 
     Note.findByIdAndUpdate(req.params.noteId, the_data, {new: true})
     .then(note => {
+
+      console.log('LOOK WHAT I VE SAVED', note);
         if(!note) {
             return res.status(404).send({
                 message: "Note not found with id " + req.params.noteId
