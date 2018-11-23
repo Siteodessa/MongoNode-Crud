@@ -9,7 +9,7 @@
   <li><a  href="#single_tab1">Цены</a></li>
   <li><a class="tab_active"  href="#single_tab2">Рассрочка</a></li>
   <%  if (check_structure(d.layouts)) { %>
-  <li><a class="tab_active"  href="#single_tab3">Планировки</a></li>
+  <li><a class=""  href="#single_tab3">Планировки</a></li>
   <%  } %>
 </ul>
 <div id="menu2" class="tab-pane fade">
@@ -20,37 +20,43 @@
       <span class="phone_icon"><img src="/images/phone.png" /></span>
     </div>
   </div>
+
+
+
+
+    <% let construct = JSON.parse(d.installments) %>
+
 <div class="prices">
   <h3 class="underlined text-center">Рассрочка</h3>
   <div class="rows">
     <div class="row">
       <div class="col-md-6">
         <span class="circle"></span>
-          <span class="bold">Первоначальный взнос- от 4%</span>
+          <span class="bold"> <%= construct[0].text %></span>
       </div>
       <div class="col-md-6">
         <span class="circle"></span>
-          <span class="bold">Рассрочка до 10 лет</span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <span class="circle"></span>
-          <span class="bold">Первоначальный взнос- от 4%</span>
-      </div>
-      <div class="col-md-6">
-        <span class="circle"></span>
-          <span class="bold">Первоначальный взнос- от 4%</span>
+          <span class="bold"> <%= construct[1].text %></span>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6">
         <span class="circle"></span>
-          <span class="bold">Первоначальный взнос- от 4%</span>
+          <span class="bold"> <%= construct[2].text %></span>
       </div>
       <div class="col-md-6">
         <span class="circle"></span>
-          <span class="bold">Первоначальный взнос- от 4%</span>
+          <span class="bold"> <%= construct[3].text %></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <span class="circle"></span>
+          <span class="bold"> <%= construct[4].text %></span>
+      </div>
+      <div class="col-md-6">
+        <span class="circle"></span>
+          <span class="bold"> <%= construct[0].text %></span>
       </div>
     </div>
     </div>

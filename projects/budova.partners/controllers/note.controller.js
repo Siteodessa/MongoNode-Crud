@@ -112,18 +112,35 @@ function remove_duplicates(the_data) {
    }
    return the_data
 }
+
+
+String.prototype.replaceAll = function(search, replace){
+  return this.split(search).join(replace);
+}
+
+
+function filter_image_field(image_string) {
+   return image_string.replace(/\\n/g, '').replace('"', '').replace('  ', ' ').replace(/\r?\n/g, "").replace('  ', ' ').replace(' ', '').replace(' ', '').replace(' ', '').replace(' ', '').replace(' ', '')
+}
+function filter_image_field2(image_string) {
+   return image_string.replace(/\\n/g, '').replace('"', '').replace(/\r?\n/g, "").replaceAll(' ', '')
+}
+function filter_galery_field_untested(image_string) {
+   return image_string.replace(/\//g, '').replace('"', '').replace(/\r?\n/g, "").replaceAll(' ', '')
+}
+
+
+
+
+
+
 exports.custom_update = (req, res) => {
 let the_data = req.body;
 
 
-console.log('DATAgallery', the_data["gallery"]);
-
-the_data["gallery"] = the_data["gallery"].replace('"', '');
-the_data["prices_start_at_per_meter"] = the_data["prices_start_at_per_meter"].replace('"', '');
-console.log('DATAgallery', the_data["gallery"]);
-
-
-the_data = remove_duplicates(the_data)
+if (typeof the_data["home_background"] !== 'undefined') the_data["home_background"] = filter_image_field(the_data["home_background"])
+if (typeof the_data["gallery"] !== 'undefined') the_data["gallery"] = the_data["gallery"]
+if (typeof the_data["prices_start_at_per_meter"] !== 'undefined') the_data["prices_start_at_per_meter"] = the_data["prices_start_at_per_meter"]
 
 
     Note.findByIdAndUpdate(req.params.noteId, the_data, {new: true})

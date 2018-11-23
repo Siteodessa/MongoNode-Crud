@@ -17,6 +17,13 @@ $(function() {
       reader.readAsDataURL(input.files[0]);
     }
   }
+
+
+  String.prototype.replaceAll = function(search, replace){
+    return this.split(search).join(replace);
+  }
+
+
   function removeParent(el) {
     el.parent().detach()
   }
@@ -32,7 +39,8 @@ $(function() {
   }
   function collectText(obj, minigroup_result , this_attr) {
     let value = obj.find('input').val().replace(/[\n\r]+/g, '');
-  if (value && value !== '' ) minigroup_result[this_attr] = value
+  if (value && value !== '' && JSON.stringify(value) !== '{}') minigroup_result[this_attr] = value
+   minigroup_result = JSON.parse(JSON.stringify( minigroup_result).replaceAll(',{}'))
   return minigroup_result
 }
   function collectMedia(obj, minigroup_result , this_attr) {
@@ -96,6 +104,15 @@ $(function() {
       iframe_elem.css({ "position": "absolute" })
       iframe_elem.find('img').css({ "max-width": "60px", "margin": "0 20px -3px 90px", "max-height": "40px" })
     }
+    this.update_prices_structure = function(el , data_el) {
+      if (data_el)
+{       data_el = JSON.parse(data_el)
+        let len = data_el.length
+      for (let i = 0; i < len; i++) {
+        let element = el + ' .minigroup:nth-child('+ [i + 1] +') input'
+        $(element).val(data_el[i].text)
+      }}
+    }
     this.update_multimedia_iframes = function(iframe0, iframe_elem, data) {
       var iframe0 = $(iframe0);
       var iframe_elem = iframe0.contents().find(iframe_elem)
@@ -106,12 +123,10 @@ $(function() {
       data['gallery'] = data['gallery'].substring(0, data['gallery'].length - 1)
       iframe0.contents().find('div#multimediadata').text(data['gallery'])
 
-
-console.log('update_multimedia_iframes БЛЯДИНА',  data['gallery']);
-console.log(data);
-
-
+      console.log(data['gallery']);
       data['gallery'].split(',').forEach(elem => {
+
+        if (elem !== '')
         gallery_html += '<div class="gallery_elem"><span id="the_image"><img src="/uploads/' + elem + '"></span></div>'
       });
        iframe_elem.html(gallery_html + '</div>')
@@ -120,6 +135,7 @@ console.log(data);
       update_rows_data = this.update_rows_data
       update_iframes = this.update_iframes
       update_multimedia_iframes = this.update_multimedia_iframes
+      update_prices_structure = this.update_prices_structure
       $('.elems.edit').click(function() {
         let id = $(this).find('i').attr('id')
         $.get({
@@ -130,6 +146,7 @@ console.log(data);
           })
           .done(function(data) {
             data = JSON.parse(data)
+            // console.log('we begin', data);
             update_rows_data('.db_group', data)
             let iframe = document.querySelector('iframe.cke_wysiwyg_frame.cke_reset');
             let iframeElement;
@@ -137,18 +154,24 @@ console.log(data);
             var modal_body = $('.modal-body');
           let editor_iframes = ''
            $('iframe').each(function(){
+
+
+
                   let name = $(this).attr('name')
                   let imdata_node = $(this).contents().find('div#multimediadata')
                   if (name && imdata_node && name !== 'structure')  {
                           data[name].split(',').forEach(elem => {
                             elem = elem.replace(/['"«»\\]/g, '');
+                            if (typeof elem !== 'undefined' && elem !== '')
                             imdata_node.append('<div class="chosen_image"><img src="/uploads/'+ elem +'"><div class="link">'+ elem +'</div></div>')
                           });
                           imdata_node.children().wrapAll('<div class="chosen_images"></div>')
                   }
                   if (name && imdata_node && name === 'structure')  {
                     let parent = $('div[name="layouts"]').find('.ministructure')
+                    if (data["layouts"] && data["layouts"] !== '')
                         JSON.parse(data["layouts"]).forEach(function(elem){
+                          if (typeof elem.text !== 'undefined' && elem.text !== 'undefined') 
                           parent.prepend('<div class="minigroups"><div class="discard"><i class="fa fa-close"></i></div><div class="minigroup" type="media"><div class="db_group" name="structure" input_type="media"> <img src="/uploads/' + elem.media + '"><input class="hidden" value="' + elem.media + '" type="text" name="structure"> </div> </div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem.text + '" name="text" type="text"> </div></div></div>')
                         })
                   }
@@ -156,6 +179,10 @@ console.log(data);
             update_iframes('iframe#media_upload', '#multimediadata', data)
             update_multimedia_iframes('iframe#multimedia_upload', '#multimediadata', data)
             update_multimedia_iframes('iframe#layout_upload', '#multimediadata', data)
+            update_prices_structure('.db_group[input_type="structure"][name="prices"]', data["prices"])
+            update_prices_structure('.db_group[input_type="structure"][name="prices"]', data["prices"])
+            update_prices_structure('.db_group[input_type="structure"][name="construction_characteristics"]', data["construction_characteristics"])
+            update_prices_structure('.db_group[input_type="structure"][name="installments"]', data["installments"])
             modal_body.attr('id', id)
             $(add_new_obj_elem).click()
             $('button.save').hide()
@@ -205,7 +232,7 @@ console.log(data);
     }
 
 
-    this.read_struct = function(z, obj, name) {
+    this.read_struct_layouts = function(z, obj, name) {
       result = []
       obj.find('.minigroups').each(function(){
         let minigroup_result = {}
@@ -219,7 +246,74 @@ console.log(data);
       z += '&' + name + '=' + JSON.stringify(result)
       return z
 }
-    read_struct = this.read_struct
+
+
+
+this.read_struct_subprices = function(obj, minigroup_result , this_attr) {
+
+
+  let value = obj.find('input').val().replace(/[\n\r]+/g, '');
+if (value && value !== '' ) minigroup_result[this_attr] = value
+return minigroup_result
+
+}
+read_struct_subprices = this.read_struct_subprices
+
+
+    this.read_struct_prices = function(z, obj, name) {
+      result = []
+      obj.find('.minigroups').each(function(){
+        let minigroup_result = {}
+      $(this).find('.minigroup').each(function(){
+        minigroup_result = {}
+        let this_attr = $(this).attr('type')
+        if (this_attr === 'text') { result.push(collectText($(this), minigroup_result , this_attr)) }
+        if (this_attr === 'media') { result.push(collectMedia($(this), minigroup_result , this_attr)) }
+      })
+      })
+      z += '&' + name + '=' + JSON.stringify(result)
+      return z
+}
+
+    this.read_struct_characteristics = function(z, obj, name) {
+      result = []
+      obj.find('.minigroups').each(function(){
+        let minigroup_result = {}
+      $(this).find('.minigroup').each(function(){
+        minigroup_result = {}
+        let this_attr = $(this).attr('type')
+        if (this_attr === 'text') { result.push(collectText($(this), minigroup_result , this_attr)) }
+        if (this_attr === 'media') { result.push(collectMedia($(this), minigroup_result , this_attr)) }
+      })
+      })
+      z += '&' + name + '=' + JSON.stringify(result)
+      return z
+}
+
+    this.read_struct_installments = function(z, obj, name) {
+      result = []
+      obj.find('.minigroups').each(function(){
+        let minigroup_result = {}
+      $(this).find('.minigroup').each(function(){
+        minigroup_result = {}
+        let this_attr = $(this).attr('type')
+        if (this_attr === 'text') { result.push(collectText($(this), minigroup_result , this_attr)) }
+        if (this_attr === 'media') { result.push(collectMedia($(this), minigroup_result , this_attr)) }
+      })
+      })
+      z += '&' + name + '=' + JSON.stringify(result)
+      return z
+}
+
+
+
+
+
+    read_struct_layouts = this.read_struct_layouts
+    read_struct_characteristics = this.read_struct_characteristics
+    read_struct_installments = this.read_struct_installments
+    read_struct_prices = this.read_struct_prices
+
     this.read_structures = function(z) {
         // z += '&house_deploy_date=' + $('#datepicker').val()
         let result = []
@@ -228,7 +322,12 @@ console.log(data);
               obj = $(this)
             let name = obj.attr('name')
             let inptp =  obj.attr('input_type')
-            if ( ['layouts', 'construction_characteristics', 'prices', 'installments'].includes(name)) { z = read_struct(z, obj, name) }
+            if ( ['layouts'].includes(name)) { z = read_struct_layouts(z, obj, name) }
+            if ( ['prices'].includes(name)) { z = read_struct_prices(z, obj, name) }
+
+
+            if ( ['construction_characteristics'].includes(name)) { z = read_struct_characteristics(z, obj, name) }
+            if ( ['installments'].includes(name)) { z = read_struct_installments(z, obj, name) }
         })
         return z
       }
@@ -254,6 +353,7 @@ console.log(data);
           read_non_iframe_inputs = this.read_non_iframe_inputs;
           read_datepickers = this.read_datepickers;
           let z = $('.' + ajax_form + ' input[name!=editor1]').not("[name='home_background']").not("[name='gallery']").not("[type='radio']").not(".structure input").serialize()
+          z = decodeURI(z)
           if (document.querySelector('iframe.cke_wysiwyg_frame.cke_reset')) {
            z += '&content=' + document.querySelector('iframe.cke_wysiwyg_frame.cke_reset').contentWindow.document.activeElement.innerHTML ;
          }
@@ -261,7 +361,6 @@ console.log(data);
           z = read_non_iframe_inputs(z);
           z = read_datepickers(z);
           z = read_structures(z)
-          z = decodeURI(z)
           return z
         }
         this.get_iframe_description = function() {
@@ -275,7 +374,7 @@ console.log(data);
     this.senddata = function() {
       z = this.getdata_before_sending()
       i = this.get_iframe_description()
-       console.log(' | Pause | z=' , z);
+       // console.log(' | Pause | z=' , z);
        // return false
       if (url === '/c_update') {
         let id = $('.modal-body').attr('id')

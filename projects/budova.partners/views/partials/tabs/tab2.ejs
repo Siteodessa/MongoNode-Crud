@@ -9,7 +9,7 @@
   <li><a class="tab_active" href="#single_tab1">Цены</a></li>
   <li><a href="#single_tab2">Рассрочка</a></li>
   <%  if (check_structure(d.layouts)) { %>
-  <li><a class="tab_active"  href="#single_tab3">Планировки</a></li>
+  <li><a class=""  href="#single_tab3">Планировки</a></li>
   <%  } %>
 </ul>
   <div id="menu1" class="tab-pane fade">
@@ -21,6 +21,15 @@
     </div>
   </div>
 <div class="prices">
+
+
+
+  <% let construct = JSON.parse(d.prices) %>
+
+
+
+
+
   <h3 class="underlined text-center">Цены</h3>
   <div class="rows">
     <div class="row">
@@ -29,28 +38,28 @@
           <span class="bold">Однокомнатная</span>
       </div>
       <div class="col-md-6 col-sm-6">
-        <span>Площадь: от 23,7 м</span>
-        <span>Цена: от <mark>16 800 у.е.</mark></span>
+        <span>Площадь: от   <%= construct[0].text %> м <sup>2</sup></span>
+        <span>Цена: от <mark> <%= new Intl.NumberFormat('ru-RU').format(Number(construct[1].text)).replace(',', ' ')  %> у.е.</mark></span>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 col-sm-6">
         <span class="circle"></span>
-          <span class="bold">Фундаменты</span>
+          <span class="bold">Двухкомнатная</span>
       </div>
       <div class="col-md-6 col-sm-6">
-        <span>Площадь: от 23,7 м</span>
-        <span>Цена: от <mark>16 800 у.е.</mark></span>
+        <span>Площадь: от   <%= construct[2].text %> м<sup>2</sup></span>
+        <span>Цена: от <mark>  <%= new Intl.NumberFormat('ru-RU').format(Number(construct[3].text)).replace(',', ' ')  %>  у.е.</mark></span>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 col-sm-6">
         <span class="circle"></span>
-          <span class="bold">Фундаменты</span>
+          <span class="bold">Трехкомнатная</span>
       </div>
       <div class="col-md-6 col-sm-6">
-        <span>Площадь: от 23,7 м</span>
-        <span>Цена: от <mark>16 800 у.е.</mark></span>
+        <span>Площадь: от   <%= construct[4].text %> м<sup>2</sup></span>
+        <span>Цена: от <mark>  <%= new Intl.NumberFormat('ru-RU').format(Number(construct[5].text)).replace(',', ' ')  %> у.е.</mark></span>
       </div>
     </div>
     </div>
