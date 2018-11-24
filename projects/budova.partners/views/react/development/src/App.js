@@ -8,16 +8,12 @@ import cssfiles from './cssfiles.js'
 import LoopHeading from './fields.js'
 import FontAwesome from 'react-fontawesome';
 import './components/dropdown/styles/global.css';
-
 const App = ({  cards, filterTypes, onFindCard, onGetCards, onSelectedDistrict, onSelectedPrice, onToggleList, ownProps }) => {
   let cardInput = ''; let searchInput = ''; let taskInput = ''; let task_descInput = ''; let task_statusInput = '';
-
   const findCard = () => { onFindCard(searchInput.value) }
   const toggleList = (ev, name) =>{ onToggleList(name) }
   const selectedDistrict = (id, key, value) => { onSelectedDistrict(id, key, value) }
   const selectedPrice = (id, key, value) => { onSelectedPrice(id, key, value) }
-
-
       return (
       <div className="Cards">
         <div className="fields" >
@@ -27,15 +23,7 @@ const App = ({  cards, filterTypes, onFindCard, onGetCards, onSelectedDistrict, 
                   <input type="text" onChange={findCard} ref={(input) => { searchInput = input}} />
                   <button onClick={findCard}> <img alt="search" src="/brief/magnifying-glass.svg" /> </button>
                 </div>
-
-
-
               <div className="dropdown_menu">
-
-
-
-
-
               <div className="dd-wrapper">
                 <div className="dd-header" onClick={(ev) => toggleList(ev, filterTypes.districts.options[0].key)}>
                   <div className="dd-header-title">{filterTypes.districts.headerTitle}</div>
@@ -53,9 +41,6 @@ const App = ({  cards, filterTypes, onFindCard, onGetCards, onSelectedDistrict, 
                     ))}
                 </ul>}
               </div>
-
-
-
               <div className="dd-wrapper">
                 <div className="dd-header" onClick={(ev) => toggleList(ev, filterTypes.prices.options[0].key)}>
                   <div className="dd-header-title">{filterTypes.prices.headerTitle}</div>
@@ -72,10 +57,6 @@ const App = ({  cards, filterTypes, onFindCard, onGetCards, onSelectedDistrict, 
                     ))}
                 </ul>}
               </div>
-
-
-
-
               <div className="dd-wrapper">
                 <div className="dd-header" onClick={(ev) => toggleList(ev, filterTypes.spaces.options[0].key)}>
                   <div className="dd-header-title">{filterTypes.spaces.headerTitle}</div>
@@ -92,12 +73,6 @@ const App = ({  cards, filterTypes, onFindCard, onGetCards, onSelectedDistrict, 
                     ))}
                 </ul>}
               </div>
-
-
-
-
-
-
               <div className="dd-wrapper">
                 <div className="dd-header" onClick={(ev) => toggleList(ev, filterTypes.rooms.options[0].key)}>
                   <div className="dd-header-title">{filterTypes.rooms.headerTitle}</div>
@@ -114,14 +89,7 @@ const App = ({  cards, filterTypes, onFindCard, onGetCards, onSelectedDistrict, 
                     ))}
                 </ul>}
               </div>
-
-
-
               </div>
-
-
-
-
               <div className="dropdown_proto">
                 {/* <DropdownProto /> */}
               </div>
@@ -144,7 +112,8 @@ const App = ({  cards, filterTypes, onFindCard, onGetCards, onSelectedDistrict, 
                 <div className="panel bordered">
                   <div className="installments_icon" id="installments_icon"><img alt="search" src="/brief/icons8-money-52.png" /></div>
                   <a href="/doma/zhknagagarinskomplato">
-                    <h4>{card.title}</h4> <p> {card.address}</p> <p> {card.block}</p>
+                    <h4>{card.title}</h4>
+                    <p> {card.address}</p>
                     <span><img alt="search" src="/brief/icons8-money-52.png" /> <span className="bold">от {card.prices_start_at_per_meter}  у.е./м<sup>2</sup></span></span>
                     <span><img alt="search" src="/brief/icons8-calendar-96.png" /> {convert_quarter_string(card.house_deploy_date)}</span>
                     Узнать подробнее <i className="fa fa-arrow-right"></i>
@@ -162,20 +131,75 @@ const App = ({  cards, filterTypes, onFindCard, onGetCards, onSelectedDistrict, 
       </div>
     )
 }
-
-
 function districtsFilter(state, card) {
   let chosen = []
   state.lists.filterTypes.districts.options.map( i => { i.selected !== false ?  typeof i.value === 'string' ? chosen.push(i.value) : chosen = i.value : i.value })
-return chosen.includes(card.block)
+  let bool = chosen.includes(card.block)
+return bool
 }
+function priceFilter(state, card) {
+  let chosen = []
+  state.lists.filterTypes.prices.options.map( i => { i.selected !== false ?  typeof i.value === 'string' ? chosen.push(i.value) : chosen = i.value : i.value })
+  let bool = Number(JSON.parse(card.prices)[1].text) < chosen[1]
+return bool
+}
+function spaceFilter(state, card) {
+  let chosen = []
+  state.lists.filterTypes.spaces.options.map( i => {
+    i.selected !== false ? typeof i.value === 'string' ? chosen.push(i.value) : chosen.push(i.value) : i.value
+  })
+  let bool = false
+  let prices = JSON.parse(card.prices)
+  let spaces = [ Number(prices[0].text),
+                 Number(prices[2].text),
+                 Number(prices[4].text) ]
+  chosen.map( e => {
+    if (e[0] < spaces[0] && spaces[0] < e[1] ||
+        e[0] < spaces[1] && spaces[1] < e[1] ||
+        e[0] < spaces[2] && spaces[2] < e[1] ) bool = true
+   if (isNaN(spaces[0]) && isNaN(spaces[0]) && isNaN(spaces[0])) bool = true
+  });
+return bool
+}
+function undef_or_NaN(el) {
+  if (isNaN(Number(el)) && typeof el === 'undefined' ) {
+    return true
+  } return false
+}
+function roomFilter(state, card) {
+  let chosen = []
+  let availability = {}
+    let prices = JSON.parse(card.prices)
+  state.lists.filterTypes.rooms.options.map( i => {
+    i.selected !== false ? i.value.length < 2 ? chosen.push(i.value) : chosen = i.value : i.value
+  });
+  (!undef_or_NaN(prices[0].text) || !undef_or_NaN(prices[1].text)) ?  availability[0] = true : availability[0] = false;
+  (!undef_or_NaN(prices[2].text) || !undef_or_NaN(prices[3].text)) ?  availability[1] = true : availability[1] = false;
+  (!undef_or_NaN(prices[4].text) || !undef_or_NaN(prices[5].text)) ?  availability[2] = true : availability[2] = false;
+let bool = false
+for (let prop in chosen) {
+  if (availability[chosen[prop] - 1] === true) bool = true
+  }
+return bool
+}
+
+
+
+
+
+
+
+
 export default connect(
   (state, ownProps) => ({
     cards: state.cards
       .filter(
         card => card.note_type === 'Объект' &&
         card.title.toLowerCase().includes(state.filterCards.toLowerCase()) &&
-        districtsFilter(state, card)
+        districtsFilter(state, card) &&
+        priceFilter(state, card) &&
+        spaceFilter(state, card) &&
+        roomFilter(state, card)
       ),
   filterTypes: state.lists.filterTypes,
   ownProps
@@ -196,8 +220,6 @@ export default connect(
     },
     onSelectedPrice : (id, key, value) => {
       dispatch({ type: 'TOGGLE_SELECTED_ITEM', payload: {id:id, key:key}})
-
-    //WRITE A FILTER FOR PRICES NOW
 }
   }),
 )(App);

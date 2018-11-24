@@ -163,28 +163,28 @@ filterTypes : {
       {
         id: 0,
         title: 'Все',
-        value: ['1' ,'2', '3'],
+        value: [1, 2, 3],
         selected: true,
         key: 'rooms'
       },
       {
         id: 1,
         title: '1 комнатные',
-        value: 1,
+        value: [1],
         selected: false,
         key: 'rooms'
       },
       {
         id: 2,
         title: '2 комнатные',
-        value: 2,
+        value: [2],
         selected: false,
         key: 'rooms'
       },
       {
         id: 3,
         title: '3 комнатные',
-        value: 3,
+        value: [3],
         selected: false,
         key: 'rooms'
       }
