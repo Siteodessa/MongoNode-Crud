@@ -33,14 +33,14 @@ return month_number
   <div class="col-md-4">
         <div class="el_card">
           <div class="image_c">
-        <a href="/doma/<%= obj.page_link %>">    <img src="/uploads/<%= obj.home_background %>" alt=""></a>
+      <a href="/doma/<%= obj.page_link %>" style="background: url('/uploads/<%= obj.home_background %>')"></a>
           </div>
           <a href="/doma/<%= obj.page_link %>">
             <div class="panel bordered">
               <h4><%= obj.title %></h4>
               <p> <%= obj.address %></p>
-              <span><img src="/brief/icons8-money-52.png" /> <span class="bold">от <%= obj.prices_start_at_per_meter %>  у.е./м<sup>2</sup></span></span>
-              <span><img src="/brief/icons8-calendar-96.png" /><%- convert_quarter_string(obj.house_deploy_date) %></span>
+              <span><span class="svg_price"><%- include ../brief/money.svg %></span> <span class="bold">от <%= obj.prices_start_at_per_meter %>  у.е./м<sup>2</sup></span></span>
+              <span><span class="svg_calendar"><%- include ../brief/calendar.svg %></span><%- convert_quarter_string(obj.house_deploy_date) %></span>
           Узнать подробнее <i class="fa fa-arrow-right"></i>
         </a>
             </div>

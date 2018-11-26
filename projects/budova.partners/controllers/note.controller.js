@@ -5,6 +5,12 @@ function transliterate(word){
     return a[char] || char;
   }).join("");
 }
+
+function remove_quotation_at_end(a){
+  if (typeof a !== 'undefined' && a[a.length - 1] === '"' || a[a.length - 1] === "'") return a.slice(0, -1);
+  return a
+}
+
 String.prototype.replaceAll = function(search, replacement) {
     var target = this;
     return target.replace(new RegExp(search, 'g'), replacement);
@@ -37,6 +43,7 @@ function handle_page_link(req) {
  let page_link = req.body.title;
  page_link = remove_symbols(page_link);
  page_link = transliterate(page_link);
+ page_link = remove_quotation_at_end(page_link);
  return page_link;
 }
 exports.upload = (req, res) => {
@@ -62,7 +69,8 @@ let the_data = req.body
   /* Fix Duplicated radio inputs that occur during request */ for (let prop in the_data) { if ( the_data[prop][1] && the_data[prop][0] === the_data[prop][1] && !the_data[prop][2]) { the_data[prop] = the_data[prop][0] } }
  the_data.home_background = handle_background(req);
  the_data.page_link = handle_page_link(req);
-
+if (the_data.page_link) the_data.page_link = remove_quotation_at_end(the_data.page_link)
+console.log(the_data.content);
     const note = new Note(the_data);
     note.save()    // Save Note in the database
     .then(data => {
@@ -113,12 +121,6 @@ function remove_duplicates(the_data) {
    return the_data
 }
 
-
-String.prototype.replaceAll = function(search, replace){
-  return this.split(search).join(replace);
-}
-
-
 function filter_image_field(image_string) {
    return image_string.replace(/\\n/g, '').replace('"', '').replace('  ', ' ').replace(/\r?\n/g, "").replace('  ', ' ').replace(' ', '').replace(' ', '').replace(' ', '').replace(' ', '').replace(' ', '')
 }
@@ -142,11 +144,12 @@ if (typeof the_data["home_background"] !== 'undefined') the_data["home_backgroun
 if (typeof the_data["gallery"] !== 'undefined') the_data["gallery"] = the_data["gallery"]
 if (typeof the_data["prices_start_at_per_meter"] !== 'undefined') the_data["prices_start_at_per_meter"] = the_data["prices_start_at_per_meter"]
 
-
+if (the_data.page_link) the_data.page_link = remove_quotation_at_end(the_data.page_link)
+if (the_data.content) the_data.content = remove_quotation_at_end(the_data.content)
     Note.findByIdAndUpdate(req.params.noteId, the_data, {new: true})
     .then(note => {
 
-      console.log('LOOK WHAT I VE SAVED', note);
+
         if(!note) {
             return res.status(404).send({
                 message: "Note not found with id " + req.params.noteId

@@ -60,7 +60,7 @@ function print_swiper_gallery(gallery_links_array) {
 
 
 %>
-<% if (print_swiper_gallery(d['gallery']) !== false && d['gallery'] !== '""') { %>
+<% if (print_swiper_gallery(d['gallery']) !== false && d['gallery'] !== '""' && d['gallery'] !== '') { %>
    <div class="swiper-container">
      <div class="swiper-wrapper">
        <%- print_swiper_gallery(d['gallery']) %>

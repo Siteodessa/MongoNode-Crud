@@ -10,6 +10,46 @@
 	    transition: 0.45s;
 }
 
+.officespage h4 {
+	color:#444;    font-weight: bold;
+}
+
+.col-md-12 .el_card .image_c + a {
+  display:block;
+  width:100%
+}.panel.bordered span.get_more {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+.panel.bordered .get_more a {
+	background: #3d85cd;
+
+    color: #fff;
+    display: block;
+    padding: 10px 35px 11px;
+}
+.panel.bordered:hover .get_more a {
+    background: #fff;
+    color: #3d85cd;
+}.prices .col-md-6 span.bold {
+    font-size: 18px;
+}
+.col-md-12 .el_card .image_c + a .panel.bordered {
+    margin-left: 0;
+    width: 100%;
+    height: 100%;
+}
+.prices_button {
+    position: absolute;
+    top: 30px;
+    left: 10.5%;
+}
+.offices_advantages .prices.installments {
+    border: none;
+}
+.image_c {height: 200px;}
 @charset "utf-8";
 .room_image img {
     width:  100%;
@@ -146,11 +186,20 @@ span.gray_icon {
     padding: 4px;
     border: none;
     background: transparent;
-    transform: translate(-100%,-10%);
+    -webkit-transform: translate(-100%,-10%);
+        -ms-transform: translate(-100%,-10%);
+            transform: translate(-100%,-10%);
 }
 
 .cardsearch {
     padding: 0px 20px 10px;
+}
+body.singlepage .home {
+    height: 70vh;
+}
+
+body.singlepage .swiper-wrapper {
+    top: 35%;
 }
 .col-lg-12.col-xs-12.flex.cardsearch {
     display: -ms-flexbox;
@@ -190,10 +239,10 @@ li.main_nav_item a img {
     -webkit-filter: none;
             filter: none;
 }
-.swiper-slide {
-    /* margin-top: 10vh; */
+.singlepage ul.nav.nav-pills {
+    -ms-flex-pack: center;
+        justify-content: center;
 }
-
 .planning_tab ul.nav.nav-pills li a.tab_active:before {
     display: none;
 }
@@ -576,7 +625,7 @@ section
 *********************************/
 .hamburger_container
 {
-	/* display: none; */
+	display: none;
 }
 .hamburger i
 {
@@ -985,7 +1034,7 @@ section
 *********************************/
 .featured
 {
-	padding-top: 100px;
+	padding-top: 70px;
 	padding-bottom: 100px;
 	background: #fff;
 }
@@ -2299,7 +2348,7 @@ span.circle {
 }
 .sticky_block {
     background: #fff;
-    border: 1px solid #e2e2e2;
+    border: 1px solid #d0d0d0;
     padding: 37px;
     min-width: 46%;
 }
@@ -2336,13 +2385,21 @@ span.circle {
     border: 1px solid #e2e2e2;
     padding: 27px;
     background: #fff;
+    min-width: 70%;
+    margin: 0 auto;
 }
 .bold {
     font-weight: bold;
 }
 .prices span {
-    font-size: 18px;
+    font-size: 22px;
     display: inline-block;
+}
+.officespage .panel.bordered .cardboard, .officespage .panel.bordered .cardboard div {
+    height: 100%;
+}
+.officespage .panel.bordered .cardboard{
+
 }
 mark {
     color: #3d85cd;
@@ -2350,11 +2407,13 @@ mark {
     font-size: 30px;
     font-weight: bold;
     padding: 0;
+    position: relative;
+    top: 1px;
 }
 .prices .rows .row {
     -ms-flex-align: initial;
-        align-items: initial;
-    margin: 30px 0;
+    align-items: initial;
+    margin: 33px 0;
     line-height: 1.3;
 }
 .prices_tab {display: -ms-flexbox;display: flex;-ms-flex-pack: center;justify-content: center;}
@@ -2565,7 +2624,7 @@ span.big.circle {
     margin: 0;
 }
 .rows.advs {
-    margin: 120px 0 0;
+    margin: 80px 0 0;
 }
 .row.advs .col-md-6 {
     display: -ms-flexbox;
@@ -2587,7 +2646,7 @@ span.big.circle {
         justify-content: center;
 }
 .percents .flex-col {
-    margin: 80px 0 30px;
+    margin: 50px 0 20px;
 }
 .blue {
     color: #3d85cd;
@@ -2662,7 +2721,7 @@ span.blue.bold + p {
 .map .col-md-6 .row .space-between {
     margin: 0 20px;
 }
-.image_c {
+.col-md-4 .image_c {
     height: 200px;
     overflow: hidden;
 }
@@ -2684,36 +2743,27 @@ span.blue.bold + p {
     bottom: -110px;
 }
 .panel.bordered {
-    border-color: #3d85cd;
+    border-color: #a7bfd8;
     display: block;
     background: #fff;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: column;
-        flex-direction: column;
+    flex-direction: column;
     width: 92%;
     margin: 0 auto;
     -webkit-transform: translate(0px, -38px);
-        -ms-transform: translate(0px, -38px);
-            transform: translate(0px, -38px);
+    -ms-transform: translate(0px, -38px);
+    transform: translate(0px, -38px);
     padding: 20px 22px;
     cursor: pointer;
+    border-left: none;
 }
 .el_card span img {
     width: 26px;
 }
 .panel.bordered:hover {
     background: #3d85cd;
-}
-.panel.bordered:hover * {
-    color: #fff;
-    -webkit-transition: .5s;
-    -o-transition: .5s;
-    transition: .5s;
-}
-.panel.bordered:hover span img {
-    background: #fff;
-    margin: 0 7px 0 0;
 }
 .panel.bordered span img {
     padding: 5px;
@@ -2807,7 +2857,8 @@ li {}
     /* width: auto; */
     /* min-width: inherit; */
     /* -webkit-filter: none; */
-    filter: none;
+    -webkit-filter: none;
+            filter: none;
     height: auto !important;
 }
 .homepage .swiper-slide.swiper-slide-active + div img {
@@ -2820,11 +2871,15 @@ li {}
     z-index: 9;
     /* border: 4px solid #fff; */
     overflow: hidden;
-    filter: none;
+    -webkit-filter: none;
+            filter: none;
     margin-top: 0;
 }
 .panel h4 {
     font-size: 14px;
+    -webkit-transition: 0s;
+    -o-transition: 0s;
+    transition: 0s;
 }
 .panel.bordered p {
     margin: 0;
@@ -2952,8 +3007,8 @@ div.contacts h2 {
     top: 170px;
 }
 .singlepage .home_slider_container .swiper-slide.swiper-slide-active + div {
-    margin: 10vh 0vw;
-    width: auto !important;
+    /* margin: 10vh 0vw; */
+    /* width: auto !important; */
 }
 .vertical_button span.phone_icon {
     margin: 30px 0 10px -4px;
@@ -3064,7 +3119,8 @@ div.contacts h2 {
             transform: translate(0px, 0px);
 }
 .col-md-12 .el_card .image_c {
-    width: 30%;
+    width: 40%;
+    height: 300px;
 }
 .about .overlay.default {
     background: rgba(60, 176, 215, 0.58);
@@ -3084,7 +3140,10 @@ body.contacts .home {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-align: center;
-        align-items: center;
+    align-items: center;
+    -webkit-transition: 0s;
+    -o-transition: 0s;
+    transition: 0s;
 }
 .plannimg img {
     width: 100%;
@@ -3112,10 +3171,10 @@ div.phone {
     font-weight: bold;
 }
 .adv .overlay {
-    padding: 50px 0;
+    padding: 20px 0;
 }
 .tab-pane {
-    padding: 90px 0 70px;
+    padding: 60px 0 50px;
 }
 .login {
     display: none;
@@ -3633,20 +3692,58 @@ header.header.trans_300 .container{
 body {
     background: #fff;
 }
-
-
-
-// WEBPACK FOOTER //
-// ./src/css/so.css
-
 .homepage .swiper-slide.swiper-slide-duplicate-next img {}
 
-.swiper-slide.swiper-slide-active {}
-
+	.about .panel.bordered {
+	    margin: 10px 0;
+	}
 .homepage .swiper-slide img {
-    transform: scale(1) translate(0%,0%);
+    -webkit-transform: scale(1) translate(0%,0%);
+        -ms-transform: scale(1) translate(0%,0%);
+            transform: scale(1) translate(0%,0%);
 }
 
 .homepage .swiper-slide.swiper-slide-active + div img {
     border: 4px solid #fff;
+}
+
+div.single_tab {
+    padding: 120px 0 0;
+}
+
+.minihome {
+    margin: 100px 0;
+}
+
+header.header.trans_300 .container .row {
+    border: 1px solid #eaeaea;
+}
+
+.panel.bordered:hover svg path{ fill: #fff}
+
+span svg {
+    height: 25px;
+    margin: 0 10px 0 0;
+}
+
+.col-md-12 .el_card .image_c a {
+    height: 100%;
+    width: 100%;
+    display: block;
+    background-size: cover !important;
+}
+
+.panel.bordered:hover p, .panel.bordered:hover h4, .panel.bordered:hover span, .panel.bordered:hover a {
+    color: #fff;
+}
+
+span.svg_calendar svg {
+    height: 23px;
+    margin: 0 9.5px 0 1.5px;
+}
+
+.col-md-4 .image_c a {
+    background-size: cover !important;
+    display: block;
+    height: 100%;
 }

@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 const NoteSchema = mongoose.Schema
 ({
-    title:  { type: String, unique:true, input_type: 'text', ru_label: 'Заголовок', minlength: [4, 'Слишком короткий заголовок'], maxlength: [50, 'Слишком длинный заголовок'],note_type:["Объект", "Страница"]},
+    title:  { type: String, unique:true, input_type: 'text', ru_label: 'Заголовок', minlength: [4, 'Слишком короткий заголовок'], maxlength: [50, 'Слишком длинный заголовок'],note_type:["Объект", "Страница", "Новость"]},
     home_title: { type: String, input_type: 'text', ru_label: 'Подзаголовок на странице объекта'},
     page_link: { type: String, input_type: 'text', ru_label: 'Ссылка на страницу'},
     note_type:  { type: String, default: 'Объект', input_type: 'radio', enum:["Объект", "Страница"], ru_label: 'Тип объекта' , visibility:'hidden'},
     template_link:  { type: String, default: '', ru_label: 'Ссылка на шаблон', input_type: 'text', visibility:'hidden' },
-    home_background : { type: String, note_type:["Объект"], input_type: 'media', ru_label: 'Основное фото'},
+    home_background : { type: String, note_type:["Объект", "Новость"], input_type: 'media', ru_label: 'Основное фото'},
     gallery: { type: String, default: '', ru_label: 'Галерея', input_type: 'multimedia', note_type:["Объект", "Страница"]},
     subheading : { type: String, input_type: 'text' ,  ru_label: 'Подзаголовок', note_type:["Объект"]},
     prices_start_at : { type:  Number, input_type: 'text' ,ru_label:  'Цены от (Число)',note_type:["Объект"]},
@@ -18,8 +18,6 @@ const NoteSchema = mongoose.Schema
     additional_details : { type: String, input_type: 'text', ru_label: 'Дополнительная информация', default: 'Дополнительная информация'},
     additional_details_block : { type: String, input_type: 'text',  ru_label: 'Дополнительная информация Блок', note_type:["Объект"],visibility:'hidden'},
     prices_start_at_per_meter : {type: Number, input_type: 'text', ru_label: 'Цены от (у.е. за м2)', note_type:["Объект"]},
-    // listing_details_iconblock: Array,
-    // useful_links_menu_list: { type: String, input_type: 'text', note_type:["Объект"]},
     house_deploy_date:  { type: String, default: '' , ru_label: 'Дата сдачи',input_type: 'datepicker',note_type:["Объект"]},
     sections_quant: { type: String, ru_label: 'Количество Секций',
        note_type:["Объект"],input_type: 'radio', enum:["1", "2", "3", "4","5","6","7","8","9","10"] },
@@ -83,9 +81,17 @@ const NoteSchema = mongoose.Schema
               note_type:["Объект"]},
 
     description : { type: String, note_type:["Объект"], input_type: 'texteditor', ru_label: 'Описание дома'},
+    article : { type: String, note_type:["Новость"], input_type: 'texteditor', ru_label: 'Статья'},
     floors_quant: { type: String,  ru_label: 'Количество Этажей',
     note_type:["Объект"],input_type: 'radio', enum:["1", "2", "3", "4","5","6","7","8","9","10","11", "12", "13", "14","15","16","17","18","19","20","21", "22", "23", "24","25","26","27","28","29","30"] },
 
+    offices:  { type: String,
+                default: '',
+                ru_label: 'Офисы',
+                input_type: 'structure' ,
+                structure_model: ["media", "text", "text"] ,
+                structure_model_ru_label: ["Планировка", "Площадь", "Цена"] ,
+                note_type:["Объект"]},
 
                 // breadcrumbs : Array,
     // phone : { type: String, input_type: 'text'},

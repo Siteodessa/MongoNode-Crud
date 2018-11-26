@@ -30,7 +30,7 @@
 
     const note_router = require('./note.router.js')(cf);
     const admin_router = require('./admin.routes.js')(cf);
-    const custom_router = require('./custom.routes.js')(cf);
+    const custom_router = require('./pages.routes.js')(cf);
     const admin_api_router = require('./admin.api.routes.js')(cf);
     app = cf.app
     app.listen(27, () => console.log('app:ok'));

@@ -36,22 +36,75 @@ function convert_quarter_string(datestring) {
   if (typeof(datestring) == 'undefined' || datestring == null || datestring == '') { return }
   return '' + get_year_quarter(datestring.split('/')[0]) + ' ' + datestring.split('/')[2] + 'г'
 }
+
+String.prototype.replaceAll = function(search, replace){
+  return this.split(search).join(replace);
+}
 %>
+
+
+<% segment = (arr, n) => arr.reduce((r,e,i) => i%n ? (r[r.length-1].push(e), r) : (r.push([e]), r), []) %>
+<% let i_am_sorry = (a) => String(a).replaceAll('"', '').replaceAll('{text:', '').replace('}', '') %>
+
+<%    res = segment(obj.offices.replace('[', '').replace(']', '').split(','),3); %>
+<%   if (res.length > 0 && String(res[0]) !== '') { %>
+
+
+
+
 
 
 
       <div class="col-md-12">
         <div class="el_card">
           <div class="image_c">
-          <a href="/doma/<%= obj.page_link %>">  <img src="/uploads/<%= obj.home_background %>" alt=""></a>
+          <a href="/doma/<%= obj.page_link %>" style="background: url('/uploads/<%= obj.home_background %>')"></a>
           </div>
-          <a href="/doma/<%= obj.page_link %>">
             <div class="panel bordered">
-                  <h4><%= obj.title %></h4>
-                  <p> ул. Жаботинского 54а</p>
-                  <span><img src="/brief/icons8-money-52.png" /> <span class="bold">от <%= obj.prices_start_at_per_meter %>  у.е./м<sup>2</sup></span></span>
-                  <span><img src="/brief/icons8-calendar-96.png" /><%- convert_quarter_string(obj.house_deploy_date) %></span>
-              Узнать подробнее <i class="fa fa-arrow-right"></i></a>
+                <div class="cardboard">
+                  <div class="row">
+                  <div class="col-md-6">
+                    <a href="/doma/<%= obj.page_link %>">      <h4><%= obj.title %></h4>            </a>
+                      <p> ул. Жаботинского 54а</p>
+                      <span><span class="svg_calendar"><%- include ../brief/calendar.svg %></span> Сдача: <%- convert_quarter_string(obj.house_deploy_date) %></span>
+                      <p class="desc"> Фасад. Цоколь. Удобная планировка, под любой вид деятельности. Состояние после строителей</p>
+                  </div>
+                  <div class="col-md-6 ">
+                  <div class="flex-col offices">
+
+                    <div class="row">
+
+
+
+
+  <%    res.map( elem => {  %>
+  <%    if (i_am_sorry(elem[1]) !== 'undefined') {  %>
+    <div class="col-md-6">
+        <span class="unbordered bordereds">          <%= i_am_sorry(elem[1])  %> кв.м </span>
+              </div>
+
+                              <div class="col-md-6">
+                                <span class="bordered">   <%= i_am_sorry(elem[2])  %>  у.е.</span>
+                              </div>
+
+    <%  }}); %>
+
+
+
+
+                    </div>
+
+
+
+                    <span class="get_more">  <a href="/doma/<%= obj.page_link %>">   Узнать подробнее</a> </span>
+                  </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+
+
+<%  } %>

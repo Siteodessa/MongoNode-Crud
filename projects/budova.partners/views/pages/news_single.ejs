@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title> <%= d.title %></title>
+<% include ../partials/head %>
+<% include ../partials/single/head_single %>
+</head>
+<body class="newspage">
+<div class="super_container">
+
+
+  <div class="minihome"> </div>
+	<header class="header trans_300">
+		<% include ../partials/header %>
+	</header>
+
+
+
+
+<div class="row" id="row">
+<div class="container" id="">
+<div class="row featured_row" id="">
+
+
+<div class=" bordered">
+
+
+
+
+	<div class="floated">
+
+
+
+		<div class="post_content">
+
+				<div class="post_thumb">
+					  <img src="/uploads/<%- d.home_background %>" alt="">
+				</div>
+				<article>
+							<h1 class=" post_title blueb"> <%- d.title %> </h1>
+      <%- d.content %>
+    </article>
+	</div>
+	</div>
+
+
+
+</div>
+
+</div>
+</div>
+</div>
+
+  <div class="offices_advantages">
+		<% include ../partials/home_advantages %>
+	</div>
+	<div class="home_advantages">
+		<%   include ../partials/related  %>
+	</div>
+	<div class="seobox seob">
+	<% include ../partials/seobox %>
+</div>
+<div class="contact_us">
+	<% include ../partials/contact_us %>
+</div>
+
+
+	<% /* include ../partials/old_single */ %>
+	</div>
+	<script src="/js/jquery-3.2.1.min.js"></script>
+	<script src="/styles/bootstrap4/popper.js"></script>
+	<script src="/styles/bootstrap4/bootstrap.min.js"></script>
+	<script src="/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+	<script src="/plugins/easing/easing.js"></script>
+	<script src="/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+	<script src="/js/listings_single_custom.js"></script>
+	</body>
+	</html>

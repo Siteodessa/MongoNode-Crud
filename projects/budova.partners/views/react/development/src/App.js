@@ -8,12 +8,25 @@ import cssfiles from './cssfiles.js'
 import LoopHeading from './fields.js'
 import FontAwesome from 'react-fontawesome';
 import './components/dropdown/styles/global.css';
+
+import MoneyIcon from './css/money.svg';
+import CalendarIcon from './css/calendar.svg';
+
+import PlaceIcon from './css/placeholder.svg';
+import PriceIcon from './css/price-tag.svg';
+
+import ReduceIcon from './css/reduce.svg';
+import CountingIcon from './css/counting.svg';
+
+
 const App = ({  cards, filterTypes, onFindCard, onGetCards, onSelectedDistrict, onSelectedPrice, onToggleList, ownProps }) => {
   let cardInput = ''; let searchInput = ''; let taskInput = ''; let task_descInput = ''; let task_statusInput = '';
   const findCard = () => { onFindCard(searchInput.value) }
   const toggleList = (ev, name) =>{ onToggleList(name) }
   const selectedDistrict = (id, key, value) => { onSelectedDistrict(id, key, value) }
   const selectedPrice = (id, key, value) => { onSelectedPrice(id, key, value) }
+  let image_Style = (a) => {return { backgroundSize: "cover",display: "block",height: "100%", backgroundImage: "url(/uploads/" +  a  + ")" }}
+
       return (
       <div className="Cards">
         <div className="fields" >
@@ -31,7 +44,7 @@ const App = ({  cards, filterTypes, onFindCard, onGetCards, onSelectedDistrict, 
                     ? <FontAwesome name="angle-up"/>
                     : <FontAwesome name="angle-down"/>
                   }
-                  <span className="gray_icon"><img alt="search" src="/images/placeholder.svg" /></span>
+                  <span className="gray_icon"><img alt="search" src={PlaceIcon} /></span>
                 </div>
                 {filterTypes.districts.listOpen && <ul className="dd-list">
                    {filterTypes.districts.options.map((item) => (
@@ -47,7 +60,7 @@ const App = ({  cards, filterTypes, onFindCard, onGetCards, onSelectedDistrict, 
                   {filterTypes.prices.listOpen
                     ? <FontAwesome name="angle-up"/>
                     : <FontAwesome name="angle-down"/>
-                  }<span className="gray_icon"><img alt="search" src="/images/placeholder.svg" /></span>
+                  }<span className="gray_icon"><img alt="search" src={PriceIcon} /></span>
                 </div>
                 {filterTypes.prices.listOpen && <ul className="dd-list">
                    {filterTypes.prices.options.map((item) => (
@@ -63,7 +76,7 @@ const App = ({  cards, filterTypes, onFindCard, onGetCards, onSelectedDistrict, 
                   {filterTypes.spaces.listOpen
                     ? <FontAwesome name="angle-up"/>
                     : <FontAwesome name="angle-down"/>
-                  }<span className="gray_icon"><img alt="search" src="/images/placeholder.svg" /></span>
+                  }<span className="gray_icon"><img alt="search" src={ReduceIcon} /></span>
                 </div>
                 {filterTypes.spaces.listOpen && <ul className="dd-list">
                    {filterTypes.spaces.options.map((item) => (
@@ -79,7 +92,7 @@ const App = ({  cards, filterTypes, onFindCard, onGetCards, onSelectedDistrict, 
                   {filterTypes.rooms.listOpen
                     ? <FontAwesome name="angle-up"/>
                     : <FontAwesome name="angle-down"/>
-                  }<span className="gray_icon"><img alt="search" src="/images/placeholder.svg" /></span>
+                  }<span className="gray_icon"><img alt="search" src={CountingIcon} /></span>
                 </div>
                 {filterTypes.rooms.listOpen && <ul className="dd-list">
                    {filterTypes.rooms.options.map((item) => (
@@ -105,8 +118,7 @@ const App = ({  cards, filterTypes, onFindCard, onGetCards, onSelectedDistrict, 
               <div>
               <div className="el_card">
                 <div className="image_c">
-                  <a href={'/doma/' + card.page_link}>
-                    <img alt="search" src={'/uploads/' + card.home_background} />
+                  <a href={'/doma/' + card.page_link}   style={image_Style(card.home_background)}>
                   </a>
                 </div>
                 <div className="panel bordered">
@@ -114,8 +126,8 @@ const App = ({  cards, filterTypes, onFindCard, onGetCards, onSelectedDistrict, 
                   <a href="/doma/zhknagagarinskomplato">
                     <h4>{card.title}</h4>
                     <p> {card.address}</p>
-                    <span><img alt="search" src="/brief/icons8-money-52.png" /> <span className="bold">от {card.prices_start_at_per_meter}  у.е./м<sup>2</sup></span></span>
-                    <span><img alt="search" src="/brief/icons8-calendar-96.png" /> {convert_quarter_string(card.house_deploy_date)}</span>
+                    <span><img alt="search" src={MoneyIcon} /> <span className="bold">от {card.prices_start_at_per_meter}  у.е./м<sup>2</sup></span></span>
+                    <span><img alt="search" src={CalendarIcon} /> {convert_quarter_string(card.house_deploy_date)}</span>
                     Узнать подробнее <i className="fa fa-arrow-right"></i>
                   </a>
                 </div>
