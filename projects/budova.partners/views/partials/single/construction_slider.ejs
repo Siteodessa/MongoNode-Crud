@@ -1,3 +1,4 @@
+
 <div class="">
 <%
 function print_swiper_gallery(gallery_links_array) {
@@ -23,12 +24,12 @@ function print_swiper_block_gallery(gallery_links_array) {
         return gallery_html
 }
 %>
-<% if (print_swiper_gallery(d['gallery']) !== false && d['gallery'] !== '""') { %>
+<% if (construction1) { %>
    <div class="swiper-container1">
      <div class="swiper-wrapper">
-<div class="swiper-slide">    <div class="construction"><%- construction1 %> </div> </div>
-<div class="swiper-slide">    <div class="construction"><%- construction2 %> </div> </div>
-<div class="swiper-slide">    <div class="construction"><%- construction3 %> </div> </div>
+<div class="swiper-slide">    <div class="construction"><div class="construction_card"><%- construction1 %> </div></div> </div>
+<div class="swiper-slide">    <div class="construction"><div class="construction_card"><%- construction2 %> </div></div> </div>
+<div class="swiper-slide">    <div class="construction"><div class="construction_card"><%- construction3 %> </div></div> </div>
      </div>
      <div class="swiper-pagination"></div>
    </div>

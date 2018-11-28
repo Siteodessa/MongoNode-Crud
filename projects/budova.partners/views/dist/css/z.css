@@ -13,7 +13,9 @@ html,body{height:100%}.layout-boxed html,.layout-boxed body{height:100%}body{fon
     color:  #fff;
     padding:  4px;
 }
-
+.db_group[name="social_infrastructure"] .simple {
+    padding: 17px;
+}
 .minigroups {
     display: flex;
     height: 60px;
@@ -216,11 +218,11 @@ label.radion input {background: #4962a9;padding: 2px 6.1px;color: #f39c12;cursor
 
 label.structure_label {background: #f8f8f8;margin: 0 0 2px;margin-right: -15px;padding: 12px;color: #797979;font-family: sans-serif;}
 
-.db_group[name="layouts"] .minigroups:last-child, .db_group[name="offices"] .minigroups:last-child {
-    margin: 40px 0 0;
+.db_group[name="layouts"] .minigroups:last-child, .db_group[name="offices"] .minigroups:last-child, .db_group[name="social_infrastructure"] .minigroups:last-child {
+    margin: 30px 0 0;
 }
 
-.db_group[name="layouts"] .plus_icon, .db_group[name="offices"] .plus_icon {
+.db_group[name="layouts"] .plus_icon, .db_group[name="offices"] .plus_icon, .db_group[name="social_infrastructure"] .plus_icon {
     display: block;
 }
 
@@ -311,4 +313,9 @@ button.update.and_close.btn.btn-outline {
 .db_group[name="offices"] .minigroups:first-child .minigroup:first-child {
     position: relative;
     top: 5px;
+}
+
+.db_group[name="social_infrastructure"] .minicontrols {
+    right: 0;
+    bottom: 12px;
 }

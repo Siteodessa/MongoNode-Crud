@@ -92,6 +92,13 @@ const NoteSchema = mongoose.Schema
                 structure_model: ["media", "text", "text"] ,
                 structure_model_ru_label: ["Планировка", "Площадь", "Цена"] ,
                 note_type:["Объект"]},
+    social_infrastructure:  { type: String,
+                default: '',
+                ru_label: 'Социальная инфраструктура',
+                input_type: 'structure' ,
+                structure_model: ["media", "text", "text"] ,
+                structure_model_ru_label: ["Иконка", "Название", "Расстояние"] ,
+                note_type:["Объект"]},
 
                 // breadcrumbs : Array,
     // phone : { type: String, input_type: 'text'},

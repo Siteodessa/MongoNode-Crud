@@ -1,10 +1,10 @@
 <div class="single_tab" id="single_tab1">
   <% function check_structure(el) {
-  if (el !== '' && typeof el !== 'undefined' && el !== '[{}]') {
+  if (el !== '' && typeof el !== 'undefined' && el !== '[{}]' && el !== 'NaN') {
     return true
   } return false
 } %>
-<ul class="nav nav-pills">
+<ul class="single_navigation  nav nav-pills">
   <li><a href="#single_tab">Описание</a></li>
   <li><a class="tab_active" href="#single_tab1">Цены</a></li>
   <li><a href="#single_tab2">Рассрочка</a></li>
@@ -32,6 +32,10 @@
 
   <h3 class="underlined text-center">Цены</h3>
   <div class="rows">
+
+  <% let one_room =  new Intl.NumberFormat('ru-RU').format(Number(construct[1].text)).replace(',', ' ') %>
+  <% if (check_structure(one_room)) {   %>
+
     <div class="row">
       <div class="col-md-6 col-sm-6">
         <span class="circle"></span>
@@ -39,9 +43,17 @@
       </div>
       <div class="col-md-6 col-sm-6">
         <span>Площадь: от   <%= construct[0].text %> м <sup>2</sup></span>
-        <span>Цена: от <mark> <%= new Intl.NumberFormat('ru-RU').format(Number(construct[1].text)).replace(',', ' ')  %> у.е.</mark></span>
+        <span>Цена: от <mark> <%= one_room  %> у.е.</mark></span>
       </div>
     </div>
+
+ <%  } %>
+
+
+
+ <% let two_room =  new Intl.NumberFormat('ru-RU').format(Number(construct[3].text)).replace(',', ' ') %>
+ <% if (check_structure(two_room)) {   %>
+
     <div class="row">
       <div class="col-md-6 col-sm-6">
         <span class="circle"></span>
@@ -49,9 +61,16 @@
       </div>
       <div class="col-md-6 col-sm-6">
         <span>Площадь: от   <%= construct[2].text %> м<sup>2</sup></span>
-        <span>Цена: от <mark>  <%= new Intl.NumberFormat('ru-RU').format(Number(construct[3].text)).replace(',', ' ')  %>  у.е.</mark></span>
+        <span>Цена: от <mark>  <%= two_room  %>  у.е.</mark></span>
       </div>
     </div>
+ <%  } %>
+
+
+  <% let three_room =  new Intl.NumberFormat('ru-RU').format(Number(construct[5].text)).replace(',', ' ') %>
+  <% if (check_structure(three_room)) {   %>
+
+
     <div class="row">
       <div class="col-md-6 col-sm-6">
         <span class="circle"></span>
@@ -59,10 +78,13 @@
       </div>
       <div class="col-md-6 col-sm-6">
         <span>Площадь: от   <%= construct[4].text %> м<sup>2</sup></span>
-        <span>Цена: от <mark>  <%= new Intl.NumberFormat('ru-RU').format(Number(construct[5].text)).replace(',', ' ')  %> у.е.</mark></span>
+        <span>Цена: от <mark>  <%= three_room  %> у.е.</mark></span>
       </div>
     </div>
     </div>
+ <%  } %>
+
+
 </div>
 </div>
 </div>

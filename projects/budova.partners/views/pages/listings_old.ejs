@@ -8,30 +8,13 @@
 </head>
 <body class="old_houses">
 <div class="super_container">
-	<div class="home">
-		<div class="home_background" style="background-image:url(<%= sitedata.new_houses_background %>)"><div class="overlay default">
-		</div>
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="home_content">
-						<div class="home_title">
-							<h2><%= sitedata.new_houses_title %></h2>
-						</div>
-						<div class="breadcrumbs">
-							<span><a href="/">Главная</a></span>
-							<span><a href="#"> <%= sitedata.new_houses_title %></a></span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
 	<header class="header trans_300">
 		<% include ../partials/header %>
 	</header>
 	<div class="listings">
+		<div class="minihome"> </div>
+		<h1 class=" text-center section_title "> <%= d.title %></h1>
 		<div class="container">
 			<div class="row featured_row">
 

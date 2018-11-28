@@ -13,6 +13,9 @@
 .officespage h4 {
 	color:#444;    font-weight: bold;
 }
+.prices_tab.flex.jc .prices span {
+    display: block;
+}
 form#budova_contact_form .col-md-3 {
     padding-left: 0;
 }
@@ -57,7 +60,7 @@ form#budova_contact_form .col-md-9 {
 .prices_button {
     position: absolute;
     top: 30px;
-    left: 10.5%;
+    left: -50px;
 }
 .offices_advantages .prices.installments {
     border: none;
@@ -506,6 +509,12 @@ section
 	width: 100%;
 	height: 100%;
 }
+.construction {
+    max-width: 90vw;
+    margin: 0 5vw;
+    border: 1px solid #b5b5b5;
+    padding: 12px;
+}
 .home_slider_background
 {
 	position: absolute;
@@ -703,6 +712,282 @@ section
 /*********************************
 6. Search Box
 *********************************/
+
+
+.construction {
+    max-width: 90vw;
+    margin: 0 5vw;
+    border: 1px solid #b5b5b5;
+    padding: 12px;
+}
+.swiper-pagination-bullet {
+    margin: 0 2px;
+    width: 12px !important;
+    height: 12px !important;
+}
+.adv.text-center:after {}
+.swiper-container1 {
+    -webkit-transform: translate(41.5%);
+        -ms-transform: translate(41.5%);
+            transform: translate(41.5%);
+}
+.swiper-pagination-bullets {
+    display: block;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.row houses_loop .col-md-3 {
+    position: relative;
+    z-index: 1;
+}
+
+.installments_icon {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    right: 20px;
+    top: calc(50% - 25px);
+    width: 50px;
+    height: 50px;
+    display: none;
+}
+
+.col-md-4.np {
+    height: 300px;
+}
+
+body {
+    background: #fff;
+}
+.homepage .swiper-slide.swiper-slide-duplicate-next img {}
+
+	.about .home_advantages .panel.bordered {
+	    margin: 10px auto;
+	    padding: 20px 20px 30px;
+	    border-left: 1px solid  #a7bfd8;
+	}
+	.about .panel.bordered h4{
+background: #3d85cd;
+color:#fff;
+padding: 12px;
+font-size: 20px
+	}
+	.about .panel.bordered .desc{
+padding: 12px;
+	}
+
+		.about .article_body.flex-col {
+    justify-content: space-between;
+    height: calc(100% - 30px);
+}
+.homepage .swiper-slide img {
+    -webkit-transform: scale(1) translate(0%,0%);
+        -ms-transform: scale(1) translate(0%,0%);
+            transform: scale(1) translate(0%,0%);
+}
+
+
+
+div.single_tab {
+    padding: 120px 0 0;
+}
+
+.minihome {
+    margin: 130px 0 0;
+}
+
+header.header.trans_300 .container .row {
+    border: 1px solid #eaeaea;
+}
+
+.panel.bordered:hover svg path{ fill: #fff}
+
+span svg {
+    height: 25px;
+    margin: 0 10px 0 0;
+}
+
+.col-md-12 .el_card .image_c a {
+    height: 100%;
+    width: 100%;
+    display: block;
+    background-size: cover !important;
+}
+.officespage .panel.bordered, .newslooppage .panel.bordered {
+    border-left: none;
+}
+.panel.bordered:hover p, .panel.bordered:hover h4, .panel.bordered:hover span, .panel.bordered:hover a {
+    color: #fff;
+}
+
+span.svg_calendar svg {
+    height: 23px;
+    margin: 0 9.5px 0 1.5px;
+}
+
+.col-md-4 .image_c a {
+    background-size: cover !important;
+    display: block;
+    height: 100%;
+}
+.article_body.flex-col {
+    justify-content: space-between;
+    height: 100%;
+}
+
+.article_body.flex-col .read_more {
+    float: right;
+}
+
+
+.about .panel.bordered span {
+}
+
+.about .home_advantages .panel.bordered h4, .about .home_advantages .panel.bordered p {
+    background: initial;
+    padding: 0;
+    color: initial;
+}
+
+.about .panel.bordered {
+    padding: 0;
+    margin: 10px 0;
+}
+
+.panel.bordered .get_more a i {
+    margin: 0px 0 0 6px;
+    position: relative;
+    top: -0.5px;
+    font-size: 11.5px;
+}
+
+.bordered {
+    border: 1px solid #a7bfd8;
+}
+
+.newspage .row.featured_row {
+    padding-bottom: 70px;
+}
+
+.newspage h1 {
+    color: #fff;
+    padding: 12px;
+    font-size: 2rem;
+}
+
+.newspage h2 {
+    padding: 10px 22px;
+    color: #444;
+    font-weight: bold;
+    letter-spacing: -0.5px;
+}
+
+.floated {
+    float: left;
+}
+
+.post_thumb {
+    width: 37%;
+    float: left;
+    margin: 0 20px 2px 0;
+}
+
+.prices_tab.flex.jc .prices {
+    margin: 0;
+    min-height: 302px;
+}
+
+span.unbordered.bordereds {
+    text-align: right;
+    display: block;
+}
+
+.offices span.bordered {
+    text-align: center;
+    display: block;
+}
+
+.offices span {
+    display: block;
+    padding: 5px;
+}
+
+.contacts .row .row.main {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.contacts .row .row.main .jc {
+    width: 100%;
+}
+
+.contacts .vertical_button .button_c {}
+
+.contacts .vertical_button button {}
+
+.contacts .vertical_button span.phone_icon {
+    width: 100%;
+    margin-left: 0;
+}
+
+.singlepage span.phone_icon {
+    height: 54px;
+}
+
+.planning_tab ul.nav.nav-pills li:hover a {
+    color: #2e6cab;
+}
+
+.advantages.adv h2 {
+    padding: 0px;
+    font-size: 26px;
+}
+
+.officespage .panel {
+    transform: none;
+}
+
+.offices_advantages {
+    margin: 70px 0;
+}
+
+.contacts  .row  .percents .row {
+    margin: 0;
+}
+
+.row_related span {
+    display: inline;
+}
+
+.icon_block {
+    width: 100%;
+    display: flex;
+    margin: 0 17%;
+    white-space: nowrap;
+}
+
+.percents .section_title::after {
+    bottom: -45px;
+}
+
+.percents .section_title::before {
+    bottom: -55px;
+}
+
+.contacts .row_contacts .cdata span {
+    font-size: 16px;
+}
+
+.home_advantages .prices.installments .panel {
+    width: calc(100% - 10px);
+}
+
+body.new_houses h1, body.old_houses h1 {
+    margin: 20px auto 50px;
+    text-align: center;
+}
 .search_box
 {
 	width: 100%;
@@ -1043,14 +1328,14 @@ section
 	color: #b0b1b3;
 	margin-top: -4px;
 }
-/*********************************
-8. Featured
-*********************************/
 .featured
 {
 	padding-top: 70px;
 	padding-bottom: 100px;
 	background: #fff;
+}
+.prices_tab.flex.jc .prices span.circle, .prices_tab.flex.jc .prices span.bold {
+    display: inline-block;
 }
 .featured_row
 {
@@ -1097,6 +1382,8 @@ section
 .rooms
 {
 	margin-top: 30px;
+}.homepage .swiper-slide.swiper-slide-active + div img {
+    border: 4px solid #fff;
 }
 .room
 {
@@ -2343,8 +2630,8 @@ span.circle {
     -o-transition: .3s 0.2s;
     transition: .3s 0.2s;
     position: relative;
-    top: 25px;
-    left: -10px;
+    top: 0;
+    left: 0;
 }
 .inline-flex {
     display: -ms-inline-flexbox;
@@ -2401,7 +2688,7 @@ span.circle {
     border: 1px solid #e2e2e2;
     padding: 27px;
     background: #fff;
-    min-width: 70%;
+    min-width: 100%;
     margin: 0 auto;
 }
 .bold {
@@ -2435,8 +2722,8 @@ mark {
 .prices_tab {display: -ms-flexbox;display: flex;-ms-flex-pack: center;justify-content: center;}
 .prices_button button, .vertical_button button {
     -webkit-transform: rotate(-90deg);
-        -ms-transform: rotate(-90deg);
-            transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
     position: absolute;
     top: 150px;
     width: 190px;
@@ -2492,8 +2779,9 @@ ul.nav.nav-pills li a.active:before {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: center;
-        justify-content: center;
+    justify-content: center;
     min-height: 300px;
+    position: relative;
 }
 .installments_tab .col-md-6 {
     margin: 10px 0;
@@ -3124,165 +3412,6 @@ div.contacts h2 {
     -ms-flex-direction: row;
         flex-direction: row;
 }
-
-* {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  text-rendering: optimizeLegibility;
-}
-*:focus {
-  outline: none;
-}
-html {
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 62.5%;
-}
-body {
-  font-size: 1.6rem;
-  margin: 0;
-  padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
-ul,
-li {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-p {
-  margin: 0;
-  padding: 0;
-}
-.App {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -ms-flex-align: center;
-      align-items: center;
-  margin-top: 100px;
-}
-.App p {
-  margin-bottom: 50px;
-  font-size: 2.4rem;
-}
-.wrapper {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
-  width: 460px;
-}
-.dd-wrapper {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  position: relative;
-  min-width: 185px;
-}
-.dd-header {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
-  line-height: 38px;
-  border: 1px solid #dfdfdf;
-  border-radius: 3px;
-  cursor: default;
-  position: relative;
-  background-color: #fff;
-}
-.dd-header span {
-  margin-right: 20px;
-  color: #ddd
-}
-.dd-header-title {
-  margin: 2px 20px;
-  margin-right: 30px;
-  font-size: 14px;
-}
-.angle-down {
-  color: #000;
-  margin-right: 20px;
-}
-.dd-list {
-  z-index: 10;
-  position: absolute;
-  width: 100%;
-  border: 1px solid #dfdfdf;
-  border-top: none;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-  background-color: #fff;
-  -webkit-box-shadow: 0 2px 5px -1px #e8e8e8;
-          box-shadow: 0 2px 5px -1px #e8e8e8;
-  font-weight: 700;
-  padding: 15px 0;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-.dd-list-item {
-  width: 100%;
-  font-size: 1.5rem;
-  padding: 8px 10px;
-  line-height: 1.6rem;
-  cursor: default;
-  display: inline-block;
-  white-space: nowrap;
-  cursor: pointer;
-  -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
-  color: #838383
-}
-li.dd-list-item span{
-  color:#838383
-}
-li.dd-list-item:hover span{
-  color:#fff
-}
-.dd-list-item.selected {
-  color: #fff;
-  background-color: #ffcc01;
-}
-.dd-list-item:hover {
-  color: #fff;
-  background-color: #444;
-}
-.dd-wrapper-single {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  position: relative;
-  width: 265px;
-}
-.dd-wrapper-single .dd-header {
-  border: 1px solid #ccc;
-}
-.dd-wrapper-single .dd-header .dd-header-name {
-  font-weight: 400;
-}
-.dd-wrapper-single .dd-list {
-  border: 1px solid #ccc;
-  border-top: none;
-}
-.dd-header span.gray_icon {
-    height: 44px;
-    display: block;
-    width: 40px;
-    margin: -1px 0 0;
-    padding: 1px 8px 6px;
-}
-
-
-
-
 .col-md-12 .el_card {
     display: -ms-flexbox;
     display: flex;
@@ -3381,11 +3510,69 @@ div.work_time {
 	}
 }
 @media only screen and (max-width: 576px) and (min-width: 100px){
-.col-md-3{
+	.col-md-12 .el_card{
+		flex-direction:column
+	}
+		.col-md-12 .el_card .image_c{
+			width: 100%;
+		}
+	.featured_row {
+    padding-top: 30px;
+	}
+	
+	.prices_button{
+		position: static;
+	}
+	div.single_tab{
+		padding: 40px 0 0;
+	}
+	.construction {
+    max-width: 90vw;
+    margin: 0 -38vw 0 -37.5vw;
+    border: 1px solid #b5b5b5;
+    padding: 12px 24px;
+}
+	.cardsearch input{
+	width: 40vw;
+}
+	.dd-wrapper{
+		min-width: 43%;
+		margin: 6px 1%;
+		max-width: 43%;
+	}
+.dropdown_menu{
+	flex-wrap: wrap;
+	justify-content: center;
+}
+	.dd-header span.gray_icon {
+    height: 44px;
+    display: block;
+    width: 30px;
+    margin: -1px 0 0;
+    padding: 1px 5px 6px;
+    line-height: 40px;
+}  	.dd-header  {
+    line-height: 20px;
 
+}  
+.homepage .swiper-slide.swiper-slide-active + div img{
+	border: 2px solid #fff;
+	transform: scale(1.754) translate(0%,4%);
+}
+		.swiper-wrapper{
+		top: 18%;
+	}
+
+.swiper-button-next, .swiper-button-prev {
+    position: absolute;
+    top: 67% !important;
+}
+.homepage .swiper-slide.swiper-slide-active + div img{
+	border: none;
+	transform: scale(3.154) translate(0%,4%);
 }
 .installments_icon{
-	display:block
+	/* display:block; */
 }
 	.panel.bordered span, .panel.bordered p, .panel.bordered a{
 		font-size: 16px;
@@ -3402,20 +3589,21 @@ div.work_time {
     margin: 20px 0;
 }
 	.homepage .swiper-slide.swiper-slide-active + div{
-		border: 6px solid #fff;
+		border: 0px solid #fff;
 	}
 	.swiper-wrapper{
-    height: 40% !important;
-    top: 30% !important;
+    height: 60% !important;
+    top: 34% !important;
 }
 	.home_slider_container .swiper-pagination-bullets {
-    bottom: -4px !important;
+    bottom: 10px !important;
 }
 	.text-center{
-		text-align:left !important
+		text-align:left !important;
+		text-indent: 20px;
 	}
 .text-center:before {
-    left: calc(5% - 26px);
+    left: calc(15% - 26px);
 }
 .related .section_title::before, .houses_loop .section_title::before{
 	left: calc(50% - 26px);
@@ -3430,7 +3618,7 @@ div.work_time {
     left: calc(50% - 26px);
 }
 .text-center:after {
-    left: calc(5% - 9px);
+    left: calc(15% - 9px);
 }
 .adv .text-center:before , featured .text-center:before{
     left: calc(50% - 26px);
@@ -3445,7 +3633,8 @@ div.work_time {
 	display:none
 	}
 	.only-mob{
-		display: block;
+		display: block !important;
+		max-width: 100vw;
 	}
 	.plannimg, .plannimg img{
     padding: 0 0px;
@@ -3495,6 +3684,11 @@ div.work_time {
 }	mark, .prices span{
     font-size: 14px;
 }
+
+.singlepage span.circle{
+	top: 0px;
+	left: -10px;
+}
 .home_advantages .prices span.phone_icon{
 	font-size: 16px;
 	margin: 0;
@@ -3534,7 +3728,7 @@ div.work_time {
 	.tab-pane{padding: 40px 0 40px;width: 100%;}
 .vertical_button span.phone_icon, span.phone_icon{
 	margin: 0px 0 10px -4px;
-	height: 100%;
+	height: 100% !important;
 }.installments_tab{
     width: 100%;
 }
@@ -3595,7 +3789,8 @@ ul.nav.nav-pills {width: 80%;margin: 0 auto;}
 	    justify-content: flex-start;
 }
 .installments_tab .prices {
-    padding: 27px 6vw;
+    padding: 27px 0 27px 9vw;
+    margin: 0 auto;
 }
 	.cus ul.main_nav_list li img{
     display: none;
@@ -3664,7 +3859,7 @@ ul.nav.nav-pills {width: 80%;margin: 0 auto;}
     margin: 0 auto 60px !important;
 }
 .singlepage .related .section_title{
-    padding-top: 270px;
+    padding-top: 600px;
 }
 	.section_title, .section_title span{
 		font-size: 20px !important;
@@ -3760,17 +3955,46 @@ div.contacts {
 	 	display:none
 	 }
 
-
+	 
 	a.show_all{
 display:block
 }
-
+	
 	.home_slider_container, .home{height: 50vh !important;}
 .button_c{
 	height: 50px;
 }
 	  }
-@media only screen and (min-width:576px) and (max-width:768px){
+@media only screen and (max-width: 768px) and (min-width: 576px){
+.cardsearch input{
+	width: 40vw;
+}
+	.dd-wrapper{
+		min-width: 45%;
+		margin: 10px 1%;
+	}
+.dropdown_menu{
+	flex-wrap: wrap;
+}
+	.dd-header span.gray_icon {
+    height: 44px;
+    display: block;
+    width: 30px;
+    margin: -1px 0 0;
+    padding: 1px 5px 6px;
+    line-height: 40px;
+}  	.dd-header  {
+    line-height: 20px;
+
+}  
+.homepage .swiper-slide.swiper-slide-active + div img{
+	border: 2px solid #fff;
+	transform: scale(1.754) translate(0%,4%);
+}
+		.swiper-wrapper{
+		top: 18%;
+	}
+
 
 	a.show_all{
 display:block
@@ -3781,10 +4005,10 @@ display:block
 	}
 .home_slider_container{
 overflow:hidden
-}
+}	
 body.singlepage .swiper-wrapper{
 		top:25%
-
+		
 	}
 
 	.logo {
@@ -3844,277 +4068,6 @@ header.header.trans_300 .container{
 	}
 @media only screen and (min-width:1200px) and (max-width:5120){
  }
-.construction {
-    max-width: 90vw;
-    margin: 0 5vw;
-    border: 1px solid #b5b5b5;
-    padding: 12px;
-}
-.swiper-pagination-bullet {
-    margin: 0 2px;
-    width: 12px !important;
-    height: 12px !important;
-}
-.adv.text-center:after {}
-.swiper-container1 {
-    -webkit-transform: translate(41.5%);
-        -ms-transform: translate(41.5%);
-            transform: translate(41.5%);
-}
-.swiper-pagination-bullets {
-    display: block;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.row houses_loop .col-md-3 {
-    position: relative;
-    z-index: 1;
-}
-
-.installments_icon {
-    position: absolute;
-    top: 0;
-    z-index: 2;
-    right: 20px;
-    top: calc(50% - 25px);
-    width: 50px;
-    height: 50px;
-    display: none;
-}
-
-.col-md-4.np {
-    height: 300px;
-}
-
-body {
-    background: #fff;
-}
-.homepage .swiper-slide.swiper-slide-duplicate-next img {}
-
-	.about .home_advantages .panel.bordered {
-	    margin: 10px auto;
-	    padding: 20px 20px 30px;
-	    border-left: 1px solid  #a7bfd8;
-	}
-	.about .panel.bordered h4{
-background: #3d85cd;
-color:#fff;
-padding: 12px;
-font-size: 20px
-	}
-	.about .panel.bordered .desc{
-padding: 12px;
-	}
-
-		.about .article_body.flex-col {
-    justify-content: space-between;
-    height: calc(100% - 30px);
-}
-.homepage .swiper-slide img {
-    -webkit-transform: scale(1) translate(0%,0%);
-        -ms-transform: scale(1) translate(0%,0%);
-            transform: scale(1) translate(0%,0%);
-}
-
-.homepage .swiper-slide.swiper-slide-active + div img {
-    border: 4px solid #fff;
-}
-
-div.single_tab {
-    padding: 120px 0 0;
-}
-
-.minihome {
-    margin: 130px 0 0;
-}
-
-header.header.trans_300 .container .row {
-    border: 1px solid #eaeaea;
-}
-
-.panel.bordered:hover svg path{ fill: #fff}
-
-span svg {
-    height: 25px;
-    margin: 0 10px 0 0;
-}
-
-.col-md-12 .el_card .image_c a {
-    height: 100%;
-    width: 100%;
-    display: block;
-    background-size: cover !important;
-}
-.officespage .panel.bordered, .newslooppage .panel.bordered {
-    border-left: none;
-}
-.panel.bordered:hover p, .panel.bordered:hover h4, .panel.bordered:hover span, .panel.bordered:hover a {
-    color: #fff;
-}
-
-span.svg_calendar svg {
-    height: 23px;
-    margin: 0 9.5px 0 1.5px;
-}
-
-.col-md-4 .image_c a {
-    background-size: cover !important;
-    display: block;
-    height: 100%;
-}
-.article_body.flex-col {
-    justify-content: space-between;
-    height: 100%;
-}
-
-.article_body.flex-col .read_more {
-    float: right;
-}
 
 
-.about .panel.bordered span {
-}
-
-.about .home_advantages .panel.bordered h4, .about .home_advantages .panel.bordered p {
-    background: initial;
-    padding: 0;
-    color: initial;
-}
-
-.about .panel.bordered {
-    padding: 0;
-    margin: 10px 0;
-}
-
-.panel.bordered .get_more a i {
-    margin: 0px 0 0 6px;
-    position: relative;
-    top: -0.5px;
-    font-size: 11.5px;
-}
-
-.bordered {
-    border: 1px solid #a7bfd8;
-}
-
-.newspage .row.featured_row {
-    padding-bottom: 70px;
-}
-
-.newspage h1 {
-    color: #fff;
-    padding: 12px;
-    font-size: 2rem;
-}
-
-.newspage h2 {
-    padding: 10px 22px;
-    color: #444;
-    font-weight: bold;
-    letter-spacing: -0.5px;
-}
-
-.floated {
-    float: left;
-}
-
-.post_thumb {
-    width: 37%;
-    float: left;
-    margin: 0 20px 2px 0;
-}
-
-.prices_tab.flex.jc .prices {
-    margin: 0;
-}
-
-span.unbordered.bordereds {
-    text-align: right;
-    display: block;
-}
-
-.offices span.bordered {
-    text-align: center;
-    display: block;
-}
-
-.offices span {
-    display: block;
-    padding: 5px;
-}
-
-.contacts .row .row.main {
-    margin-left: -15px;
-    margin-right: -15px;
-}
-
-.contacts .row .row.main .jc {
-    width: 100%;
-}
-
-.contacts .vertical_button .button_c {}
-
-.contacts .vertical_button button {}
-
-.contacts .vertical_button span.phone_icon {
-    width: 100%;
-    margin-left: 0;
-}
-
-.singlepage span.phone_icon {
-    height: 54px;
-}
-
-.planning_tab ul.nav.nav-pills li:hover a {
-    color: #2e6cab;
-}
-
-.advantages.adv h2 {
-    padding: 0px;
-    font-size: 26px;
-}
-
-.officespage .panel {
-    transform: none;
-}
-
-.offices_advantages {
-    margin: 70px 0;
-}
-
-.contacts  .row  .percents .row {
-    margin: 0;
-}
-
-.row_related span {
-    display: inline;
-}
-
-.icon_block {
-    width: 100%;
-    display: flex;
-    margin: 0 17%;
-    white-space: nowrap;
-}
-
-.percents .section_title::after {
-    bottom: -45px;
-}
-
-.percents .section_title::before {
-    bottom: -55px;
-}
-
-.contacts .row_contacts .cdata span {
-    font-size: 16px;
-}
-
-.home_advantages .prices.installments .panel {
-    width: calc(100% - 10px);
-}
-
-body.new_houses h1, body.old_houses h1 {
-    margin: 20px 0 50px;
-}
+img {}

@@ -31,9 +31,9 @@
 $('.tab_active').ready(function(){
     $('.tab_active').click()
 })
-    
 
-      $(document).on('click', 'a[href^="#"]', function (event) {
+
+      $(document).on('click', '.single_navigation  a[href^="#"]', function (event) {
         event.preventDefault();
 
         $('html, body').animate({

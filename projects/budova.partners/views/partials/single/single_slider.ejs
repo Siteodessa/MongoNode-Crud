@@ -1,18 +1,7 @@
 <div class="home_slider_container">
   <link rel="stylesheet" href="/styles/swiper.min.css">
    <style>
-     html, body {
-       position: relative;
-       height: 100%;
-     }
-     body {
-       background: #eee;
-       font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-       font-size: 14px;
-       color:#000;
-       margin: 0;
-       padding: 0;
-     }
+
      .swiper-container {
        width: 100%;
        height: 100%;
@@ -22,7 +11,6 @@
        height: 50%;
        width: 100%;
        position: relative;
-       top: 25%
      }
      .swiper-slide {
        height: 100%;
@@ -65,7 +53,9 @@ function print_swiper_gallery(gallery_links_array) {
      <div class="swiper-wrapper">
        <%- print_swiper_gallery(d['gallery']) %>
      </div>
-     <div class="swiper-pagination"></div>
+     <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></div>
+     <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide"></div>
+     <div class="swiper-pagination1"></div>
    </div>
 <% }  else { %>
 <% include ./single_no_gallery %>
@@ -81,9 +71,15 @@ function print_swiper_gallery(gallery_links_array) {
           disableOnInteraction: false,
         },
        pagination: {
-         el: '.swiper-pagination',
+         el: '.swiper-pagination1',
          clickable: true,
        },
+       navigation: {
+   nextEl: '.swiper-button-next',
+   prevEl: '.swiper-button-prev',
+ }
      });
+
+
    </script>
 </div>

@@ -176,16 +176,25 @@ $(function() {
                           if (typeof elem.text !== 'undefined' && elem.text !== 'undefined')
                           parent.prepend('<div class="minigroups"><div class="discard"><i class="fa fa-close"></i></div><div class="minigroup" type="media"><div class="db_group" name="structure" input_type="media"> <img src="/uploads/' + elem.media + '"><input class="hidden" value="' + elem.media + '" type="text" name="structure"> </div> </div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem.text + '" name="text" type="text"> </div></div></div>')
                         })
+                    let parent_social = $('div[name="social_infrastructure"]').find('.ministructure')
+
+                    // PROBLEM IS HERE
+                    if (data["social_infrastructure"] && data["social_infrastructure"] !== '')
+                        JSON.parse(data["social_infrastructure"]).forEach(function(elem){
+                          if (typeof elem.text !== 'undefined' && elem.text !== 'undefined')
+                          parent_social.prepend('<div class="minigroups"><div class="discard"><i class="fa fa-close"></i></div><div class="minigroup" type="media"><div class="db_group" name="structure" input_type="media"> <img src="/uploads/' + elem.media + '"><input class="hidden" value="' + elem.media + '" type="text" name="structure"> </div> </div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem.text + '" name="text" type="text"> </div></div></div>')
+                        })
                   }
+
                 });
             update_iframes('iframe#media_upload', '#multimediadata', data)
             update_multimedia_iframes('iframe#multimedia_upload', '#multimediadata', data)
             update_multimedia_iframes('iframe#layout_upload', '#multimediadata', data)
             update_prices_structure('.db_group[input_type="structure"][name="prices"]', data["prices"])
-            update_prices_structure('.db_group[input_type="structure"][name="prices"]', data["prices"])
             update_prices_structure('.db_group[input_type="structure"][name="construction_characteristics"]', data["construction_characteristics"])
             update_prices_structure('.db_group[input_type="structure"][name="installments"]', data["installments"])
-             update_prices_structure('.db_group[input_type="structure"][name="offices"]', data["offices"])
+            update_prices_structure('.db_group[input_type="structure"][name="offices"]', data["offices"])
+            update_prices_structure('.db_group[input_type="structure"][name="social_infrastructure"]', data["social_infrastructure"])
             modal_body.attr('id', id)
             $(add_new_obj_elem).click()
             $('button.save').hide()
@@ -323,6 +332,20 @@ read_struct_subprices = this.read_struct_subprices
       z += '&' + name + '=' + JSON.stringify(result)
       return z
 }
+    this.read_struct_social_infrastr = function(z, obj, name) {
+      result = []
+      obj.find('.minigroups').each(function(){
+        let minigroup_result = {}
+      $(this).find('.minigroup').each(function(){
+        minigroup_result = {}
+        let this_attr = $(this).attr('type')
+        if (this_attr === 'text') { result.push(collectText($(this), minigroup_result , this_attr)) }
+        if (this_attr === 'media') { result.push(collectMedia($(this), minigroup_result , this_attr)) }
+      })
+      })
+      z += '&' + name + '=' + JSON.stringify(result)
+      return z
+}
 
 
 
@@ -333,6 +356,7 @@ read_struct_subprices = this.read_struct_subprices
     read_struct_installments = this.read_struct_installments
     read_struct_prices = this.read_struct_prices
     read_struct_offices = this.read_struct_offices
+    read_struct_social_infrastr = this.read_struct_social_infrastr
 
     this.read_structures = function(z) {
         // z += '&house_deploy_date=' + $('#datepicker').val()
@@ -349,6 +373,7 @@ read_struct_subprices = this.read_struct_subprices
             if ( ['construction_characteristics'].includes(name)) { z = read_struct_characteristics(z, obj, name) }
             if ( ['installments'].includes(name)) { z = read_struct_installments(z, obj, name) }
             if ( ['offices'].includes(name)) { z = read_struct_offices(z, obj, name) }
+            if ( ['social_infrastructure'].includes(name)) { z = read_struct_social_infrastr(z, obj, name) }
         })
         return z
       }
@@ -395,7 +420,7 @@ read_struct_subprices = this.read_struct_subprices
     this.senddata = function() {
       z = this.getdata_before_sending()
       i = this.get_iframe_description()
-       // console.log(' | Pause | z=' , z);
+       console.log(' | Pause | z=' , z);
        // return false
       if (url === '/c_update') {
         let id = $('.modal-body').attr('id')
