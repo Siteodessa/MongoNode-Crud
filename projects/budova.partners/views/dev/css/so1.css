@@ -983,7 +983,9 @@ span.unbordered.bordereds {
 .home_advantages .prices.installments .panel {
     width: calc(100% - 10px);
 }
-
+.homepage .row.cols {
+    margin: 0;
+}
 body.new_houses h1, body.old_houses h1 {
     margin: 20px auto 50px;
     text-align: center;
