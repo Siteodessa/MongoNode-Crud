@@ -8,6 +8,7 @@
   }
 
   try {
+    console.log('d["social_infrastructure"]', d["social_infrastructure"]);
     JSON.parse(d["social_infrastructure"].replaceAll('amp_symbol', '&'))
 
   let chunked = chunk(JSON.parse(d["social_infrastructure"].replaceAll('amp_symbol', '&')),3);

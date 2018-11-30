@@ -2967,15 +2967,14 @@ span.blue.bold + p {
     background: none;
     background-size: cover;
     height: 450px;
-    transform: translate(0, -100%);
+    margin-top: -250px;
 }
 .related.rlt {
     padding: 0px 0 0px;
 }
 .map .banner {
-    -webkit-transform: translate(0%,200px);
-    -ms-transform: translate(0%,250px);
-    transform: translate(0%,200px);
+    -webkit-transform: none;
+    transform: none;
     background: #fff;
 }
 .col-md-6.dark {
@@ -3036,7 +3035,7 @@ span.blue.bold + p {
     height: 100%;
 }
 .row.cols {
-    margin: 0px 0 0;
+    margin: 50px 0 0;
 }
 .related .section_subtitle {
     max-width: 520px;
@@ -3191,7 +3190,7 @@ li {}
     margin: 0;
 }
 .singlepage .related .section_title {
-    padding-top: 250px;
+    padding-top: 0;
 }
 .h100 {
     height: 100%;
