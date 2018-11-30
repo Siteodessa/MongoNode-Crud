@@ -2964,17 +2964,18 @@ span.blue.bold + p {
     margin: 4px 12px;
 }
 .map {
-    background: url(/images/map.png);
+    background: none;
     background-size: cover;
     height: 450px;
+    transform: translate(0, -100%);
 }
 .related.rlt {
     padding: 0px 0 0px;
 }
 .map .banner {
-    -webkit-transform: translate(0%,250px);
+    -webkit-transform: translate(0%,200px);
     -ms-transform: translate(0%,250px);
-    transform: translate(0%,260px);
+    transform: translate(0%,200px);
     background: #fff;
 }
 .col-md-6.dark {
@@ -3190,7 +3191,7 @@ li {}
     margin: 0;
 }
 .singlepage .related .section_title {
-    padding-top: 330px;
+    padding-top: 250px;
 }
 .h100 {
     height: 100%;
@@ -3536,21 +3537,26 @@ div.work_time {
 	width: 40vw;
 }
 	.dd-wrapper{
-		min-width: 43%;
-		margin: 6px 1%;
-		max-width: 43%;
+		min-width: 42%;
+		margin: 6px auto;
+		max-width: 42%;
+		flex: 0 0 47% !important;
+		max-width: 50% !important;
 	}
 .dropdown_menu{
 	flex-wrap: wrap;
 	justify-content: center;
+	width: 100%;
+	display: inline-flex;
 }
 	.dd-header span.gray_icon {
     height: 44px;
     display: block;
-    width: 30px;
+    width: 40px;
     margin: -1px 0 0;
-    padding: 1px 5px 6px;
+    padding: 1px 9px 6px;
     line-height: 40px;
+    MIN-width: 40px;
 }  	.dd-header  {
     line-height: 20px;
 
@@ -4071,3 +4077,7 @@ header.header.trans_300 .container{
 
 
 img {}
+
+.map .col-md-6.blueb {
+    padding: 118px 50px 10px;
+}

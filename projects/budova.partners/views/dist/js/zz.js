@@ -17,6 +17,10 @@ $(function() {
       reader.readAsDataURL(input.files[0]);
     }
   }
+  function chunk(arr,n){
+    var r = Array(Math.ceil(arr.length/n)).fill();
+    return r.map((e,i) => arr.slice(i*n, i*n+n));
+  }
 
   function remove_quotation_at_end(a){
     if (a[a.length - 1] === '"' || a[a.length - 1] === "'") return a.slice(0, -1)
@@ -155,6 +159,32 @@ $(function() {
             if (iframe) { iframeElement = iframe.contentWindow.document.activeElement.innerHTML = data["content"]; }
             var modal_body = $('.modal-body');
           let editor_iframes = ''
+
+
+          let parent_social = $('div[name="social_infrastructure"]').find('.ministructure')
+
+          // PROBLEM IS HERE
+
+
+          if (data["social_infrastructure"] && data["social_infrastructure"] !== ''){
+
+            setTimeout(function(){
+
+              let chunked = chunk(JSON.parse(data["social_infrastructure"].replaceAll('amp_symbol', '&')),3);
+              chunked.forEach(function(elem){
+
+                console.log(elem[1].text);
+                console.log(elem[2].text);
+                if (typeof elem[0].media !== 'undefined' && elem.text !== 'undefined' && elem.media !== 'undefined') {
+                parent_social.prepend('<div igfsagsaht="fsd" class="minigroups"><div class="discard"><i class="fa fa-close"></i></div><div class="minigroup" type="media"><div class="db_group" name="structure" input_type="media"> <img src="/uploads/' + elem[0].media + '"><input class="hidden" value="' + elem[0].media + '" type="text" name="structure"> </div> </div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem[1].text + '" name="text" type="text"> </div></div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem[2].text + '" name="text" type="text"> </div></div></div>')
+              }
+              })
+
+              parent_social.find('.minigroups:last-child input').val('')
+            }, 100)
+            }
+
+
            $('iframe').each(function(){
 
 
@@ -176,14 +206,7 @@ $(function() {
                           if (typeof elem.text !== 'undefined' && elem.text !== 'undefined')
                           parent.prepend('<div class="minigroups"><div class="discard"><i class="fa fa-close"></i></div><div class="minigroup" type="media"><div class="db_group" name="structure" input_type="media"> <img src="/uploads/' + elem.media + '"><input class="hidden" value="' + elem.media + '" type="text" name="structure"> </div> </div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem.text + '" name="text" type="text"> </div></div></div>')
                         })
-                    let parent_social = $('div[name="social_infrastructure"]').find('.ministructure')
 
-                    // PROBLEM IS HERE
-                    if (data["social_infrastructure"] && data["social_infrastructure"] !== '')
-                        JSON.parse(data["social_infrastructure"]).forEach(function(elem){
-                          if (typeof elem.text !== 'undefined' && elem.text !== 'undefined')
-                          parent_social.prepend('<div class="minigroups"><div class="discard"><i class="fa fa-close"></i></div><div class="minigroup" type="media"><div class="db_group" name="structure" input_type="media"> <img src="/uploads/' + elem.media + '"><input class="hidden" value="' + elem.media + '" type="text" name="structure"> </div> </div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem.text + '" name="text" type="text"> </div></div></div>')
-                        })
                   }
 
                 });
@@ -343,7 +366,7 @@ read_struct_subprices = this.read_struct_subprices
         if (this_attr === 'media') { result.push(collectMedia($(this), minigroup_result , this_attr)) }
       })
       })
-      z += '&' + name + '=' + JSON.stringify(result)
+      z += '&' + name + '=' + JSON.stringify(result).replace('&', 'amp_symbol')
       return z
 }
 
@@ -420,7 +443,7 @@ read_struct_subprices = this.read_struct_subprices
     this.senddata = function() {
       z = this.getdata_before_sending()
       i = this.get_iframe_description()
-       console.log(' | Pause | z=' , z);
+       // console.log(' | Pause | z=' , z);
        // return false
       if (url === '/c_update') {
         let id = $('.modal-body').attr('id')
