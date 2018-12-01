@@ -79,6 +79,13 @@ const NoteSchema = mongoose.Schema
               structure_model: ["text", "text", "text", "text", "text", "text"] ,
               structure_model_ru_label: ["Блок 1", "Блок 2", "Блок 3", "Блок 4", "Блок 5", "Блок 6"] ,
               note_type:["Объект"]},
+  advantages:  { type: String,
+              default: '',
+              ru_label: 'Наши преимущества',
+              input_type: 'structure' ,
+              structure_model: ["text", "text", "text", "text", "text", "text"] ,
+              structure_model_ru_label: ["Блок 1", "Блок 2", "Блок 3", "Блок 4", "Блок 5", "Блок 6"] ,
+              note_type:["Страница"]},
 
     description : { type: String, note_type:["Объект"], input_type: 'texteditor', ru_label: 'Описание дома'},
     article : { type: String, note_type:["Новость"], input_type: 'texteditor', ru_label: 'Статья'},

@@ -319,3 +319,13 @@ button.update.and_close.btn.btn-outline {
     right: 0;
     bottom: 12px;
 }
+
+.db_group[name="advantages"] .minigroup {
+    width: 50%;
+    margin: 20px 0;
+}
+
+.db_group[name="advantages"] .minigroups {
+    flex-wrap: wrap;
+    height: auto;
+}

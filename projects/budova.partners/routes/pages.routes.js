@@ -16,7 +16,7 @@ module.exports = (cf) =>{
            let Review_m = require('../db/models/review.model');
             Review_m.find({}, function(err, reviews) {
                 Note_m.find({}, function(err, content) {
-                   content.forEach(elem => { if (elem.title == 'Главная') { d = elem; } });
+                   content.forEach(elem => { if (elem.title.includes('Главная')) { d = elem; } });
                 app.use(express.static('views'));
                 res.status(200).render(ejs_file, {
                   content: content,

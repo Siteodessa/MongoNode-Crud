@@ -21,15 +21,12 @@ $(function() {
     var r = Array(Math.ceil(arr.length/n)).fill();
     return r.map((e,i) => arr.slice(i*n, i*n+n));
   }
-
   function remove_quotation_at_end(a){
     if (a[a.length - 1] === '"' || a[a.length - 1] === "'") return a.slice(0, -1)
   }
   String.prototype.replaceAll = function(search, replace){
     return this.split(search).join(replace);
   }
-
-
   function removeParent(el) {
     el.parent().detach()
   }
@@ -110,7 +107,7 @@ $(function() {
       iframe_elem.css({ "position": "absolute" })
       iframe_elem.find('img').css({ "max-width": "60px", "margin": "0 20px -3px 90px", "max-height": "40px" })
     }
-    this.update_prices_structure = function(el , data_el) {
+    this.update_structure = function(el , data_el) {
       if (data_el)
 {       data_el = JSON.parse(data_el)
         let len = data_el.length
@@ -122,112 +119,88 @@ $(function() {
     this.update_multimedia_iframes = function(iframe0, iframe_elem, data) {
       var iframe0 = $(iframe0);
       var iframe_elem = iframe0.contents().find(iframe_elem)
-      if (typeof(data['gallery']) == 'undefined') return
       gallery_html = '<div class="gallery">'
-      data['gallery'] = data['gallery'].split('"')[1]
-      if (typeof(data['gallery']) == 'undefined') return
-      data['gallery'] = data['gallery'].substring(0, data['gallery'].length - 1)
-      iframe0.contents().find('div#multimediadata').text(data['gallery'])
-
-      console.log(data['gallery']);
+      iframe0.contents().find(iframe_elem).text(data['gallery'])
       data['gallery'].split(',').forEach(elem => {
-
         if (elem !== '')
         gallery_html += '<div class="gallery_elem"><span id="the_image"><img src="/uploads/' + elem + '"></span></div>'
       });
        iframe_elem.html(gallery_html + '</div>')
     }
     this.listen = function(activator, add_new_obj_elem) {
-      update_rows_data = this.update_rows_data
-      update_iframes = this.update_iframes
-      update_multimedia_iframes = this.update_multimedia_iframes
-      update_prices_structure = this.update_prices_structure
-      $('.elems.edit').click(function() {
-        let id = $(this).find('i').attr('id')
-        $.get({
-            url: "/notes/" + id + "",
-            beforeSend: function(xhr) {
-              xhr.overrideMimeType("text/plain; charset=utf-8");
-            }
-          })
-          .done(function(data) {
-            data = JSON.parse(data)
-            // console.log('we begin', data);
-            update_rows_data('.db_group', data)
-            let iframe = document.querySelector('iframe.cke_wysiwyg_frame.cke_reset');
-            let iframeElement;
-            if (iframe) { iframeElement = iframe.contentWindow.document.activeElement.innerHTML = data["content"]; }
-            var modal_body = $('.modal-body');
-          let editor_iframes = ''
+              update_rows_data = this.update_rows_data
+              update_iframes = this.update_iframes
+              update_multimedia_iframes = this.update_multimedia_iframes
+              update_structure = this.update_structure
+              $('.elems.edit').click(function() {
+                let id = $(this).find('i').attr('id')
+                $.get({
+                    url: "/notes/" + id + "",
+                    beforeSend: function(xhr) {
+                      xhr.overrideMimeType("text/plain; charset=utf-8");
+                    }
+                  })
+                  .done(function(data) {
+                    data = JSON.parse(data)
+                    update_rows_data('.db_group', data)
+                    let iframe = document.querySelector('iframe.cke_wysiwyg_frame.cke_reset');
+                    let iframeElement;
+                    if (iframe) { iframeElement = iframe.contentWindow.document.activeElement.innerHTML = data["content"]; }
+                    var modal_body = $('.modal-body');
+                    let editor_iframes = ''
+                    let parent_social = $('div[name="social_infrastructure"]').find('.ministructure')
 
-
-          let parent_social = $('div[name="social_infrastructure"]').find('.ministructure')
-
-          // PROBLEM IS HERE
-
-
-          if (data["social_infrastructure"] && data["social_infrastructure"] !== ''){
-
-            setTimeout(function(){
-
-              let chunked = chunk(JSON.parse(data["social_infrastructure"].replaceAll('amp_symbol', '&')),3);
-              chunked.forEach(function(elem){
-
-                console.log(elem[1].text);
-                console.log(elem[2].text);
-                if (typeof elem[0].media !== 'undefined' && elem.text !== 'undefined' && elem.media !== 'undefined') {
-                parent_social.prepend('<div igfsagsaht="fsd" class="minigroups"><div class="discard"><i class="fa fa-close"></i></div><div class="minigroup" type="media"><div class="db_group" name="structure" input_type="media"> <img src="/uploads/' + elem[0].media + '"><input class="hidden" value="' + elem[0].media + '" type="text" name="structure"> </div> </div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem[1].text + '" name="text" type="text"> </div></div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem[2].text + '" name="text" type="text"> </div></div></div>')
-              }
-              })
-
-              parent_social.find('.minigroups:last-child input').val('')
-            }, 100)
-            }
-
-
-           $('iframe').each(function(){
-
-
-
-                  let name = $(this).attr('name')
-                  let imdata_node = $(this).contents().find('div#multimediadata')
-                  if (name && imdata_node && name !== 'structure')  {
-                          data[name].split(',').forEach(elem => {
-                            elem = elem.replace(/['"«»\\]/g, '');
-                            if (typeof elem !== 'undefined' && elem !== '')
-                            imdata_node.append('<div class="chosen_image"><img src="/uploads/'+ elem +'"><div class="link">'+ elem +'</div></div>')
-                          });
-                          imdata_node.children().wrapAll('<div class="chosen_images"></div>')
-                  }
-                  if (name && imdata_node && name === 'structure')  {
-                    let parent = $('div[name="layouts"]').find('.ministructure')
-                    if (data["layouts"] && data["layouts"] !== '')
-                        JSON.parse(data["layouts"]).forEach(function(elem){
-                          if (typeof elem.text !== 'undefined' && elem.text !== 'undefined')
-                          parent.prepend('<div class="minigroups"><div class="discard"><i class="fa fa-close"></i></div><div class="minigroup" type="media"><div class="db_group" name="structure" input_type="media"> <img src="/uploads/' + elem.media + '"><input class="hidden" value="' + elem.media + '" type="text" name="structure"> </div> </div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem.text + '" name="text" type="text"> </div></div></div>')
+                    if (data["social_infrastructure"] && data["social_infrastructure"] !== ''){
+                        setTimeout(function(){
+                        let chunked = chunk(JSON.parse(data["social_infrastructure"].replaceAll('amp_symbol', '&')),3);
+                        chunked.forEach(function(elem){
+                          if (typeof elem[0].media !== 'undefined' && elem.text !== 'undefined' && elem.media !== 'undefined') {
+                          parent_social.prepend('<div igfsagsaht="fsd" class="minigroups"><div class="discard"><i class="fa fa-close"></i></div><div class="minigroup" type="media"><div class="db_group" name="structure" input_type="media"> <img src="/uploads/' + elem[0].media + '"><input class="hidden" value="' + elem[0].media + '" type="text" name="structure"> </div> </div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem[1].text + '" name="text" type="text"> </div></div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem[2].text + '" name="text" type="text"> </div></div></div>')
+                        }
                         })
+                        parent_social.find('.minigroups:last-child input').val('')
+                        }, 100)
+                    }
+                    $('iframe').each(function(){
+                                let name = $(this).attr('name')
+                                let imdata_node = $(this).contents().find('div#multimediadata')
+                                if (name && imdata_node && name !== 'structure')  {
+                                        data[name].split(',').forEach(elem => {
+                                          elem = elem.replace(/['"«»\\]/g, '');
+                                          if (typeof elem !== 'undefined' && elem !== '')
+                                          imdata_node.append('<div class="chosen_image"><img src="/uploads/'+ elem +'"><div class="link">'+ elem +'</div></div>')
+                                        });
+                                        imdata_node.children().wrapAll('<div class="chosen_images"></div>')
+                                }
+                                if (name && imdata_node && name === 'structure')  {
+                                  let parent = $('div[name="layouts"]').find('.ministructure')
+                                  if (data["layouts"] && data["layouts"] !== '')
+                                      JSON.parse(data["layouts"]).forEach(function(elem){
+                                        if (typeof elem.text !== 'undefined' && elem.text !== 'undefined')
+                                        parent.prepend('<div class="minigroups"><div class="discard"><i class="fa fa-close"></i></div><div class="minigroup" type="media"><div class="db_group" name="structure" input_type="media"> <img src="/uploads/' + elem.media + '"><input class="hidden" value="' + elem.media + '" type="text" name="structure"> </div> </div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem.text + '" name="text" type="text"> </div></div></div>')
+                                      })
+                                }
+                        });
 
-                  }
 
-                });
-            update_iframes('iframe#media_upload', '#multimediadata', data)
-            update_multimedia_iframes('iframe#multimedia_upload', '#multimediadata', data)
-            update_multimedia_iframes('iframe#layout_upload', '#multimediadata', data)
-            update_prices_structure('.db_group[input_type="structure"][name="prices"]', data["prices"])
-            update_prices_structure('.db_group[input_type="structure"][name="construction_characteristics"]', data["construction_characteristics"])
-            update_prices_structure('.db_group[input_type="structure"][name="installments"]', data["installments"])
-            update_prices_structure('.db_group[input_type="structure"][name="offices"]', data["offices"])
-            update_prices_structure('.db_group[input_type="structure"][name="social_infrastructure"]', data["social_infrastructure"])
-            modal_body.attr('id', id)
-            $(add_new_obj_elem).click()
-            $('button.save').hide()
-            $('button.update').show()
-          });
-      }).bind(this)
+                        console.log(data);
+                    update_iframes('iframe#media_upload', '#multimediadata', data)
+                    update_multimedia_iframes('iframe#multimedia_upload', '#multimediadata', data)
+                    update_multimedia_iframes('iframe#layout_upload', '#multimediadata', data)
+                    update_structure('.db_group[name="prices"]', data["prices"])
+                    update_structure('.db_group[name="construction_characteristics"]', data["construction_characteristics"])
+                    update_structure('.db_group[name="installments"]', data["installments"])
+                    update_structure('.db_group[name="offices"]', data["offices"])
+                    update_structure('.db_group[name="social_infrastructure"]', data["social_infrastructure"])
+                    update_structure('.db_group[name="advantages"]', data["advantages"])
+                    modal_body.attr('id', id)
+                    $(add_new_obj_elem).click()
+                    $('button.save').hide()
+                    $('button.update').show()
+                  });
+              }).bind(this)
     }
   }
-  // editform OBJECT END
-  // saveform OBJECT START
   var saveform = function(result_form, ajax_form, url, method, close_after) {
     this.clear_image_data = function (obj) {
       if (obj.text) return obj.text().replace(/\r?\n/g, "").replace(' ', "").replace(' ', "").replace(' ', "").replace(' ', "").replace(' ', "");
@@ -251,22 +224,22 @@ $(function() {
       return z
     }
     this.read_iframes = function(z) {
+      console.log('read_iframes z', z);
       let editor_iframes = ''
       $('iframe').each(function(){
         let name = $(this).attr('name')
         let imdata = $(this).contents().find('div#multimediadata').text()
         if (name && imdata && name !== 'structure')  {editor_iframes += '&' + name + '=' + imdata;   }
       });
-      let result = JSON.stringify(editor_iframes)
-      z += result
+      let result = JSON.stringify(editor_iframes).replaceAll('"', '')
+      if (result !== '""' && result !== "''") { z += result  }
+            console.log('result z', z);
       return z
     }
     this.read_datepickers = function(z) {
       z += '&house_deploy_date=' + $('#datepicker').val()
       return z
     }
-
-
     this.read_struct_layouts = function(z, obj, name) {
       result = []
       obj.find('.minigroups').each(function(){
@@ -281,35 +254,25 @@ $(function() {
       z += '&' + name + '=' + JSON.stringify(result)
       return z
 }
-
-
-
-this.read_struct_subprices = function(obj, minigroup_result , this_attr) {
-
-
+    this.read_struct_subprices = function(obj, minigroup_result , this_attr) {
   let value = obj.find('input').val().replace(/[\n\r]+/g, '');
 if (value && value !== '' ) minigroup_result[this_attr] = value
 return minigroup_result
-
 }
-read_struct_subprices = this.read_struct_subprices
-
-
     this.read_struct_prices = function(z, obj, name) {
-      result = []
-      obj.find('.minigroups').each(function(){
-        let minigroup_result = {}
-      $(this).find('.minigroup').each(function(){
-        minigroup_result = {}
-        let this_attr = $(this).attr('type')
-        if (this_attr === 'text') { result.push(collectText($(this), minigroup_result , this_attr)) }
-        if (this_attr === 'media') { result.push(collectMedia($(this), minigroup_result , this_attr)) }
-      })
-      })
-      z += '&' + name + '=' + JSON.stringify(result)
-      return z
-}
-
+            result = []
+            obj.find('.minigroups').each(function(){
+              let minigroup_result = {}
+            $(this).find('.minigroup').each(function(){
+              minigroup_result = {}
+              let this_attr = $(this).attr('type')
+              if (this_attr === 'text') { result.push(collectText($(this), minigroup_result , this_attr)) }
+              if (this_attr === 'media') { result.push(collectMedia($(this), minigroup_result , this_attr)) }
+            })
+            })
+            z += '&' + name + '=' + JSON.stringify(result)
+            return z
+          }
     this.read_struct_characteristics = function(z, obj, name) {
       result = []
       obj.find('.minigroups').each(function(){
@@ -324,7 +287,6 @@ read_struct_subprices = this.read_struct_subprices
       z += '&' + name + '=' + JSON.stringify(result)
       return z
 }
-
     this.read_struct_installments = function(z, obj, name) {
       result = []
       obj.find('.minigroups').each(function(){
@@ -339,8 +301,6 @@ read_struct_subprices = this.read_struct_subprices
       z += '&' + name + '=' + JSON.stringify(result)
       return z
 }
-
-
     this.read_struct_offices = function(z, obj, name) {
       result = []
       obj.find('.minigroups').each(function(){
@@ -369,119 +329,100 @@ read_struct_subprices = this.read_struct_subprices
       z += '&' + name + '=' + JSON.stringify(result).replace('&', 'amp_symbol')
       return z
 }
+    this.read_structures = function(z) {
+    // z += '&house_deploy_date=' + $('#datepicker').val()
+    let result = []
+    let all_structures_data = {}
+      $('.db_group[input_type="structure"]').each(function() {
+          obj = $(this)
+        let name = obj.attr('name')
+        let inptp =  obj.attr('input_type')
+        if ( ['layouts'].includes(name)) { z = read_struct_layouts(z, obj, name) }
+        if ( ['prices'].includes(name)) { z = read_struct_prices(z, obj, name) }
+        if ( ['construction_characteristics'].includes(name)) { z = read_struct_characteristics(z, obj, name) }
+        if ( ['installments'].includes(name)) { z = read_struct_installments(z, obj, name) }
+        if ( ['advantages'].includes(name)) { z = read_struct_installments(z, obj, name) }
+        if ( ['offices'].includes(name)) { z = read_struct_offices(z, obj, name) }
+        if ( ['social_infrastructure'].includes(name)) { z = read_struct_social_infrastr(z, obj, name) }
+    })
+    return z
+  }
+    this.getdata_before_sending = function() {
+      read_structures = this.read_structures;
+      clear_image_data = this.clear_image_data;
+      read_iframes = this.read_iframes;
+      read_non_iframe_inputs = this.read_non_iframe_inputs;
+      read_datepickers = this.read_datepickers;
+      let z = $('.' + ajax_form + ' input[name!=editor1]').not("[name='home_background']").not("[name='gallery']").not("[type='radio']").not(".structure input").serialize()
+      z = decodeURI(z)
+      if (document.querySelector('iframe.cke_wysiwyg_frame.cke_reset')) {
+       z += '&content=' + document.querySelector('iframe.cke_wysiwyg_frame.cke_reset').contentWindow.document.activeElement.innerHTML ;
+     }
+      z = read_iframes(z);
+      z = read_non_iframe_inputs(z);
+      z = read_datepickers(z);
+      z = read_structures(z)
+      return z
+    }
+    this.get_iframe_description = function() {
+      let iframe = document.querySelector('iframe.cke_wysiwyg_frame.cke_reset');
+      if (iframe) {
+        let iframeDocument = iframe.contentWindow.document.activeElement.innerHTML;
+        return iframeDocument;
+      }
+      return false;
+    }
+    this.senddata = function() {
+            z = this.getdata_before_sending()
+            i = this.get_iframe_description()
+             //
+             // return false
+            if (url === '/c_update') {
+              let id = $('.modal-body').attr('id')
+              url = '/cupdate/' + id
+            }
+            $.ajax({
+              url: url,
+              type: method,
+              dataType: "multipart/form-data",
+              content: i,
+              data: z,
+              success: function(response, xhr) {
+                result = $.parseJSON(response);
+                show_new_page_success('#result_form p', result)
+                close_after ? close_after() : $('#result_form p');
+              },
+              error: function(response) {
+                if (response.responseText && response.responseText !== undefined) {
+                  if (response.status == 200) {
+                    respo = JSON.parse(response.responseText);
+                    show_new_page_success('#result_form p', respo)
+                    close_after ? close_after() : $('#result_form p');
+                    return
+                  }
+                  let str = response.responseText.split("title:");
+                  if (str[1] == undefined) {
+                    $('#result_form p').text(response.responseText).addClass('shown');
+                  } else {
+                    let str1 = str[1].split('"');
+                    let str2 = str1[0];
+                    $('#result_form p').text(response.responseText).addClass('shown');
+                  }
+                } else {
+                  $('#result_form p').text('Неизвестная ошибка 0041').addClass('shown');
+                }
+              }
+            });
+}
 
 
-
-
-
+    read_struct_subprices = this.read_struct_subprices
     read_struct_layouts = this.read_struct_layouts
     read_struct_characteristics = this.read_struct_characteristics
     read_struct_installments = this.read_struct_installments
     read_struct_prices = this.read_struct_prices
     read_struct_offices = this.read_struct_offices
     read_struct_social_infrastr = this.read_struct_social_infrastr
-
-    this.read_structures = function(z) {
-        // z += '&house_deploy_date=' + $('#datepicker').val()
-        let result = []
-        let all_structures_data = {}
-          $('.db_group[input_type="structure"]').each(function() {
-              obj = $(this)
-            let name = obj.attr('name')
-            let inptp =  obj.attr('input_type')
-            if ( ['layouts'].includes(name)) { z = read_struct_layouts(z, obj, name) }
-            if ( ['prices'].includes(name)) { z = read_struct_prices(z, obj, name) }
-
-
-            if ( ['construction_characteristics'].includes(name)) { z = read_struct_characteristics(z, obj, name) }
-            if ( ['installments'].includes(name)) { z = read_struct_installments(z, obj, name) }
-            if ( ['offices'].includes(name)) { z = read_struct_offices(z, obj, name) }
-            if ( ['social_infrastructure'].includes(name)) { z = read_struct_social_infrastr(z, obj, name) }
-        })
-        return z
-      }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        this.getdata_before_sending = function() {
-          read_structures = this.read_structures;
-          clear_image_data = this.clear_image_data;
-          read_iframes = this.read_iframes;
-          read_non_iframe_inputs = this.read_non_iframe_inputs;
-          read_datepickers = this.read_datepickers;
-          let z = $('.' + ajax_form + ' input[name!=editor1]').not("[name='home_background']").not("[name='gallery']").not("[type='radio']").not(".structure input").serialize()
-          z = decodeURI(z)
-          if (document.querySelector('iframe.cke_wysiwyg_frame.cke_reset')) {
-           z += '&content=' + document.querySelector('iframe.cke_wysiwyg_frame.cke_reset').contentWindow.document.activeElement.innerHTML ;
-         }
-          z = read_iframes(z);
-          z = read_non_iframe_inputs(z);
-          z = read_datepickers(z);
-          z = read_structures(z)
-          return z
-        }
-        this.get_iframe_description = function() {
-          let iframe = document.querySelector('iframe.cke_wysiwyg_frame.cke_reset');
-          if (iframe) {
-            let iframeDocument = iframe.contentWindow.document.activeElement.innerHTML;
-            return iframeDocument;
-          }
-          return false;
-        }
-    this.senddata = function() {
-      z = this.getdata_before_sending()
-      i = this.get_iframe_description()
-       // console.log(' | Pause | z=' , z);
-       // return false
-      if (url === '/c_update') {
-        let id = $('.modal-body').attr('id')
-        url = '/cupdate/' + id
-      }
-      $.ajax({
-        url: url,
-        type: method,
-        dataType: "multipart/form-data",
-        content: i,
-        data: z,
-        success: function(response, xhr) {
-          result = $.parseJSON(response);
-          show_new_page_success('#result_form p', result)
-          close_after ? close_after() : $('#result_form p');
-        },
-        error: function(response) {
-          if (response.responseText && response.responseText !== undefined) {
-            if (response.status == 200) {
-              respo = JSON.parse(response.responseText);
-              show_new_page_success('#result_form p', respo)
-              close_after ? close_after() : $('#result_form p');
-              return
-            }
-            let str = response.responseText.split("title:");
-            if (str[1] == undefined) {
-              $('#result_form p').text(response.responseText).addClass('shown');
-            } else {
-              let str1 = str[1].split('"');
-              let str2 = str1[0];
-              $('#result_form p').text(response.responseText).addClass('shown');
-            }
-          } else {
-            $('#result_form p').text('Неизвестная ошибка 0041').addClass('shown');
-          }
-        }
-      });
-    }
   }
     // saveform OBJECT END
   $("button.update").click(function() {

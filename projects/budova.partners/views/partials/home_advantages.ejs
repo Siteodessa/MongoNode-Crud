@@ -5,33 +5,36 @@
       <h2 class="text-left text-black section_title ">  <span class="inline bold">Наши</span> преимущества</h2>
       <div class="rows">
         <div class="row">
+
+
+<% let construct = JSON.parse(d.advantages) %>
           <div class="col-md-6 row">
             <span class="circle"></span>
-              <span class="">Первоначальный<br> взнос- от 4%</span>
+              <span class=""><%= construct[0].text %></span>
           </div>
           <div class="col-md-6 row">
             <span class="circle"></span>
-              <span class="">Кредит <br> под 9% годовых</span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 row">
-            <span class="circle"></span>
-              <span class="">Рассрочка <br>до 10 лет</span>
-          </div>
-          <div class="col-md-6 row">
-            <span class="circle"></span>
-              <span class="">Рассрочка <br>до 10 лет</span>
+              <span class=""><%= construct[1].text %></span>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6 row">
             <span class="circle"></span>
-              <span class="">Кредит <br> под 9% годовых</span>
+              <span class=""><%= construct[2].text %></span>
           </div>
           <div class="col-md-6 row">
             <span class="circle"></span>
-              <span class="">Первоначальный <br>взнос- от 4%</span>
+              <span class=""><%= construct[3].text %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 row">
+            <span class="circle"></span>
+              <span class=""><%= construct[4].text %></span>
+          </div>
+          <div class="col-md-6 row">
+            <span class="circle"></span>
+              <span class=""><%= construct[5].text %></span>
           </div>
         </div>
         </div>

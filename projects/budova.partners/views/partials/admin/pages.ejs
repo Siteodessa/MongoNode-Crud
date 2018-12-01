@@ -71,27 +71,13 @@ img.obj {
             <tr>
               <th>Фото</th>
               <th>Заголовок</th>
-              <th>Этажей</th>
-              <th>Секций</th>
-              <th>Квартир\Этаж</th>
-              <th>Конструкция</th>
-              <th>Отделка</th>
-              <th>Стены</th>
-              <th>Окна</th>
-              <th>Потолки(м)</th>
-              <th>Отопление</th>
-              <th>Лифт</th>
-              <th>Паркинг</th>
-              <th>Район</th>
-              <th>Адрес</th>
-              <th>Застройщик</th>
-              <th>Описание</th>
+
               <th><i class="fa fa-cogs"></i></th>
             </tr>
             </thead>
             <tbody>
  <% content.forEach(function(obj){    %>
- <% if (obj.note_type == 'Страница') { %>
+ <% if (obj.note_type.includes('Страница')) { %>
 
 
   <tr id="<%= obj._id %>">
@@ -103,21 +89,7 @@ img.obj {
 <% }%>
  </a><i class="fa fa-eye"><%= obj.counter %></i></td>
  <td> <%= obj.title %></td>
- <td> <%= obj.floors_quant %></td>
- <td> <%= obj.sections_quant %></td>
- <td> <%= obj.appart_on_floor_quant %></td>
- <td> <%= obj.construction_type %></td>
- <td> <%= obj.frontend_material %></td>
- <td> <%= obj.walls %></td>
- <td> <%= obj.windows %></td>
- <td> <%= obj.floor_height %></td>
- <td> <%= obj.warming %></td>
- <td> <%= obj.elevator %></td>
- <td> <%= obj.parking %></td>
- <td> <%= obj.block %></td>
- <td> <%= obj.address %></td>
- <td> <%= obj.bldr %></td>
- <td class="contents"> <span class="content_column"><%- obj.content %></span></td>
+
  <td class="controls">
     <a class="elems trash">
       <span> <i class="fa fa-trash" id="<%= obj._id %>"></i> </span>
@@ -139,21 +111,7 @@ img.obj {
             <tr>
               <th>Фото</th>
               <th>Заголовок</th>
-              <th>Этажей</th>
-              <th>Секций</th>
-              <th>Квартир\Этаж</th>
-              <th>Конструкция</th>
-              <th>Отделка</th>
-              <th>Стены</th>
-              <th>Окна</th>
-              <th>Потолки(м)</th>
-              <th>Отопление</th>
-              <th>Лифт</th>
-              <th>Паркинг</th>
-              <th>Район</th>
-              <th>Адрес</th>
-              <th>Застройщик</th>
-              <th>Описание</th>
+
               <th><i class="fa fa-cogs"></i></th>
             </tr>
             </tfoot>
