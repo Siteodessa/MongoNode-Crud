@@ -5,9 +5,14 @@
       <h2 class="text-left text-black section_title ">  <span class="inline bold">Наши</span> преимущества</h2>
       <div class="rows">
         <div class="row">
-
-
-<% let construct = JSON.parse(d.advantages) %>
+<% let construct;
+try {
+ construct = JSON.parse(d.advantages)
+} catch (err) {
+construct = []
+let homepageelem = content.filter(elem => elem.title.includes('Главная') )
+homepageelem.map(elem => construct = JSON.parse(elem.advantages) )
+} %>
           <div class="col-md-6 row">
             <span class="circle"></span>
               <span class=""><%= construct[0].text %></span>

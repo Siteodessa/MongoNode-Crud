@@ -2632,8 +2632,8 @@ span.circle {
     -o-transition: .3s 0.2s;
     transition: .3s 0.2s;
     position: relative;
-    top: 0;
-    left: 0;
+    top: 10px;
+    left: -10px;
 }
 .inline-flex {
     display: -ms-inline-flexbox;
@@ -3356,7 +3356,7 @@ div.contacts h2 {
     margin: 0px 0 40px;
 }
 .pros .row .row {
-    margin: 20px 0;
+    margin: 16px 0;
 }
 .contacts span.bold {
     /* display: inline; */
@@ -4081,4 +4081,8 @@ img {}
 
 .map .col-md-6.blueb {
     padding: 118px 50px 10px;
+}
+
+.homepage .pros .rows {
+    margin: 55px 0 30px;
 }

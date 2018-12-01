@@ -24,6 +24,7 @@
 
     cf.notes = require('../controllers/').notes;
     cf.Task_c = require('../controllers/').Task_c;
+    cf.Sitedata_c = require('../controllers/').Sitedata_c;
 
 
 

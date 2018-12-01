@@ -2,8 +2,7 @@
   <div class="box-header with-border">
     <h3 class="box-title">Настройки сайта</h3>
   </div>
-  <!-- /.box-header -->
-  <!-- form start -->
+
 
 
 
@@ -15,7 +14,11 @@
   <% let tree = sitedata_schema.tree %>
   <% let siteinfo = (site_data) %>
 
-  <form class="form-horizontal" class="sitedata">
+
+
+
+
+  <form class="form-horizontal sitedata" id="<%= site_data[0].id %>">
       <div class="box-body">
     <% for (let prop in tree) { %>
     <% let elem = tree[prop] %>
@@ -39,6 +42,7 @@
         </div>
 
 
+
     </div>
     <% } /* end for prop  in (tree)*/  %>
 
@@ -53,6 +57,8 @@
 
 
   </form>
+
+          <script type="text/javascript" src="/dist/js/settings.js"></script>
   <% } /* endif (site_data)*/ %>
 
 

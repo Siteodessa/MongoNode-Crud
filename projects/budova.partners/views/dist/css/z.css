@@ -329,3 +329,7 @@ button.update.and_close.btn.btn-outline {
     flex-wrap: wrap;
     height: auto;
 }
+
+form.sitedata {
+    background: linear-gradient(to left, #48c6ef29 0%, #6f86d66b 100%);
+}

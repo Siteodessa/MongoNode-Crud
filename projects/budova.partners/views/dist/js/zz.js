@@ -183,7 +183,7 @@ $(function() {
                         });
 
 
-                        console.log(data);
+                        // console.log(data);
                     update_iframes('iframe#media_upload', '#multimediadata', data)
                     update_multimedia_iframes('iframe#multimedia_upload', '#multimediadata', data)
                     update_multimedia_iframes('iframe#layout_upload', '#multimediadata', data)
@@ -224,7 +224,6 @@ $(function() {
       return z
     }
     this.read_iframes = function(z) {
-      console.log('read_iframes z', z);
       let editor_iframes = ''
       $('iframe').each(function(){
         let name = $(this).attr('name')
@@ -233,7 +232,7 @@ $(function() {
       });
       let result = JSON.stringify(editor_iframes).replaceAll('"', '')
       if (result !== '""' && result !== "''") { z += result  }
-            console.log('result z', z);
+            // console.log('result z', z);
       return z
     }
     this.read_datepickers = function(z) {
@@ -372,15 +371,31 @@ return minigroup_result
       }
       return false;
     }
+    this.read_sitedata = function(z) {
+      z = ''; console.clear()
+      let f = $('form.form-horizontal').serialize()
+      f = decodeURI(f)
+      k = read_iframes(f).replaceAll('\\n', '').replaceAll(' 0', '');
+        return k;
+    }
+
+    let read_sitedata = this.read_sitedata
+
+
     this.senddata = function() {
             z = this.getdata_before_sending()
             i = this.get_iframe_description()
-             //
-             // return false
+
             if (url === '/c_update') {
               let id = $('.modal-body').attr('id')
               url = '/cupdate/' + id
+
+              if (typeof $('.modal-body').attr('id') === 'undefined') { url = '/sitedata_update/' + $('form.form-horizontal').attr('id');  z = read_sitedata(z)}
+
             }
+
+      console.log('Sending z' , z);
+
             $.ajax({
               url: url,
               type: method,
