@@ -10,6 +10,7 @@ module.exports = (cf) =>{
      function homepage(pageurl, ejs_file, cf){
        let app = cf.app;
        let express = cf.express;
+                console.log('function homepage cast');
            app.get(pageurl, function(req, res) {
 
              console.log('homepage visited');
