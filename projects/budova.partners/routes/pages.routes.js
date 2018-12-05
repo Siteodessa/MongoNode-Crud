@@ -11,6 +11,8 @@ module.exports = (cf) =>{
        let app = cf.app;
        let express = cf.express;
            app.get(pageurl, function(req, res) {
+
+             console.log('homepage visited');
            d = {};
            let Note_m = require('../db/models/note.model');
            let Review_m = require('../db/models/review.model');
