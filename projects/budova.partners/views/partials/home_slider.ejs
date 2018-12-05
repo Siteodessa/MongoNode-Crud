@@ -19,7 +19,6 @@ function is_empty_or_undefined(obj) {
 function print_swiper_gallery(gallery_links_array) {
         if (is_empty_or_undefined(gallery_links_array)) return false
         let gallery_html = ''
-        gallery_links_array = gallery_links_array.split('"')[1]
         if (is_empty_or_undefined(gallery_links_array)) return false
         gallery_links_array.split(',').forEach(elem => {
           gallery_html += '<div class="swiper-slide"><img src="/uploads/' + elem + '" /></div>'

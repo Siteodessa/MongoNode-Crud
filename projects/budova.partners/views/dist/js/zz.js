@@ -1,7 +1,11 @@
 $(function() {
   function show_new_page_success(obj, result) {
-    $(obj).html('Запись "' + result.title + '" успешно добавлена!<div class="page_added">Вы можете на нее <a href="/doma/' + result.page_link + '">Перейти</a></div>').addClass('shown');
+    if (typeof result.title === 'undefined') return $(obj).html('"' + result.sitename + '" обновлен!<div class="page_added"> <a href="/">Перейти на главную</a></div>').addClass('shown')
+    $(obj).html('Запись "' + result.title + '" успешно добавлена!<div class="page_added">Вы можете на нее <a target="blank" href="/doma/' + result.page_link + '">Перейти</a></div>').addClass('shown');
   }
+  function fix_amp(str){ return str.replaceAll('&', 'amp_symbol') }
+  function fix_amp_rev(str){ return str.replaceAll('amp_symbol', '&') }
+
   function sendAjaxForm(result_form, ajax_form, url, method, close_after) {
     var form = new saveform(result_form, ajax_form, url, method, close_after)
     form.senddata()
@@ -155,12 +159,23 @@ $(function() {
                         let chunked = chunk(JSON.parse(data["social_infrastructure"].replaceAll('amp_symbol', '&')),3);
                         chunked.forEach(function(elem){
                           if (typeof elem[0].media !== 'undefined' && elem.text !== 'undefined' && elem.media !== 'undefined') {
-                          parent_social.prepend('<div igfsagsaht="fsd" class="minigroups"><div class="discard"><i class="fa fa-close"></i></div><div class="minigroup" type="media"><div class="db_group" name="structure" input_type="media"> <img src="/uploads/' + elem[0].media + '"><input class="hidden" value="' + elem[0].media + '" type="text" name="structure"> </div> </div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem[1].text + '" name="text" type="text"> </div></div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem[2].text + '" name="text" type="text"> </div></div></div>')
+                          parent_social.prepend('<div class="minigroups"><div class="discard"><i class="fa fa-close"></i></div><div class="minigroup" type="media"><div class="db_group" name="structure" input_type="media"> <img src="/uploads/' + elem[0].media + '"><input class="hidden" value="' + elem[0].media + '" type="text" name="structure"> </div> </div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem[1].text + '" name="text" type="text"> </div></div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem[2].text + '" name="text" type="text"> </div></div></div>')
                         }
                         })
                         parent_social.find('.minigroups:last-child input').val('')
                         }, 100)
                     }
+
+                    if (data["layouts"] && data["layouts"] !== '') {
+                      let parent = $('div[name="layouts"]').find('.ministructure')
+                          JSON.parse(data["layouts"]).forEach(function(elem){
+                            if (typeof elem.text !== 'undefined' && elem.text !== 'undefined')
+                            parent.prepend('<div class="minigroups"><div class="discard"><i class="fa fa-close"></i></div><div class="minigroup" type="media"><div class="db_group" name="structure" input_type="media"> <img src="/uploads/' + elem.media + '"><input class="hidden" value="' + elem.media + '" type="text" name="structure"> </div> </div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem.text + '" name="text" type="text"> </div></div></div>')
+                          })
+                    }
+
+
+
                     $('iframe').each(function(){
                                 let name = $(this).attr('name')
                                 let imdata_node = $(this).contents().find('div#multimediadata')
@@ -172,14 +187,7 @@ $(function() {
                                         });
                                         imdata_node.children().wrapAll('<div class="chosen_images"></div>')
                                 }
-                                if (name && imdata_node && name === 'structure')  {
-                                  let parent = $('div[name="layouts"]').find('.ministructure')
-                                  if (data["layouts"] && data["layouts"] !== '')
-                                      JSON.parse(data["layouts"]).forEach(function(elem){
-                                        if (typeof elem.text !== 'undefined' && elem.text !== 'undefined')
-                                        parent.prepend('<div class="minigroups"><div class="discard"><i class="fa fa-close"></i></div><div class="minigroup" type="media"><div class="db_group" name="structure" input_type="media"> <img src="/uploads/' + elem.media + '"><input class="hidden" value="' + elem.media + '" type="text" name="structure"> </div> </div><div class="minigroup" type="text"><div class="db_group" name="text" input_type="text"> <label></label> <input class="form-control input-lg" value="' + elem.text + '" name="text" type="text"> </div></div></div>')
-                                      })
-                                }
+
                         });
 
 
@@ -372,11 +380,11 @@ return minigroup_result
       return false;
     }
     this.read_sitedata = function(z) {
-      z = ''; console.clear()
-      let f = $('form.form-horizontal').serialize()
-      f = decodeURI(f)
-      k = read_iframes(f).replaceAll('\\n', '').replaceAll(' 0', '');
-        return k;
+
+      let text_inputs = (read_non_iframe_inputs(z));
+      let iframe_inputs = read_iframes('').replaceAll('\\n', '').replaceAll(' ', '');
+      return '' + text_inputs + iframe_inputs;
+return false
     }
 
     let read_sitedata = this.read_sitedata
@@ -395,7 +403,7 @@ return minigroup_result
             }
 
       console.log('Sending z' , z);
-
+// return false
             $.ajax({
               url: url,
               type: method,

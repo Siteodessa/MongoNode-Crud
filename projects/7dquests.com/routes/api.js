@@ -23,6 +23,9 @@ module.exports = (core, api_c, notes, subscribe_c, brone_c, reviews, quests, que
   app.post('/api/qr/*', api_c.questroom_api);
 
 
-  
+let qr_c = require('../controllers/qr.controller');
+  app.get('/api/qrtest', qr_c.showDay_any);
+
+
   app.get('/test/*', require('../controllers/qr.controller').showDays_all);
 }

@@ -26,6 +26,8 @@ if (typeof the_data["prices_start_at_per_meter"] !== 'undefined') the_data["pric
 
 if (the_data.page_link) the_data.page_link = remove_quotation_at_end(the_data.page_link)
 if (the_data.content) the_data.content = remove_quotation_at_end(the_data.content)
+
+console.log(the_data["contacts_page_about_map"]);
     Sitedata.findByIdAndUpdate(req.params.noteId, the_data, {new: true})
     .then(note => {
 

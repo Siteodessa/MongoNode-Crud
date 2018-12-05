@@ -1,332 +1,127 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getCards } from './actions/getcards';
-import DropdownProto from './components/dropdown/DropdownProto';
-import get_year_quarter from './js/get_year_quarter';
-import convert_quarter_string from './js/convert_quarter_string';
-import cssfiles from './cssfiles.js'
-import LoopHeading from './fields.js'
-import FontAwesome from 'react-fontawesome';
-import './components/dropdown/styles/global.css';
-
-
-
-import PlaceIcon from './css/placeholder.svg';
-import PriceIcon from './css/price-tag.svg';
-
-import ReduceIcon from './css/reduce.svg';
-import CountingIcon from './css/counting.svg';
-
-
-const MoneyIcon = () => {
-   return (
-     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewBox="0 0 58 58">
-     <g>
-     	<path fill="#3d85cd" d="M56.079,16.086L5,7.914v4.33l-3-0.24v4.083H0v34h58v-34H56.079z M7,10.259l26.802,4.288L7,12.403V10.259z M4,14.169l1,0.08
-     		v0.001l6.757,0.54l16.203,1.296H4V14.169z M56,48.086H2v-30h51h3V48.086z"/>
-     	<path d="M6.5,26.086c1.93,0,3.5-1.57,3.5-3.5s-1.57-3.5-3.5-3.5s-3.5,1.57-3.5,3.5S4.57,26.086,6.5,26.086z M6.5,21.086
-     		c0.827,0,1.5,0.673,1.5,1.5s-0.673,1.5-1.5,1.5S5,23.414,5,22.586S5.673,21.086,6.5,21.086z"/>
-     	<path fill="#3d85cd" d="M48,22.586c0,1.93,1.57,3.5,3.5,3.5s3.5-1.57,3.5-3.5s-1.57-3.5-3.5-3.5S48,20.657,48,22.586z M53,22.586
-     		c0,0.827-0.673,1.5-1.5,1.5s-1.5-0.673-1.5-1.5s0.673-1.5,1.5-1.5S53,21.759,53,22.586z"/>
-     	<path fill="#3d85cd" d="M6.5,40.086c-1.93,0-3.5,1.57-3.5,3.5s1.57,3.5,3.5,3.5s3.5-1.57,3.5-3.5S8.43,40.086,6.5,40.086z M6.5,45.086
-     		c-0.827,0-1.5-0.673-1.5-1.5s0.673-1.5,1.5-1.5s1.5,0.673,1.5,1.5S7.327,45.086,6.5,45.086z"/>
-     	<path fill="#3d85cd" d="M51.5,40.086c-1.93,0-3.5,1.57-3.5,3.5s1.57,3.5,3.5,3.5s3.5-1.57,3.5-3.5S53.43,40.086,51.5,40.086z M51.5,45.086
-     		c-0.827,0-1.5-0.673-1.5-1.5s0.673-1.5,1.5-1.5s1.5,0.673,1.5,1.5S52.327,45.086,51.5,45.086z"/>
-     	<path fill="#3d85cd" d="M31.548,46.843c0.123-0.023,0.247-0.041,0.369-0.067c0.368-0.079,0.733-0.173,1.093-0.282
-     		c0.166-0.05,0.328-0.108,0.491-0.164c0.212-0.073,0.423-0.149,0.632-0.232c0.18-0.071,0.359-0.144,0.535-0.222
-     		c0.198-0.089,0.393-0.186,0.588-0.284c0.272-0.137,0.538-0.281,0.8-0.435c0.04-0.023,0.08-0.047,0.12-0.071h10.941l-0.097-1.088
-     		C47.01,43.862,47,43.726,47,43.586c0-2.481,2.019-4.5,4.5-4.5c0.138,0,0.273,0.009,0.408,0.021l1.092,0.1V26.965l-1.092,0.1
-     		c-0.135,0.012-0.271,0.021-0.408,0.021c-2.481,0-4.5-2.019-4.5-4.5c0-0.139,0.01-0.276,0.021-0.412l0.097-1.088H36.174
-     		c-2.101-1.261-4.55-2-7.174-2s-5.073,0.739-7.174,2H10.879l0.1,1.091C10.991,22.313,11,22.448,11,22.586c0,2.481-2.019,4.5-4.5,4.5
-     		c-0.138,0-0.274-0.009-0.409-0.021L5,26.965v12.242l1.091-0.1c0.135-0.012,0.271-0.021,0.409-0.021c2.481,0,4.5,2.019,4.5,4.5
-     		c0,0.138-0.009,0.274-0.021,0.409l-0.1,1.091h10.923c0.159,0.096,0.319,0.189,0.481,0.278c0.05,0.028,0.102,0.053,0.153,0.08
-     		c0.325,0.173,0.655,0.332,0.991,0.478c0.077,0.033,0.153,0.067,0.23,0.099c0.381,0.158,0.767,0.302,1.161,0.426
-     		c0.01,0.003,0.02,0.007,0.03,0.01c0.407,0.126,0.821,0.231,1.239,0.319c0.098,0.021,0.198,0.037,0.297,0.055
-     		c0.323,0.061,0.648,0.111,0.976,0.149c0.119,0.014,0.237,0.029,0.357,0.04c0.425,0.039,0.852,0.065,1.283,0.065
-     		c0.422,0,0.841-0.026,1.259-0.064c0.13-0.012,0.259-0.027,0.388-0.042C30.949,46.945,31.249,46.898,31.548,46.843z M26.231,44.751
-     		c-0.063-0.015-0.126-0.033-0.189-0.049c-0.326-0.081-0.647-0.179-0.965-0.288c-0.147-0.051-0.293-0.104-0.438-0.16
-     		c-0.229-0.088-0.452-0.188-0.675-0.29c-0.109-0.051-0.217-0.103-0.325-0.157l2.652-1.306c0.574-0.283,0.931-0.857,0.931-1.497
-     		v-1.655l-0.604-0.26c-1.282-0.552-2.116-1.61-2.55-3.235l-0.143-0.533l-0.527-0.164c-0.316-0.098-0.528-0.38-0.528-0.701v-0.871
-     		c0-0.32,0.208-0.545,0.402-0.648l0.47-0.25l0.055-0.529c0.083-0.804,0.263-1.545,0.532-2.202c0.115-0.281,0.213-0.491,0.292-0.661
-     		c0.266-0.572,0.385-0.911,0.358-1.46c1.003,0.516,2.184,0.735,3.454,0.634c0.131-0.011,0.266-0.016,0.402-0.016
-     		c3.18,0,4.732,1.146,5.034,3.715l0.061,0.522l0.465,0.246c0.196,0.104,0.405,0.329,0.405,0.65v0.871
-     		c0,0.321-0.212,0.603-0.528,0.701l-0.527,0.164l-0.143,0.533c-0.434,1.625-1.268,2.684-2.55,3.235l-0.604,0.26v1.662
-     		c0,0.629,0.348,1.198,0.91,1.487l2.777,1.419c-0.037,0.018-0.073,0.036-0.111,0.053c-0.346,0.16-0.698,0.304-1.057,0.429
-     		c-0.043,0.015-0.085,0.032-0.128,0.047C30.715,45.157,28.401,45.253,26.231,44.751z M38.787,23.086h6.232
-     		c0.244,3.187,2.794,5.737,5.981,5.981v8.038c-3.187,0.244-5.737,2.794-5.981,5.981h-6.232c0.015-0.015,0.028-0.031,0.043-0.046
-     		c0.171-0.169,0.329-0.35,0.491-0.528c0.156-0.17,0.318-0.334,0.464-0.511c0.056-0.068,0.105-0.142,0.16-0.211
-     		c1.64-2.05,2.679-4.523,2.967-7.179c0.004-0.033,0.011-0.065,0.015-0.098C42.975,34.043,43,33.567,43,33.086
-     		s-0.025-0.957-0.072-1.428c-0.003-0.033-0.011-0.065-0.015-0.098c-0.288-2.655-1.328-5.129-2.967-7.179
-     		c-0.055-0.069-0.104-0.143-0.16-0.211c-0.147-0.176-0.308-0.341-0.464-0.511c-0.162-0.177-0.32-0.359-0.491-0.528
-     		C38.815,23.118,38.802,23.101,38.787,23.086z M35.412,22.961c0.826,0.524,1.569,1.138,2.229,1.82
-     		c0.09,0.093,0.174,0.191,0.261,0.287c0.215,0.237,0.418,0.483,0.613,0.735c0.101,0.132,0.203,0.264,0.299,0.4
-     		c0.182,0.258,0.349,0.526,0.51,0.797c0.071,0.119,0.149,0.233,0.216,0.355c0.205,0.376,0.388,0.765,0.551,1.162
-     		c0.062,0.15,0.112,0.305,0.168,0.457c0.102,0.28,0.197,0.562,0.279,0.85c0.047,0.165,0.089,0.331,0.128,0.498
-     		c0.072,0.304,0.13,0.612,0.178,0.922c0.023,0.147,0.05,0.293,0.068,0.442C40.965,32.148,41,32.614,41,33.086
-     		s-0.035,0.938-0.089,1.399c-0.017,0.149-0.045,0.294-0.068,0.442c-0.048,0.311-0.106,0.619-0.178,0.922
-     		c-0.04,0.167-0.082,0.334-0.128,0.498c-0.081,0.288-0.176,0.57-0.279,0.85c-0.056,0.153-0.106,0.308-0.168,0.457
-     		c-0.164,0.397-0.346,0.786-0.551,1.162c-0.067,0.122-0.145,0.236-0.216,0.355c-0.161,0.271-0.328,0.539-0.51,0.797
-     		c-0.096,0.136-0.198,0.268-0.299,0.4c-0.194,0.252-0.398,0.498-0.613,0.735c-0.087,0.096-0.171,0.194-0.261,0.287
-     		c-0.473,0.489-1.002,0.93-1.562,1.34c-0.17-0.124-0.343-0.245-0.532-0.34l-3.1-1.583v-0.182c1.399-0.786,2.388-2.056,2.949-3.787
-     		c0.858-0.477,1.404-1.377,1.404-2.384v-0.871c0-0.83-0.378-1.601-1.013-2.116c-0.418-2.391-2.005-5.018-6.952-5.018
-     		c-0.193,0-0.382,0.007-0.564,0.022c-0.732,0.058-1.802-0.003-2.724-0.624c-0.345-0.232-0.604-0.456-0.768-0.665
-     		c-0.33-0.419-0.88-0.564-1.373-0.361c-0.49,0.202-0.778,0.693-0.717,1.219c0.038,0.329,0.093,0.712,0.176,1.131
-     		c0.161,0.808,0.161,0.808-0.058,1.277c-0.089,0.192-0.2,0.43-0.33,0.747c-0.287,0.701-0.493,1.468-0.612,2.285
-     		c-0.625,0.515-0.996,1.281-0.996,2.103v0.871c0,1.007,0.546,1.908,1.404,2.384c0.561,1.731,1.55,3.001,2.949,3.787v0.171
-     		l-3.214,1.584c-0.102,0.056-0.198,0.132-0.296,0.2c-0.482-0.369-0.94-0.762-1.355-1.191c-0.09-0.093-0.174-0.191-0.261-0.287
-     		c-0.215-0.237-0.418-0.483-0.613-0.735c-0.101-0.132-0.203-0.264-0.299-0.4c-0.182-0.258-0.349-0.526-0.51-0.797
-     		c-0.071-0.119-0.149-0.233-0.216-0.355c-0.205-0.376-0.388-0.765-0.551-1.162c-0.062-0.15-0.112-0.305-0.168-0.457
-     		c-0.102-0.28-0.197-0.562-0.279-0.85c-0.047-0.165-0.089-0.331-0.128-0.498c-0.072-0.304-0.13-0.612-0.178-0.922
-     		c-0.023-0.147-0.05-0.293-0.068-0.442C17.035,34.024,17,33.559,17,33.086s0.035-0.938,0.089-1.399
-     		c0.017-0.149,0.045-0.294,0.068-0.442c0.048-0.311,0.106-0.619,0.178-0.922c0.04-0.167,0.082-0.334,0.128-0.498
-     		c0.081-0.288,0.176-0.57,0.279-0.85c0.056-0.153,0.106-0.308,0.168-0.457c0.164-0.397,0.346-0.786,0.551-1.162
-     		c0.067-0.122,0.145-0.236,0.216-0.355c0.161-0.271,0.328-0.539,0.51-0.797c0.096-0.136,0.198-0.268,0.299-0.4
-     		c0.194-0.252,0.398-0.498,0.613-0.735c0.087-0.096,0.171-0.194,0.261-0.287c0.66-0.682,1.403-1.296,2.229-1.82
-     		c1.857-1.181,4.053-1.875,6.412-1.875S33.555,21.78,35.412,22.961z M12.981,43.086C12.737,39.9,10.187,37.349,7,37.105v-8.038
-     		c3.187-0.244,5.737-2.794,5.981-5.981h6.232c-0.015,0.015-0.028,0.031-0.043,0.046c-0.171,0.169-0.329,0.35-0.491,0.528
-     		c-0.156,0.17-0.318,0.334-0.464,0.511c-0.056,0.068-0.105,0.142-0.16,0.211c-1.64,2.05-2.679,4.523-2.967,7.179
-     		c-0.004,0.033-0.011,0.065-0.015,0.098C15.025,32.129,15,32.606,15,33.086s0.025,0.957,0.072,1.428
-     		c0.003,0.033,0.011,0.065,0.015,0.098c0.288,2.655,1.328,5.129,2.967,7.179c0.055,0.069,0.104,0.143,0.16,0.211
-     		c0.147,0.176,0.308,0.341,0.464,0.511c0.162,0.177,0.32,0.359,0.491,0.528c0.015,0.015,0.028,0.031,0.043,0.046H12.981z"/>
-     </g>
-     </svg>
-   )
- }
-const CalendarIcon = () => {
-   return (
-     <svg version="1.1" id="Capa_1"  viewBox="0 0 58 58">
-     <g>
-     	<path fill="#3d85cd" d="M57,4h-7V1c0-0.553-0.447-1-1-1h-7c-0.553,0-1,0.447-1,1v3H19V1c0-0.553-0.447-1-1-1h-7c-0.553,0-1,0.447-1,1v3H3
-     		C2.447,4,2,4.447,2,5v11v43c0,0.553,0.447,1,1,1h54c0.553,0,1-0.447,1-1V16V5C58,4.447,57.553,4,57,4z M43,2h5v3v3h-5V5V2z M12,2h5
-     		v3v3h-5V5V2z M4,6h6v3c0,0.553,0.447,1,1,1h7c0.553,0,1-0.447,1-1V6h22v3c0,0.553,0.447,1,1,1h7c0.553,0,1-0.447,1-1V6h6v9H4V6z
-     		 M4,58V17h52v41H4z"/>
-     	<path fill="#3d85cd" d="M38,23h-7h-2h-7h-2h-9v9v2v7v2v9h9h2h7h2h7h2h9v-9v-2v-7v-2v-9h-9H38z M31,25h7v7h-7V25z M38,41h-7v-7h7V41z M22,34h7v7h-7
-     		V34z M22,25h7v7h-7V25z M13,25h7v7h-7V25z M13,34h7v7h-7V34z M20,50h-7v-7h7V50z M29,50h-7v-7h7V50z M38,50h-7v-7h7V50z M47,50h-7
-     		v-7h7V50z M47,41h-7v-7h7V41z M47,25v7h-7v-7H47z"/>
-     </g>
-     </svg>
-   )
- }
-
-
-
-
-const App = ({  cards, filterTypes, onFindCard, onGetCards, onSelectedDistrict, onSelectedPrice, onToggleList, ownProps }) => {
-  let cardInput = ''; let searchInput = ''; let taskInput = ''; let task_descInput = ''; let task_statusInput = '';
-  const findCard = () => { onFindCard(searchInput.value) }
-  const toggleList = (ev, name) =>{ onToggleList(name) }
-  const selectedDistrict = (id, key, value) => { onSelectedDistrict(id, key, value) }
-  const selectedPrice = (id, key, value) => { onSelectedPrice(id, key, value) }
-  let image_Style = (a) => {return { backgroundSize: "cover",display: "block",height: "100%", backgroundImage: "url(/uploads/" +  a  + ")" }}
-
+import { Menu } from './Menu';
+import { Link } from 'react-router-dom';
+import { css } from 'aphrodite/no-important';
+import styles from './AppStyles';
+import zcss from './css/z.css';
+import bootstrap from './css/bootstrap.min.css';
+import './css/App.css';
+import card_statuses from './data/card_statuses';
+import card_icons from './data/card_icons';
+import bin from './data/trash.svg';
+// import ImageServer from './ImageServer';
+import ImagesUploader from 'react-images-uploader';
+import 'react-images-uploader/styles.css';
+import 'react-images-uploader/font.css';
+const App = ({ cards, onAddCard, onFindCard, onGetCards, onDeleteCard, ownProps }) => {
+  let cardInput = '';
+  let searchInput = '';
+  let taskInput = '';
+  let deleteInput = '';
+  let task_descInput = '';
+  let task_statusInput = '';
+  const addCard = () => {
+    onAddCard({
+      task: taskInput.value,
+      task_desc: task_descInput.value,
+      task_status: task_statusInput.value
+    });
+    taskInput.value = task_descInput.value = task_statusInput.value = ''
+  }
+  const findCard = () => {
+    onFindCard(searchInput.value);
+  }
+  const loader = () => {
+    let i = 0; i++ ;
+    if (i === 1) {
+      onGetCards()
+    }
+  }
+  const deleteCard = () => {
+    onDeleteCard(deleteInput.value);
+  }
+const images_uploaded = []
       return (
-      <div className="Cards">
-        <div className="fields" >
-          <div className="row blueb">
-              <div className="container">
-                <div className="col-lg-12 col-xs-12 flex cardsearch">
-                  <input type="text" onChange={findCard} ref={(input) => { searchInput = input}} />
-                  <button onClick={findCard}> <img alt="search" src="/brief/magnifying-glass.svg" /> </button>
+      <div className="Cards" onLoad={loader}>
+      <div className="fields" >
+      <div className={css(styles.transparent)} >
+        <button id="getcard" onClick={onGetCards}>Get cards</button>
+      </div>
+      <div className="col-lg-12 col-xs-12 flex cardsearch">
+        <input type="text" ref={(input) => { searchInput = input}} />
+        <button className={css(styles.addCard)} onClick={findCard}> Найти задание</button>
+      </div>
+      </div>
+      <div className="list">
+      {
+        // console.log('the cards', cards),
+        cards.map((card, index) =>
+          <div key={index}>
+            <div className="col-lg-3 col-xs-6">
+              <div style={{transition: '.25s ' + (index/40) + 's', opacity: '0' }} className={card_statuses[card.task_status]}>
+                <div className="inner">
+                <div>
+                  <input type="text" type="hidden" defaultValue={card._id} ref={(input) => { deleteInput = input}} />
+                  <button className="deleteicon"  onClick={deleteCard} ><img src={bin} /></button>
                 </div>
-              <div className="dropdown_menu">
-              <div className="dd-wrapper">
-                <div className="dd-header" onClick={(ev) => toggleList(ev, filterTypes.districts.options[0].key)}>
-                  <div className="dd-header-title">{filterTypes.districts.headerTitle}</div>
-                  {filterTypes.districts.listOpen
-                    ? <FontAwesome name="angle-up"/>
-                    : <FontAwesome name="angle-down"/>
-                  }
-                  <span className="gray_icon"><img alt="search" src={PlaceIcon} /></span>
+                <Link to={`/cards/${card._id}`}>  <h4>{card.task}</h4></Link>
+                  <p>{card.id}</p>
+                  <blockquote>{card.task_desc}</blockquote>
+                  {card.task_status}
                 </div>
-                {filterTypes.districts.listOpen && <ul className="dd-list">
-                   {filterTypes.districts.options.map((item) => (
-                     <li className="dd-list-item" key={item.title} onClick={() => selectedDistrict(item.id, item.key, item.value)}>
-                       {item.title} {item.selected && <FontAwesome name="check"/>}
-                     </li>
-                    ))}
-                </ul>}
-              </div>
-              <div className="dd-wrapper">
-                <div className="dd-header" onClick={(ev) => toggleList(ev, filterTypes.prices.options[0].key)}>
-                  <div className="dd-header-title">{filterTypes.prices.headerTitle}</div>
-                  {filterTypes.prices.listOpen
-                    ? <FontAwesome name="angle-up"/>
-                    : <FontAwesome name="angle-down"/>
-                  }<span className="gray_icon"><img alt="search" src={PriceIcon} /></span>
+                <div className="icon">
+                  <i className={card_icons[card.task_status]}></i>
                 </div>
-                {filterTypes.prices.listOpen && <ul className="dd-list">
-                   {filterTypes.prices.options.map((item) => (
-                     <li className="dd-list-item" key={item.title} onClick={() => selectedPrice(item.id, item.key, item.value)}>
-                       {item.title} {item.selected && <FontAwesome name="check"/>}
-                     </li>
-                    ))}
-                </ul>}
-              </div>
-              <div className="dd-wrapper">
-                <div className="dd-header" onClick={(ev) => toggleList(ev, filterTypes.spaces.options[0].key)}>
-                  <div className="dd-header-title">{filterTypes.spaces.headerTitle}</div>
-                  {filterTypes.spaces.listOpen
-                    ? <FontAwesome name="angle-up"/>
-                    : <FontAwesome name="angle-down"/>
-                  }<span className="gray_icon"><img alt="search" src={ReduceIcon} /></span>
-                </div>
-                {filterTypes.spaces.listOpen && <ul className="dd-list">
-                   {filterTypes.spaces.options.map((item) => (
-                     <li className="dd-list-item" key={item.title} onClick={() => selectedDistrict(item.id, item.key, item.value)}>
-                       {item.title} {item.selected && <FontAwesome name="check"/>}
-                     </li>
-                    ))}
-                </ul>}
-              </div>
-              <div className="dd-wrapper">
-                <div className="dd-header" onClick={(ev) => toggleList(ev, filterTypes.rooms.options[0].key)}>
-                  <div className="dd-header-title">{filterTypes.rooms.headerTitle}</div>
-                  {filterTypes.rooms.listOpen
-                    ? <FontAwesome name="angle-up"/>
-                    : <FontAwesome name="angle-down"/>
-                  }<span className="gray_icon"><img alt="search" src={CountingIcon} /></span>
-                </div>
-                {filterTypes.rooms.listOpen && <ul className="dd-list">
-                   {filterTypes.rooms.options.map((item) => (
-                     <li className="dd-list-item" key={item.title} onClick={() => selectedDistrict(item.id, item.key, item.value)}>
-                       {item.title} {item.selected && <FontAwesome name="check"/>}
-                     </li>
-                    ))}
-                </ul>}
-              </div>
-              </div>
-              <div className="dropdown_proto">
-                {/* <DropdownProto /> */}
               </div>
             </div>
           </div>
-        </div>
-        <LoopHeading />
-        <div className="container">
-        <div className="row">
-          {
-          cards.map((card, index) =>
-            <div key={index}  className="col-md-3 col-sm-6">
-              <div>
-              <div className="el_card">
-                <div className="image_c">
-                  <a href={'/doma/' + card.page_link}   style={image_Style(card.home_background)}>
-                  </a>
-                </div>
-                <div className="panel bordered">
-                  <div className="installments_icon" id="installments_icon"><img alt="search" src="/brief/icons8-money-52.png" /></div>
-                  <a href="/doma/zhknagagarinskomplato">
-                    <h4>{card.title}</h4>
-                    <p> {card.address}</p>
-                    <span>
-                    <span class="svg_price">
-                     <MoneyIcon /></span>
-                     <span className="bold">от {card.prices_start_at_per_meter}  у.е./м<sup>2</sup></span></span>
-                    <span><span class="svg_calendar"><CalendarIcon /> </span>{convert_quarter_string(card.house_deploy_date)}</span>
-                    Узнать подробнее <i className="fa fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
+      )}
+      <div>
+        <div className="col-lg-3 col-xs-6" >
+          <div className={`add_new_card`}>
+            <div className="inner">
+            <div className="col-lg-8 col-xs-8">
+              <input placeholder="Задание" type="text" ref={(input) => { taskInput = input}} />
+              <input placeholder="Описание задания" type="text" ref={(input) => { task_descInput = input}} />
+              <input placeholder="Статус" type="text" ref={(input) => { task_statusInput = input}} />
+                                <ImagesUploader
+                                url="http://localhost:9090/multiple"
+                          optimisticPreviews
+                          onLoadEnd={(err) => {
+                              if (err) {
+                                  console.error(err);
+                              }
+                          }}
+                          label="Upload a picture"
+                          />
+              <button className={css(styles.addCard)} onClick= {addCard}> Добавить задание</button>
             </div>
             </div>
-        )}
+          </div>
         </div>
-        </div>
-        <div style={({ display: 'none' })} >
-          <button id="getcard" onClick={onGetCards}>Get cards</button>
-        </div>
+      </div>
+      </div>
       </div>
     )
 }
-function districtsFilter(state, card) {
-  let chosen = []
-  state.lists.filterTypes.districts.options.map( i => { i.selected !== false ?  typeof i.value === 'string' ? chosen.push(i.value) : chosen = i.value : i.value })
-  let bool = chosen.includes(card.block)
-return bool
-}
-function priceFilter(state, card) {
-  let chosen = []
-  state.lists.filterTypes.prices.options.map( i => { i.selected !== false ?  typeof i.value === 'string' ? chosen.push(i.value) : chosen = i.value : i.value })
-  let bool = Number(JSON.parse(card.prices)[1].text) < chosen[1]
-return bool
-}
-function spaceFilter(state, card) {
-  let chosen = []
-  state.lists.filterTypes.spaces.options.map( i => {
-    i.selected !== false ? typeof i.value === 'string' ? chosen.push(i.value) : chosen.push(i.value) : i.value
-  })
-  let bool = false
-  let prices = JSON.parse(card.prices)
-  let spaces = [ Number(prices[0].text),
-                 Number(prices[2].text),
-                 Number(prices[4].text) ]
-  chosen.map( e => {
-    if (e[0] < spaces[0] && spaces[0] < e[1] ||
-        e[0] < spaces[1] && spaces[1] < e[1] ||
-        e[0] < spaces[2] && spaces[2] < e[1] ) bool = true
-   if (isNaN(spaces[0]) && isNaN(spaces[0]) && isNaN(spaces[0])) bool = true
-  });
-return bool
-}
-function undef_or_NaN(el) {
-  if (isNaN(Number(el)) && typeof el === 'undefined' ) {
-    return true
-  } return false
-}
-function roomFilter(state, card) {
-  let chosen = []
-  let availability = {}
-    let prices = JSON.parse(card.prices)
-  state.lists.filterTypes.rooms.options.map( i => {
-    i.selected !== false ? i.value.length < 2 ? chosen.push(i.value) : chosen = i.value : i.value
-  });
-  (!undef_or_NaN(prices[0].text) || !undef_or_NaN(prices[1].text)) ?  availability[0] = true : availability[0] = false;
-  (!undef_or_NaN(prices[2].text) || !undef_or_NaN(prices[3].text)) ?  availability[1] = true : availability[1] = false;
-  (!undef_or_NaN(prices[4].text) || !undef_or_NaN(prices[5].text)) ?  availability[2] = true : availability[2] = false;
-let bool = false
-for (let prop in chosen) {
-  if (availability[chosen[prop] - 1] === true) bool = true
-  }
-return bool
-}
-
-
-
-
-
-
-
-
 export default connect(
   (state, ownProps) => ({
-    cards: state.cards
-      .filter(
-        card => card.note_type === 'Объект' &&
-        card.title.toLowerCase().includes(state.filterCards.toLowerCase()) &&
-        districtsFilter(state, card) &&
-        priceFilter(state, card) &&
-        spaceFilter(state, card) &&
-        roomFilter(state, card)
-      ),
-  filterTypes: state.lists.filterTypes,
-  ownProps
+    cards: state.cards.filter(card => card.task.includes(state.filterCards)), ownProps
   }),
   dispatch => ({
+    onAddCard: (payload) => {
+      dispatch({ type: 'ADD_CARD', payload})
+    },
     onFindCard : (task) => {
       dispatch({ type: 'FIND_CARD', payload: task})
     },
     onGetCards: () => {
         dispatch(getCards())
     },
-    onToggleList : (payload) => {
-      dispatch({ type: 'TOGGLE_LIST', payload: payload})
-    },
-    onSelectedDistrict : (id, key, value) => {
-      dispatch({ type: 'TOGGLE_SELECTED_ITEM', payload: {id:id, key:key}})
-      dispatch({ type: 'FILTER_BY_LISTS', payload: {id:id, value:value}})
-    },
-    onSelectedPrice : (id, key, value) => {
-      dispatch({ type: 'TOGGLE_SELECTED_ITEM', payload: {id:id, key:key}})
-}
+    onDeleteCard: (id) => {
+      dispatch({ type: 'DELETE_CARD', payload: id})
+    }
   }),
 )(App);

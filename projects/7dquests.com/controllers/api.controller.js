@@ -74,16 +74,7 @@ exports.questroom_api = (req, res) => {
   }).catch(err => {
   error(res, err)
   });
-
 }
-
-
-
-
-
-
-
-
 
 
 exports.create = (req, res) => {

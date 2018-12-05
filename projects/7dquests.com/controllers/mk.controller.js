@@ -84,7 +84,6 @@ const Sync_schedules = (schedule, brones) => {
     return result
   }
   this.sync = function () {
-    console.log(brones);
     brones = this.sync_brone_date(brones)
     schedule = this.setAvailability(schedule, brones)
     schedule = this.setPrice(schedule, brones)

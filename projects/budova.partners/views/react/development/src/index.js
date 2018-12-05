@@ -12,8 +12,6 @@ import { Router, Route , HashRouter, Link  } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory'
 import { syncHistoryWithStore } from 'react-router-redux';
 import Card from './Card'
-
-
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 const history = syncHistoryWithStore(createHistory(), store)
 
@@ -32,9 +30,10 @@ ReactDOM.render(
         </div>
       </HashRouter>
       </Provider>,
-      document.getElementById('budova_estate'));
+      document.getElementById('root'));
       document.getElementById('getcard').click()
       setTimeout(function(){
+
         document.querySelectorAll('.Cards')[0].classList += ' loaded'
       }, 1500 )
 registerServiceWorker();

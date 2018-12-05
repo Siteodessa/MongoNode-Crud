@@ -3341,7 +3341,7 @@ div.contacts h2 {
 .contacts span.circle {
     width: 10px;
     height: 10px;
-    margin: 20px 9px 0 0;
+    margin: 0;
 }
 .pros h2 span, .pros h2 {
     font-size: 30px;
@@ -4085,4 +4085,8 @@ img {}
 
 .homepage .pros .rows {
     margin: 55px 0 30px;
+}
+
+iframe {
+    width: 100%;
 }

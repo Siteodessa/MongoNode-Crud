@@ -4,7 +4,7 @@ import { Menu } from './Menu';
 
 const Card = ({card}) => {
   <div><Menu />
-  {card.task}
+  {card}
   </div>
 }
 

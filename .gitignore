@@ -4,6 +4,7 @@
 /projects/7dquests.com/node_modules
 /projects/budova.partners/node_modules
 /projects/budova.partners/views/react/development/node_modules
+/workspace\react_apps\my-app\node_modules\
 # testing
 /coverage
 

@@ -3,7 +3,7 @@ import { timeline_item } from './timeline_item'
 //He can do crossbrowser prexifing, but looks like it 's switched off by default for now'
 export default StyleSheet.create({
   addCard: {
-      background: '#eee',
+      background: 'green',
       color: 'white',
       display: 'flex',
   },

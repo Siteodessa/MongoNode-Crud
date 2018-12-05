@@ -58,18 +58,21 @@ homepage('/', 'pages/home.ejs', cf)
   app.get('/:page_link',  function(req, res) {
       let Note_m = require('../db/models/note.model');
       let Review_m = require('../db/models/review.model');
+      let Sitedata_m = require('../db/models/sitedata.model');
       d = null;
       Note_m.find().then(notes => {
         d = null; notes.forEach(elem => { if (elem.page_link == req.params.page_link) { d = elem; } });
         Note_m.find({title: d.title}).then(notes => { let note = notes[0]; note.counter++; Note_m.findByIdAndUpdate(note.id, {counter:note.counter}, {new: true})    .then(note => { console.log(d.title + ' was visited ' + note.counter + ' times'); }); }).catch(err => { console.log(err); })
 
+        Sitedata_m.find().then(sitedata => {
         Review_m.find().then(reviews => {
               app.use(express.static('views'));
               res.status(200).render(d.template_link, {
                 content: notes,
-                sitedata: cf.sitedata.project,
+                sitedata: sitedata,
                 reviews: reviews,
               }); // res render
+        })
         })
 
       }).catch(err => {

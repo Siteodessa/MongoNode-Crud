@@ -6,6 +6,13 @@
     var r = Array(Math.ceil(arr.length/n)).fill();
     return r.map((e,i) => arr.slice(i*n, i*n+n));
   }
+  function test_infrastructure(chunked){
+    if (chunked[7][2].text) {
+      console.log('WHY ', chunked[7][2].text);
+      return chunked
+    }
+    return false
+  }
 
   try {
     console.log('d["social_infrastructure"]', d["social_infrastructure"]);
@@ -14,6 +21,11 @@
   let chunked = chunk(JSON.parse(d["social_infrastructure"].replaceAll('amp_symbol', '&')),3);
   %>
   <%- d.map_iframe.replace('width="600"', 'width="100%"') %>
+  <% if (test_infrastructure(chunked)) { %>
+
+
+
+
 
 <div class="map">
 <div class="container">
@@ -49,7 +61,7 @@
 </div>
 </div>
 </div>
-
+  <%   } %>
 
   <%   } catch (err) { } %>
 <%   include ../partials/related  %>
