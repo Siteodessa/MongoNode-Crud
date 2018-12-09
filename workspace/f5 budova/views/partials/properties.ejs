@@ -1,0 +1,116 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="section_title text-center">
+        <h3>Продажи стартовали!</h3>
+        <span class="section_subtitle">Будьте в курсе новостей</span>
+      </div>
+    </div>
+  </div>
+  <div class="row featured_row">
+
+
+
+
+
+
+
+
+
+    <% content.forEach(function(obj){ %>
+
+
+
+        <div class="col-lg-4 featured_card_col" id="<%= obj._id %>">
+
+
+
+        <div class="featured_card_container">
+          <div class="card featured_card trans_300">
+            <div class="featured_panel">featured</div>
+            <img class="card-img-top" src="<%= obj.home_background %>" alt="https://unsplash.com/@breather">
+            <div class="card-body">
+              <div class="card-title"><a href="listings_single.html"><%= obj.title %></a></div>
+              <div class="card-text"><%= obj.content %></div>
+              <div class="card-text"><%= obj.description %></div>
+              <div class="card-text"><%= obj.description %></div>
+              <div class="rooms">
+                <div class="room">
+                  <span class="room_title">Bedrooms</span>
+                  <div class="room_content">
+                    <div class="room_image"><img src="images/bedroom.png" alt=""></div>
+                    <span class="room_number">4</span>
+                  </div>
+                </div>
+                <div class="room">
+                  <span class="room_title">Bathrooms</span>
+                  <div class="room_content">
+                    <div class="room_image"><img src="images/shower.png" alt=""></div>
+                    <span class="room_number">3</span>
+                  </div>
+                </div>
+                <div class="room">
+                  <span class="room_title">Area</span>
+                  <div class="room_content">
+                    <div class="room_image"><img src="images/area.png" alt=""></div>
+                    <span class="room_number">7100 Sq Ft</span>
+                  </div>
+                </div>
+                <div class="room">
+                  <span class="room_title">Patio</span>
+                  <div class="room_content">
+                    <div class="room_image"><img src="images/patio.png" alt=""></div>
+                    <span class="room_number">1</span>
+                  </div>
+                </div>
+                <div class="room">
+                  <span class="room_title">Garage</span>
+                  <div class="room_content">
+                    <div class="room_image"><img src="images/garage.png" alt=""></div>
+                    <span class="room_number">2</span>
+                  </div>
+                </div>
+              </div>
+              <div class="room_tags">
+                <span class="room_tag"><a href="#">Hottub</a></span>
+                <span class="room_tag"><a href="#">Swimming Pool</a></span>
+                <span class="room_tag"><a href="#">Garden</a></span>
+                <span class="room_tag"><a href="#">Patio</a></span>
+                <span class="room_tag"><a href="#">Hard Wood Floor</a></span>
+              </div>
+            </div>
+          </div>
+          <div class="featured_card_box d-flex flex-row align-items-center trans_300">
+            <img src="images/tag.svg" alt="https://www.flaticon.com/authors/lucy-g">
+            <div class="featured_card_box_content">
+              <div class="featured_card_price_title">For Sale</div>
+              <div class="featured_card_price">$540,000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    <% }); %>
+		</div>
+		</div>
